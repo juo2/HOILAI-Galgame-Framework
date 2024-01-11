@@ -1,0 +1,469 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c19171f3fe1dfa41a86272887ae484e, type: 3}
+  m_Name: AssetManifest
+  m_EditorClassIdentifier: 
+  m_MatchingFolder:
+  - Assets
+  m_IgnoreFileType:
+  - meta
+  - cs
+  m_AssetList:
+  - m_AssetName: UniversalRenderPipelineGlobalSettings.asset
+    m_AssetPath: Assets/UniversalRenderPipelineGlobalSettings.asset
+  - m_AssetName: DOTweenSettings.asset
+    m_AssetPath: Assets/Resources/DOTweenSettings.asset
+  - m_AssetName: SampleSceneProfile.asset
+    m_AssetPath: Assets/Settings/SampleSceneProfile.asset
+  - m_AssetName: URP-Balanced-Renderer.asset
+    m_AssetPath: Assets/Settings/URP-Balanced-Renderer.asset
+  - m_AssetName: URP-Balanced.asset
+    m_AssetPath: Assets/Settings/URP-Balanced.asset
+  - m_AssetName: URP-HighFidelity-Renderer.asset
+    m_AssetPath: Assets/Settings/URP-HighFidelity-Renderer.asset
+  - m_AssetName: URP-HighFidelity.asset
+    m_AssetPath: Assets/Settings/URP-HighFidelity.asset
+  - m_AssetName: URP-Performant-Renderer.asset
+    m_AssetPath: Assets/Settings/URP-Performant-Renderer.asset
+  - m_AssetName: URP-Performant.asset
+    m_AssetPath: Assets/Settings/URP-Performant.asset
+  - m_AssetName: Demo.unity
+    m_AssetPath: Assets/HGF/Scenes/Demo.unity
+  - m_AssetName: 581f4e0b1bfd7fa252d350b6c1339be87bfd3bc2.jpg@1256w_708h_!web-article-pic~1.jpg
+    m_AssetPath: Assets/HGF/Texture2D/581f4e0b1bfd7fa252d350b6c1339be87bfd3bc2.jpg@1256w_708h_!web-article-pic~1.jpg
+  - m_AssetName: ad3b0f538a769815e7093c5973c863a95cc0043d.jpg@1256w_708h_!web-article-pic~1.jpg
+    m_AssetPath: Assets/HGF/Texture2D/ad3b0f538a769815e7093c5973c863a95cc0043d.jpg@1256w_708h_!web-article-pic~1.jpg
+  - m_AssetName: bg_list_Button.png
+    m_AssetPath: Assets/HGF/Texture2D/bg_list_Button.png
+  - m_AssetName: Btn07White_1.png
+    m_AssetPath: Assets/HGF/Texture2D/Btn07White_1.png
+  - m_AssetName: Btn08White_1.png
+    m_AssetPath: Assets/HGF/Texture2D/Btn08White_1.png
+  - m_AssetName: Btn_Next2_n.png
+    m_AssetPath: Assets/HGF/Texture2D/Btn_Next2_n.png
+  - m_AssetName: Gradient-#2.png
+    m_AssetPath: Assets/HGF/Texture2D/Gradient-#2.png
+  - m_AssetName: Icon_Home.png
+    m_AssetPath: Assets/HGF/Texture2D/Icon_Home.png
+  - m_AssetName: Tip001White_2.png
+    m_AssetPath: Assets/HGF/Texture2D/Tip001White_2.png
+  - m_AssetName: AssetManifest.asset
+    m_AssetPath: Assets/Plugins/AssetProcessor/AssetManifest.asset
+  - m_AssetName: readme_DOTweenPro.txt
+    m_AssetPath: Assets/Plugins/Demigiant/readme_DOTweenPro.txt
+  - m_AssetName: Button-Choice.prefab
+    m_AssetPath: Assets/Resources/HGF/Button-Choice.prefab
+  - m_AssetName: Img-Character.prefab
+    m_AssetPath: Assets/Resources/HGF/Img-Character.prefab
+  - m_AssetName: CharacterInfo.ini
+    m_AssetPath: Assets/StreamingAssets/HGF/CharacterInfo.ini
+  - m_AssetName: Department.ini
+    m_AssetPath: Assets/StreamingAssets/HGF/Department.ini
+  - m_AssetName: Test.xml
+    m_AssetPath: Assets/StreamingAssets/HGF/Test.xml
+  - m_AssetName: TetraCreations.Attributes.asmdef
+    m_AssetPath: Assets/HGF/Tetra Attributes/Core/TetraCreations.Attributes.asmdef
+  - m_AssetName: Documentation.md
+    m_AssetPath: Assets/HGF/Tetra Attributes/Documentation/Documentation.md
+  - m_AssetName: Documentation.pdf
+    m_AssetPath: Assets/HGF/Tetra Attributes/Documentation/Documentation.pdf
+  - m_AssetName: TetraCreations.Attributes.Editor.asmdef
+    m_AssetPath: Assets/HGF/Tetra Attributes/Editor/TetraCreations.Attributes.Editor.asmdef
+  - m_AssetName: Cube Sprite.png
+    m_AssetPath: Assets/HGF/Tetra Attributes/Example/Cube Sprite.png
+  - m_AssetName: Example.unity
+    m_AssetPath: Assets/HGF/Tetra Attributes/Example/Example.unity
+  - m_AssetName: atlas_temp.spriteatlas
+    m_AssetPath: Assets/Plugins/AssetProcessor/Editor/atlas_temp.spriteatlas
+  - m_AssetName: temp.lua
+    m_AssetPath: Assets/Plugins/AssetProcessor/Editor/temp.lua
+  - m_AssetName: AVPro.png
+    m_AssetPath: Assets/Plugins/AVProVideo/Resources/AVPro.png
+  - m_AssetName: AVPro1.png
+    m_AssetPath: Assets/Plugins/AVProVideo/Resources/AVPro1.png
+  - m_AssetName: AVProVideoIcon.png
+    m_AssetPath: Assets/Plugins/AVProVideo/Resources/AVProVideoIcon.png
+  - m_AssetName: DOTween.dll
+    m_AssetPath: Assets/Plugins/Demigiant/DOTween/DOTween.dll
+  - m_AssetName: DOTween.XML
+    m_AssetPath: Assets/Plugins/Demigiant/DOTween/DOTween.XML
+  - m_AssetName: readme.txt
+    m_AssetPath: Assets/Plugins/Demigiant/DOTweenPro/readme.txt
+  - m_AssetName: DOTweenPro.dll
+    m_AssetPath: Assets/Plugins/Demigiant/DOTweenPro/DOTweenPro.dll
+  - m_AssetName: DOTweenPro.XML
+    m_AssetPath: Assets/Plugins/Demigiant/DOTweenPro/DOTweenPro.XML
+  - m_AssetName: DOTweenAnimation_Advanced.unity
+    m_AssetPath: Assets/Plugins/Demigiant/DOTweenPro Examples/DOTweenAnimation_Advanced.unity
+  - m_AssetName: DOTweenAnimation_AdvancedSettings.lighting
+    m_AssetPath: Assets/Plugins/Demigiant/DOTweenPro Examples/DOTweenAnimation_AdvancedSettings.lighting
+  - m_AssetName: DOTweenAnimation_Basics.unity
+    m_AssetPath: Assets/Plugins/Demigiant/DOTweenPro Examples/DOTweenAnimation_Basics.unity
+  - m_AssetName: DOTweenAnimation_BasicsSettings.lighting
+    m_AssetPath: Assets/Plugins/Demigiant/DOTweenPro Examples/DOTweenAnimation_BasicsSettings.lighting
+  - m_AssetName: DOTweenPath.unity
+    m_AssetPath: Assets/Plugins/Demigiant/DOTweenPro Examples/DOTweenPath.unity
+  - m_AssetName: DOTweenPathSettings.lighting
+    m_AssetPath: Assets/Plugins/Demigiant/DOTweenPro Examples/DOTweenPathSettings.lighting
+  - m_AssetName: Buttons Example.png
+    m_AssetPath: Assets/HGF/Tetra Attributes/Documentation/Screenshots/Buttons Example.png
+  - m_AssetName: DrawIf Example False.png
+    m_AssetPath: Assets/HGF/Tetra Attributes/Documentation/Screenshots/DrawIf Example
+      False.png
+  - m_AssetName: DrawIf Example True.png
+    m_AssetPath: Assets/HGF/Tetra Attributes/Documentation/Screenshots/DrawIf Example
+      True.png
+  - m_AssetName: HelpBox Example.png
+    m_AssetPath: Assets/HGF/Tetra Attributes/Documentation/Screenshots/HelpBox Example.png
+  - m_AssetName: MinMaxSlider Example.png
+    m_AssetPath: Assets/HGF/Tetra Attributes/Documentation/Screenshots/MinMaxSlider
+      Example.png
+  - m_AssetName: Path Example.png
+    m_AssetPath: Assets/HGF/Tetra Attributes/Documentation/Screenshots/Path Example.png
+  - m_AssetName: ReadOnly Example.png
+    m_AssetPath: Assets/HGF/Tetra Attributes/Documentation/Screenshots/ReadOnly Example.png
+  - m_AssetName: Required Example.png
+    m_AssetPath: Assets/HGF/Tetra Attributes/Documentation/Screenshots/Required Example.png
+  - m_AssetName: Snapped float Example.png
+    m_AssetPath: Assets/HGF/Tetra Attributes/Documentation/Screenshots/Snapped float
+      Example.png
+  - m_AssetName: Sprite preview.png
+    m_AssetPath: Assets/HGF/Tetra Attributes/Documentation/Screenshots/Sprite preview.png
+  - m_AssetName: Tetra creation attributes.png
+    m_AssetPath: Assets/HGF/Tetra Attributes/Documentation/Screenshots/Tetra creation
+      attributes.png
+  - m_AssetName: Title Example.png
+    m_AssetPath: Assets/HGF/Tetra Attributes/Documentation/Screenshots/Title Example.png
+  - m_AssetName: audio360-exo28.jar
+    m_AssetPath: Assets/Plugins/AVProVideo/Plugins/Android/audio360-exo28.jar
+  - m_AssetName: audio360.jar
+    m_AssetPath: Assets/Plugins/AVProVideo/Plugins/Android/audio360.jar
+  - m_AssetName: AVProVideo.jar
+    m_AssetPath: Assets/Plugins/AVProVideo/Plugins/Android/AVProVideo.jar
+  - m_AssetName: Boostrap.java
+    m_AssetPath: Assets/Plugins/AVProVideo/Plugins/Android/Boostrap.java
+  - m_AssetName: exoplayer2-dash.jar
+    m_AssetPath: Assets/Plugins/AVProVideo/Plugins/Android/exoplayer2-dash.jar
+  - m_AssetName: exoplayer2-hls.jar
+    m_AssetPath: Assets/Plugins/AVProVideo/Plugins/Android/exoplayer2-hls.jar
+  - m_AssetName: exoplayer2-smoothstreaming.jar
+    m_AssetPath: Assets/Plugins/AVProVideo/Plugins/Android/exoplayer2-smoothstreaming.jar
+  - m_AssetName: exoplayer2.jar
+    m_AssetPath: Assets/Plugins/AVProVideo/Plugins/Android/exoplayer2.jar
+  - m_AssetName: zip_file.jar
+    m_AssetPath: Assets/Plugins/AVProVideo/Plugins/Android/zip_file.jar
+  - m_AssetName: AVProVideo.jslib
+    m_AssetPath: Assets/Plugins/AVProVideo/Plugins/WebGL/AVProVideo.jslib
+  - m_AssetName: Audio360.dll
+    m_AssetPath: Assets/Plugins/AVProVideo/Plugins/x86_64/Audio360.dll
+  - m_AssetName: AVProVideo.dll
+    m_AssetPath: Assets/Plugins/AVProVideo/Plugins/x86_64/AVProVideo.dll
+  - m_AssetName: AVProVideo-Background-FullScreen.shader
+    m_AssetPath: Assets/Plugins/AVProVideo/Resources/Shaders/AVProVideo-Background-FullScreen.shader
+  - m_AssetName: AVProVideo-Background-FullScreenTransparent.shader
+    m_AssetPath: Assets/Plugins/AVProVideo/Resources/Shaders/AVProVideo-Background-FullScreenTransparent.shader
+  - m_AssetName: AVProVideo-BlendFrames.shader
+    m_AssetPath: Assets/Plugins/AVProVideo/Resources/Shaders/AVProVideo-BlendFrames.shader
+  - m_AssetName: AVProVideo-Helper-Transition.shader
+    m_AssetPath: Assets/Plugins/AVProVideo/Resources/Shaders/AVProVideo-Helper-Transition.shader
+  - m_AssetName: AVProVideo-IMGUI-Transparent.shader
+    m_AssetPath: Assets/Plugins/AVProVideo/Resources/Shaders/AVProVideo-IMGUI-Transparent.shader
+  - m_AssetName: AVProVideo-UI-AndroidOES.shader
+    m_AssetPath: Assets/Plugins/AVProVideo/Resources/Shaders/AVProVideo-UI-AndroidOES.shader
+  - m_AssetName: AVProVideo-UI-Default-Stereo.shader
+    m_AssetPath: Assets/Plugins/AVProVideo/Resources/Shaders/AVProVideo-UI-Default-Stereo.shader
+  - m_AssetName: AVProVideo-UI-Default-Transparent.shader
+    m_AssetPath: Assets/Plugins/AVProVideo/Resources/Shaders/AVProVideo-UI-Default-Transparent.shader
+  - m_AssetName: AVProVideo-Unlit-AndroidOES.shader
+    m_AssetPath: Assets/Plugins/AVProVideo/Resources/Shaders/AVProVideo-Unlit-AndroidOES.shader
+  - m_AssetName: AVProVideo-Unlit-Transparent.shader
+    m_AssetPath: Assets/Plugins/AVProVideo/Resources/Shaders/AVProVideo-Unlit-Transparent.shader
+  - m_AssetName: AVProVideo-Unlit.shader
+    m_AssetPath: Assets/Plugins/AVProVideo/Resources/Shaders/AVProVideo-Unlit.shader
+  - m_AssetName: AVProVideo.cginc
+    m_AssetPath: Assets/Plugins/AVProVideo/Resources/Shaders/AVProVideo.cginc
+  - m_AssetName: DemiLib.dll
+    m_AssetPath: Assets/Plugins/Demigiant/DemiLib/Core/DemiLib.dll
+  - m_AssetName: DemiLib.xml
+    m_AssetPath: Assets/Plugins/Demigiant/DemiLib/Core/DemiLib.xml
+  - m_AssetName: DOTweenEditor.dll
+    m_AssetPath: Assets/Plugins/Demigiant/DOTween/Editor/DOTweenEditor.dll
+  - m_AssetName: DOTweenEditor.XML
+    m_AssetPath: Assets/Plugins/Demigiant/DOTween/Editor/DOTweenEditor.XML
+  - m_AssetName: DOTweenProEditor.dll
+    m_AssetPath: Assets/Plugins/Demigiant/DOTweenPro/Editor/DOTweenProEditor.dll
+  - m_AssetName: DOTweenProEditor.XML
+    m_AssetPath: Assets/Plugins/Demigiant/DOTweenPro/Editor/DOTweenProEditor.XML
+  - m_AssetName: dotweenpro_logo.png
+    m_AssetPath: Assets/Plugins/Demigiant/DOTweenPro Examples/Examples Assets/dotweenpro_logo.png
+  - m_AssetName: DemiEditor.dll
+    m_AssetPath: Assets/Plugins/Demigiant/DemiLib/Core/Editor/DemiEditor.dll
+  - m_AssetName: DemiEditor.xml
+    m_AssetPath: Assets/Plugins/Demigiant/DemiLib/Core/Editor/DemiEditor.xml
+  - m_AssetName: DOTweenIcon.png
+    m_AssetPath: Assets/Plugins/Demigiant/DOTween/Editor/Imgs/DOTweenIcon.png
+  - m_AssetName: DOTweenMiniIcon.png
+    m_AssetPath: Assets/Plugins/Demigiant/DOTween/Editor/Imgs/DOTweenMiniIcon.png
+  - m_AssetName: Footer.png
+    m_AssetPath: Assets/Plugins/Demigiant/DOTween/Editor/Imgs/Footer.png
+  - m_AssetName: Footer_dark.png
+    m_AssetPath: Assets/Plugins/Demigiant/DOTween/Editor/Imgs/Footer_dark.png
+  - m_AssetName: Header.jpg
+    m_AssetPath: Assets/Plugins/Demigiant/DOTween/Editor/Imgs/Header.jpg
+  - m_AssetName: 1.mp3
+    m_AssetPath: Assets/StreamingAssets/HGF/Audio/Plot/HYKB/1.mp3
+  - m_AssetName: 1.png
+    m_AssetPath: Assets/StreamingAssets/HGF/Texture2D/Portrait/HYKB_Girl/1.png
+  - m_AssetName: 2.png
+    m_AssetPath: Assets/StreamingAssets/HGF/Texture2D/Portrait/HYKB_Girl/2.png
+  - m_AssetName: 3.png
+    m_AssetPath: Assets/StreamingAssets/HGF/Texture2D/Portrait/HYKB_Girl/3.png
+  - m_AssetName: 4.png
+    m_AssetPath: Assets/StreamingAssets/HGF/Texture2D/Portrait/HYKB_Girl/4.png
+  - m_AssetName: libAudio360-JNI.so
+    m_AssetPath: Assets/Plugins/AVProVideo/Plugins/Android/libs/x86/libAudio360-JNI.so
+  - m_AssetName: libAudio360.so
+    m_AssetPath: Assets/Plugins/AVProVideo/Plugins/Android/libs/x86/libAudio360.so
+  - m_AssetName: libAVProLocal.so
+    m_AssetPath: Assets/Plugins/AVProVideo/Plugins/Android/libs/x86/libAVProLocal.so
+  - m_AssetName: libopus.so
+    m_AssetPath: Assets/Plugins/AVProVideo/Plugins/Android/libs/x86/libopus.so
+  - m_AssetName: libopusJNI.so
+    m_AssetPath: Assets/Plugins/AVProVideo/Plugins/Android/libs/x86/libopusJNI.so
+  - m_AssetName: blackSquare.png
+    m_AssetPath: Assets/Plugins/Demigiant/DemiLib/Core/Editor/Imgs/blackSquare.png
+  - m_AssetName: blackSquareAlpha10.png
+    m_AssetPath: Assets/Plugins/Demigiant/DemiLib/Core/Editor/Imgs/blackSquareAlpha10.png
+  - m_AssetName: blackSquareAlpha15.png
+    m_AssetPath: Assets/Plugins/Demigiant/DemiLib/Core/Editor/Imgs/blackSquareAlpha15.png
+  - m_AssetName: blackSquareAlpha25.png
+    m_AssetPath: Assets/Plugins/Demigiant/DemiLib/Core/Editor/Imgs/blackSquareAlpha25.png
+  - m_AssetName: blackSquareAlpha50.png
+    m_AssetPath: Assets/Plugins/Demigiant/DemiLib/Core/Editor/Imgs/blackSquareAlpha50.png
+  - m_AssetName: blackSquareAlpha80.png
+    m_AssetPath: Assets/Plugins/Demigiant/DemiLib/Core/Editor/Imgs/blackSquareAlpha80.png
+  - m_AssetName: blueSquare.png
+    m_AssetPath: Assets/Plugins/Demigiant/DemiLib/Core/Editor/Imgs/blueSquare.png
+  - m_AssetName: circle.png
+    m_AssetPath: Assets/Plugins/Demigiant/DemiLib/Core/Editor/Imgs/circle.png
+  - m_AssetName: circle_dashedBorderEmpty.png
+    m_AssetPath: Assets/Plugins/Demigiant/DemiLib/Core/Editor/Imgs/circle_dashedBorderEmpty.png
+  - m_AssetName: greenSquare.png
+    m_AssetPath: Assets/Plugins/Demigiant/DemiLib/Core/Editor/Imgs/greenSquare.png
+  - m_AssetName: grid_bright.png
+    m_AssetPath: Assets/Plugins/Demigiant/DemiLib/Core/Editor/Imgs/grid_bright.png
+  - m_AssetName: grid_dark.png
+    m_AssetPath: Assets/Plugins/Demigiant/DemiLib/Core/Editor/Imgs/grid_dark.png
+  - m_AssetName: ico_alert.png
+    m_AssetPath: Assets/Plugins/Demigiant/DemiLib/Core/Editor/Imgs/ico_alert.png
+  - m_AssetName: ico_alignB.png
+    m_AssetPath: Assets/Plugins/Demigiant/DemiLib/Core/Editor/Imgs/ico_alignB.png
+  - m_AssetName: ico_alignBC.png
+    m_AssetPath: Assets/Plugins/Demigiant/DemiLib/Core/Editor/Imgs/ico_alignBC.png
+  - m_AssetName: ico_alignBL.png
+    m_AssetPath: Assets/Plugins/Demigiant/DemiLib/Core/Editor/Imgs/ico_alignBL.png
+  - m_AssetName: ico_alignBR.png
+    m_AssetPath: Assets/Plugins/Demigiant/DemiLib/Core/Editor/Imgs/ico_alignBR.png
+  - m_AssetName: ico_alignCC.png
+    m_AssetPath: Assets/Plugins/Demigiant/DemiLib/Core/Editor/Imgs/ico_alignCC.png
+  - m_AssetName: ico_alignCL.png
+    m_AssetPath: Assets/Plugins/Demigiant/DemiLib/Core/Editor/Imgs/ico_alignCL.png
+  - m_AssetName: ico_alignCR.png
+    m_AssetPath: Assets/Plugins/Demigiant/DemiLib/Core/Editor/Imgs/ico_alignCR.png
+  - m_AssetName: ico_alignHC.png
+    m_AssetPath: Assets/Plugins/Demigiant/DemiLib/Core/Editor/Imgs/ico_alignHC.png
+  - m_AssetName: ico_alignL.png
+    m_AssetPath: Assets/Plugins/Demigiant/DemiLib/Core/Editor/Imgs/ico_alignL.png
+  - m_AssetName: ico_alignR.png
+    m_AssetPath: Assets/Plugins/Demigiant/DemiLib/Core/Editor/Imgs/ico_alignR.png
+  - m_AssetName: ico_alignT.png
+    m_AssetPath: Assets/Plugins/Demigiant/DemiLib/Core/Editor/Imgs/ico_alignT.png
+  - m_AssetName: ico_alignTC.png
+    m_AssetPath: Assets/Plugins/Demigiant/DemiLib/Core/Editor/Imgs/ico_alignTC.png
+  - m_AssetName: ico_alignTL.png
+    m_AssetPath: Assets/Plugins/Demigiant/DemiLib/Core/Editor/Imgs/ico_alignTL.png
+  - m_AssetName: ico_alignTR.png
+    m_AssetPath: Assets/Plugins/Demigiant/DemiLib/Core/Editor/Imgs/ico_alignTR.png
+  - m_AssetName: ico_alignVC.png
+    m_AssetPath: Assets/Plugins/Demigiant/DemiLib/Core/Editor/Imgs/ico_alignVC.png
+  - m_AssetName: ico_camera.png
+    m_AssetPath: Assets/Plugins/Demigiant/DemiLib/Core/Editor/Imgs/ico_camera.png
+  - m_AssetName: ico_camera_border.png
+    m_AssetPath: Assets/Plugins/Demigiant/DemiLib/Core/Editor/Imgs/ico_camera_border.png
+  - m_AssetName: ico_cog.png
+    m_AssetPath: Assets/Plugins/Demigiant/DemiLib/Core/Editor/Imgs/project/ico_cog.png
+  - m_AssetName: ico_cog_border.png
+    m_AssetPath: Assets/Plugins/Demigiant/DemiLib/Core/Editor/Imgs/ico_cog_border.png
+  - m_AssetName: ico_comment.png
+    m_AssetPath: Assets/Plugins/Demigiant/DemiLib/Core/Editor/Imgs/ico_comment.png
+  - m_AssetName: ico_comment_border.png
+    m_AssetPath: Assets/Plugins/Demigiant/DemiLib/Core/Editor/Imgs/ico_comment_border.png
+  - m_AssetName: ico_delete.png
+    m_AssetPath: Assets/Plugins/Demigiant/DemiLib/Core/Editor/Imgs/ico_delete.png
+  - m_AssetName: ico_demigiant.png
+    m_AssetPath: Assets/Plugins/Demigiant/DemiLib/Core/Editor/Imgs/project/ico_demigiant.png
+  - m_AssetName: ico_distributeHAlignT.png
+    m_AssetPath: Assets/Plugins/Demigiant/DemiLib/Core/Editor/Imgs/ico_distributeHAlignT.png
+  - m_AssetName: ico_distributeVAlignL.png
+    m_AssetPath: Assets/Plugins/Demigiant/DemiLib/Core/Editor/Imgs/ico_distributeVAlignL.png
+  - m_AssetName: ico_end.png
+    m_AssetPath: Assets/Plugins/Demigiant/DemiLib/Core/Editor/Imgs/ico_end.png
+  - m_AssetName: ico_flipV.png
+    m_AssetPath: Assets/Plugins/Demigiant/DemiLib/Core/Editor/Imgs/ico_flipV.png
+  - m_AssetName: ico_foldout_closed.png
+    m_AssetPath: Assets/Plugins/Demigiant/DemiLib/Core/Editor/Imgs/ico_foldout_closed.png
+  - m_AssetName: ico_foldout_open.png
+    m_AssetPath: Assets/Plugins/Demigiant/DemiLib/Core/Editor/Imgs/ico_foldout_open.png
+  - m_AssetName: ico_heart.png
+    m_AssetPath: Assets/Plugins/Demigiant/DemiLib/Core/Editor/Imgs/project/ico_heart.png
+  - m_AssetName: ico_heart_border.png
+    m_AssetPath: Assets/Plugins/Demigiant/DemiLib/Core/Editor/Imgs/ico_heart_border.png
+  - m_AssetName: ico_light.png
+    m_AssetPath: Assets/Plugins/Demigiant/DemiLib/Core/Editor/Imgs/ico_light.png
+  - m_AssetName: ico_light_border.png
+    m_AssetPath: Assets/Plugins/Demigiant/DemiLib/Core/Editor/Imgs/ico_light_border.png
+  - m_AssetName: ico_lock.png
+    m_AssetPath: Assets/Plugins/Demigiant/DemiLib/Core/Editor/Imgs/ico_lock.png
+  - m_AssetName: ico_lock_open.png
+    m_AssetPath: Assets/Plugins/Demigiant/DemiLib/Core/Editor/Imgs/ico_lock_open.png
+  - m_AssetName: ico_nodeArrow.png
+    m_AssetPath: Assets/Plugins/Demigiant/DemiLib/Core/Editor/Imgs/ico_nodeArrow.png
+  - m_AssetName: ico_ok.png
+    m_AssetPath: Assets/Plugins/Demigiant/DemiLib/Core/Editor/Imgs/ico_ok.png
+  - m_AssetName: ico_optionsDropdown.png
+    m_AssetPath: Assets/Plugins/Demigiant/DemiLib/Core/Editor/Imgs/ico_optionsDropdown.png
+  - m_AssetName: ico_play.png
+    m_AssetPath: Assets/Plugins/Demigiant/DemiLib/Core/Editor/Imgs/project/ico_play.png
+  - m_AssetName: ico_play_border.png
+    m_AssetPath: Assets/Plugins/Demigiant/DemiLib/Core/Editor/Imgs/ico_play_border.png
+  - m_AssetName: ico_skull.png
+    m_AssetPath: Assets/Plugins/Demigiant/DemiLib/Core/Editor/Imgs/project/ico_skull.png
+  - m_AssetName: ico_skull_border.png
+    m_AssetPath: Assets/Plugins/Demigiant/DemiLib/Core/Editor/Imgs/ico_skull_border.png
+  - m_AssetName: ico_star.png
+    m_AssetPath: Assets/Plugins/Demigiant/DemiLib/Core/Editor/Imgs/project/ico_star.png
+  - m_AssetName: ico_star_border.png
+    m_AssetPath: Assets/Plugins/Demigiant/DemiLib/Core/Editor/Imgs/ico_star_border.png
+  - m_AssetName: ico_ui.png
+    m_AssetPath: Assets/Plugins/Demigiant/DemiLib/Core/Editor/Imgs/ico_ui.png
+  - m_AssetName: ico_ui_border.png
+    m_AssetPath: Assets/Plugins/Demigiant/DemiLib/Core/Editor/Imgs/ico_ui_border.png
+  - m_AssetName: ico_visibility.png
+    m_AssetPath: Assets/Plugins/Demigiant/DemiLib/Core/Editor/Imgs/ico_visibility.png
+  - m_AssetName: ico_visibility_off.png
+    m_AssetPath: Assets/Plugins/Demigiant/DemiLib/Core/Editor/Imgs/ico_visibility_off.png
+  - m_AssetName: orangeSquare.png
+    m_AssetPath: Assets/Plugins/Demigiant/DemiLib/Core/Editor/Imgs/orangeSquare.png
+  - m_AssetName: purpleSquare.png
+    m_AssetPath: Assets/Plugins/Demigiant/DemiLib/Core/Editor/Imgs/purpleSquare.png
+  - m_AssetName: redSquare.png
+    m_AssetPath: Assets/Plugins/Demigiant/DemiLib/Core/Editor/Imgs/redSquare.png
+  - m_AssetName: squareBorder.png
+    m_AssetPath: Assets/Plugins/Demigiant/DemiLib/Core/Editor/Imgs/squareBorder.png
+  - m_AssetName: squareBorderAlpha15.png
+    m_AssetPath: Assets/Plugins/Demigiant/DemiLib/Core/Editor/Imgs/squareBorderAlpha15.png
+  - m_AssetName: squareBorderCurved.png
+    m_AssetPath: Assets/Plugins/Demigiant/DemiLib/Core/Editor/Imgs/squareBorderCurved.png
+  - m_AssetName: squareBorderCurved02.png
+    m_AssetPath: Assets/Plugins/Demigiant/DemiLib/Core/Editor/Imgs/squareBorderCurved02.png
+  - m_AssetName: squareBorderCurved02_darkBorders.png
+    m_AssetPath: Assets/Plugins/Demigiant/DemiLib/Core/Editor/Imgs/squareBorderCurved02_darkBorders.png
+  - m_AssetName: squareBorderCurvedAlpha.png
+    m_AssetPath: Assets/Plugins/Demigiant/DemiLib/Core/Editor/Imgs/squareBorderCurvedAlpha.png
+  - m_AssetName: squareBorderCurvedEmpty.png
+    m_AssetPath: Assets/Plugins/Demigiant/DemiLib/Core/Editor/Imgs/squareBorderCurvedEmpty.png
+  - m_AssetName: squareBorderCurvedEmpty02.png
+    m_AssetPath: Assets/Plugins/Demigiant/DemiLib/Core/Editor/Imgs/squareBorderCurvedEmpty02.png
+  - m_AssetName: squareBorderCurvedEmptyThick.png
+    m_AssetPath: Assets/Plugins/Demigiant/DemiLib/Core/Editor/Imgs/squareBorderCurvedEmptyThick.png
+  - m_AssetName: squareBorderCurved_darkBorders.png
+    m_AssetPath: Assets/Plugins/Demigiant/DemiLib/Core/Editor/Imgs/squareBorderCurved_darkBorders.png
+  - m_AssetName: squareBorderCurved_darkBordersAlpha.png
+    m_AssetPath: Assets/Plugins/Demigiant/DemiLib/Core/Editor/Imgs/squareBorderCurved_darkBordersAlpha.png
+  - m_AssetName: squareBorderEmpty.png
+    m_AssetPath: Assets/Plugins/Demigiant/DemiLib/Core/Editor/Imgs/squareBorderEmpty.png
+  - m_AssetName: squareBorderEmpty01.png
+    m_AssetPath: Assets/Plugins/Demigiant/DemiLib/Core/Editor/Imgs/squareBorderEmpty01.png
+  - m_AssetName: squareBorderEmpty02.png
+    m_AssetPath: Assets/Plugins/Demigiant/DemiLib/Core/Editor/Imgs/squareBorderEmpty02.png
+  - m_AssetName: squareBorderEmpty03.png
+    m_AssetPath: Assets/Plugins/Demigiant/DemiLib/Core/Editor/Imgs/squareBorderEmpty03.png
+  - m_AssetName: squareBorderThickEmpty.png
+    m_AssetPath: Assets/Plugins/Demigiant/DemiLib/Core/Editor/Imgs/squareBorderThickEmpty.png
+  - m_AssetName: squareBorderThickerEmpty.png
+    m_AssetPath: Assets/Plugins/Demigiant/DemiLib/Core/Editor/Imgs/squareBorderThickerEmpty.png
+  - m_AssetName: squareCorners03.png
+    m_AssetPath: Assets/Plugins/Demigiant/DemiLib/Core/Editor/Imgs/squareCorners03.png
+  - m_AssetName: squareCornersEmpty02.png
+    m_AssetPath: Assets/Plugins/Demigiant/DemiLib/Core/Editor/Imgs/squareCornersEmpty02.png
+  - m_AssetName: tileBars_empty.png
+    m_AssetPath: Assets/Plugins/Demigiant/DemiLib/Core/Editor/Imgs/tileBars_empty.png
+  - m_AssetName: tileBars_slanted.png
+    m_AssetPath: Assets/Plugins/Demigiant/DemiLib/Core/Editor/Imgs/tileBars_slanted.png
+  - m_AssetName: tileBars_slanted_alpha.png
+    m_AssetPath: Assets/Plugins/Demigiant/DemiLib/Core/Editor/Imgs/tileBars_slanted_alpha.png
+  - m_AssetName: transparentSquare.png
+    m_AssetPath: Assets/Plugins/Demigiant/DemiLib/Core/Editor/Imgs/transparentSquare.png
+  - m_AssetName: whiteDot.png
+    m_AssetPath: Assets/Plugins/Demigiant/DemiLib/Core/Editor/Imgs/whiteDot.png
+  - m_AssetName: whiteDot_darkBorder.png
+    m_AssetPath: Assets/Plugins/Demigiant/DemiLib/Core/Editor/Imgs/whiteDot_darkBorder.png
+  - m_AssetName: whiteDot_whiteBorderAlpha.png
+    m_AssetPath: Assets/Plugins/Demigiant/DemiLib/Core/Editor/Imgs/whiteDot_whiteBorderAlpha.png
+  - m_AssetName: whiteSquare.png
+    m_AssetPath: Assets/Plugins/Demigiant/DemiLib/Core/Editor/Imgs/whiteSquare.png
+  - m_AssetName: whiteSquareAlpha10.png
+    m_AssetPath: Assets/Plugins/Demigiant/DemiLib/Core/Editor/Imgs/whiteSquareAlpha10.png
+  - m_AssetName: whiteSquareAlpha15.png
+    m_AssetPath: Assets/Plugins/Demigiant/DemiLib/Core/Editor/Imgs/whiteSquareAlpha15.png
+  - m_AssetName: whiteSquareAlpha25.png
+    m_AssetPath: Assets/Plugins/Demigiant/DemiLib/Core/Editor/Imgs/whiteSquareAlpha25.png
+  - m_AssetName: whiteSquareAlpha50.png
+    m_AssetPath: Assets/Plugins/Demigiant/DemiLib/Core/Editor/Imgs/whiteSquareAlpha50.png
+  - m_AssetName: whiteSquareAlpha80.png
+    m_AssetPath: Assets/Plugins/Demigiant/DemiLib/Core/Editor/Imgs/whiteSquareAlpha80.png
+  - m_AssetName: whiteSquareCurved.png
+    m_AssetPath: Assets/Plugins/Demigiant/DemiLib/Core/Editor/Imgs/whiteSquareCurved.png
+  - m_AssetName: whiteSquareCurved02.png
+    m_AssetPath: Assets/Plugins/Demigiant/DemiLib/Core/Editor/Imgs/whiteSquareCurved02.png
+  - m_AssetName: whiteSquare_fadeOut_bt.png
+    m_AssetPath: Assets/Plugins/Demigiant/DemiLib/Core/Editor/Imgs/whiteSquare_fadeOut_bt.png
+  - m_AssetName: yellowSquare.png
+    m_AssetPath: Assets/Plugins/Demigiant/DemiLib/Core/Editor/Imgs/yellowSquare.png
+  - m_AssetName: ico_atlas.png
+    m_AssetPath: Assets/Plugins/Demigiant/DemiLib/Core/Editor/Imgs/project/ico_atlas.png
+  - m_AssetName: ico_audio.png
+    m_AssetPath: Assets/Plugins/Demigiant/DemiLib/Core/Editor/Imgs/project/ico_audio.png
+  - m_AssetName: ico_bundle.png
+    m_AssetPath: Assets/Plugins/Demigiant/DemiLib/Core/Editor/Imgs/project/ico_bundle.png
+  - m_AssetName: ico_cross.png
+    m_AssetPath: Assets/Plugins/Demigiant/DemiLib/Core/Editor/Imgs/project/ico_cross.png
+  - m_AssetName: ico_folder.png
+    m_AssetPath: Assets/Plugins/Demigiant/DemiLib/Core/Editor/Imgs/project/ico_folder.png
+  - m_AssetName: ico_fonts.png
+    m_AssetPath: Assets/Plugins/Demigiant/DemiLib/Core/Editor/Imgs/project/ico_fonts.png
+  - m_AssetName: ico_materials.png
+    m_AssetPath: Assets/Plugins/Demigiant/DemiLib/Core/Editor/Imgs/project/ico_materials.png
+  - m_AssetName: ico_models.png
+    m_AssetPath: Assets/Plugins/Demigiant/DemiLib/Core/Editor/Imgs/project/ico_models.png
+  - m_AssetName: ico_particles.png
+    m_AssetPath: Assets/Plugins/Demigiant/DemiLib/Core/Editor/Imgs/project/ico_particles.png
+  - m_AssetName: ico_prefab.png
+    m_AssetPath: Assets/Plugins/Demigiant/DemiLib/Core/Editor/Imgs/project/ico_prefab.png
+  - m_AssetName: ico_scripts.png
+    m_AssetPath: Assets/Plugins/Demigiant/DemiLib/Core/Editor/Imgs/project/ico_scripts.png
+  - m_AssetName: ico_shaders.png
+    m_AssetPath: Assets/Plugins/Demigiant/DemiLib/Core/Editor/Imgs/project/ico_shaders.png
+  - m_AssetName: ico_terrains.png
+    m_AssetPath: Assets/Plugins/Demigiant/DemiLib/Core/Editor/Imgs/project/ico_terrains.png
+  - m_AssetName: ico_textures.png
+    m_AssetPath: Assets/Plugins/Demigiant/DemiLib/Core/Editor/Imgs/project/ico_textures.png
