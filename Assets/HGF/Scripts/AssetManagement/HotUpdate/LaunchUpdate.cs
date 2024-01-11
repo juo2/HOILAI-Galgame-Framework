@@ -105,8 +105,6 @@ public partial class LaunchUpdate : MonoBehaviour
     IEnumerator StartUpHotUpdate()
     {
         yield return null;
-        yield return null;
-        yield return null;
         //没有连接网络提示连接网络
         if (!XUtility.IsNetworkValid())
         {
@@ -122,9 +120,6 @@ public partial class LaunchUpdate : MonoBehaviour
         if (this.m_ErrorCode == HotUpdateErrorCode.None)
         {
             RecordLogger(string.Format("StartUpHotUpdate -> finish.."));
-
-            //if (XConfig.defaultConfig.isSDKPattern)
-            //    HmlSdkProxy.instance.UploadUpdate(2);//热更新成功完成
 
             OnUpdateComplete();
         }
@@ -146,7 +141,6 @@ public partial class LaunchUpdate : MonoBehaviour
     {
         return m_RemoteFiles != null ? m_RemoteFiles : (m_LocalFiles != null ? m_LocalFiles : m_BuildinFiles);
     }
-
 
     IEnumerator HotUpdateStep(HotUpdateStepConst step)
     {
@@ -354,8 +348,6 @@ public partial class LaunchUpdate : MonoBehaviour
         {
             DefaultLoaderGUI.SetContenText(desc);
         }
-
-        //Debug.Log(t + "  " + v);
     }
 
 
@@ -372,35 +364,6 @@ public partial class LaunchUpdate : MonoBehaviour
             m_RemoteFilesBytes = null;
         }
 
-
-        RecordLogger(string.Format("OnUpdateComplete -> m_LaunchDllUpdate:{0} XConfig.defaultConfig.isDllUpdate:{1}", m_LaunchDllUpdate, XConfig.defaultConfig.isDllUpdate));
-#if !UNITY_EDITOR && (UNITY_ANDROID || UNITY_STANDALONE_WIN)
-        if (m_LaunchDllUpdate && XConfig.defaultConfig.isDllUpdate)
-        {
-#if ENABLE_MONO
-            //更新dll
-            UpdateUtility.InitDll();
-            return;
-#elif ENABLE_IL2CPP
-            //更新il2cpp
-            if (UpdateUtility.InitIl2cpp())
-            {
-                return;
-            }
-#endif
-        }
-        else if(XConfig.defaultConfig.isDllUpdate)
-        {
-
-#if ENABLE_MONO
-            Debug.Log("XConfig.defaultConfig.isDllUpdate mono");
-#elif ENABLE_IL2CPP
-            Debug.Log("XConfig.defaultConfig.isDllUpdate IL2CPP");
-            StartCoroutine(Check00RemoteVersionCoroutine());
-#endif
-
-        }
-#endif
         if (onUpdateComplete != null)
         {
             onUpdateComplete.Invoke();
@@ -413,65 +376,4 @@ public partial class LaunchUpdate : MonoBehaviour
         }
     }
 
-    IEnumerator Check00RemoteVersionCoroutine()
-    {
-        //string sdcardPath = Path.Combine(AssetDefine.ExternalSDCardsPath, "00/version.txt");
-        //if (File.Exists(sdcardPath))
-        //{
-        //    XAssetsFiles.s_00Version = File.ReadAllText(sdcardPath);
-
-        //    Debug.Log("存在 s_00Version 不用下载");
-        //}
-        //else
-        //{
-        //    string random = DateTime.Now.ToString("yyyymmddhhmmss");
-        //    string remoteVerUrl = AssetManagement.AssetDefine.RemoteDownloadUrl + "00/version.txt" + "?v=" + random;
-        //    using (UnityWebRequest uwr = UnityWebRequest.Get(remoteVerUrl))
-        //    {
-        //        UnityWebRequestAsyncOperation async = uwr.SendWebRequest();
-        //        while (!async.isDone)
-        //        {
-        //            yield return 0;
-        //        }
-
-        //        if (!string.IsNullOrEmpty(uwr.error) || uwr.isHttpError || uwr.isNetworkError)
-        //        {
-        //            XLogger.ERROR(string.Format("LaunchUpdate::CheckRemoteVersionCoroutine() remote version download error ! remoteVerUrl={0} error={1} url={2}", remoteVerUrl, uwr.error, remoteVerUrl));
-        //            yield break;
-        //        }
-
-        //        XAssetsFiles.s_00Version = uwr.downloadHandler.text;
-        //        Debug.Log("下载 s_00Version 成功");
-        //    }
-        //}
-
-        string random2 = DateTime.Now.ToString("yyyymmddhhmmss");
-
-        string debugStr = "";
-#if DEVELOPMENT_BUILD
-        debugStr = "_debug";
-#endif
-
-        string remoteVerUrl2 = AssetManagement.AssetDefine.RemoteDownloadUrl + "00/il2cpp_md5_";//+ Bootstrap.get_arch_abi() + debugStr + ".txt" + "?v=" + random2;
-        using (UnityWebRequest uwr = UnityWebRequest.Get(remoteVerUrl2))
-        {
-            UnityWebRequestAsyncOperation async = uwr.SendWebRequest();
-            while (!async.isDone)
-            {
-                yield return 0;
-            }
-
-            if (!string.IsNullOrEmpty(uwr.error) || uwr.isHttpError || uwr.isNetworkError)
-            {
-                XLogger.ERROR(string.Format("LaunchUpdate::CheckRemoteVersionCoroutine() remote version download error ! remoteVerUrl={0} error={1} url={2}", remoteVerUrl2, uwr.error, remoteVerUrl2));
-                yield break;
-            }
-
-            XAssetsFiles.s_il2cppMd5 = uwr.downloadHandler.text;
-            Debug.Log("下载 s_il2cppMd5 成功");
-        }
-
-
-        UpdateUtility.CheckIl2cpp();
-    }
 }

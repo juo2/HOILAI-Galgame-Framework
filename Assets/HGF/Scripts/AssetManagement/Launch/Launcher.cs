@@ -1,9 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
-using DG.Tweening;
-using System.IO;
-using UnityEngine.Networking;
 
 public partial class Launcher : MonoBehaviour
 {
@@ -14,16 +9,9 @@ public partial class Launcher : MonoBehaviour
     //资源录制模式
     public static bool assetRecordMode { get; private set; }
 
-    //是否il2cpp
-    public static bool isIl2cpp = false;
-
     public bool checkUpdate = true;
     void Start()
     {
-
-#if !UNITY_EDITOR && UNITY_WEBGL
-        WebGLInput.captureAllKeyboardInput = false;
-#endif
 
 #if UNITY_EDITOR
         assetBundleMode = UnityEditor.EditorPrefs.GetBool("QuickMenuKey_LaunchGameAssetBundle", false);
@@ -33,18 +21,6 @@ public partial class Launcher : MonoBehaviour
         //LuaLoader.assetBundleModeLocalCode = assetBundleModeLocalCode;
 #else
         assetBundleMode = true;
-#endif
-        //if (Debug.isDebugBuild)
-        //    gameObject.AddComponent<XProfiler>();
-
-        //XProfiler.ActivedProfiler(true);
-        //LuaEnvironment.CreateLuaEnv();
-        //XGUIManager.Instance.Initialize();
-#if ENABLE_MONO
-        XLogger.INFO("USING_MONO");
-#elif ENABLE_IL2CPP
-        isIl2cpp = true;
-        XLogger.INFO("USING_IL2CPP");
 #endif
 
 #if DEVELOPMENT_BUILD
@@ -69,88 +45,15 @@ public partial class Launcher : MonoBehaviour
         AssetManagement.AssetManager.LogEnabled = false;
         AssetManagement.AssetDownloadManager.LogEnabled = true;
 
-//#if !UNITY_WEBGL
-//        XConfig.ReadConfigAtFile();
-//#endif
-
-//#if UNITY_ANDROID
-//        if (XConfig.defaultConfig.isSDKPattern)
-//        {
-//            //AndroidPermission.RequestPermissions();
-//            LauncherJugglery.ContinueFun = ContinueStart;
-//            LauncherJugglery.Open();
-//        }
-//        else
-//        {
-//            StartCoroutine(ContinueStart());
-//        }
-//#else
-//        //GameSdkData.sdCardPermission = true;
-
-//#endif
-        StartCoroutine(ContinueStart());
+        ContinueStart();
 
     }
 
-    IEnumerator ContinueStart()
+    void ContinueStart()
     {
-
-#if UNITY_WEBGL
-        string filePath = Path.Combine(Application.streamingAssetsPath, "default.xcfg");
-
-        UnityWebRequest webRequest = UnityWebRequest.Get(filePath);
-
-        Debug.Log($"开始加载:{filePath}");
-
-        yield return webRequest.SendWebRequest();
-
-        Debug.Log($"加载完成:{filePath}");
-
-
-        if (webRequest.result == UnityWebRequest.Result.Success)
-        {
-            string configFileContent = webRequest.downloadHandler.text;
-            // 在此处处理文件内容
-
-            XConfig config = new XConfig();
-                
-            config = JsonUtility.FromJson<XConfig>(configFileContent);
-
-            AssetManagement.AssetDefine.RemoteDownloadUrl = config.testDownloadUrls[0];
-
-            XConfig.defaultConfig = config;
-        }
-        else
-        {
-            Debug.LogError("Failed to load config file: " + webRequest.error);
-        }
-#else
-         XConfig.ReadConfigAtFile();
-#endif
-
-        yield return 0;
-
+        XConfig.ReadConfigAtFile();
 
         LauncherJugglery.Destroy();
-
-        //闪屏结束，IOS数据埋点
-#if UNITY_IOS && !UNITY_EDITOR
-            GameSdkProxy.instance.ReqUploadUserData(@"{""payId"":"""",""updateTime"":0,""createTime"":0,""orderId"":"""",""feePoint"":"""",""isPrintLog"":true,""action"":0,""serverCreateTime"":""0"",""roleLevel"":0,""power"":0,""productId"":"""",""partyName"":"""",""vipLevel"":0,""roleId"":0,""roleName"":"""",""serverName"":"""",""serverId"":0,""balance"":0}");
-            Debug.Log("IOS SDK 完成闪屏上报");
-#endif
-#if UNITY_STANDALONE
-        //gameObject.AddComponent<XProfiler>();
-#else
-        //if (Debug.isDebugBuild)
-        //    gameObject.AddComponent<XProfiler>();
-#endif
-
-        //gameObject.AddComponent<DevicesComponent>();
-
-        //gameObject.AddComponent<ScreenOrientationComponent>();
-        
-        //int astc = XUtility.IsSupportsASTC();
-        //if (astc != -1) XLogger.ERROR_Format("IsSupportsASTC : {0}", astc); else XLogger.INFO_Format("IsSupportsASTC : {0}", astc);
 
         InitTempCamera();
 
@@ -161,18 +64,11 @@ public partial class Launcher : MonoBehaviour
             GetUrlByPHP(); //从后台拿资源地址
         else
             StartCheckUpdate(); //直接使用default 配置地址
-
     }
-
-
 
     void StartCheckUpdate()
     {
-#if UNITY_IOS && !UNITY_EDITOR
-        //XConfig.defaultConfig.backgroundDownload = GameSdkData.IsIosVerify() ? false : XConfig.defaultConfig.backgroundDownload;
-        //检测审核模式下的进度条状态
-        DefaultLoaderGUI.SetSliderState(!GameSdkData.IsIosVerify());
-#endif
+
         if (Application.isEditor && !SystemInfo.graphicsDeviceVersion.StartsWith("OpenGL"))
         {
             //编辑器模式下非opengl则用pc资源

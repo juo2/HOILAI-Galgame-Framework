@@ -47,19 +47,6 @@ public partial class LaunchUpdate
 
                 XLogger.INFO("PlayerPrefs.GetString(FIRST_PACK):" + PlayerPrefs.GetString(FIRST_PACK));
 
-//#if ENABLE_IL2CPP && UNITY_ANDROID
-//                string debugStr = "";
-//#if DEVELOPMENT_BUILD
-//                debugStr = "_debug";
-//#endif
-//                string path = string.Format("00/00000000000000000000000000000002_{0}{1}.asset", Bootstrap.get_arch_abi(), debugStr);
-//                path = Path.Combine(AssetManagement.AssetDefine.ExternalSDCardsPath, path);
-
-//                if (File.Exists(path))
-//                {
-//                    File.Delete(path);
-//                }
-//#endif
                 isOverwriteInstall = true;
             }
         }
@@ -99,8 +86,6 @@ public partial class LaunchUpdate
         {
             //暂定为第一次安装解压,有好的方法在移动
             isFirstInstall = true;
-            //if (XConfig.defaultConfig.isSDKPattern)
-            //    HmlSdkProxy.instance.UploadUnzip(1);
         }
 
         //若扩展卡版本文件不存在或是出现异常则使用内置版本文件
@@ -171,7 +156,7 @@ public partial class LaunchUpdate
                 yield return 0;
             }
 
-            if (!string.IsNullOrEmpty(uwr.error) || uwr.isHttpError || uwr.isNetworkError)
+            if (!string.IsNullOrEmpty(uwr.error) || uwr.result == UnityWebRequest.Result.ProtocolError || uwr.result == UnityWebRequest.Result.ConnectionError)
             {
                 m_ErrorCode = HotUpdateErrorCode.RemoteVerDownloaderError;
                 XLogger.ERROR(string.Format("LaunchUpdate::CheckRemoteVersionCoroutine() remote version download error ! remoteVerUrl={0} error={1} url={2}", remoteVerUrl, uwr.error, remoteVerUrl));

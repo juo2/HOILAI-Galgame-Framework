@@ -26,13 +26,6 @@ public class XConfig
         }
     }
 
-    //是否进入工具编辑系统
-    [SerializeField]
-    public bool isEditorModel;
-    //是否使用旧战斗
-    [SerializeField]
-    public bool useOldFightModel;
-    
     //后台
     [SerializeField]
     private string m_CenterUrl;
@@ -45,35 +38,14 @@ public class XConfig
     //测试下载路径
     [SerializeField]
     private string[] m_TestDownloadUrls;
-    //审核资源后台
-    [SerializeField]
-    private string m_VerifyAppUrl;
-
-    //渠道包
-    [SerializeField]
-    private string m_ChannelName;
-
-    //渠道/平台ID
-    [SerializeField]
-    private string m_ChannelId;
-
-    //资源地址code
-    [SerializeField]
-    private string m_ResourceCode;
 
     //启动闪屏图片
     [SerializeField]
     private string[] m_startScreenImgs;
+
     //启动加载页图片
     [SerializeField]
     private string[] m_startLoadImgs;
-
-    //是否启用Dll
-    [SerializeField]
-    private bool m_IsDllUpdate;
-    //上传下载头像路径
-    [SerializeField]
-    private string m_ImageUrl;
 
     //启动下载资源标记（安装包内附带少量资源启动时需要检查完整性并下载）
     [SerializeField]
@@ -99,14 +71,6 @@ public class XConfig
     [SerializeField]
     private string[] m_BuglyAppIDs;
 
-    //不显示pc选版本界面，设置为True则不需要选地址直接使用配置地址  一般用来给到外网其它公司看
-    [SerializeField]
-    private bool m_NoPcStrup;
-
-    //使用配置文件资源地址
-    [SerializeField]
-    private bool m_UseTestDownloadUrls;
-
     public string centerUrl
     {
         get
@@ -122,14 +86,6 @@ public class XConfig
 
     public string[] buglyAppIDs { get { return m_BuglyAppIDs; } }
 
-    public string imageUrl { get { return m_ImageUrl; } }
-    public string channelName { get { return m_ChannelName; } }
-    public string channelId { get { return m_ChannelId; } }
-    public string resourceCode { get { return m_ResourceCode; } }
-
-    public string verifyAppUrl { get { return m_VerifyAppUrl; } }
-
-    public bool isDllUpdate { get { return m_IsDllUpdate; } }
     public int initDownloadTag { get { return m_InitDownloadTag; } }
     
     public bool backgroundDownload { get { return m_BackgroundDownload; } }
@@ -138,9 +94,6 @@ public class XConfig
     public bool isGetUrlByPHP { get { return m_GetUrlByPHP; } }
 
     public float downloadSizeFactor { get { return m_DownloadSizeFactor; } }
-    public bool noPcStrup { get { return m_NoPcStrup; } }
-
-    public bool useTestDownloadUrls { get { return m_UseTestDownloadUrls; } }
 
     public static void CreateConfig(XConfig cfg)
     {

@@ -1,0 +1,9 @@
+{
+    "m_TestDownloadUrls": ["http://192.168.255.10//HFS/root_wanfa3/WebGL/"],
+	"m_IsDllUpdate": true,
+	"m_BackgroundDownload":false,
+	"m_DownloadSizeFactor":1,
+	"m_startScreenImgs":["img_splashscreen_0.png", "img_healthy.png"],
+	"m_startLoadImgs":["img_load.png"],
+	"m_BuglyAppIDs":["94694803df", "ebd16be399","ebd16be399"]
+}
