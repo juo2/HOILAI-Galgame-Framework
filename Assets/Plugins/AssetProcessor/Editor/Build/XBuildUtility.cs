@@ -488,8 +488,8 @@ public class XBuildUtility
         }
         string filesPath = Path.Combine(outPath, "files.txt");
         File.WriteAllText(filesPath, JsonUtility.ToJson(xAssetsFiles, true));
-        string buildingPath = Path.Combine(outPath, "buildingFiles.txt");
-        File.WriteAllLines(buildingPath, buildingFile.ToArray());
+        //string buildingPath = Path.Combine(outPath, "buildingFiles.txt");
+        //File.WriteAllLines(buildingPath, buildingFile.ToArray());
         return filesPath;
     }
 

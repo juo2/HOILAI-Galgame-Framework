@@ -1,0 +1,58 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3fdc29bc27bb9a4991881ed39f0fea7, type: 3}
+  m_Name: XAssetManifest
+  m_EditorClassIdentifier: 
+  m_AssetBundleNames:
+  - 01/art/audio/1.asset
+  - 01/art/audio/audiomixer.asset
+  - 01/art/scenes/game/demo.asset
+  - 01/art/scenes/game/launch.asset
+  - 01/art/scenes/game/texture2d.asset
+  - 01/gui/modules/common/prefab_button-choice.asset
+  - 01/gui/modules/common/prefab_img-character.asset
+  m_AssetBundleInfos:
+  - m_AssetBundleCrc: 2087798537
+    m_AssetBundleDependencies: 
+  - m_AssetBundleCrc: 2109511373
+    m_AssetBundleDependencies: 
+  - m_AssetBundleCrc: 1024925134
+    m_AssetBundleDependencies: 04000000
+  - m_AssetBundleCrc: 1140464881
+    m_AssetBundleDependencies: 
+  - m_AssetBundleCrc: 1752153075
+    m_AssetBundleDependencies: 
+  - m_AssetBundleCrc: 1592131931
+    m_AssetBundleDependencies: 04000000
+  - m_AssetBundleCrc: 3199199962
+    m_AssetBundleDependencies: 
+  m_AssetRomKeySer:
+  - Button-Choice.prefab
+  - Img-Character.prefab
+  - Demo.unity
+  - Launch.unity
+  - 1.png
+  - 2.png
+  - 3.png
+  - 4.png
+  - 581f4e0b1bfd7fa252d350b6c1339be87bfd3bc2.jpg@1256w_708h_!web-article-pic~1.jpg
+  - ad3b0f538a769815e7093c5973c863a95cc0043d.jpg@1256w_708h_!web-article-pic~1.jpg
+  - bg_list_Button.png
+  - Btn07White_1.png
+  - Btn08White_1.png
+  - Btn_Next2_n.png
+  - Gradient-#2.png
+  - Icon_Home.png
+  - Tip001White_2.png
+  - 1.mp3
+  - AudioMixer.mixer
+  m_AssetRomIndexSer: 05000000060000000200000003000000040000000400000004000000040000000400000004000000040000000400000004000000040000000400000004000000040000000000000001000000

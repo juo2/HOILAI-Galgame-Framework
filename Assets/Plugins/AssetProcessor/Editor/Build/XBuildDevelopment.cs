@@ -135,7 +135,7 @@ public class XBuildDevelopment
     /// <param name="outList"></param>
     static void CollectionEnvironment(List<AssetBundleBuild> outList)
     {
-        string path = XBuildUtility.GetFullPath("Assets/Art/Env/Scenes");
+        string path = XBuildUtility.GetFullPath("Assets/Art/Scenes");
         if (!Directory.Exists(path))
             return;
         string[] folders = Directory.GetDirectories(path, "*");

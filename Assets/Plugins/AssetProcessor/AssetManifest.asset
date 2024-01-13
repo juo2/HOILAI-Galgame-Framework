@@ -20,6 +20,8 @@ MonoBehaviour:
   m_AssetList:
   - m_AssetName: UniversalRenderPipelineGlobalSettings.asset
     m_AssetPath: Assets/UniversalRenderPipelineGlobalSettings.asset
+  - m_AssetName: XAssetManifest.asset
+    m_AssetPath: Assets/XAssetManifest.asset
   - m_AssetName: DOTweenSettings.asset
     m_AssetPath: Assets/Resources/DOTweenSettings.asset
   - m_AssetName: SampleSceneProfile.asset
@@ -36,52 +38,26 @@ MonoBehaviour:
     m_AssetPath: Assets/Settings/URP-Performant-Renderer.asset
   - m_AssetName: URP-Performant.asset
     m_AssetPath: Assets/Settings/URP-Performant.asset
-  - m_AssetName: Demo.unity
-    m_AssetPath: Assets/HGF/Scenes/Demo.unity
-  - m_AssetName: 581f4e0b1bfd7fa252d350b6c1339be87bfd3bc2.jpg@1256w_708h_!web-article-pic~1.jpg
-    m_AssetPath: Assets/HGF/Texture2D/581f4e0b1bfd7fa252d350b6c1339be87bfd3bc2.jpg@1256w_708h_!web-article-pic~1.jpg
-  - m_AssetName: ad3b0f538a769815e7093c5973c863a95cc0043d.jpg@1256w_708h_!web-article-pic~1.jpg
-    m_AssetPath: Assets/HGF/Texture2D/ad3b0f538a769815e7093c5973c863a95cc0043d.jpg@1256w_708h_!web-article-pic~1.jpg
-  - m_AssetName: bg_list_Button.png
-    m_AssetPath: Assets/HGF/Texture2D/bg_list_Button.png
-  - m_AssetName: Btn07White_1.png
-    m_AssetPath: Assets/HGF/Texture2D/Btn07White_1.png
-  - m_AssetName: Btn08White_1.png
-    m_AssetPath: Assets/HGF/Texture2D/Btn08White_1.png
-  - m_AssetName: Btn_Next2_n.png
-    m_AssetPath: Assets/HGF/Texture2D/Btn_Next2_n.png
-  - m_AssetName: Gradient-#2.png
-    m_AssetPath: Assets/HGF/Texture2D/Gradient-#2.png
-  - m_AssetName: Icon_Home.png
-    m_AssetPath: Assets/HGF/Texture2D/Icon_Home.png
-  - m_AssetName: Tip001White_2.png
-    m_AssetPath: Assets/HGF/Texture2D/Tip001White_2.png
+  - m_AssetName: default.xcfg
+    m_AssetPath: Assets/StreamingAssets/default.xcfg
+  - m_AssetName: 1.mp3
+    m_AssetPath: Assets/Art/Audio/1.mp3
+  - m_AssetName: AudioMixer.mixer
+    m_AssetPath: Assets/Art/Audio/AudioMixer.mixer
   - m_AssetName: AssetManifest.asset
     m_AssetPath: Assets/Plugins/AssetProcessor/AssetManifest.asset
   - m_AssetName: readme_DOTweenPro.txt
     m_AssetPath: Assets/Plugins/Demigiant/readme_DOTweenPro.txt
-  - m_AssetName: Button-Choice.prefab
-    m_AssetPath: Assets/Resources/HGF/Button-Choice.prefab
-  - m_AssetName: Img-Character.prefab
-    m_AssetPath: Assets/Resources/HGF/Img-Character.prefab
   - m_AssetName: CharacterInfo.ini
     m_AssetPath: Assets/StreamingAssets/HGF/CharacterInfo.ini
   - m_AssetName: Department.ini
     m_AssetPath: Assets/StreamingAssets/HGF/Department.ini
   - m_AssetName: Test.xml
     m_AssetPath: Assets/StreamingAssets/HGF/Test.xml
-  - m_AssetName: TetraCreations.Attributes.asmdef
-    m_AssetPath: Assets/HGF/Tetra Attributes/Core/TetraCreations.Attributes.asmdef
-  - m_AssetName: Documentation.md
-    m_AssetPath: Assets/HGF/Tetra Attributes/Documentation/Documentation.md
-  - m_AssetName: Documentation.pdf
-    m_AssetPath: Assets/HGF/Tetra Attributes/Documentation/Documentation.pdf
-  - m_AssetName: TetraCreations.Attributes.Editor.asmdef
-    m_AssetPath: Assets/HGF/Tetra Attributes/Editor/TetraCreations.Attributes.Editor.asmdef
-  - m_AssetName: Cube Sprite.png
-    m_AssetPath: Assets/HGF/Tetra Attributes/Example/Cube Sprite.png
-  - m_AssetName: Example.unity
-    m_AssetPath: Assets/HGF/Tetra Attributes/Example/Example.unity
+  - m_AssetName: Demo.unity
+    m_AssetPath: Assets/Art/Scenes/Game/Demo.unity
+  - m_AssetName: Launch.unity
+    m_AssetPath: Assets/Art/Scenes/Game/Launch.unity
   - m_AssetName: atlas_temp.spriteatlas
     m_AssetPath: Assets/Plugins/AssetProcessor/Editor/atlas_temp.spriteatlas
   - m_AssetName: temp.lua
@@ -92,6 +68,8 @@ MonoBehaviour:
     m_AssetPath: Assets/Plugins/AVProVideo/Resources/AVPro1.png
   - m_AssetName: AVProVideoIcon.png
     m_AssetPath: Assets/Plugins/AVProVideo/Resources/AVProVideoIcon.png
+  - m_AssetName: Info.plist
+    m_AssetPath: Assets/Plugins/AVProVideo.bundle/Contents/Info.plist
   - m_AssetName: DOTween.dll
     m_AssetPath: Assets/Plugins/Demigiant/DOTween/DOTween.dll
   - m_AssetName: DOTween.XML
@@ -114,35 +92,48 @@ MonoBehaviour:
     m_AssetPath: Assets/Plugins/Demigiant/DOTweenPro Examples/DOTweenPath.unity
   - m_AssetName: DOTweenPathSettings.lighting
     m_AssetPath: Assets/Plugins/Demigiant/DOTweenPro Examples/DOTweenPathSettings.lighting
-  - m_AssetName: Buttons Example.png
-    m_AssetPath: Assets/HGF/Tetra Attributes/Documentation/Screenshots/Buttons Example.png
-  - m_AssetName: DrawIf Example False.png
-    m_AssetPath: Assets/HGF/Tetra Attributes/Documentation/Screenshots/DrawIf Example
-      False.png
-  - m_AssetName: DrawIf Example True.png
-    m_AssetPath: Assets/HGF/Tetra Attributes/Documentation/Screenshots/DrawIf Example
-      True.png
-  - m_AssetName: HelpBox Example.png
-    m_AssetPath: Assets/HGF/Tetra Attributes/Documentation/Screenshots/HelpBox Example.png
-  - m_AssetName: MinMaxSlider Example.png
-    m_AssetPath: Assets/HGF/Tetra Attributes/Documentation/Screenshots/MinMaxSlider
-      Example.png
-  - m_AssetName: Path Example.png
-    m_AssetPath: Assets/HGF/Tetra Attributes/Documentation/Screenshots/Path Example.png
-  - m_AssetName: ReadOnly Example.png
-    m_AssetPath: Assets/HGF/Tetra Attributes/Documentation/Screenshots/ReadOnly Example.png
-  - m_AssetName: Required Example.png
-    m_AssetPath: Assets/HGF/Tetra Attributes/Documentation/Screenshots/Required Example.png
-  - m_AssetName: Snapped float Example.png
-    m_AssetPath: Assets/HGF/Tetra Attributes/Documentation/Screenshots/Snapped float
-      Example.png
-  - m_AssetName: Sprite preview.png
-    m_AssetPath: Assets/HGF/Tetra Attributes/Documentation/Screenshots/Sprite preview.png
-  - m_AssetName: Tetra creation attributes.png
-    m_AssetPath: Assets/HGF/Tetra Attributes/Documentation/Screenshots/Tetra creation
-      attributes.png
-  - m_AssetName: Title Example.png
-    m_AssetPath: Assets/HGF/Tetra Attributes/Documentation/Screenshots/Title Example.png
+  - m_AssetName: TetraCreations.Attributes.asmdef
+    m_AssetPath: Assets/Scripts/Tetra Attributes/Core/TetraCreations.Attributes.asmdef
+  - m_AssetName: Documentation.md
+    m_AssetPath: Assets/Scripts/Tetra Attributes/Documentation/Documentation.md
+  - m_AssetName: Documentation.pdf
+    m_AssetPath: Assets/Scripts/Tetra Attributes/Documentation/Documentation.pdf
+  - m_AssetName: TetraCreations.Attributes.Editor.asmdef
+    m_AssetPath: Assets/Scripts/Tetra Attributes/Editor/TetraCreations.Attributes.Editor.asmdef
+  - m_AssetName: Cube Sprite.png
+    m_AssetPath: Assets/Scripts/Tetra Attributes/Example/Cube Sprite.png
+  - m_AssetName: Example.unity
+    m_AssetPath: Assets/Scripts/Tetra Attributes/Example/Example.unity
+  - m_AssetName: 1.png
+    m_AssetPath: Assets/Art/Scenes/Game/Texture2D/1.png
+  - m_AssetName: 2.png
+    m_AssetPath: Assets/Art/Scenes/Game/Texture2D/2.png
+  - m_AssetName: 3.png
+    m_AssetPath: Assets/Art/Scenes/Game/Texture2D/3.png
+  - m_AssetName: 4.png
+    m_AssetPath: Assets/Art/Scenes/Game/Texture2D/4.png
+  - m_AssetName: 581f4e0b1bfd7fa252d350b6c1339be87bfd3bc2.jpg@1256w_708h_!web-article-pic~1.jpg
+    m_AssetPath: Assets/Art/Scenes/Game/Texture2D/581f4e0b1bfd7fa252d350b6c1339be87bfd3bc2.jpg@1256w_708h_!web-article-pic~1.jpg
+  - m_AssetName: ad3b0f538a769815e7093c5973c863a95cc0043d.jpg@1256w_708h_!web-article-pic~1.jpg
+    m_AssetPath: Assets/Art/Scenes/Game/Texture2D/ad3b0f538a769815e7093c5973c863a95cc0043d.jpg@1256w_708h_!web-article-pic~1.jpg
+  - m_AssetName: bg_list_Button.png
+    m_AssetPath: Assets/Art/Scenes/Game/Texture2D/bg_list_Button.png
+  - m_AssetName: Btn07White_1.png
+    m_AssetPath: Assets/Art/Scenes/Game/Texture2D/Btn07White_1.png
+  - m_AssetName: Btn08White_1.png
+    m_AssetPath: Assets/Art/Scenes/Game/Texture2D/Btn08White_1.png
+  - m_AssetName: Btn_Next2_n.png
+    m_AssetPath: Assets/Art/Scenes/Game/Texture2D/Btn_Next2_n.png
+  - m_AssetName: Gradient-#2.png
+    m_AssetPath: Assets/Art/Scenes/Game/Texture2D/Gradient-#2.png
+  - m_AssetName: Icon_Home.png
+    m_AssetPath: Assets/Art/Scenes/Game/Texture2D/Icon_Home.png
+  - m_AssetName: Tip001White_2.png
+    m_AssetPath: Assets/Art/Scenes/Game/Texture2D/Tip001White_2.png
+  - m_AssetName: Button-Choice.prefab
+    m_AssetPath: Assets/GUI/Modules/Common/Prefabs/Button-Choice.prefab
+  - m_AssetName: Img-Character.prefab
+    m_AssetPath: Assets/GUI/Modules/Common/Prefabs/Img-Character.prefab
   - m_AssetName: audio360-exo28.jar
     m_AssetPath: Assets/Plugins/AVProVideo/Plugins/Android/audio360-exo28.jar
   - m_AssetName: audio360.jar
@@ -161,6 +152,10 @@ MonoBehaviour:
     m_AssetPath: Assets/Plugins/AVProVideo/Plugins/Android/exoplayer2.jar
   - m_AssetName: zip_file.jar
     m_AssetPath: Assets/Plugins/AVProVideo/Plugins/Android/zip_file.jar
+  - m_AssetName: AVProVideoUnityRegisterRenderingPluginV5.c
+    m_AssetPath: Assets/Plugins/AVProVideo/Plugins/iOS/AVProVideoUnityRegisterRenderingPluginV5.c
+  - m_AssetName: libAVProVideoiOS.a
+    m_AssetPath: Assets/Plugins/AVProVideo/Plugins/iOS/libAVProVideoiOS.a
   - m_AssetName: AVProVideo.jslib
     m_AssetPath: Assets/Plugins/AVProVideo/Plugins/WebGL/AVProVideo.jslib
   - m_AssetName: Audio360.dll
@@ -205,6 +200,41 @@ MonoBehaviour:
     m_AssetPath: Assets/Plugins/Demigiant/DOTweenPro/Editor/DOTweenProEditor.XML
   - m_AssetName: dotweenpro_logo.png
     m_AssetPath: Assets/Plugins/Demigiant/DOTweenPro Examples/Examples Assets/dotweenpro_logo.png
+  - m_AssetName: Buttons Example.png
+    m_AssetPath: Assets/Scripts/Tetra Attributes/Documentation/Screenshots/Buttons
+      Example.png
+  - m_AssetName: DrawIf Example False.png
+    m_AssetPath: Assets/Scripts/Tetra Attributes/Documentation/Screenshots/DrawIf
+      Example False.png
+  - m_AssetName: DrawIf Example True.png
+    m_AssetPath: Assets/Scripts/Tetra Attributes/Documentation/Screenshots/DrawIf
+      Example True.png
+  - m_AssetName: HelpBox Example.png
+    m_AssetPath: Assets/Scripts/Tetra Attributes/Documentation/Screenshots/HelpBox
+      Example.png
+  - m_AssetName: MinMaxSlider Example.png
+    m_AssetPath: Assets/Scripts/Tetra Attributes/Documentation/Screenshots/MinMaxSlider
+      Example.png
+  - m_AssetName: Path Example.png
+    m_AssetPath: Assets/Scripts/Tetra Attributes/Documentation/Screenshots/Path Example.png
+  - m_AssetName: ReadOnly Example.png
+    m_AssetPath: Assets/Scripts/Tetra Attributes/Documentation/Screenshots/ReadOnly
+      Example.png
+  - m_AssetName: Required Example.png
+    m_AssetPath: Assets/Scripts/Tetra Attributes/Documentation/Screenshots/Required
+      Example.png
+  - m_AssetName: Snapped float Example.png
+    m_AssetPath: Assets/Scripts/Tetra Attributes/Documentation/Screenshots/Snapped
+      float Example.png
+  - m_AssetName: Sprite preview.png
+    m_AssetPath: Assets/Scripts/Tetra Attributes/Documentation/Screenshots/Sprite
+      preview.png
+  - m_AssetName: Tetra creation attributes.png
+    m_AssetPath: Assets/Scripts/Tetra Attributes/Documentation/Screenshots/Tetra
+      creation attributes.png
+  - m_AssetName: Title Example.png
+    m_AssetPath: Assets/Scripts/Tetra Attributes/Documentation/Screenshots/Title
+      Example.png
   - m_AssetName: DemiEditor.dll
     m_AssetPath: Assets/Plugins/Demigiant/DemiLib/Core/Editor/DemiEditor.dll
   - m_AssetName: DemiEditor.xml
@@ -219,16 +249,6 @@ MonoBehaviour:
     m_AssetPath: Assets/Plugins/Demigiant/DOTween/Editor/Imgs/Footer_dark.png
   - m_AssetName: Header.jpg
     m_AssetPath: Assets/Plugins/Demigiant/DOTween/Editor/Imgs/Header.jpg
-  - m_AssetName: 1.mp3
-    m_AssetPath: Assets/StreamingAssets/HGF/Audio/Plot/HYKB/1.mp3
-  - m_AssetName: 1.png
-    m_AssetPath: Assets/StreamingAssets/HGF/Texture2D/Portrait/HYKB_Girl/1.png
-  - m_AssetName: 2.png
-    m_AssetPath: Assets/StreamingAssets/HGF/Texture2D/Portrait/HYKB_Girl/2.png
-  - m_AssetName: 3.png
-    m_AssetPath: Assets/StreamingAssets/HGF/Texture2D/Portrait/HYKB_Girl/3.png
-  - m_AssetName: 4.png
-    m_AssetPath: Assets/StreamingAssets/HGF/Texture2D/Portrait/HYKB_Girl/4.png
   - m_AssetName: libAudio360-JNI.so
     m_AssetPath: Assets/Plugins/AVProVideo/Plugins/Android/libs/x86/libAudio360-JNI.so
   - m_AssetName: libAudio360.so

@@ -30,10 +30,10 @@
 			<Choice JumpID="S2">选项二（直接结束游戏）</Choice>
 		</Speak>
 		<!--分支剧情结束后自动继续游戏-->
-		<ChangeBackImg Path="Assets/HGF/Texture2D/581f4e0b1bfd7fa252d350b6c1339be87bfd3bc2.jpg@1256w_708h_!web-article-pic~1.jpg"></ChangeBackImg>
+		<ChangeBackImg Path="581f4e0b1bfd7fa252d350b6c1339be87bfd3bc2.jpg@1256w_708h_!web-article-pic~1.jpg"></ChangeBackImg>
 		<Speak CharacterID="1" Content="接下来我们继续"  SendMessage="Shake-Y-Once"></Speak>
 		<!--AudioPath表示语音路径，可以使资源文件夹的，也可以是外部路径，但不支持URL路径（以后或许会支持）-->
-		<Speak CharacterID="1" SendMessage="Shake" AudioPath="HYKB/1.mp3" Content="是不是为我的突然说话感到意外?"></Speak>
+		<Speak CharacterID="1" SendMessage="Shake" AudioPath="1.mp3" Content="是不是为我的突然说话感到意外?"></Speak>
 		<Speak CharacterID="1" SendMessage="Shake" Content="AudioPath属性是我的语音路径哦~"></Speak>
 		<Speak CharacterID="1" Content="那么测试章节结束啦~我们下次再见吧！"></Speak>
 		<!--id为1的角色退场，发送消息ToRight ，表示从屏幕右侧滑出-->
