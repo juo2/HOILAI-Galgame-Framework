@@ -85,9 +85,19 @@ public partial class Launcher : MonoBehaviour
 
         DefaultLoaderGUI.Close();
 
+        //初始化摄像头
         Debug.Log("开始加载场景 Demo.unity");
 
         XScene.LoadScene("Demo.unity", UnityEngine.SceneManagement.LoadSceneMode.Single);
+
+        XScene.onComplete = () => 
+        {
+            GameObject cameraGo = GameObject.Find("Main Camera");
+            Camera cam = cameraGo.GetComponent<Camera>();
+            XGUI.XCamera.guiCamera = cam;
+
+            XScene.onComplete = null;
+        };
 
         Debug.Log("加载场景完成 Demo.unity");
 

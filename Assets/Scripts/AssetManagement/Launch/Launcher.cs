@@ -80,6 +80,7 @@ public partial class Launcher : MonoBehaviour
                 XConfig.defaultConfig.testDownloadUrls[i] = def;
         }
 
+        XVideoManager.Initialize();
         AssetManagement.AssetManager.Instance.Initialize(new GameLoaderOptions());
 
         if(checkUpdate)

@@ -65,6 +65,7 @@ namespace ScenesScripts.GalPlot
                 public GalManager_CharacterLoader CharacterLoader;
                 public string Name;
                 public string Affiliation;
+                public string From;
             }
             public List<Struct_CharacterInfo> CharacterInfo = new();
             public List<Struct_Choice> ChoiceText = new();
@@ -181,6 +182,8 @@ namespace ScenesScripts.GalPlot
             GameAPI.Print(Newtonsoft.Json.JsonConvert.SerializeObject(PlotData));
             Button_Click_NextPlot();
         }
+
+
         /// <summary>
         /// 点击屏幕 下一句
         /// </summary>
@@ -216,84 +219,95 @@ namespace ScenesScripts.GalPlot
             {
                 case "AddCharacter"://处理添加角色信息的东西
                 {
-                    var _ = new Struct_CharacterInfo();
-                    var _From = PlotData.NowPlotDataNode.Attribute("From").Value;
-                    var _CharacterId = PlotData.NowPlotDataNode.Attribute("CharacterID").Value;
-                    _.Name = CharacterConfig.CharacterInfo.GetValue(_From, "Name");
-                    _.CharacterID = _CharacterId;
-                    _.Affiliation = CharacterConfig.Department.GetValue(CharacterConfig.CharacterInfo.GetValue(_From, "Department"), "Name");
+                        var _ = new Struct_CharacterInfo();
+                        var _From = PlotData.NowPlotDataNode.Attribute("From").Value;
+                        var _CharacterId = PlotData.NowPlotDataNode.Attribute("CharacterID").Value;
+                        _.Name = CharacterConfig.CharacterInfo.GetValue(_From, "Name");
+                        _.CharacterID = _CharacterId;
+                        _.Affiliation = CharacterConfig.Department.GetValue(CharacterConfig.CharacterInfo.GetValue(_From, "Department"), "Name");
 
-                        //var _CameObj = Resources.Load<GameObject>("HGF/Img-Character");
-                        //_CameObj.GetComponent<Image>().sprite = GameAPI.LoadTextureByIO($"{GameAPI.GetWritePath()}/HGF/Texture2D/Portrait/{CharacterConfig.CharacterInfo.GetValue(_From, "ResourcesPath")}/{CharacterConfig.CharacterInfo.GetValue(_From, "Portrait-Normall")}");
-
+                            //var _CameObj = Resources.Load<GameObject>("HGF/Img-Character");
+                            //_CameObj.GetComponent<Image>().sprite = GameAPI.LoadTextureByIO($"{GameAPI.GetWritePath()}/HGF/Texture2D/Portrait/{CharacterConfig.CharacterInfo.GetValue(_From, "ResourcesPath")}/{CharacterConfig.CharacterInfo.GetValue(_From, "Portrait-Normall")}");
                         _.CharacterLoader = Instantiate(character_loader, character_parent);
                         _.CharacterLoader.SetActive(true);
-                        _.CharacterLoader.SetImage("1.png");
+                        _.From = _From;
 
-                    if (PlotData.NowPlotDataNode.Attributes("SendMessage").Count() != 0)
-                    {
+                        _.CharacterLoader.SetImage(CharacterConfig.CharacterInfo.GetValue(_From, "Portrait-Normall"));
+                        
+                        if (PlotData.NowPlotDataNode.Attributes("SendMessage").Count() != 0)
+                        {
                             _.CharacterLoader.Set_Animate_StartOrOutside( PlotData.NowPlotDataNode.Attribute("SendMessage").Value);
-                    }
+                        }
 
-                    PlotData.CharacterInfo.Add(_);
+                        PlotData.CharacterInfo.Add(_);
 
-                    Button_Click_NextPlot();
-                    break;
+                        Button_Click_NextPlot();
+                        break;
                 }
                 case "Speak":  //处理发言
                 {
-                    var _nodeinfo = GetCharacterObjectByName(PlotData.NowPlotDataNode.Attribute("CharacterID").Value);
-                    if (PlotData.NowPlotDataNode.Elements().Count() != 0) //有选项，因为他有子节点数目了
-                    {
-                        GalManager_Text.IsCanJump = false;
-                        foreach (var ClildItem in PlotData.NowPlotDataNode.Elements())
-                        {
-                            if (ClildItem.Name.ToString() == "Choice")
-                                PlotData.ChoiceText.Add(new Struct_Choice { Title = ClildItem.Value, JumpID = ClildItem.Attribute("JumpID").Value });
+                        var _nodeinfo = GetCharacterObjectByName(PlotData.NowPlotDataNode.Attribute("CharacterID").Value);
 
+                        var _StatusNode = PlotData.NowPlotDataNode.Attribute("Status");
+                        if (_StatusNode != null)
+                        {
+                            var _Status = _StatusNode.Value;
+                            var _t = GetCharacterObjectByName(_nodeinfo.CharacterID);
+                            _t.CharacterLoader.SetImage(CharacterConfig.CharacterInfo.GetValue(_t.From, _Status));
                         }
-                        Gal_Text.StartTextContent(PlotData.NowPlotDataNode.Attribute("Content").Value, _nodeinfo.Name, _nodeinfo.Affiliation, () =>
-                        {
-                            //foreach (var ClildItem in GalManager.PlotData.ChoiceText)
-                            //{
-                            //    Gal_Choice.CreatNewChoice(ClildItem.JumpID, ClildItem.Title);
-                            //}
-                            Gal_Choice.SetActive(true);
-                            Gal_Choice.CreatNewChoice(GalManager.PlotData.ChoiceText);
-                        });
-                    }
-                    else Gal_Text.StartTextContent(PlotData.NowPlotDataNode.Attribute("Content").Value, _nodeinfo.Name, _nodeinfo.Affiliation);
 
-                    //处理消息
-                    if (PlotData.NowPlotDataNode.Attributes("SendMessage").Count() != 0)
-                        SendCharMessage(_nodeinfo.CharacterID, PlotData.NowPlotDataNode.Attribute("SendMessage").Value);
-                    if (PlotData.NowPlotDataNode.Attributes("AudioPath").Count() != 0)
-                        PlayAudio(PlotData.NowPlotDataNode.Attribute("AudioPath").Value);
-                    break;
+                        if (PlotData.NowPlotDataNode.Elements().Count() != 0) //有选项，因为他有子节点数目了
+                        {
+                            GalManager_Text.IsCanJump = false;
+                            foreach (var ClildItem in PlotData.NowPlotDataNode.Elements())
+                            {
+                                if (ClildItem.Name.ToString() == "Choice")
+                                    PlotData.ChoiceText.Add(new Struct_Choice { Title = ClildItem.Value, JumpID = ClildItem.Attribute("JumpID").Value });
+
+                            }
+                            Gal_Text.StartTextContent(PlotData.NowPlotDataNode.Attribute("Content").Value, _nodeinfo.Name, _nodeinfo.Affiliation, () =>
+                            {
+                                //foreach (var ClildItem in GalManager.PlotData.ChoiceText)
+                                //{
+                                //    Gal_Choice.CreatNewChoice(ClildItem.JumpID, ClildItem.Title);
+                                //}
+                                Gal_Choice.SetActive(true);
+                                Gal_Choice.CreatNewChoice(GalManager.PlotData.ChoiceText);
+                            });
+                        }
+                        else Gal_Text.StartTextContent(PlotData.NowPlotDataNode.Attribute("Content").Value, _nodeinfo.Name, _nodeinfo.Affiliation);
+
+                        //处理消息
+                        if (PlotData.NowPlotDataNode.Attributes("SendMessage").Count() != 0)
+                            SendCharMessage(_nodeinfo.CharacterID, PlotData.NowPlotDataNode.Attribute("SendMessage").Value);
+                        if (PlotData.NowPlotDataNode.Attributes("AudioPath").Count() != 0)
+                            PlayAudio(PlotData.NowPlotDataNode.Attribute("AudioPath").Value);
+                        break;
                 }
                 case "ChangeBackImg"://更换背景图片
                 {
-                    var _Path = PlotData.NowPlotDataNode.Attribute("Path").Value;
+                        var _Path = PlotData.NowPlotDataNode.Attribute("Path").Value;
 
-                    Gal_BackImg.SetImage(_Path);
-                    Button_Click_NextPlot();
-                    break;
+                    
+                        Gal_BackImg.SetImage(_Path);
+                        Button_Click_NextPlot();
+                        break;
                 }
                 case "DeleteCharacter":
                 {
-                    DestroyCharacterByID(PlotData.NowPlotDataNode.Attribute("CharacterID").Value);
-                    break;
+                        DestroyCharacterByID(PlotData.NowPlotDataNode.Attribute("CharacterID").Value);
+                        break;
                 }
                 case "ExitGame":
                 {
-                    foreach (var item in PlotData.CharacterInfo)
-                    {
-                        DestroyCharacterByID(item.CharacterID);
-                    }
-                    PlotData.MainPlot.Clear();
-                    PlotData.BranchPlot.Clear();
-                    PlotData.IsBranch = false;
-                    break;
+                        foreach (var item in PlotData.CharacterInfo)
+                        {
+                            DestroyCharacterByID(item.CharacterID);
+                        }
+                        PlotData.MainPlot.Clear();
+                        PlotData.BranchPlot.Clear();
+                        PlotData.IsBranch = false;
+                        break;
                 }
             }
             if (PlotData.BranchPlotInfo.Count == 0)
