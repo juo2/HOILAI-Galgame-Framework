@@ -118,9 +118,9 @@ public class AssetBundleView
         r.height = 16f;
         m_Path = EditorGUI.TextField(r, m_Path);
         r.x += r.width + 5;
-        r.y += 2;
-        r.width = 20f;
-        if (GUI.Button(r, "", "Icon.AvatarMaskOn"))
+        r.y += 0;
+        r.width = 50f;
+        if (GUI.Button(r, "连接"))
             Reload();
 
 

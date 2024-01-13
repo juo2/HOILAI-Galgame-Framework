@@ -138,12 +138,18 @@ public class XBuildDevelopment
         string path = XBuildUtility.GetFullPath("Assets/Art/Video");
         if (!Directory.Exists(path))
             return;
-        string[] folders = Directory.GetDirectories(path, "*");
+        string[] files = Directory.GetFiles(path, "*", SearchOption.AllDirectories);
+        if (files.Length < 1)
+            return;
 
-        foreach (var folder in folders)
+        //一个文件一个包
+        foreach (var file in files)
         {
-            if (Filter(folder)) continue;
-            CollectionFolderAll(outList, XBuildUtility.GetPorjectPath(folder));
+            if (Filter(file)) continue;
+            string assetBundleName = XBuildUtility.GetPorjectPath(file);
+            string addressableName = Path.GetFileName(file);
+            string assetName = XBuildUtility.GetPorjectPath(file);
+            outList.Add(XBuildUtility.CreateAssetBundleBuild(assetBundleName, new string[] { addressableName }, new string[] { assetName }));
         }
     }
     
