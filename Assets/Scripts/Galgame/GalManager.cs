@@ -30,6 +30,9 @@ namespace ScenesScripts.GalPlot
         [Title("控制背景图片的组件")]
         public GalManager_BackImg Gal_BackImg;
 
+        [Title("控制背景图片的组件")]
+        public GalManager_Video Gal_Video;
+
         /// <summary>
         /// 当前场景角色数量
         /// </summary>
@@ -198,6 +201,7 @@ namespace ScenesScripts.GalPlot
 
             //IsCanJump这里有问题，如果一直点击会为false，而不是说true，这是因为没有点击按钮 ，没有添加按钮
             if (GalManager_Text.IsSpeak || !GalManager_Text.IsCanJump) { return; }
+
             if (!PlotData.IsBranch)
             {
                 PlotData.MainPlot.TryDequeue(out PlotData.NowPlotDataNode);//队列出队+内联 出一个temp节点
@@ -218,7 +222,7 @@ namespace ScenesScripts.GalPlot
             switch (PlotData.NowPlotDataNode.Name.ToString())
             {
                 case "AddCharacter"://处理添加角色信息的东西
-                {
+                    {
                         var _ = new Struct_CharacterInfo();
                         var _From = PlotData.NowPlotDataNode.Attribute("From").Value;
                         var _CharacterId = PlotData.NowPlotDataNode.Attribute("CharacterID").Value;
@@ -243,9 +247,9 @@ namespace ScenesScripts.GalPlot
 
                         Button_Click_NextPlot();
                         break;
-                }
+                    }
                 case "Speak":  //处理发言
-                {
+                    {
                         var _nodeinfo = GetCharacterObjectByName(PlotData.NowPlotDataNode.Attribute("CharacterID").Value);
 
                         var _StatusNode = PlotData.NowPlotDataNode.Attribute("Status");
@@ -283,21 +287,34 @@ namespace ScenesScripts.GalPlot
                         if (PlotData.NowPlotDataNode.Attributes("AudioPath").Count() != 0)
                             PlayAudio(PlotData.NowPlotDataNode.Attribute("AudioPath").Value);
                         break;
-                }
+                    }
                 case "ChangeBackImg"://更换背景图片
-                {
+                    {
                         var _Path = PlotData.NowPlotDataNode.Attribute("Path").Value;
 
                     
                         Gal_BackImg.SetImage(_Path);
                         Button_Click_NextPlot();
                         break;
-                }
+                    }
                 case "DeleteCharacter":
-                {
+                    {
                         DestroyCharacterByID(PlotData.NowPlotDataNode.Attribute("CharacterID").Value);
                         break;
-                }
+                    }
+                case "Video":
+                    {
+                        var _Path = PlotData.NowPlotDataNode.Attribute("Path").Value;
+                        
+                        Gal_Video.SetActive(true);
+                        Gal_Video.Play(_Path);
+                        Gal_Video.onFinish = () =>
+                        {
+                            Button_Click_NextPlot();
+                        };
+
+                        break;
+                    }
                 case "ExitGame":
                 {
                         foreach (var item in PlotData.CharacterInfo)

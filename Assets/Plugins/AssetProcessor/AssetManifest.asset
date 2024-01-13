@@ -44,6 +44,10 @@ MonoBehaviour:
     m_AssetPath: Assets/Art/Audio/1.mp3
   - m_AssetName: AudioMixer.mixer
     m_AssetPath: Assets/Art/Audio/AudioMixer.mixer
+  - m_AssetName: firstLogin.bytes
+    m_AssetPath: Assets/Art/Video/firstLogin.bytes
+  - m_AssetName: zc_tgfml.bytes
+    m_AssetPath: Assets/Art/Video/zc_tgfml.bytes
   - m_AssetName: AssetManifest.asset
     m_AssetPath: Assets/Plugins/AssetProcessor/AssetManifest.asset
   - m_AssetName: readme_DOTweenPro.txt
@@ -114,6 +118,8 @@ MonoBehaviour:
     m_AssetPath: Assets/Art/Scenes/Game/Texture2D/4.png
   - m_AssetName: 581f4e0b1bfd7fa252d350b6c1339be87bfd3bc2.jpg@1256w_708h_!web-article-pic~1.jpg
     m_AssetPath: Assets/Art/Scenes/Game/Texture2D/581f4e0b1bfd7fa252d350b6c1339be87bfd3bc2.jpg@1256w_708h_!web-article-pic~1.jpg
+  - m_AssetName: a2.png
+    m_AssetPath: Assets/Art/Scenes/Game/Texture2D/a2.png
   - m_AssetName: ad3b0f538a769815e7093c5973c863a95cc0043d.jpg@1256w_708h_!web-article-pic~1.jpg
     m_AssetPath: Assets/Art/Scenes/Game/Texture2D/ad3b0f538a769815e7093c5973c863a95cc0043d.jpg@1256w_708h_!web-article-pic~1.jpg
   - m_AssetName: bg_list_Button.png

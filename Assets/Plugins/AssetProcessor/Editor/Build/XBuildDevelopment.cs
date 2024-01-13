@@ -130,6 +130,25 @@ public class XBuildDevelopment
     }
 
     /// <summary>
+    /// 视频
+    /// </summary>
+    /// <param name="outList"></param>
+    static void CollectionVideo(List<AssetBundleBuild> outList)
+    {
+        string path = XBuildUtility.GetFullPath("Assets/Art/Video");
+        if (!Directory.Exists(path))
+            return;
+        string[] folders = Directory.GetDirectories(path, "*");
+
+        foreach (var folder in folders)
+        {
+            if (Filter(folder)) continue;
+            CollectionFolderAll(outList, XBuildUtility.GetPorjectPath(folder));
+        }
+    }
+    
+
+    /// <summary>
     /// 场景
     /// </summary>
     /// <param name="outList"></param>
@@ -514,6 +533,8 @@ public class XBuildDevelopment
         CollectionAudio(list);
         //特效
         CollectionEffect(list);
+        //视频
+        CollectionVideo(list);
 
         if (list.Count < 1)
         {
