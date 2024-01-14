@@ -24,6 +24,7 @@ namespace ScenesScripts.GalPlot
             videoPlayer.onFinish = ()=> {
                 onFinish?.Invoke();
                 conversationGo.SetActive(true);
+                gameObject.SetActive(false);
             };
         }
 

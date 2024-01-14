@@ -35,21 +35,8 @@ public class GameLoaderOptions : DefaultAssetLoaderOptions
 
         if (XConfig.defaultConfig != null && !XConfig.defaultConfig.isGetUrlByPHP)
         {
-            string[] urs = XConfig.defaultConfig.testDownloadUrls;
-            AssetDefine.RemoteDownloadUrl = urs[0];
+            AssetDefine.RemoteDownloadUrl = XConfig.defaultConfig.testDownloadUrls;
             AssetDefine.RemoteSpareUrls.Clear();
-            if (urs.Length > 1)
-            {
-                for (int i = 1; i < urs.Length; i++)
-                {
-                    if (Debug.isDebugBuild)
-                        AssetDefine.RemoteSpareUrls.Add(urs[0]); //内网测试没有备用url
-                    else
-                        AssetDefine.RemoteSpareUrls.Add(urs[i]); //内网测试没有备用url
-
-                }
-            }
-
         }
 
         XLogger.INFO("GameLoaderOptions::() AssetDefine.RemoteUrl: " + AssetDefine.RemoteDownloadUrl);

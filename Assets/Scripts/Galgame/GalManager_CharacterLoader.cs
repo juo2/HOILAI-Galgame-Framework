@@ -35,7 +35,7 @@ namespace ScenesScripts.GalPlot
             m_characterImg = loaderItem.gameObject.GetComponent<GalManager_CharacterImg>();
             m_characterAnimate = loaderItem.gameObject.GetComponent<GalManager_CharacterAnimate>();
 
-            Debug.Log("GalManager_CharacterLoader onCreateRenderer");
+            //Debug.Log("GalManager_CharacterLoader onCreateRenderer");
 
             if (!string.IsNullOrEmpty(m_ImageName))
                 m_characterImg.SetImage(m_ImageName);
@@ -59,7 +59,7 @@ namespace ScenesScripts.GalPlot
 
             if (m_characterImg != null)
             {
-                Debug.Log("GalManager_BackImg SetImage ImageName");
+                //Debug.Log("GalManager_BackImg SetImage ImageName");
                 m_characterImg.SetImage(imageName);
             }
         }

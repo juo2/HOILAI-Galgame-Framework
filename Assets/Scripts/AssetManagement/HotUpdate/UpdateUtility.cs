@@ -463,11 +463,7 @@ public class UpdateUtility
         if (XConfig.defaultConfig != null && !XConfig.defaultConfig.isGetUrlByPHP)
         {
             string curVer = "";
-            string url = XConfig.defaultConfig.testDownloadUrls[0];
-            int startIdx = url.IndexOf("tg2_");
-            if (startIdx > 0)
-                curVer = url.Substring(startIdx, 6);
-
+            string url = XConfig.defaultConfig.testDownloadUrls;
             sb.Append("\n");
             sb.AppendFormat("Ver    {0}版本", curVer);
         }

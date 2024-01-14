@@ -18,7 +18,7 @@ namespace ScenesScripts.GalPlot
         /// </summary>
         public void SetImage (string imageName)
         {
-            Debug.Log("GalManager_BackImg SetImage ImageName");
+            //Debug.Log("GalManager_BackImg SetImage ImageName");
             BackImg.spriteAssetName = imageName;
         }
     }

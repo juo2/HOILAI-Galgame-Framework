@@ -24,7 +24,7 @@ namespace ScenesScripts.GalPlot
 
         void onListCreateRenderer(ListItemRenderer listItem)
         {
-            Debug.Log("GalManager_Choice onListCreateRenderer");
+            //Debug.Log("GalManager_Choice onListCreateRenderer");
 
             GalComponent_Choice gl_choice = listItem.gameObject.GetComponent<GalComponent_Choice>();
             galComponent_Choices.Add(gl_choice);
@@ -32,7 +32,7 @@ namespace ScenesScripts.GalPlot
 
         void onListUpdateRenderer(ListItemRenderer listItem)
         {
-            Debug.Log("GalManager_Choice onListUpdateRenderer");
+            //Debug.Log("GalManager_Choice onListUpdateRenderer");
 
             GalComponent_Choice gl_choice = galComponent_Choices[listItem.index];
             Struct_Choice choices_data = struct_Choices[listItem.index];

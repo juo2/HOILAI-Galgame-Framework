@@ -29,6 +29,8 @@ public partial class Launcher : MonoBehaviour
         XLogger.INFO("RELEASE_BUILD");
 #endif
 
+        XLogger.INFO("当前平台是：" + Application.platform.ToString());
+
         XLogger.INFO_Format("Launcher 游戏启动！！！");
 
 #if UNITY_EDITOR
@@ -71,14 +73,14 @@ public partial class Launcher : MonoBehaviour
     void StartCheckUpdate()
     {
 
-        if (Application.isEditor && !SystemInfo.graphicsDeviceVersion.StartsWith("OpenGL"))
-        {
-            //编辑器模式下非opengl则用pc资源
-            string def = XConfig.defaultConfig.testDownloadUrls[0];
-            def = def.Replace("Android", "StandaloneWindows");
-            for (int i = 0; i < XConfig.defaultConfig.testDownloadUrls.Length; i++)
-                XConfig.defaultConfig.testDownloadUrls[i] = def;
-        }
+        //if (Application.isEditor && !SystemInfo.graphicsDeviceVersion.StartsWith("OpenGL"))
+        //{
+        //    //编辑器模式下非opengl则用pc资源
+        //    string def = XConfig.defaultConfig.testDownloadUrls[0];
+        //    def = def.Replace("Android", "StandaloneWindows");
+        //    for (int i = 0; i < XConfig.defaultConfig.testDownloadUrls.Length; i++)
+        //        XConfig.defaultConfig.testDownloadUrls[i] = def;
+        //}
 
         XVideoManager.Initialize();
         AssetManagement.AssetManager.Instance.Initialize(new GameLoaderOptions());

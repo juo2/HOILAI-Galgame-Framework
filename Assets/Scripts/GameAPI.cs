@@ -1,3 +1,4 @@
+using AssetManagement;
 using System;
 using System.IO;
 using System.Security.Cryptography;
@@ -20,11 +21,11 @@ namespace Common.Game
         /// <returns></returns>
         public static string GetWritePath ()
         {
-#if UNITY_EDITOR || UNITY_STANDALONE
-            return Application.streamingAssetsPath;
-#elif UNITY_IOS || UNITY_ANDROID
-            return  Application.persistentDataPath;
-#endif
+//#if UNITY_EDITOR || UNITY_STANDALONE
+//            return Application.streamingAssetsPath;
+////#elif UNITY_IOS || UNITY_ANDROID
+            return  AssetDefine.BuildinAssetPath;
+//#endif
         }
         /// <summary>
         /// 接管Debug.Log(...)

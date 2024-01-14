@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.IO;
+using UnityEngine;
 
 namespace Common.Game
 {
@@ -20,59 +21,36 @@ namespace Common.Game
         /// 在给定的路径上打开INI文件并枚举IniParser中的值。
         /// </summary>
         /// <param name="iniPath">Full path to INI file.</param>
-        public GameConfig (string iniPath)
+        public GameConfig (string ini)
         {
-            TextReader iniFile = null;
-            string strLine = null;
             string currentRoot = null;
             string[] keyPair = null;
-            iniFilePath = iniPath;
-            if (File.Exists(iniPath))
+
+            string []strLineList = ini.Split("\n");
+
+            foreach(string strLine in strLineList)
             {
-                try
+                string strLineTrim = strLine.Trim();
+                if (strLineTrim != "")
                 {
-                    iniFile = new StreamReader(iniPath);
-                    strLine = iniFile.ReadLine();
-                    while (strLine != null)
+                    if (strLineTrim.StartsWith("[") && strLineTrim.EndsWith("]"))
                     {
-                        strLine = strLine.Trim();
-                        if (strLine != "")
-                        {
-                            if (strLine.StartsWith("[") && strLine.EndsWith("]"))
-                            {
-                                currentRoot = strLine.Substring(1, strLine.Length - 2);
-                            }
-                            else
-                            {
-                                keyPair = strLine.Split(new char[] { '=' }, 2);
-                                SectionPair sectionPair;
-                                String value = null;
-                                if (currentRoot == null)
-                                    currentRoot = "ROOT";
-                                sectionPair.Section = currentRoot;
-                                sectionPair.Key = keyPair[0];
-                                if (keyPair.Length > 1)
-                                    value = keyPair[1];
-                                keyPairs.Add(sectionPair, value);
-                            }
-                        }
-                        strLine = iniFile.ReadLine();
+                        currentRoot = strLineTrim.Substring(1, strLineTrim.Length - 2);
+                    }
+                    else
+                    {
+                        keyPair = strLineTrim.Split(new char[] { '=' }, 2);
+                        SectionPair sectionPair;
+                        String value = null;
+                        if (currentRoot == null)
+                            currentRoot = "ROOT";
+                        sectionPair.Section = currentRoot;
+                        sectionPair.Key = keyPair[0];
+                        if (keyPair.Length > 1)
+                            value = keyPair[1];
+                        keyPairs.Add(sectionPair, value);
                     }
                 }
-                catch (Exception ex)
-                {
-                    throw ex;
-                }
-                finally
-                {
-                    if (iniFile != null)
-                        iniFile.Close();
-                }
-            }
-            else
-            {
-                GameAPI.Print("找不到INI配置，已自动创建", "warn");
-                Save();
             }
         }
 

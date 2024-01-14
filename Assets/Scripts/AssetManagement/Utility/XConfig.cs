@@ -80,7 +80,15 @@ public class XConfig
     }
     public string centerUrlTest { get { return m_CenterUrlTest; } }
     public string codeVer { get { return m_CodeVer; } }
-    public string[] testDownloadUrls { get { return m_TestDownloadUrls; } }
+
+    public string testDownloadUrls 
+    { 
+        get 
+        { 
+            return m_TestDownloadUrls[0] + Application.platform.ToString() + "/"; 
+        } 
+    }
+
     public string[] startScreenImgs { get { return m_startScreenImgs; } }
     public string[] startLoadImgs { get { return m_startLoadImgs; } }
 
@@ -125,7 +133,7 @@ public class XConfig
             config = JsonUtility.FromJson<XConfig>(System.IO.File.ReadAllText(c_Path));
         }
 
-        AssetManagement.AssetDefine.RemoteDownloadUrl = config.testDownloadUrls[0];
+        AssetManagement.AssetDefine.RemoteDownloadUrl = config.testDownloadUrls;
 
         s_DefaultConfig = config;
     }

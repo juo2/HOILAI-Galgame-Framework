@@ -1,3 +1,4 @@
+using AssetManagement;
 using Common.Game;
 using System;
 using System.Collections;
@@ -33,6 +34,9 @@ namespace ScenesScripts.GalPlot
         [Title("控制背景图片的组件")]
         public GalManager_Video Gal_Video;
 
+        string _CharacterInfoText;
+        string _DepartmentText;
+
         /// <summary>
         /// 当前场景角色数量
         /// </summary>
@@ -40,9 +44,8 @@ namespace ScenesScripts.GalPlot
         public int CharacterNum;
         private class CharacterConfig
         {
-            public static GameConfig CharacterInfo = new($"{GameAPI.GetWritePath()}/HGF/CharacterInfo.ini");
-            public static GameConfig Department = new($"{GameAPI.GetWritePath()}/HGF/Department.ini");
-
+            public static GameConfig CharacterInfo;
+            public static GameConfig Department; //= new($"{GameAPI.GetWritePath()}HGF/Department.ini");
         }
 
         /// <summary>
@@ -88,9 +91,53 @@ namespace ScenesScripts.GalPlot
         private void Start ()
         {
             ResetPlotData();
-            StartCoroutine(LoadPlot());
+
+            StartCoroutine(LoadCharacterInfo(() =>
+            {
+                CharacterConfig.CharacterInfo = new GameConfig(_CharacterInfoText);
+                StartCoroutine(LoadDepartment(() => {
+                    CharacterConfig.Department = new GameConfig(_DepartmentText);
+                    StartCoroutine(LoadPlot());
+                }));
+            }));
+            
             return;
         }
+
+        IEnumerator LoadCharacterInfo(Action action)
+        {
+            string filePath = Path.Combine(AssetDefine.BuildinAssetPath,"HGF/CharacterInfo.ini");
+            UnityWebRequest www = UnityWebRequest.Get(filePath);
+            yield return www.SendWebRequest();
+            if (www.result == UnityWebRequest.Result.Success)
+            {
+                _CharacterInfoText = www.downloadHandler.text;
+            }
+            else
+            {
+                Debug.Log("Error: " + www.error);
+            }
+
+            action?.Invoke();
+        }
+
+        IEnumerator LoadDepartment(Action action)
+        {
+            string filePath = Path.Combine(AssetDefine.BuildinAssetPath, "HGF/Department.ini");
+            UnityWebRequest www = UnityWebRequest.Get(filePath);
+            yield return www.SendWebRequest();
+            if (www.result == UnityWebRequest.Result.Success)
+            {
+                _DepartmentText = www.downloadHandler.text;
+            }
+            else
+            {
+                Debug.Log("Error: " + www.error);
+            }
+
+            action?.Invoke();
+        }
+
         /// <summary>
         /// 重置
         /// </summary>
@@ -108,15 +155,16 @@ namespace ScenesScripts.GalPlot
             yield return null;
 
             string _PlotText = string.Empty;
-            string filePath = Path.Combine(Application.streamingAssetsPath, "HGF/Test.xml");
+            string filePath = Path.Combine(AssetDefine.BuildinAssetPath, "HGF/Test.xml");
 
-#if UNITY_STANDALONE_OSX || UNITY_EDITOR_OSX
-            filePath = "file://" + filePath;
-#endif
-            if (Application.platform == RuntimePlatform.Android)
-            {
-                filePath = "jar:file://" + Application.dataPath + "!/assets/HGF/Test.xml";
-            }
+//#if UNITY_STANDALONE_OSX || UNITY_EDITOR_OSX
+//            filePath = "file://" + filePath;
+//#endif
+//            if (Application.platform == RuntimePlatform.Android)
+//            {
+//                filePath = "jar:file://" + Application.dataPath + "!/assets/HGF/Test.xml";
+//            }
+            
             UnityWebRequest www = UnityWebRequest.Get(filePath);
             yield return www.SendWebRequest();
 
