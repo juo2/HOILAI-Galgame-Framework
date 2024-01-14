@@ -606,7 +606,7 @@ public partial class LaunchUpdate
 
         return isCanUpdate;
     }
-
+     
     //下载启动更新文件
     IEnumerator DownloadUpdateAssets()
     {
