@@ -85,9 +85,8 @@ public class UpdateUtility
 
     public static string GetVersionStrInfo(XVersionFile version)
     {
-        return string.Format("Dev:{0}|{1} Art:{2}|{3} files:{4} manifest:{5}",
-            version.p_DevVersion.svnVer, version.p_DevVersion.buildDate,
-            version.p_ArtVersion.svnVer, version.p_ArtVersion.buildDate,
+        return string.Format("Dev:{0} files:{1} manifest:{2}",
+            version.p_DevVersion.gitVer,
             version.p_files_md5, version.p_manifest_md5);
     }
 
@@ -442,31 +441,22 @@ public class UpdateUtility
     public static void SetUIVersionInfo(XVersionFile local, XVersionFile server)
     {
         StringBuilder sb = new StringBuilder();
-        sb.AppendFormat("Art     {0}", Application.version);
-        if (local != null)
-        {
-            sb.AppendFormat(".{0}", local.p_ArtVersion.svnVer);
-            if (server != null && server.p_ArtVersion.svnVer != local.p_ArtVersion.svnVer)
-                sb.AppendFormat("<color=#00ff00> - {0}</color>", server.p_ArtVersion.svnVer);
-        }
-
-        sb.Append("\n");
 
         sb.AppendFormat("Dev   {0}", Application.version);
         if (local != null)
         {
-            sb.AppendFormat(".{0}", local.p_DevVersion.svnVer);
-            if (server != null && server.p_DevVersion.svnVer != local.p_DevVersion.svnVer)
-                sb.AppendFormat("<color=#00ff00> - {0}</color>", server.p_DevVersion.svnVer);
+            sb.AppendFormat(".{0}", local.p_DevVersion.gitVer);
+            if (server != null && server.p_DevVersion.gitVer != local.p_DevVersion.gitVer)
+                sb.AppendFormat("<color=#00ff00> - {0}</color>", server.p_DevVersion.gitVer);
         }
 
-        if (XConfig.defaultConfig != null && !XConfig.defaultConfig.isGetUrlByPHP)
-        {
-            string curVer = "";
-            string url = XConfig.defaultConfig.testDownloadUrls;
-            sb.Append("\n");
-            sb.AppendFormat("Ver    {0}版本", curVer);
-        }
+        //if (XConfig.defaultConfig != null && !XConfig.defaultConfig.isGetUrlByPHP)
+        //{
+        //    string curVer = "";
+        //    string url = XConfig.defaultConfig.testDownloadUrls;
+        //    sb.Append("\n");
+        //    sb.AppendFormat("Ver    {0}版本", curVer);
+        //}
 
         DefaultLoaderGUI.SetVerText(sb.ToString());
     }

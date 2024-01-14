@@ -517,8 +517,12 @@ public class XBuildDevelopment
         }
         else
         	EditorSettings.spritePackerMode = SpritePackerMode.BuildTimeOnlyAtlas;
+
         //获取本地svn库版本
         //string version = XBuildUtility.GetSvnVersion(parameter.version);
+
+        //获取本地git版本
+        string version = XBuildUtility.GetGitCommitID();
 
 
         List<AssetBundleBuild> list = new List<AssetBundleBuild>();
@@ -559,7 +563,7 @@ public class XBuildDevelopment
         parameter.buildBundleName = BuildResourceParameter.NameType.HASH;
 #endif
         bool result = XBuildUtility.BuildWriteInfo(list, outPath, parameter.buildAssetBundleOptions, parameter.buildTarget,
-                                            parameter.isClearFolder, parameter.buildBundleName, "1.0");
+                                            parameter.isClearFolder, parameter.buildBundleName, version);
 
         //XBuildUtility.BuildByteList(list, outPath);
 

@@ -92,13 +92,13 @@ public class XVersionFile
     [System.Serializable]
     public struct VersionStruct
     {
-        public string svnVer;
-        public string buildDate;
+        public string gitVer;
+        //public string buildDate;
     }
 
     //public VersionStruct p_LuaVersion;
     public VersionStruct p_DevVersion;
-    public VersionStruct p_ArtVersion;
+    //public VersionStruct p_ArtVersion;
 
     public string p_files_md5;
     public string p_manifest_md5;

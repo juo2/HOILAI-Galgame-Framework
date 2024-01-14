@@ -166,8 +166,28 @@ public class XBuildUtility
         {
             return version + "\r\n" + dateStr;
         }
+    }
 
+    public static string GetGitCommitID()
+    {
+        System.Diagnostics.ProcessStartInfo processInfo = new System.Diagnostics.ProcessStartInfo
+        {
+            FileName = "git",
+            Arguments = "rev-parse HEAD",
+            RedirectStandardOutput = true,
+            RedirectStandardError = true,
+            UseShellExecute = false,
+            CreateNoWindow = true
+        };
 
+        using (System.Diagnostics.Process process = new System.Diagnostics.Process { StartInfo = processInfo })
+        {
+            process.Start();
+            string output = process.StandardOutput.ReadToEnd().Trim();
+            process.WaitForExit();
+
+            return output;
+        }
     }
 
 
@@ -503,18 +523,14 @@ public class XBuildUtility
             string folderName = Path.GetFileName(Path.GetDirectoryName(versionPath));
 
             string[] lines = File.ReadAllLines(versionPath);
-            if (lines.Length >= 2)
+            if (lines.Length >= 1)
             {
-                string svnVer = lines[0];
-                string date = lines[1];
-
+                string gitVer = lines[0];
                 /**if (folderName == "00")
                     version.p_LuaVersion = new XVersionFile.VersionStruct { svnVer = svnVer, buildDate = date };
                 else**/
                 if (folderName == "01")
-                    version.p_DevVersion = new XVersionFile.VersionStruct { svnVer = svnVer, buildDate = date };
-                else if (folderName == "02")
-                    version.p_ArtVersion = new XVersionFile.VersionStruct { svnVer = svnVer, buildDate = date };
+                    version.p_DevVersion = new XVersionFile.VersionStruct { gitVer = gitVer };
             }
         }
 

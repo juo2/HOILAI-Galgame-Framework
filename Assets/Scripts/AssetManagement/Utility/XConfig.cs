@@ -84,9 +84,13 @@ public class XConfig
     public string testDownloadUrls 
     { 
         get 
-        { 
+        {
+#if UNITY_EDITOR
+            return m_TestDownloadUrls[0] + "Android/";
+#else
             return m_TestDownloadUrls[0] + Application.platform.ToString() + "/"; 
-        } 
+#endif
+        }
     }
 
     public string[] startScreenImgs { get { return m_startScreenImgs; } }

@@ -12,10 +12,14 @@ public class XAssetsBundlesPage : XBuildWindow.XBuildPage
     {
         [SerializeField]
         private string[] m_TestDownloadUrls;
-        public string[] testDownloadUrl { get { return m_TestDownloadUrls; } }
+        public string testDownloadUrls
+        {
+            get
+            {
+                return m_TestDownloadUrls[0] + "Android/";
+            }
+        }
     }
-
-
 
 
     const string NAME = "AssetBundles";
@@ -34,13 +38,10 @@ public class XAssetsBundlesPage : XBuildWindow.XBuildPage
         m_DefultConfig = ReadDefaultConfig();
 
         string webPath = "";
-        if (m_DefultConfig != null && m_DefultConfig.testDownloadUrl.Length > 0)
-            webPath = m_DefultConfig.testDownloadUrl[0];
+        if (m_DefultConfig != null)
+            webPath = m_DefultConfig.testDownloadUrls;
 
         m_AssetBundleView = new AssetBundleView(webPath);
-
-        if (m_DefultConfig != null && m_DefultConfig.testDownloadUrl.Length > 1)
-            webPath = m_DefultConfig.testDownloadUrl[1];
 
         m_AssetBundleView2 = new AssetBundleView(webPath);
         m_AssetBundleView.SetCompareView(m_AssetBundleView2);

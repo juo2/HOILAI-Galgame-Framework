@@ -234,8 +234,7 @@ public partial class LaunchUpdate
         //版本改表
         if (m_LocalVersion != null && m_RemoteVersion != null)
         {
-            if (m_LocalVersion.p_DevVersion.svnVer != m_RemoteVersion.p_DevVersion.svnVer ||
-                m_LocalVersion.p_ArtVersion.svnVer != m_RemoteVersion.p_ArtVersion.svnVer ||
+            if (m_LocalVersion.p_DevVersion.gitVer != m_RemoteVersion.p_DevVersion.gitVer ||
                 //本地文件列表或清单md5对应不上也需要下载新的文件列表与清单
                 m_LocalVersion.p_files_md5 != m_RemoteVersion.p_files_md5 ||
                 m_LocalVersion.p_manifest_md5 != m_RemoteVersion.p_manifest_md5)

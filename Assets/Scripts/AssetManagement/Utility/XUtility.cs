@@ -65,11 +65,8 @@ public class XUtility
         StringBuilder sb = new StringBuilder();
         if (XAssetsFiles.s_CurrentVersion != null)
         {
-            sb.AppendFormat("Art     {0}", Application.version);
-            sb.AppendFormat(".{0}", XAssetsFiles.s_CurrentVersion.p_ArtVersion.svnVer);
-            sb.Append("\n");
             sb.AppendFormat("Dev    {0}", Application.version);
-            sb.AppendFormat(".{0}", XAssetsFiles.s_CurrentVersion.p_DevVersion.svnVer);
+            sb.AppendFormat(".{0}", XAssetsFiles.s_CurrentVersion.p_DevVersion.gitVer);
         }
         else
         {
