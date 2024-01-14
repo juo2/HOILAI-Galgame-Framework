@@ -3,7 +3,11 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - MapCamera
+  - GUICamera
+  - SkipGate
+  - SceneTrigger
   layers:
   - Default
   - TransparentFX
@@ -13,30 +17,30 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - UIHide
+  - UIModel
+  - Wall
+  - Floor
+  - Entity
+  - FightEffect
+  - WaterSurface
+  - Particle_High
+  - Particle_Mid
+  - Particle_Low
+  - Particle_SHide
+  - ShadowsCast
+  - ShadowsReceive
+  - TreeModel
+  - SkyBox
+  - EntityHide
+  - GMEntityLayer
+  - SkyFloor
+  - JumpPoint
+  - GUI3DX
+  - Diamond
+  - Layer29
+  - Layer30
+  - Layer31
   m_SortingLayers:
   - name: Default
     uniqueID: 0

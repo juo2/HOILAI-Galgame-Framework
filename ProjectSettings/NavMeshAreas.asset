@@ -11,16 +11,16 @@ NavMeshProjectSettings:
     cost: 1
   - name: Jump
     cost: 2
-  - name: 
+  - name: Shoal
     cost: 1
-  - name: 
+  - name: Water
     cost: 1
-  - name: 
+  - name: Roof
     cost: 1
-  - name: 
+  - name: Indoor
     cost: 1
-  - name: 
-    cost: 1
+  - name: WalkableLow
+    cost: 2
   - name: 
     cost: 1
   - name: 
@@ -85,6 +85,8 @@ NavMeshProjectSettings:
     manualTileSize: 0
     tileSize: 256
     accuratePlacement: 0
+    maxJobWorkers: 0
+    preserveTilesOutsideBounds: 0
     debug:
       m_Flags: 0
   m_SettingNames:
