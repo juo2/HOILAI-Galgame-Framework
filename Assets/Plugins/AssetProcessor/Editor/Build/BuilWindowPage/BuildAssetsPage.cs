@@ -83,22 +83,22 @@ public class BuildAssetsPage : XBuildWindow.XBuildPage
 
         EditorGUILayout.Space();
         EditorGUILayout.BeginHorizontal();
-        if (GUILayout.Button("Build Lua"))
-        {
-            BuildLuaParameter parameter = new BuildLuaParameter();
-            parameter.luaDirectory = LuaProject.LuaRootPath;
-            parameter.buildAssetBundleOptions = BuildAssetBundleOptions.None |
-                                          BuildAssetBundleOptions.IgnoreTypeTreeChanges |
-                                          BuildAssetBundleOptions.DisableLoadAssetByFileNameWithExtension;
-            parameter.buildTarget = m_BuildTarget;
-            parameter.isClearFolder = m_IsClearFolder;
-            parameter.outputPath = this.m_BuildOutPath;
-            System.Diagnostics.Stopwatch sw = System.Diagnostics.Stopwatch.StartNew();
-            XBuildLua.Build(parameter);
-            sw.Stop();
-            Debug.Log("time: " + sw.ElapsedMilliseconds * 0.001f);
-            EditorUtility.OpenWithDefaultApp(parameter.outputPath);
-        }
+        //if (GUILayout.Button("Build Lua"))
+        //{
+        //    BuildLuaParameter parameter = new BuildLuaParameter();
+        //    parameter.luaDirectory = LuaProject.LuaRootPath;
+        //    parameter.buildAssetBundleOptions = BuildAssetBundleOptions.None |
+        //                                  BuildAssetBundleOptions.IgnoreTypeTreeChanges |
+        //                                  BuildAssetBundleOptions.DisableLoadAssetByFileNameWithExtension;
+        //    parameter.buildTarget = m_BuildTarget;
+        //    parameter.isClearFolder = m_IsClearFolder;
+        //    parameter.outputPath = this.m_BuildOutPath;
+        //    System.Diagnostics.Stopwatch sw = System.Diagnostics.Stopwatch.StartNew();
+        //    XBuildLua.Build(parameter);
+        //    sw.Stop();
+        //    Debug.Log("time: " + sw.ElapsedMilliseconds * 0.001f);
+        //    EditorUtility.OpenWithDefaultApp(parameter.outputPath);
+        //}
 
 //        if (GUILayout.Button("Build Art"))
 //        {
@@ -148,6 +148,10 @@ public class BuildAssetsPage : XBuildWindow.XBuildPage
 #endif
             System.Diagnostics.Stopwatch sw = System.Diagnostics.Stopwatch.StartNew();
             XBuildDevelopment.Build(parameter);
+
+            string manifestPath = Path.Combine(m_BuildOutPath, XBuildUtility.GetPlatformAtBuildTarget(m_BuildTarget));
+            XBuildUtility.BuildAssetManifest(manifestPath, m_BuildTarget);
+
             sw.Stop();
             Debug.Log("time: " + sw.ElapsedMilliseconds * 0.001f);
             EditorUtility.OpenWithDefaultApp(parameter.outputPath);
