@@ -107,6 +107,10 @@ namespace ScenesScripts.GalPlot
         IEnumerator LoadCharacterInfo(Action action)
         {
             string filePath = Path.Combine(AssetDefine.BuildinAssetPath,"HGF/CharacterInfo.ini");
+
+#if UNITY_STANDALONE_OSX || UNITY_EDITOR_OSX
+            filePath = "file://" + filePath;
+#endif
             UnityWebRequest www = UnityWebRequest.Get(filePath);
             yield return www.SendWebRequest();
             if (www.result == UnityWebRequest.Result.Success)
@@ -124,6 +128,10 @@ namespace ScenesScripts.GalPlot
         IEnumerator LoadDepartment(Action action)
         {
             string filePath = Path.Combine(AssetDefine.BuildinAssetPath, "HGF/Department.ini");
+
+#if UNITY_STANDALONE_OSX || UNITY_EDITOR_OSX
+            filePath = "file://" + filePath;
+#endif
             UnityWebRequest www = UnityWebRequest.Get(filePath);
             yield return www.SendWebRequest();
             if (www.result == UnityWebRequest.Result.Success)
@@ -157,14 +165,14 @@ namespace ScenesScripts.GalPlot
             string _PlotText = string.Empty;
             string filePath = Path.Combine(AssetDefine.BuildinAssetPath, "HGF/Test.xml");
 
-//#if UNITY_STANDALONE_OSX || UNITY_EDITOR_OSX
-//            filePath = "file://" + filePath;
-//#endif
-//            if (Application.platform == RuntimePlatform.Android)
-//            {
-//                filePath = "jar:file://" + Application.dataPath + "!/assets/HGF/Test.xml";
-//            }
-            
+#if UNITY_STANDALONE_OSX || UNITY_EDITOR_OSX
+            filePath = "file://" + filePath;
+#endif
+            //            if (Application.platform == RuntimePlatform.Android)
+            //            {
+            //                filePath = "jar:file://" + Application.dataPath + "!/assets/HGF/Test.xml";
+            //            }
+
             UnityWebRequest www = UnityWebRequest.Get(filePath);
             yield return www.SendWebRequest();
 
