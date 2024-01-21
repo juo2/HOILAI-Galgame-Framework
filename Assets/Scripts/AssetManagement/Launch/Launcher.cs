@@ -49,13 +49,11 @@ public partial class Launcher : MonoBehaviour
         AssetManagement.AssetManager.LogEnabled = false;
         AssetManagement.AssetDownloadManager.LogEnabled = true;
 
-        ContinueStart();
-
+        XConfig.ReadConfigAtFile(ContinueStart);
     }
 
     void ContinueStart()
     {
-        XConfig.ReadConfigAtFile();
 
         LauncherJugglery.Destroy();
 

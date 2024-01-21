@@ -559,9 +559,9 @@ public class XBuildDevelopment
         parameter.outputPath = outPath;
 
         parameter.buildBundleName = BuildResourceParameter.NameType.NONE;
-#if UNITY_IOS
-        parameter.buildBundleName = BuildResourceParameter.NameType.HASH;
-#endif
+//#if UNITY_IOS
+//        parameter.buildBundleName = BuildResourceParameter.NameType.HASH;
+//#endif
         bool result = XBuildUtility.BuildWriteInfo(list, outPath, parameter.buildAssetBundleOptions, parameter.buildTarget,
                                             parameter.isClearFolder, parameter.buildBundleName, version);
 

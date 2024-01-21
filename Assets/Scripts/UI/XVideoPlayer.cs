@@ -9,6 +9,10 @@ using UnityEngine.UI;
 using DG.Tweening;
 using XGUI;
 
+#if UNITY_WEBGL
+using WeChatWASM;
+#endif
+
 [RequireComponent(typeof(DisplayUGUI))]
 public class XVideoPlayer : MonoBehaviour
 {
@@ -63,8 +67,58 @@ public class XVideoPlayer : MonoBehaviour
             if (m_FilePath == value) return;
             lastFileName = m_FilePath;
             m_FilePath = value;
+
+#if UNITY_WEBGL
+            AutoPlayVideo();
+#else
             RefreshSource();
+#endif
         }
+    }
+
+    private void AutoPlayVideo()
+    {
+        Debug.Log("AssetDefine.BuildinAssetPath:" + AssetDefine.BuildinAssetPath);
+
+        WX.InitSDK((int code) => {
+            var systemInfo = WX.GetSystemInfoSync();
+            var video = WX.CreateVideo(new WXCreateVideoParam()
+            {
+                src =  Path.Combine(AssetDefine.BuildinAssetPath, "firstLogin.mp4"),
+                controls = false,
+                showProgress = false,
+                showProgressInControlMode = false,
+                autoplay = true,
+                showCenterPlayBtn = false,
+                underGameView = true,
+                width = ((int)systemInfo.screenWidth),
+                height = ((int)systemInfo.screenHeight),
+            });
+            video.OnPlay(() => {
+                Debug.Log("video on play");
+                Debug.Log("video on play");
+                Debug.Log("video on play");
+                Debug.Log("video on play");
+                if (onReady != null)
+                    try { onReady.Invoke(); } catch (Exception e) { XLogger.ERROR_Format(e.ToString()); }
+            });
+            video.OnError(() => {
+                Debug.Log("video on error");
+                Debug.Log("video on error");
+                Debug.Log("video on error");
+                Debug.Log("video on error");
+                Debug.Log("video on error");
+            });
+            video.OnEnded(() => {
+                Debug.Log("video on OnEnded");
+                Debug.Log("video on OnEnded");
+                Debug.Log("video on OnEnded");
+                Debug.Log("video on OnEnded");
+                Debug.Log("video on OnEnded");
+                if (onFinish != null)
+                    try { onFinish.Invoke(); } catch (Exception e) { XLogger.ERROR_Format(e.ToString()); }
+            });
+        });
     }
 
 
@@ -126,8 +180,12 @@ public class XVideoPlayer : MonoBehaviour
         else if (videoPlayer)
             videoPlayer.enabled = true;
 
-
+#if UNITY_WEBGL
+        AutoPlayVideo();
+#else
         RefreshSource();
+#endif
+
     }
 
 

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 using System.IO;
+using AssetManagement;
+using System.Collections;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -112,9 +114,10 @@ public class XConfig
         System.IO.File.WriteAllText(c_Path, JsonUtility.ToJson(cfg, true));
     }
 
-    public static void ReadConfigAtFile()
+    public static void ReadConfigAtFile(Action action)
     {
         XConfig config = new XConfig();
+
         if (Application.platform == RuntimePlatform.Android)
         {
             WWW www = new WWW(c_Path);
@@ -127,6 +130,16 @@ public class XConfig
 
             config = JsonUtility.FromJson<XConfig>(www.text);
             www.Dispose();
+
+            AssetManagement.AssetDefine.RemoteDownloadUrl = config.testDownloadUrls;
+
+            s_DefaultConfig = config;
+
+            action?.Invoke();
+        }
+        else if (Application.platform == RuntimePlatform.WebGLPlayer)
+        {
+            TimerManager.AddCoroutine(LoadDefaultConfig(action));
         }
         else
         {
@@ -135,11 +148,35 @@ public class XConfig
                 Debug.LogWarningFormat("XConfig::ReadConfig() file not exists path={0}", c_Path);
             }
             config = JsonUtility.FromJson<XConfig>(System.IO.File.ReadAllText(c_Path));
+
+            AssetManagement.AssetDefine.RemoteDownloadUrl = config.testDownloadUrls;
+
+            s_DefaultConfig = config;
+
+            action?.Invoke();
+        }
+    }
+
+    static IEnumerator LoadDefaultConfig(Action action)
+    {
+
+#if UNITY_STANDALONE_OSX || UNITY_EDITOR_OSX
+            filePath = "file://" + filePath;
+#endif
+        UnityWebRequest www = UnityWebRequest.Get(c_Path);
+        yield return www.SendWebRequest();
+        if (www.result == UnityWebRequest.Result.Success)
+        {
+            s_DefaultConfig = JsonUtility.FromJson<XConfig>(www.downloadHandler.text);
+
+            AssetManagement.AssetDefine.RemoteDownloadUrl = s_DefaultConfig.testDownloadUrls;
+        }
+        else
+        {
+            Debug.Log("Error: " + www.error);
         }
 
-        AssetManagement.AssetDefine.RemoteDownloadUrl = config.testDownloadUrls;
-
-        s_DefaultConfig = config;
+        action?.Invoke();
     }
 
 

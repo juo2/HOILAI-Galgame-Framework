@@ -638,11 +638,7 @@ public partial class LaunchUpdate
         DefaultAlertGUI alertDownloadTip = DefaultAlertGUI.Open("", tipContent, UpdateConst.GetLanguage(11206), "", DefaultAlertGUI.ButtonOpt.Sure);
         yield return alertDownloadTip.Wait();
 //#endif
-        //IOS SDK资源加载开始上报
-#if UNITY_IOS && !UNITY_EDITOR
-            GameSdkProxy.instance.ReqUploadUserData(@"{""payId"":"""",""updateTime"":0,""createTime"":0,""orderId"":"""",""feePoint"":"""",""isPrintLog"":true,""action"":1,""serverCreateTime"":""0"",""roleLevel"":0,""power"":0,""productId"":"""",""partyName"":"""",""vipLevel"":0,""roleId"":0,""roleName"":"""",""serverName"":"""",""serverId"":0,""balance"":0}");
-            Debug.Log("IOS SDK 资源加载开始上报");
-#endif
+
         download.StartDownload();
         float progress = 0;
         while (!download.isDone)

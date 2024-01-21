@@ -94,32 +94,32 @@ namespace Common.Game
         /// </summary>
         /// <param name="fileName">文件名称</param>
         /// <returns></returns>
-        public static string UnityWebRequestFile (string fileName)
-        {
-            string url;
-            #region 分平台判断 StreamingAssets 路径
-            //如果在编译器或者单机中
-#if UNITY_EDITOR || UNITY_STANDALONE
+//        public static string UnityWebRequestFile (string fileName)
+//        {
+//            string url;
+//            #region 分平台判断 StreamingAssets 路径
+//            //如果在编译器或者单机中
+//#if UNITY_EDITOR || UNITY_STANDALONE
 
-            url = "file://" + Application.dataPath + "/StreamingAssets/" + fileName;
-            //否则如果在Iphone下
-#elif UNITY_IPHONE
-        url = "file://" + Application.dataPath + "/Raw/"+ fileName;
-            //否则如果在android下
-#elif UNITY_ANDROID
-        url = "jar:file://" + Application.dataPath + "!/assets/"+ fileName;
-#endif
-            #endregion
-            UnityWebRequest request = UnityWebRequest.Get(url);
-            request.SendWebRequest();//读取数据
-            while (true)
-            {
-                if (request.downloadHandler.isDone)//是否读取完数据
-                {
-                    return request.downloadHandler.text;
-                }
-            }
-        }
+//            url = "file://" + Application.dataPath + "/StreamingAssets/" + fileName;
+//            //否则如果在Iphone下
+//#elif UNITY_IPHONE
+//            url = "file://" + Application.dataPath + "/Raw/"+ fileName;
+//            //否则如果在android下
+//#elif UNITY_ANDROID
+//            url = "jar:file://" + Application.dataPath + "!/assets/"+ fileName;
+//#endif
+//            #endregion
+//            UnityWebRequest request = UnityWebRequest.Get(url);
+//            request.SendWebRequest();//读取数据
+//            while (true)
+//            {
+//                if (request.downloadHandler.isDone)//是否读取完数据
+//                {
+//                    return request.downloadHandler.text;
+//                }
+//            }
+//        }
         /// <summary>
         /// 从外部指定文件中加载图片
         /// </summary>

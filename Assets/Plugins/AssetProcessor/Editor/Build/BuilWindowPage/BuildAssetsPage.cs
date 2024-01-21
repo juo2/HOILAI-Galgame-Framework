@@ -141,11 +141,11 @@ public class BuildAssetsPage : XBuildWindow.XBuildPage
             parameter.buildTarget = m_BuildTarget;
             parameter.isClearFolder = m_IsClearFolder;
             parameter.outputPath = this.m_BuildOutPath;
-#if UNITY_IOS
-            parameter.buildBundleName = BuildResourceParameter.NameType.HASH;
-#else
+//#if UNITY_IOS
+//            parameter.buildBundleName = BuildResourceParameter.NameType.HASH;
+//#else
             parameter.buildBundleName = BuildResourceParameter.NameType.NONE;
-#endif
+//#endif
             System.Diagnostics.Stopwatch sw = System.Diagnostics.Stopwatch.StartNew();
             XBuildDevelopment.Build(parameter);
 
