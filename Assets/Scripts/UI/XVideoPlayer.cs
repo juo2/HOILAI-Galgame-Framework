@@ -79,7 +79,7 @@ public class XVideoPlayer : MonoBehaviour
     private void AutoPlayVideo()
     {
         Debug.Log("AssetDefine.BuildinAssetPath:" + AssetDefine.BuildinAssetPath);
-
+#if UNITY_WEBGL
         WX.InitSDK((int code) => {
             var systemInfo = WX.GetSystemInfoSync();
             var video = WX.CreateVideo(new WXCreateVideoParam()
@@ -119,6 +119,7 @@ public class XVideoPlayer : MonoBehaviour
                     try { onFinish.Invoke(); } catch (Exception e) { XLogger.ERROR_Format(e.ToString()); }
             });
         });
+#endif
     }
 
 
