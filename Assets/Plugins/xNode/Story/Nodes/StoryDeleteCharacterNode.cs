@@ -5,12 +5,16 @@ using XNode;
 
 namespace XNode.Story
 {
-    public class StoryDeleteCharacter : Node
+    public class StoryDeleteCharacterNode : Node
     {
         [Input] public Empty In;
         [Output] public Empty Out;
 
-        public DelStoryCharacter delStoryCharacter;
+        [SerializeField]
+        public string ID;
+
+        [SerializeField]
+        public Animate_StartOrOutside Animate;
 
         public override object GetValue(NodePort port)
         {
@@ -19,15 +23,6 @@ namespace XNode.Story
             return null;
         }
 
-        [System.Serializable]
-        public class DelStoryCharacter
-        {
-            [SerializeField]
-            string ID;
-
-            [SerializeField]
-            string Animate;
-        }
     }
 
 }

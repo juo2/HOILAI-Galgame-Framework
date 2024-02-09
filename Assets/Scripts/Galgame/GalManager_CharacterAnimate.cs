@@ -13,7 +13,7 @@ namespace ScenesScripts.GalPlot
         /// <summary>
         /// 出入场出场动画
         /// </summary>
-        [StringInList("ToShow", "Outside-ToLeft", "Outside-ToRight")] public string Animate_StartOrOutside = "ToShow";
+        [StringInList("ToShow", "Outside_ToLeft", "Outside_ToRight")] public string Animate_StartOrOutside = "ToShow";
         /// <summary>
         /// 动画
         /// <para>Shake：颤抖</para>
@@ -21,7 +21,7 @@ namespace ScenesScripts.GalPlot
         /// <para>ToGrey：变灰</para>
         /// <para>To - ：不解释了，移动到指定位置</para>
         /// </summary>
-        [StringInList("Shake", "Shake-Y-Once", "ToLeft", "ToCenter", "ToRight")] public string Animate_type = "Shake";
+        [StringInList("Shake", "Shake_Y_Once", "ToLeft", "ToCenter", "ToRight")] public string Animate_type = "Shake";
         /// <summary>
         /// 角色立绘
         /// </summary>
@@ -53,7 +53,7 @@ namespace ScenesScripts.GalPlot
                     _rect.DOShakePosition(0.5f, 30f);
                     break;
                 }
-                case "Shake-Y-Once":
+                case "Shake_Y_Once":
                 {
                     _rect.DOAnchorPosY(_rect.anchoredPosition.y - 50f, 0.6f).OnComplete(() =>
                     {
@@ -111,7 +111,7 @@ namespace ScenesScripts.GalPlot
                     break;
                 }
                 //从屏幕边缘滑到左侧
-                case "Outside-ToLeft":
+                case "Outside_ToLeft":
                 {
 
                     PositionImageOutside(this.gameObject.GetComponent<RectTransform>(), -1);
@@ -119,7 +119,7 @@ namespace ScenesScripts.GalPlot
                     break;
                 }
                 //从屏幕边缘滑到右侧
-                case "Outside-ToRight":
+                case "Outside_ToRight":
                 {
                     PositionImageOutside(this.gameObject.GetComponent<RectTransform>(), 1);
                     DOTween.To(() => rect.anchoredPosition, x => rect.GetComponent<RectTransform>().anchoredPosition = x, new Vector2(rect.anchoredPosition.x - m_SpriteWidth, rect.anchoredPosition.y), 1f);

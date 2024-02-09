@@ -26,5 +26,21 @@ namespace XNode.Story
     }
 
 
+    public enum Animate_StartOrOutside
+    {
+        None,
+        ToShow,
+        Outside_ToLeft,
+        Outside_ToRight,
+    }
 
+    public enum Animate_type
+    {
+        None,
+        Shake,
+        Shake_Y_Once,
+        ToLeft,
+        ToCenter,
+        ToRight,
+    }
 }

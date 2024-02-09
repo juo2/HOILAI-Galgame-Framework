@@ -163,7 +163,8 @@ namespace ScenesScripts.GalPlot
             yield return null;
 
             string _PlotText = string.Empty;
-            string filePath = Path.Combine(AssetDefine.BuildinAssetPath, "HGF/Test.xml");
+            //string filePath = Path.Combine(AssetDefine.BuildinAssetPath, "HGF/Test.xml");
+            string filePath = Path.Combine(AssetDefine.BuildinAssetPath, "HGF/story.xml");
 
 #if UNITY_STANDALONE_OSX || UNITY_EDITOR_OSX
             filePath = "file://" + filePath;
@@ -184,7 +185,7 @@ namespace ScenesScripts.GalPlot
             {
                 Debug.Log("Error: " + www.error);
             }
-            try
+            //try
             {
 
                 //GameAPI.Print($"游戏剧本：{_PlotText}");
@@ -196,24 +197,24 @@ namespace ScenesScripts.GalPlot
                 {
                     switch (item.Name.ToString())
                     {
-                        case "title":
-                        {
-                            PlotData.Title = item.Value;
-                            break;
-                        }
-                        case "Synopsis":
-                        {
-                            PlotData.Synopsis = item.Value;
-                            break;
-                        }
+                        //case "title":
+                        //{
+                        //    PlotData.Title = item.Value;
+                        //    break;
+                        //}
+                        //case "Synopsis":
+                        //{
+                        //    PlotData.Synopsis = item.Value;
+                        //    break;
+                        //}
                         case "BranchPlot":
-                        {
-                            foreach (var BranchItem in item.Elements())
                             {
-                                PlotData.BranchPlot.Add(BranchItem);
+                                foreach (var BranchItem in item.Elements())
+                                {
+                                    PlotData.BranchPlot.Add(BranchItem);
+                                }
+                                break;
                             }
-                            break;
-                        }
                         case "MainPlot":
                         {
                             foreach (var MainPlotItem in item.Elements())
@@ -230,14 +231,14 @@ namespace ScenesScripts.GalPlot
                     }
                 }
             }
-            catch (Exception ex)
-            {
-                if (ex.Message != "无法识别的根标签")
-                {
+            //catch (Exception ex)
+            //{
+            //    if (ex.Message != "无法识别的根标签")
+            //    {
 
-                    GameAPI.Print(ex.Message, "error");
-                }
-            }
+            //        GameAPI.Print(ex.Message, "error");
+            //    }
+            //}
             GameAPI.Print(Newtonsoft.Json.JsonConvert.SerializeObject(PlotData));
             Button_Click_NextPlot();
         }

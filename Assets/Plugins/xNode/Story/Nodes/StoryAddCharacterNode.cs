@@ -11,7 +11,11 @@ namespace XNode.Story
         [Input] public Empty In;
         [Output] public Empty Out;
 
-        public AddStoryCharacter addStoryCharacter;
+        [SerializeField]
+        public string ID;
+
+        [SerializeField]
+        public Animate_StartOrOutside Animate;
 
         public override object GetValue(NodePort port)
         {
@@ -20,14 +24,6 @@ namespace XNode.Story
             return null;
         }
 
-        [System.Serializable]
-        public class AddStoryCharacter
-        {
-            [SerializeField]
-            string ID;
-
-            [SerializeField]
-            string Animate;
-        }
+        
     }
 }

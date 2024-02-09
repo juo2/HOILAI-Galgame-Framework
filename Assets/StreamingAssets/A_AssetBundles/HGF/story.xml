@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<data>
+  <MainPlot>
+    <AddCharacter CharacterID="1" From="C2" SendMessage="Outside_ToLeft" />
+    <Speak CharacterID="1" SendMessage="Shake_Y_Once" Content="1111" />
+    <Speak CharacterID="1" SendMessage="Shake_Y_Once" Content="2222">
+      <Choice JumpID="J0">分支选项1</Choice>
+      <Choice JumpID="J1">分支选项2</Choice>
+    </Speak>
+    <Speak CharacterID="1" Content="回到主线" />
+    <DeleteCharacter CharacterID="1" SendMessage="Outside_ToLeft" />
+  </MainPlot>
+  <BranchPlot>
+    <BranchPlotNode ID="J0">
+      <Speak CharacterID="1" Content="分支1" />
+    </BranchPlotNode>
+    <BranchPlotNode ID="J1">
+      <Speak CharacterID="1" Content="分支2" />
+    </BranchPlotNode>
+  </BranchPlot>
+</data>

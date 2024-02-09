@@ -15,7 +15,7 @@ namespace XNode.Story
         public string content;
 
         [SerializeField]
-        public string animate;
+        public Animate_type animate;
 
         [SerializeField]
         public string audio;

@@ -21,7 +21,7 @@
 	<MainPlot>
 		<Video Path="zc_tgfml"></Video>
 		<!-- 添加一个角色，这个角色的ID为1 有关所有角色ID需要到相关的配置文件修改 -->
-		<AddCharacter CharacterID="1" From="C2" SendMessage="Outside-ToLeft"></AddCharacter>
+		<AddCharacter CharacterID="1" From="C2" SendMessage="Outside_ToLeft"></AddCharacter>
 		<!--开始发言，角色ID为1的角色发言：你好啊！！！ 同时发送消息，我需要执行入场动画：从屏幕左侧滑进-->
 		<Speak CharacterID="1" Status ="Portrait-Normall" Content="你好啊!!! 我是不是从左侧进入的？"></Speak>
 		<!--分支剧情，这句话结束后会自动弹出选项-->
