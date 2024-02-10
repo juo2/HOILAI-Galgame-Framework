@@ -10,10 +10,51 @@ using TetraCreations.Attributes;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
-using static ScenesScripts.GalPlot.GalManager.Struct_PlotData;
-namespace ScenesScripts.GalPlot
+using XGUI;
+using static XModules.GalManager.Struct_PlotData;
+namespace XModules.GalManager
 {
-    public class GalManager : MonoBehaviour
+    /// <summary>
+    /// 存储整个剧本的XML文档
+    /// </summary>
+    
+    [Serializable]
+    public class Struct_PlotData
+    {
+        public string Title;
+        public string Synopsis;
+        public List<XElement> BranchPlot = new();
+        public Queue<XElement> BranchPlotInfo = new();
+        public Queue<XElement> MainPlot = new();
+        public class Struct_Choice
+        {
+            public string Title;
+            public string JumpID;
+        }
+        public class Struct_CharacterInfo
+        {
+            public string CharacterID;
+            public GalManager_CharacterLoader CharacterLoader;
+            public string Name;
+            public string Affiliation;
+            public string From;
+        }
+        public List<Struct_CharacterInfo> CharacterInfo = new();
+        public List<Struct_Choice> ChoiceText = new();
+        /// <summary>
+        /// 当前的剧情节点
+        /// </summary>
+        public XElement NowPlotDataNode;
+
+        /// <summary>
+        /// 当前是否为分支剧情节点
+        /// </summary>
+        public bool IsBranch = false;
+        public string NowJumpID;
+
+    }
+
+    public class ConversationView : XBaseView
     {
         [Title("当前对话")]
         ///
@@ -31,8 +72,8 @@ namespace ScenesScripts.GalPlot
         [Title("控制背景图片的组件")]
         public GalManager_BackImg Gal_BackImg;
 
-        [Title("控制背景图片的组件")]
-        public GalManager_Video Gal_Video;
+        [SerializeField]
+        XButton TouchBack;
 
         string _CharacterInfoText;
         string _DepartmentText;
@@ -48,45 +89,7 @@ namespace ScenesScripts.GalPlot
             public static GameConfig Department; //= new($"{GameAPI.GetWritePath()}HGF/Department.ini");
         }
 
-        /// <summary>
-        /// 存储整个剧本的XML文档
-        /// </summary>
         private XDocument PlotxDoc;
-        [Serializable]
-        public class Struct_PlotData
-        {
-            public string Title;
-            public string Synopsis;
-            public List<XElement> BranchPlot = new();
-            public Queue<XElement> BranchPlotInfo = new();
-            public Queue<XElement> MainPlot = new();
-            public class Struct_Choice
-            {
-                public string Title;
-                public string JumpID;
-            }
-            public class Struct_CharacterInfo
-            {
-                public string CharacterID;
-                public GalManager_CharacterLoader CharacterLoader;
-                public string Name;
-                public string Affiliation;
-                public string From;
-            }
-            public List<Struct_CharacterInfo> CharacterInfo = new();
-            public List<Struct_Choice> ChoiceText = new();
-            /// <summary>
-            /// 当前的剧情节点
-            /// </summary>
-            public XElement NowPlotDataNode;
-
-            /// <summary>
-            /// 当前是否为分支剧情节点
-            /// </summary>
-            public bool IsBranch = false;
-            public string NowJumpID;
-
-        }
         public static Struct_PlotData PlotData = new();
         private void Start ()
         {
@@ -100,8 +103,24 @@ namespace ScenesScripts.GalPlot
                     StartCoroutine(LoadPlot());
                 }));
             }));
-            
-            return;
+
+            TouchBack.onClick.AddListener(() =>
+            {
+                Button_Click_NextPlot();
+            });
+        }
+
+        public override void OnEnableView()
+        {
+            base.OnEnableView();
+            XEvent.EventDispatcher.AddEventListener("NEXT_STEP", Button_Click_NextPlot,this);
+        }
+
+        public override void OnDisableView()
+        {
+            base.OnDisableView();
+            XEvent.EventDispatcher.RemoveEventListener("NEXT_STEP", Button_Click_NextPlot, this);
+
         }
 
         IEnumerator LoadCharacterInfo(Action action)
@@ -197,16 +216,16 @@ namespace ScenesScripts.GalPlot
                 {
                     switch (item.Name.ToString())
                     {
-                        //case "title":
-                        //{
-                        //    PlotData.Title = item.Value;
-                        //    break;
-                        //}
-                        //case "Synopsis":
-                        //{
-                        //    PlotData.Synopsis = item.Value;
-                        //    break;
-                        //}
+                        case "title":
+                            {
+                                PlotData.Title = item.Value;
+                                break;
+                            }
+                        case "Synopsis":
+                            {
+                                PlotData.Synopsis = item.Value;
+                                break;
+                            }
                         case "BranchPlot":
                             {
                                 foreach (var BranchItem in item.Elements())
@@ -333,7 +352,7 @@ namespace ScenesScripts.GalPlot
                                 //    Gal_Choice.CreatNewChoice(ClildItem.JumpID, ClildItem.Title);
                                 //}
                                 Gal_Choice.SetActive(true);
-                                Gal_Choice.CreatNewChoice(GalManager.PlotData.ChoiceText);
+                                Gal_Choice.CreatNewChoice(ConversationView.PlotData.ChoiceText);
                             });
                         }
                         else Gal_Text.StartTextContent(PlotData.NowPlotDataNode.Attribute("Content").Value, _nodeinfo.Name, _nodeinfo.Affiliation);
@@ -362,13 +381,15 @@ namespace ScenesScripts.GalPlot
                 case "Video":
                     {
                         var _Path = PlotData.NowPlotDataNode.Attribute("Path").Value;
-                        
-                        Gal_Video.SetActive(true);
-                        Gal_Video.Play(_Path);
-                        Gal_Video.onFinish = () =>
-                        {
-                            Button_Click_NextPlot();
-                        };
+
+                        XGUIManager.Instance.OpenView("VideoView",UILayer.VideoLayer, Button_Click_NextPlot, _Path);
+
+                        //Gal_Video.SetActive(true);
+                        //Gal_Video.Play(_Path);
+                        //Gal_Video.onFinish = () =>
+                        //{
+                        //    Button_Click_NextPlot();
+                        //};
 
                         break;
                     }

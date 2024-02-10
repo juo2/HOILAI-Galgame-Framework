@@ -1,9 +1,9 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using XGUI;
 
-namespace ScenesScripts.GalPlot
-{
+namespace XModules.GalManager
+{ 
     /// <summary>
     /// 选项类
     /// </summary>
@@ -37,15 +37,16 @@ namespace ScenesScripts.GalPlot
         public void Button_Click_JumpTo ()
         {
 
-            GalManager.PlotData.NowJumpID = _JumpID;
-            GalManager.PlotData.IsBranch = true;
+            ConversationView.PlotData.NowJumpID = _JumpID;
+            ConversationView.PlotData.IsBranch = true;
             GalManager_Text.IsCanJump = true;
             if (_JumpID == "-1")
             {
                 return;
             }
             this.gameObject.transform.parent.GetComponent<GalManager_Choice>().Button_Click_Choice();
-            GameObject.Find("EventSystem").GetComponent<GalManager>().Button_Click_NextPlot();
+            //GameObject.Find("EventSystem").GetComponent<GalManager>().Button_Click_NextPlot();
+            XEvent.EventDispatcher.DispatchEvent("NEXT_STEP");
 
             return;
         }

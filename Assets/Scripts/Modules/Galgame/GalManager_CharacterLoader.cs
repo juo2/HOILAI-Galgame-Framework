@@ -1,10 +1,10 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using XGUI;
 using static XGUI.XLoader;
-
-namespace ScenesScripts.GalPlot
+ 
+namespace XModules.GalManager
 {
 
     public class GalManager_CharacterLoader : MonoBehaviour
@@ -51,7 +51,7 @@ namespace ScenesScripts.GalPlot
         }
 
         /// <summary>
-        /// ��ͼƬ
+        /// 换图片
         /// </summary>
         public void SetImage(string imageName)
         {

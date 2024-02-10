@@ -1,6 +1,6 @@
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace ScenesScripts.GalPlot
+namespace XModules.GalManager
 {
 
     public class GalManager_CharacterMessage : MonoBehaviour

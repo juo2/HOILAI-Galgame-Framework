@@ -1,8 +1,8 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using XGUI;
 
-namespace ScenesScripts.GalPlot
+namespace XModules.GalManager
 {
 
     public class GalManager_BackImg : MonoBehaviour

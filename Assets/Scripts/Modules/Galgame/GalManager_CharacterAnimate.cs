@@ -1,4 +1,4 @@
-
+﻿
 using Common.Game;
 using DG.Tweening;
 using TetraCreations.Attributes;
@@ -6,7 +6,7 @@ using UnityCustom;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace ScenesScripts.GalPlot
+namespace XModules.GalManager
 {
     public class GalManager_CharacterAnimate : MonoBehaviour
     {

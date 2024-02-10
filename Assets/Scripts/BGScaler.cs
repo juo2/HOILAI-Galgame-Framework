@@ -23,7 +23,7 @@ namespace Common.UI
         private void Scaler ()
         {
             //当前画布尺寸
-            Vector2 canvasSize = gameObject.GetComponentInParent<Canvas>().GetComponent<RectTransform>().sizeDelta;
+            Vector2 canvasSize = XGUI.XGUIManager.Instance.xCanvas.GetComponent<RectTransform>().sizeDelta;
             //当前画布尺寸长宽比
             float screenxyRate = canvasSize.x / canvasSize.y;
 

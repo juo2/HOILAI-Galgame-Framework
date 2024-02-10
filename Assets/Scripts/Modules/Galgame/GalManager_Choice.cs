@@ -1,10 +1,10 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using XGUI;
-using static ScenesScripts.GalPlot.GalManager.Struct_PlotData;
+using static XModules.GalManager.Struct_PlotData;
 using static XGUI.XListView;
 
-namespace ScenesScripts.GalPlot
+namespace XModules.GalManager
 {
     public class GalManager_Choice : MonoBehaviour
     {

@@ -161,7 +161,7 @@ public class XConfig
     {
 
 #if UNITY_STANDALONE_OSX || UNITY_EDITOR_OSX
-            filePath = "file://" + filePath;
+        c_Path = "file://" + c_Path;
 #endif
         UnityWebRequest www = UnityWebRequest.Get(c_Path);
         yield return www.SendWebRequest();

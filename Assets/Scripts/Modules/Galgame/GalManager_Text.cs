@@ -1,9 +1,9 @@
-using DG.Tweening;
+﻿using DG.Tweening;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-namespace ScenesScripts.GalPlot
+namespace XModules.GalManager
 {
     public class GalManager_Text : MonoBehaviour
     {

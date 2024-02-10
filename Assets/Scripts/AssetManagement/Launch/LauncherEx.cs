@@ -79,7 +79,7 @@ public partial class Launcher : MonoBehaviour
         //天气系统
         //gameObject.AddComponent<WeatherManager>();
 
-        //XCamera.Initialize();
+        
 
         DefaultLoaderGUI.isEnterGame = true;
 
@@ -88,13 +88,16 @@ public partial class Launcher : MonoBehaviour
         //初始化摄像头
         Debug.Log("开始加载场景 Demo.unity");
 
-        XScene.LoadScene("Demo.unity", UnityEngine.SceneManagement.LoadSceneMode.Single);
+        XScene.LoadScene("Demo1.unity", UnityEngine.SceneManagement.LoadSceneMode.Single);
 
         XScene.onComplete = () => 
         {
-            GameObject cameraGo = GameObject.Find("Main Camera");
-            Camera cam = cameraGo.GetComponent<Camera>();
-            XGUI.XCamera.guiCamera = cam;
+            //GameObject cameraGo = GameObject.Find("Main Camera");
+            //Camera cam = cameraGo.GetComponent<Camera>();
+            //XGUI.XCamera.guiCamera = cam;
+            XGUI.XGUIManager.Instance.Init();
+
+            XGUI.XGUIManager.Instance.OpenView("MainView");
 
             XScene.onComplete = null;
         };

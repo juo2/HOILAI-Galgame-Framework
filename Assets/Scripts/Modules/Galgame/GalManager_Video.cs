@@ -1,9 +1,9 @@
-using System;
+﻿using System;
 using UnityEngine;
 using UnityEngine.UI;
 using XGUI;
 
-namespace ScenesScripts.GalPlot
+namespace XModules.GalManager
 {
     public class GalManager_Video : MonoBehaviour
     {
@@ -33,9 +33,6 @@ namespace ScenesScripts.GalPlot
             videoPlayer.pathType = XVideoPlayer.PathType.AssetBundle;
             videoPlayer.fileName = asstName;
             videoPlayer.SetVolume(1);
-
-
-
         }
 
         private void OnDestroy()
