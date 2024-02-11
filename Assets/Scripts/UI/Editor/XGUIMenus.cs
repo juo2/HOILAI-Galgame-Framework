@@ -86,7 +86,7 @@ public class XGUIMenus : ScriptableObject
     static public GameObject AddYellowButton(MenuCommand menuCommand)
     {
         GameObject go = CallMenuOptions("AddButton", menuCommand);
-
+        go.name = "btn";
         Image img = go.GetComponent<Image>();
         Object.DestroyImmediate(img);
         XImage ximg = go.AddComponent<XImage>();
@@ -97,7 +97,8 @@ public class XGUIMenus : ScriptableObject
         Button btn = go.GetComponent<Button>();
         Object.DestroyImmediate(btn);
         XButton xbutton = go.AddComponent<XButton>();
-        Text text = (Text)xbutton.transform.FindComponent(typeof(Text), "Text");
+        Text text = (Text)xbutton.transform.FindComponent(typeof(Text), "Text (Legacy)");
+        text.name = "label";
         GameObject obj = text.gameObject;
         DestroyImmediate(text);
         XText xText = obj.AddComponent<XText>();
@@ -114,7 +115,7 @@ public class XGUIMenus : ScriptableObject
         xText.color = color;
 
         go.AddComponent<XButtonScaleTween>();
-        go.AddComponent<XButtonMusic>();
+        //go.AddComponent<XButtonMusic>();
         return go;
     }
 
@@ -235,23 +236,36 @@ public class XGUIMenus : ScriptableObject
         Object.DestroyImmediate(image);
     }
 
-    static private void InitAnchore(RectTransform tRect, bool isfull = true)
+    [MenuItem("GameObject/XGUI/XInputField", priority = 10)]
+    static public void AddXInputField(MenuCommand menuCommand)
     {
-        if (isfull)
-        {
-            tRect.anchorMin = new Vector2(0, 0);
-            tRect.anchorMax = new Vector2(1, 1);
-            tRect.sizeDelta = Vector2.zero;
-        }
-        else
-        {
-            tRect.anchorMin = new Vector2(0, 1);
-            tRect.anchorMax = new Vector2(0, 1);
-            tRect.sizeDelta = new Vector2(200, 20);
-        }
+        GameObject go = CallMenuOptions("AddInputField", menuCommand);
+        InputField inputField = go.GetComponent<InputField>();
+        Text text = inputField.textComponent;
+        GameObject placeholder = inputField.placeholder.gameObject;
 
-        tRect.pivot = new Vector2(0, 1);
-        tRect.anchoredPosition = Vector2.zero;
+        GameObject obj = text.gameObject;
+        DestroyImmediate(text);
+        XText xText = obj.transform.AddComponent<XText>();
+
+        xText.alignment = TextAnchor.MiddleCenter;
+        xText.supportRichText = false;
+        xText.color = new Color(0, 0, 0, 1);
+        xText.fontSize = 24;
+
+        Text placeText = placeholder.GetComponent<Text>();
+        DestroyImmediate(placeText);
+        XText xPlaceText = placeholder.transform.AddComponent<XText>();
+
+        xPlaceText.alignment = TextAnchor.MiddleCenter;
+        xPlaceText.fontStyle = FontStyle.Italic;
+        xPlaceText.color = new Color(0.2f, 0.2f, 0.2f, 0.5f);
+        xPlaceText.fontSize = 24;
+
+        DestroyImmediate(inputField);
+        XInputField xInputField = go.AddComponent<XInputField>();
+        xInputField.placeholder = xPlaceText;
+        xInputField.textComponent = xText;
     }
 
     //[MenuItem("GameObject/XGUI/XProressSize", priority = 10)]
@@ -390,5 +404,5 @@ public class XGUIMenus : ScriptableObject
 
     //    return go;
     //}
-    
+
 }
