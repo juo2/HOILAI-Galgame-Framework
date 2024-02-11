@@ -26,6 +26,9 @@ namespace XModules.Main.Window
         [SerializeField]
         Transform chatRoot;
 
+        [SerializeField]
+        XScrollRect chatScrollRect;
+
         void AddChatItem(ChatItem chatItem,string content)
         {
             chatItem.SetActive(true);
@@ -68,6 +71,8 @@ namespace XModules.Main.Window
                 inputField.text = "";
 
                 AddGptChatItem("你好，我是平行原住的gpt机器人");
+
+                chatScrollRect.ScrollToBottom();
             });
         }
 
