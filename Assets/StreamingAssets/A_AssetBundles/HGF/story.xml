@@ -1,10 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <data>
   <MainPlot>
+    <Video Path="zc_tgfml" />
     <AddCharacter CharacterID="1" CharacterName="gril" CharacterImage="1.png" SendMessage="Outside_ToLeft" />
     <Speak CharacterID="1" SendMessage="Shake" Content="111" />
     <ChangeBackImg Path="bg2.jpg" />
-    <Speak CharacterID="1" Content="222" />
+    <Speak CharacterID="1" Content="222">
+      <Choice JumpID="J0">选项1</Choice>
+      <Choice JumpID="J1">选项2</Choice>
+    </Speak>
+    <Speak CharacterID="1" Content="回到主线" />
     <DeleteCharacter CharacterID="1" SendMessage="Outside_ToLeft" />
   </MainPlot>
+  <BranchPlot>
+    <BranchPlotNode ID="J0">
+      <Speak CharacterID="1" Content="分支1" />
+    </BranchPlotNode>
+    <BranchPlotNode ID="J1">
+      <Speak CharacterID="1" Content="分支2" />
+    </BranchPlotNode>
+  </BranchPlot>
 </data>
