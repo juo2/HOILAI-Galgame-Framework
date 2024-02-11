@@ -14,7 +14,7 @@ namespace XNode.Story
         public string ID;
 
         [SerializeField]
-        public Animate_StartOrOutside Animate;
+        public Animate_StartOrOutside animate;
 
         public override object GetValue(NodePort port)
         {

@@ -9,7 +9,12 @@ namespace XNode.Story
     {
         [Input] public Empty In;
         [Output] public Empty Out;
-       
+
+        [SerializeField]
+        public string ID;
+
+        [SerializeField]
+        public string image;
 
         [SerializeField]
         public string content;

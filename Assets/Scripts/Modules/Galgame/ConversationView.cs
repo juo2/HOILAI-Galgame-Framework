@@ -26,6 +26,7 @@ namespace XModules.GalManager
         public List<XElement> BranchPlot = new();
         public Queue<XElement> BranchPlotInfo = new();
         public Queue<XElement> MainPlot = new();
+        public List<XElement> ListMainPlot = new();
         public class Struct_Choice
         {
             public string Title;
@@ -36,11 +37,9 @@ namespace XModules.GalManager
             public string CharacterID;
             public GalManager_CharacterLoader CharacterLoader;
             public string Name;
-            public string Affiliation;
-            public string From;
         }
-        public List<Struct_CharacterInfo> CharacterInfo = new();
-        public List<Struct_Choice> ChoiceText = new();
+        public List<Struct_CharacterInfo> CharacterInfoList = new();
+        public List<Struct_Choice> ChoiceTextList = new();
         /// <summary>
         /// 当前的剧情节点
         /// </summary>
@@ -56,27 +55,24 @@ namespace XModules.GalManager
 
     public class ConversationView : XBaseView
     {
-        [Title("当前对话")]
-        ///
         public GalManager_Text Gal_Text;
 
-        [Title("当前角色根节点")]
         public Transform character_parent;
 
-        [Title("当前角色部分")]
         public GalManager_CharacterLoader character_loader;
 
-        [Title("控制选项")]
         public GalManager_Choice Gal_Choice;
 
-        [Title("控制背景图片的组件")]
         public GalManager_BackImg Gal_BackImg;
 
         [SerializeField]
         XButton TouchBack;
 
-        string _CharacterInfoText;
-        string _DepartmentText;
+        [SerializeField]
+        XButton ButtonReturn;
+
+        //string _CharacterInfoText;
+        //string _DepartmentText;
 
         /// <summary>
         /// 当前场景角色数量
@@ -86,34 +82,48 @@ namespace XModules.GalManager
         private class CharacterConfig
         {
             public static GameConfig CharacterInfo;
-            public static GameConfig Department; //= new($"{GameAPI.GetWritePath()}HGF/Department.ini");
         }
 
         private XDocument PlotxDoc;
         public static Struct_PlotData PlotData = new();
-        private void Start ()
+        private void Awake ()
         {
             ResetPlotData();
 
-            StartCoroutine(LoadCharacterInfo(() =>
-            {
-                CharacterConfig.CharacterInfo = new GameConfig(_CharacterInfoText);
-                StartCoroutine(LoadDepartment(() => {
-                    CharacterConfig.Department = new GameConfig(_DepartmentText);
-                    StartCoroutine(LoadPlot());
-                }));
-            }));
+            //StartCoroutine(LoadCharacterInfo(() =>
+            //{
+            //    CharacterConfig.CharacterInfo = new GameConfig(_CharacterInfoText);
+            //    StartCoroutine(LoadDepartment(() => {
+            //        CharacterConfig.Department = new GameConfig(_DepartmentText);
+            //        StartCoroutine(LoadPlot());
+            //    }));
+            //}));
+
+            StartCoroutine(LoadPlot());
 
             TouchBack.onClick.AddListener(() =>
             {
                 Button_Click_NextPlot();
             });
+
+           
         }
 
         public override void OnEnableView()
         {
             base.OnEnableView();
+
+            ClearGame();
+
+            foreach (var item in PlotData.ListMainPlot)
+            {
+                PlotData.MainPlot.Enqueue(item);
+            }
+
             XEvent.EventDispatcher.AddEventListener("NEXT_STEP", Button_Click_NextPlot,this);
+
+            //开始游戏
+            Button_Click_NextPlot();
         }
 
         public override void OnDisableView()
@@ -123,47 +133,59 @@ namespace XModules.GalManager
 
         }
 
-        IEnumerator LoadCharacterInfo(Action action)
+        void ClearGame()
         {
-            string filePath = Path.Combine(AssetDefine.BuildinAssetPath,"HGF/CharacterInfo.ini");
-
-#if UNITY_STANDALONE_OSX || UNITY_EDITOR_OSX
-            filePath = "file://" + filePath;
-#endif
-            UnityWebRequest www = UnityWebRequest.Get(filePath);
-            yield return www.SendWebRequest();
-            if (www.result == UnityWebRequest.Result.Success)
+            foreach (var item in PlotData.CharacterInfoList)
             {
-                _CharacterInfoText = www.downloadHandler.text;
+                DestroyCharacterByID(item.CharacterID);
             }
-            else
-            {
-                Debug.Log("Error: " + www.error);
-            }
-
-            action?.Invoke();
+            PlotData.MainPlot.Clear();
+            //PlotData.BranchPlot.Clear();
+            PlotData.BranchPlotInfo.Clear();
+            PlotData.IsBranch = false;
         }
 
-        IEnumerator LoadDepartment(Action action)
-        {
-            string filePath = Path.Combine(AssetDefine.BuildinAssetPath, "HGF/Department.ini");
+//        IEnumerator LoadCharacterInfo(Action action)
+//        {
+//            string filePath = Path.Combine(AssetDefine.BuildinAssetPath,"HGF/CharacterInfo.ini");
 
-#if UNITY_STANDALONE_OSX || UNITY_EDITOR_OSX
-            filePath = "file://" + filePath;
-#endif
-            UnityWebRequest www = UnityWebRequest.Get(filePath);
-            yield return www.SendWebRequest();
-            if (www.result == UnityWebRequest.Result.Success)
-            {
-                _DepartmentText = www.downloadHandler.text;
-            }
-            else
-            {
-                Debug.Log("Error: " + www.error);
-            }
+//#if UNITY_STANDALONE_OSX || UNITY_EDITOR_OSX
+//            filePath = "file://" + filePath;
+//#endif
+//            UnityWebRequest www = UnityWebRequest.Get(filePath);
+//            yield return www.SendWebRequest();
+//            if (www.result == UnityWebRequest.Result.Success)
+//            {
+//                _CharacterInfoText = www.downloadHandler.text;
+//            }
+//            else
+//            {
+//                Debug.Log("Error: " + www.error);
+//            }
 
-            action?.Invoke();
-        }
+//            action?.Invoke();
+//        }
+
+//        IEnumerator LoadDepartment(Action action)
+//        {
+//            string filePath = Path.Combine(AssetDefine.BuildinAssetPath, "HGF/Department.ini");
+
+//#if UNITY_STANDALONE_OSX || UNITY_EDITOR_OSX
+//            filePath = "file://" + filePath;
+//#endif
+//            UnityWebRequest www = UnityWebRequest.Get(filePath);
+//            yield return www.SendWebRequest();
+//            if (www.result == UnityWebRequest.Result.Success)
+//            {
+//                _DepartmentText = www.downloadHandler.text;
+//            }
+//            else
+//            {
+//                Debug.Log("Error: " + www.error);
+//            }
+
+//            action?.Invoke();
+//        }
 
         /// <summary>
         /// 重置
@@ -171,7 +193,6 @@ namespace XModules.GalManager
         private void ResetPlotData ()
         {
             PlotData = new Struct_PlotData();
-            return;
         }
         /// <summary>
         /// 解析框架文本
@@ -238,7 +259,8 @@ namespace XModules.GalManager
                         {
                             foreach (var MainPlotItem in item.Elements())
                             {
-                                PlotData.MainPlot.Enqueue(MainPlotItem);
+                                    //PlotData.MainPlot.Enqueue(MainPlotItem);
+                                    PlotData.ListMainPlot.Add(MainPlotItem);
                             }
                             break;
                         }
@@ -259,6 +281,14 @@ namespace XModules.GalManager
             //    }
             //}
             GameAPI.Print(Newtonsoft.Json.JsonConvert.SerializeObject(PlotData));
+            //Button_Click_NextPlot();
+
+             foreach (var item in PlotData.ListMainPlot)
+            {
+                PlotData.MainPlot.Enqueue(item);
+            }
+
+            //开始游戏
             Button_Click_NextPlot();
         }
 
@@ -289,7 +319,7 @@ namespace XModules.GalManager
                 PlotData.NowPlotDataNode = GetBranchByID(PlotData.NowJumpID);
             }
 
-            PlotData.ChoiceText.Clear();
+            PlotData.ChoiceTextList.Clear();
             if (PlotData.NowPlotDataNode == null)
             {
                 GameAPI.Print("无效的剧情结点", "error");
@@ -299,41 +329,41 @@ namespace XModules.GalManager
             {
                 case "AddCharacter"://处理添加角色信息的东西
                     {
-                        var _ = new Struct_CharacterInfo();
-                        var _From = PlotData.NowPlotDataNode.Attribute("From").Value;
+                        var characterInfo = new Struct_CharacterInfo();
                         var _CharacterId = PlotData.NowPlotDataNode.Attribute("CharacterID").Value;
-                        _.Name = CharacterConfig.CharacterInfo.GetValue(_From, "Name");
-                        _.CharacterID = _CharacterId;
-                        _.Affiliation = CharacterConfig.Department.GetValue(CharacterConfig.CharacterInfo.GetValue(_From, "Department"), "Name");
+                        characterInfo.Name = PlotData.NowPlotDataNode.Attribute("CharacterName").Value;
+                        string imagePath = PlotData.NowPlotDataNode.Attribute("CharacterImage").Value;
 
-                            //var _CameObj = Resources.Load<GameObject>("HGF/Img-Character");
-                            //_CameObj.GetComponent<Image>().sprite = GameAPI.LoadTextureByIO($"{GameAPI.GetWritePath()}/HGF/Texture2D/Portrait/{CharacterConfig.CharacterInfo.GetValue(_From, "ResourcesPath")}/{CharacterConfig.CharacterInfo.GetValue(_From, "Portrait-Normall")}");
-                        _.CharacterLoader = Instantiate(character_loader, character_parent);
-                        _.CharacterLoader.SetActive(true);
-                        _.From = _From;
+                        characterInfo.CharacterID = _CharacterId;
 
-                        _.CharacterLoader.SetImage(CharacterConfig.CharacterInfo.GetValue(_From, "Portrait-Normall"));
-                        
+                        //var _CameObj = Resources.Load<GameObject>("HGF/Img-Character");
+                        //_CameObj.GetComponent<Image>().sprite = GameAPI.LoadTextureByIO($"{GameAPI.GetWritePath()}/HGF/Texture2D/Portrait/{CharacterConfig.CharacterInfo.GetValue(_From, "ResourcesPath")}/{CharacterConfig.CharacterInfo.GetValue(_From, "Portrait-Normall")}");
+                        characterInfo.CharacterLoader = Instantiate(character_loader, character_parent);
+                        characterInfo.CharacterLoader.SetActive(true);
+
+                        //characterInfo.CharacterLoader.SetImage(CharacterConfig.CharacterInfo.GetValue(_From, "Portrait-Normall"));
+                        characterInfo.CharacterLoader.SetImage(imagePath);
+
                         if (PlotData.NowPlotDataNode.Attributes("SendMessage").Count() != 0)
                         {
-                            _.CharacterLoader.Set_Animate_StartOrOutside( PlotData.NowPlotDataNode.Attribute("SendMessage").Value);
+                            characterInfo.CharacterLoader.Set_Animate_StartOrOutside( PlotData.NowPlotDataNode.Attribute("SendMessage").Value);
                         }
 
-                        PlotData.CharacterInfo.Add(_);
+                        PlotData.CharacterInfoList.Add(characterInfo);
 
                         Button_Click_NextPlot();
                         break;
                     }
                 case "Speak":  //处理发言
                     {
-                        var _nodeinfo = GetCharacterObjectByName(PlotData.NowPlotDataNode.Attribute("CharacterID").Value);
+                        var characterInfo = GetCharacterObjectByName(PlotData.NowPlotDataNode.Attribute("CharacterID").Value);
 
-                        var _StatusNode = PlotData.NowPlotDataNode.Attribute("Status");
-                        if (_StatusNode != null)
+                        var imagePathNode = PlotData.NowPlotDataNode.Attribute("CharacterImage");
+                        if (imagePathNode != null)
                         {
-                            var _Status = _StatusNode.Value;
-                            var _t = GetCharacterObjectByName(_nodeinfo.CharacterID);
-                            _t.CharacterLoader.SetImage(CharacterConfig.CharacterInfo.GetValue(_t.From, _Status));
+                            //var _Status = _StatusNode.Value;
+                            //var _t = GetCharacterObjectByName(_nodeinfo.CharacterID);
+                            characterInfo.CharacterLoader.SetImage(imagePathNode.Value);
                         }
 
                         if (PlotData.NowPlotDataNode.Elements().Count() != 0) //有选项，因为他有子节点数目了
@@ -342,24 +372,24 @@ namespace XModules.GalManager
                             foreach (var ClildItem in PlotData.NowPlotDataNode.Elements())
                             {
                                 if (ClildItem.Name.ToString() == "Choice")
-                                    PlotData.ChoiceText.Add(new Struct_Choice { Title = ClildItem.Value, JumpID = ClildItem.Attribute("JumpID").Value });
+                                    PlotData.ChoiceTextList.Add(new Struct_Choice { Title = ClildItem.Value, JumpID = ClildItem.Attribute("JumpID").Value });
 
                             }
-                            Gal_Text.StartTextContent(PlotData.NowPlotDataNode.Attribute("Content").Value, _nodeinfo.Name, _nodeinfo.Affiliation, () =>
+                            Gal_Text.StartTextContent(PlotData.NowPlotDataNode.Attribute("Content").Value, characterInfo.Name, () =>
                             {
                                 //foreach (var ClildItem in GalManager.PlotData.ChoiceText)
                                 //{
                                 //    Gal_Choice.CreatNewChoice(ClildItem.JumpID, ClildItem.Title);
                                 //}
                                 Gal_Choice.SetActive(true);
-                                Gal_Choice.CreatNewChoice(ConversationView.PlotData.ChoiceText);
+                                Gal_Choice.CreatNewChoice(ConversationView.PlotData.ChoiceTextList);
                             });
                         }
-                        else Gal_Text.StartTextContent(PlotData.NowPlotDataNode.Attribute("Content").Value, _nodeinfo.Name, _nodeinfo.Affiliation);
+                        else Gal_Text.StartTextContent(PlotData.NowPlotDataNode.Attribute("Content").Value, characterInfo.Name);
 
                         //处理消息
                         if (PlotData.NowPlotDataNode.Attributes("SendMessage").Count() != 0)
-                            SendCharMessage(_nodeinfo.CharacterID, PlotData.NowPlotDataNode.Attribute("SendMessage").Value);
+                            SendCharMessage(characterInfo.CharacterID, PlotData.NowPlotDataNode.Attribute("SendMessage").Value);
                         if (PlotData.NowPlotDataNode.Attributes("AudioPath").Count() != 0)
                             PlayAudio(PlotData.NowPlotDataNode.Attribute("AudioPath").Value);
                         break;
@@ -395,13 +425,7 @@ namespace XModules.GalManager
                     }
                 case "ExitGame":
                 {
-                        foreach (var item in PlotData.CharacterInfo)
-                        {
-                            DestroyCharacterByID(item.CharacterID);
-                        }
-                        PlotData.MainPlot.Clear();
-                        PlotData.BranchPlot.Clear();
-                        PlotData.IsBranch = false;
+                        ClearGame();
                         break;
                 }
             }
@@ -418,7 +442,7 @@ namespace XModules.GalManager
         }
         public Struct_CharacterInfo GetCharacterObjectByName (string ID)
         {
-            return PlotData.CharacterInfo.Find(t => t.CharacterID == ID);
+            return PlotData.CharacterInfoList.Find(t => t.CharacterID == ID);
         }
         public XElement GetBranchByID (string ID)
         {
@@ -437,9 +461,9 @@ namespace XModules.GalManager
         /// <param name="ID"></param>
         public void DestroyCharacterByID (string ID)
         {
-            var _ = PlotData.CharacterInfo.Find(t => t.CharacterID == ID);
+            var _ = PlotData.CharacterInfoList.Find(t => t.CharacterID == ID);
             SendCharMessage(ID, "Quit");
-            PlotData.CharacterInfo.Remove(_);
+            PlotData.CharacterInfoList.Remove(_);
         }
         
         public void SendCharMessage (string CharacterID, string Message)
@@ -469,7 +493,7 @@ namespace XModules.GalManager
 
         private void FixedUpdate ()
         {
-            CharacterNum = PlotData.CharacterInfo.Count;
+            CharacterNum = PlotData.CharacterInfoList.Count;
         }
         private void Update ()
         {

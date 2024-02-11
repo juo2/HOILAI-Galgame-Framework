@@ -18,7 +18,9 @@ namespace XNodeEditor.Story
             //if (GUILayout.Button("Set as current")) graph.current = node;
             serializedObject.Update();
             NodeEditorGUILayout.PropertyField(serializedObject.FindProperty("In"));
-            
+            NodeEditorGUILayout.PropertyField(serializedObject.FindProperty("ID"));
+            NodeEditorGUILayout.PropertyField(serializedObject.FindProperty("image"));
+
 
             NodeEditorGUILayout.PropertyField(serializedObject.FindProperty("content"));
             NodeEditorGUILayout.PropertyField(serializedObject.FindProperty("animate"));

@@ -50,8 +50,8 @@ public class ExportStory : Editor
         });
 
 
-        //ÅÐ¶Ï¸Ã½ÚµãÊÇ·ñ »Øµ½Ö÷Ïß
-        //ÓÐÁ½¸ö½ÚµãÁ¬½Ó In
+        //ï¿½Ð¶Ï¸Ã½Úµï¿½ï¿½Ç·ï¿½ ï¿½Øµï¿½ï¿½ï¿½ï¿½ï¿½
+        //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Úµï¿½ï¿½ï¿½ï¿½ï¿½ In
         if (nextNode != null)
         {
             nextNode.Ports.ToList().ForEach(port =>
@@ -70,7 +70,7 @@ public class ExportStory : Editor
     }
 
     /// <summary>
-    /// Ìí¼Ó½ÇÉ«
+    /// ï¿½ï¿½Ó½ï¿½É«
     /// </summary>
     /// <param name="doc"></param>
     /// <param name="element"></param>
@@ -82,15 +82,51 @@ public class ExportStory : Editor
             StoryAddCharacterNode storyAddCharacterNode = node as StoryAddCharacterNode;
 
             XmlElement addCharacter = doc.CreateElement("AddCharacter");
+
             addCharacter.SetAttribute("CharacterID", storyAddCharacterNode.ID);
-            addCharacter.SetAttribute("From", "C2");
-            addCharacter.SetAttribute("SendMessage", storyAddCharacterNode.Animate.ToString());
+            addCharacter.SetAttribute("CharacterName", storyAddCharacterNode.p_name);
+            addCharacter.SetAttribute("CharacterImage", storyAddCharacterNode.image);
+            addCharacter.SetAttribute("SendMessage", storyAddCharacterNode.animate.ToString());
             element.AppendChild(addCharacter);
         }
     }
 
     /// <summary>
-    /// É¾³ý½ÇÉ«
+    /// ï¿½ï¿½Ó½ï¿½É«
+    /// </summary>
+    /// <param name="doc"></param>
+    /// <param name="element"></param>
+    /// <param name="node"></param>
+    public static void VideoXml(XmlDocument doc, XmlElement element, Node node)
+    {
+        if (node is StoryVideoNode)
+        {
+            StoryVideoNode storyVideoNode = node as StoryVideoNode;
+
+            XmlElement videoxml = doc.CreateElement("Video");
+
+            videoxml.SetAttribute("Path", storyVideoNode.video);
+
+            element.AppendChild(videoxml);
+        }
+    }
+
+    public static void BackGroundXml(XmlDocument doc, XmlElement element, Node node)
+    {
+        if (node is StoryBackgroundNode)
+        {
+            StoryBackgroundNode storyBackgroundNode = node as StoryBackgroundNode;
+
+            XmlElement backxml = doc.CreateElement("ChangeBackImg");
+
+            backxml.SetAttribute("Path", storyBackgroundNode.background);
+
+            element.AppendChild(backxml);
+        }
+    }
+
+    /// <summary>
+    /// É¾ï¿½ï¿½ï¿½ï¿½É«
     /// </summary>
     /// <param name="doc"></param>
     /// <param name="element"></param>
@@ -102,8 +138,9 @@ public class ExportStory : Editor
             StoryDeleteCharacterNode storyDelCharacterNode = node as StoryDeleteCharacterNode;
 
             XmlElement deleteCharacter = doc.CreateElement("DeleteCharacter");
+
             deleteCharacter.SetAttribute("CharacterID", storyDelCharacterNode.ID);
-            deleteCharacter.SetAttribute("SendMessage", storyDelCharacterNode.Animate.ToString());
+            deleteCharacter.SetAttribute("SendMessage", storyDelCharacterNode.animate.ToString());
             element.AppendChild(deleteCharacter);
         }
     }
@@ -118,7 +155,12 @@ public class ExportStory : Editor
             StorySpeakNode storySpeakNode = node as StorySpeakNode;
 
             XmlElement speak = doc.CreateElement("Speak");
-            speak.SetAttribute("CharacterID", "1");
+            speak.SetAttribute("CharacterID", storySpeakNode.ID);
+
+            if(!string.IsNullOrEmpty(storySpeakNode.image))
+            {
+                speak.SetAttribute("CharacterImage", storySpeakNode.image);
+            }
 
             if(!string.IsNullOrEmpty(storySpeakNode.audio))
             {
@@ -160,12 +202,12 @@ public class ExportStory : Editor
 
     static void SaveXmlFile(XmlDocument doc, string filePath)
     {
-        // ´´½¨XmlWriterSettingsÀ´Ö¸¶¨±àÂë¸ñÊ½
+        // ï¿½ï¿½ï¿½ï¿½XmlWriterSettingsï¿½ï¿½Ö¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê½
         XmlWriterSettings settings = new XmlWriterSettings();
-        settings.Encoding = new UTF8Encoding(false); // ½ûÓÃBOM
+        settings.Encoding = new UTF8Encoding(false); // ï¿½ï¿½ï¿½ï¿½BOM
         settings.Indent = true;
 
-        // Ê¹ÓÃXmlWriter±£´æXMLÎÄ¼þ
+        // Ê¹ï¿½ï¿½XmlWriterï¿½ï¿½ï¿½ï¿½XMLï¿½Ä¼ï¿½
         using (XmlWriter writer = XmlWriter.Create(filePath, settings))
         {
             doc.Save(writer);
@@ -183,6 +225,8 @@ public class ExportStory : Editor
             AddCharacterXml(doc, element, currentNode);
             (string jumpId1,string jumpId2) = SpeakXml(doc, element, currentNode);
             DeleteCharacterXml(doc, element, currentNode);
+            VideoXml(doc, element, currentNode);
+            BackGroundXml(doc, element, currentNode);
 
             if (!string.IsNullOrEmpty(jumpId1))
             {
@@ -193,7 +237,7 @@ public class ExportStory : Editor
                 (_, nextNode1) = FindNextNode(currentNode, "outOpt1");
                 (_, nextNode2) = FindNextNode(currentNode, "outOpt2");
 
-                //½¨Á¢·ÖÖ§
+                //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö§
                 XmlElement branchPlot = doc.CreateElement("BranchPlot");
                 root.AppendChild(branchPlot);
 
@@ -226,7 +270,7 @@ public class ExportStory : Editor
 
         Debug.Log("Custom Tool Clicked!");
 
-        StoryGraph storyGraph = AssetDatabase.LoadAssetAtPath<StoryGraph>("Assets/Plugins/xNode/Story/Story Graph.asset");
+        StoryGraph storyGraph = AssetDatabase.LoadAssetAtPath<StoryGraph>("Assets/Plugins/xNode/Story/New Story Graph.asset");
 
         Node startNode = FindStartNode(storyGraph);
 
@@ -244,7 +288,7 @@ public class ExportStory : Editor
         buildNodeXml(doc, mainPlot, startNode);
 
         SaveXmlFile(doc,"Assets/StreamingAssets/A_AssetBundles/HGF/story.xml");
-        Debug.Log("XMLÎÄ¼þÒÑÉú³É¡£");
+        Debug.Log("XMLï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É¡ï¿½");
     }
 
     

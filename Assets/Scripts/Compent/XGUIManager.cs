@@ -130,6 +130,7 @@ namespace XGUI
             bool hasLayer = uiLayerDic.TryGetValue(layer, out Transform layerTran);
             if (hasLayer)
             {
+                xBaseView.SetActive(true);
                 xBaseView.gameObject.name = viewName;
 
 

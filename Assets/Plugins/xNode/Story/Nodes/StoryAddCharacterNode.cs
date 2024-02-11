@@ -15,7 +15,13 @@ namespace XNode.Story
         public string ID;
 
         [SerializeField]
-        public Animate_StartOrOutside Animate;
+        public string image;
+
+        [SerializeField]
+        public string p_name;
+
+        [SerializeField]
+        public Animate_StartOrOutside animate;
 
         public override object GetValue(NodePort port)
         {

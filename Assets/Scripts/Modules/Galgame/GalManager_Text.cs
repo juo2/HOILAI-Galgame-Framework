@@ -65,10 +65,10 @@ namespace XModules.GalManager
         /// <summary>
         /// 设置发言人的名称
         /// </summary>
-        public void SetText_CharacterName (string CharacterName, string CharacterIdentity)
+        public void SetText_CharacterName (string CharacterName)
         {
 
-            Text_CharacterName.text = $"<b>{CharacterName}</b><size=45>     <color=#F684EE>{CharacterIdentity}</color></size>";
+            Text_CharacterName.text = $"<b>{CharacterName}</b><size=45></size>";
         }
         /// <summary>
         /// 开始发言
@@ -78,13 +78,13 @@ namespace XModules.GalManager
         /// <param name="CharacterIdentity">发言人所属</param>
         /// <param name="CallBack">回调事件</param>
         /// <returns></returns>
-        public Tweener StartTextContent (string TextContent, string CharacterName, string CharacterIdentity, UnityAction CallBack = null)
+        public Tweener StartTextContent (string TextContent, string CharacterName, UnityAction CallBack = null)
         {
             //100  60   40
             void Always_Temp ()
             {
 
-                SetText_CharacterName(CharacterName, CharacterIdentity);
+                SetText_CharacterName(CharacterName);
 
             }
             if (IsSpeak && Text_TextContent.text.Length >= TextContent.Length * 0.75f && IsCanJump)//当前还正在发言
