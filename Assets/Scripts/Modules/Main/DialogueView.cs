@@ -22,7 +22,7 @@ namespace XModules.Main
             xListView.onCreateRenderer.AddListener(onListCreateRenderer);
             xListView.onUpdateRenderer.AddListener(onListUpdateRenderer);
 
-            xListView.dataCount = 100;
+            xListView.dataCount = 1;
             xListView.ForceRefresh();
         }
 

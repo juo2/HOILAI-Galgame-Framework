@@ -42,19 +42,6 @@ namespace XModules.GalManager
         public static bool IsCanJump = true;
 
         /// <summary>
-        /// 对话框右下角的下一句提示
-        /// </summary>
-        public GameObject Button_Next;
-
-        /// <summary>
-        /// 对话框是否可见
-        /// </summary>
-        public void SetDialogHide (bool value = false)
-        {
-            this.gameObject.SetActive(value);
-
-        }
-        /// <summary>
         /// 设置对话内容
         /// </summary>
         /// <param name="TextContent"></param>
@@ -93,21 +80,18 @@ namespace XModules.GalManager
                 SetText_Content(TextContent);
                 IsSpeak = false;
                 TextAnimateEvemt.Kill();
-                Button_Next.SetActive(true);
                 Always_Temp();
                 return TextAnimateEvemt;
             }
             else if (IsSpeak) return TextAnimateEvemt;
             IsSpeak = true;
             SetText_Content(string.Empty);//先清空内容
-            Button_Next.SetActive(false);
             Always_Temp();
             TextAnimateEvemt = Text_TextContent.DOText(TextContent, TextContent.Length * (IsFastMode ? FastSpeed : DefaultSpeed)).SetEase(Ease.Linear).OnComplete(() =>
             {
 
                 IsSpeak = false;
                 CallBack?.Invoke();
-                Button_Next.SetActive(true);
             });
             return TextAnimateEvemt;
 

@@ -35,7 +35,6 @@ namespace XModules.GalManager
         public class Struct_CharacterInfo
         {
             public string CharacterID;
-            public GalManager_CharacterLoader CharacterLoader;
             public string Name;
         }
         public List<Struct_CharacterInfo> CharacterInfoList = new();
@@ -59,7 +58,9 @@ namespace XModules.GalManager
 
         public Transform character_parent;
 
-        public GalManager_CharacterLoader character_loader;
+        public GalManager_CharacterImg character_img;
+
+        public GalManager_CharacterAnimate character_animate;
 
         public GalManager_Choice Gal_Choice;
 
@@ -338,15 +339,16 @@ namespace XModules.GalManager
 
                         //var _CameObj = Resources.Load<GameObject>("HGF/Img-Character");
                         //_CameObj.GetComponent<Image>().sprite = GameAPI.LoadTextureByIO($"{GameAPI.GetWritePath()}/HGF/Texture2D/Portrait/{CharacterConfig.CharacterInfo.GetValue(_From, "ResourcesPath")}/{CharacterConfig.CharacterInfo.GetValue(_From, "Portrait-Normall")}");
-                        characterInfo.CharacterLoader = Instantiate(character_loader, character_parent);
-                        characterInfo.CharacterLoader.SetActive(true);
+                        //characterInfo.CharacterLoader = Instantiate(character_loader, character_parent);
+                        //characterInfo.CharacterLoader.SetActive(true);
 
                         //characterInfo.CharacterLoader.SetImage(CharacterConfig.CharacterInfo.GetValue(_From, "Portrait-Normall"));
-                        characterInfo.CharacterLoader.SetImage(imagePath);
+                        character_img.SetImage(imagePath);
 
                         if (PlotData.NowPlotDataNode.Attributes("SendMessage").Count() != 0)
                         {
-                            characterInfo.CharacterLoader.Set_Animate_StartOrOutside( PlotData.NowPlotDataNode.Attribute("SendMessage").Value);
+                            //characterInfo.CharacterLoader.Set_Animate_StartOrOutside(PlotData.NowPlotDataNode.Attribute("SendMessage").Value);
+                            character_animate.Animate_StartOrOutside = PlotData.NowPlotDataNode.Attribute("SendMessage").Value;
                         }
 
                         PlotData.CharacterInfoList.Add(characterInfo);
@@ -363,7 +365,7 @@ namespace XModules.GalManager
                         {
                             //var _Status = _StatusNode.Value;
                             //var _t = GetCharacterObjectByName(_nodeinfo.CharacterID);
-                            characterInfo.CharacterLoader.SetImage(imagePathNode.Value);
+                            character_img.SetImage(imagePathNode.Value);
                         }
 
                         if (PlotData.NowPlotDataNode.Elements().Count() != 0) //有选项，因为他有子节点数目了
@@ -385,7 +387,10 @@ namespace XModules.GalManager
                                 Gal_Choice.CreatNewChoice(ConversationView.PlotData.ChoiceTextList);
                             });
                         }
-                        else Gal_Text.StartTextContent(PlotData.NowPlotDataNode.Attribute("Content").Value, characterInfo.Name);
+                        else
+                        {
+                            Gal_Text.StartTextContent(PlotData.NowPlotDataNode.Attribute("Content").Value, characterInfo.Name);
+                        }
 
                         //处理消息
                         if (PlotData.NowPlotDataNode.Attributes("SendMessage").Count() != 0)
@@ -468,8 +473,11 @@ namespace XModules.GalManager
         
         public void SendCharMessage (string CharacterID, string Message)
         {
-            var _t = GetCharacterObjectByName(CharacterID);
-            _t.CharacterLoader.HandleMessage(Message);
+            //var _t = GetCharacterObjectByName(CharacterID);
+            //_t.CharacterLoader.HandleMessage(Message);
+
+            character_animate.Animate_type = Message;
+            character_animate.HandleMessgae();
         }
 
         private void PlayAudio (string fileName)
