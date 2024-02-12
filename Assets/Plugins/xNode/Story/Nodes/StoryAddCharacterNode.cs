@@ -21,6 +21,9 @@ namespace XNode.Story
         public string p_name;
 
         [SerializeField]
+        public bool isSelf = false;
+
+        [SerializeField]
         public Animate_StartOrOutside animate;
 
         public override object GetValue(NodePort port)
