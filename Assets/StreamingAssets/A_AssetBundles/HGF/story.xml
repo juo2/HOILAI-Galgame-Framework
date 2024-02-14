@@ -1,23 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 <data>
   <MainPlot>
-    <Video Path="zc_tgfml" />
-    <AddCharacter CharacterID="1" CharacterName="gril" CharacterImage="1.png" SendMessage="Outside_ToLeft" />
-    <Speak CharacterID="1" SendMessage="Shake" Content="111" />
+    <SpeakAside Content="旁白" />
+    <AddCharacter CharacterID="1" CharacterName="gril" CharacterImage="1.png" IsSelf="True" SendMessage="Outside_ToLeft" />
+    <Speak CharacterID="1" SendMessage="Shake" Content="第一句台词" />
     <ChangeBackImg Path="bg2.jpg" />
-    <Speak CharacterID="1" Content="222">
+    <AddCharacter CharacterID="2" CharacterName="boy" CharacterImage="2.png" IsSelf="False" SendMessage="None" />
+    <Speak CharacterID="2" Content="第二句台词" />
+    <Speak CharacterID="1" Content="第三句台词">
       <Choice JumpID="J0">选项1</Choice>
       <Choice JumpID="J1">选项2</Choice>
+      <Choice JumpID="J2">选项3</Choice>
     </Speak>
     <Speak CharacterID="1" Content="回到主线" />
+    <Message>
+      <Choice JumpID="J3">选项msg1</Choice>
+      <Choice JumpID="J4">选项msg2</Choice>
+      <Choice JumpID="J5">选项msg3</Choice>
+    </Message>
+    <Speak CharacterID="1" Content="回到主线2" />
     <DeleteCharacter CharacterID="1" SendMessage="Outside_ToLeft" />
   </MainPlot>
   <BranchPlot>
     <BranchPlotNode ID="J0">
-      <Speak CharacterID="1" Content="分支1" />
+      <Speak CharacterID="2" Content="分支1" />
     </BranchPlotNode>
     <BranchPlotNode ID="J1">
-      <Speak CharacterID="1" Content="分支2" />
+      <Speak CharacterID="2" Content="分支2" />
+    </BranchPlotNode>
+    <BranchPlotNode ID="J2">
+      <Speak CharacterID="2" Content="分支3" />
+    </BranchPlotNode>
+  </BranchPlot>
+  <BranchPlot>
+    <BranchPlotNode ID="J3">
+      <Speak CharacterID="2" Content="分支msg1" />
+    </BranchPlotNode>
+    <BranchPlotNode ID="J4">
+      <Speak CharacterID="2" Content="分支msg2" />
+    </BranchPlotNode>
+    <BranchPlotNode ID="J5">
+      <Speak CharacterID="2" Content="分支msg3" />
     </BranchPlotNode>
   </BranchPlot>
 </data>

@@ -5,28 +5,13 @@ using XNode;
 
 namespace XNode.Story
 {
-    public class StorySpeakNode : Node
+    public class StoryMessageNode : Node
     {
         [Input] public Empty In;
         [Output] public Empty Out;
 
         [SerializeField]
-        public string ID;
-
-        [SerializeField]
         public string image;
-
-        [SerializeField]
-        public string content;
-
-        [SerializeField]
-        public Animate_type animate;
-
-        [SerializeField]
-        public string audio;
-
-        [SerializeField]
-        public bool isJump = false;
 
         [Output] public Choice outOpt1;
 

@@ -29,6 +29,7 @@ namespace XModules.Main
         XLoader.LoaderItemRenderer dialogueRenderer = null;
         XLoader.LoaderItemRenderer profileRenderer = null;
 
+        List<Transform> btnTranList;
 
         void setDisableAll()
         {
@@ -44,12 +45,28 @@ namespace XModules.Main
             {
                 profileRenderer.gameObject.SetActive(false);
             }
+
+            foreach(var t in btnTranList)
+            {
+                Transform selectTran = t.Find("select");
+                Transform selectLabelTran = t.Find("selectLabel");
+
+                selectTran.SetActive(false);
+                selectLabelTran.SetActive(false);
+            }
         }
 
-
         // Start is called before the first frame update
-        void Start()
+        void Awake()
         {
+            btnTranList = new List<Transform>();
+
+            btnTranList.Add(homeBtn.transform);
+            btnTranList.Add(dialogueBtn.transform);
+            btnTranList.Add(profileBtn.transform);
+
+            setDisableAll();
+
             homeLoader.onCreateRenderer.AddListener((XLoader.LoaderItemRenderer loaderItem) =>
             {
                 homeRenderer = loaderItem;
@@ -75,6 +92,9 @@ namespace XModules.Main
                 {
                     homeRenderer.gameObject.SetActive(true);
                 }
+
+                homeBtn.transform.Find("select").SetActive(true);
+                homeBtn.transform.Find("selectLabel").SetActive(true);
             });
 
             dialogueBtn.onClick.AddListener(() => {
@@ -88,6 +108,9 @@ namespace XModules.Main
                 {
                     dialogueRenderer.gameObject.SetActive(true);
                 }
+
+                dialogueBtn.transform.Find("select").SetActive(true);
+                dialogueBtn.transform.Find("selectLabel").SetActive(true);
             });
 
             profileBtn.onClick.AddListener(() => {
@@ -101,9 +124,16 @@ namespace XModules.Main
                 {
                     profileRenderer.gameObject.SetActive(true);
                 }
+
+                profileBtn.transform.Find("select").SetActive(true);
+                profileBtn.transform.Find("selectLabel").SetActive(true);
             });
 
             homeLoader.StartLoad();
+
+            homeBtn.transform.Find("select").SetActive(true);
+            homeBtn.transform.Find("selectLabel").SetActive(true);
+
         }
 
         // Update is called once per frame

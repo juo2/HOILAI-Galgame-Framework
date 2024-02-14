@@ -6,8 +6,9 @@ using static XGUI.XListView;
 
 namespace XModules.GalManager
 {
-    public class GalManager_Choice : MonoBehaviour
+    public class GalManager_Message : MonoBehaviour
     {
+        [SerializeField]
         XListView xListView;
 
         List<Struct_Choice> struct_Choices;
@@ -18,7 +19,6 @@ namespace XModules.GalManager
         {
             galComponent_ChoiceDic = new Dictionary<int, GalComponent_Choice>();
 
-            xListView = GetComponent<XListView>();
             xListView.onCreateRenderer.AddListener(onListCreateRenderer);
             xListView.onUpdateRenderer.AddListener(onListUpdateRenderer);
             //GameObject_Choice = Resources.Load<GameObject>("HGF/Button-Choice");

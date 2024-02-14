@@ -2241,6 +2241,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 292cdd34b835b4591bf28d79ac99bd73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  teamBtn: {fileID: 5890735529790454531}
+  feedBackBtn: {fileID: 8650474713173929461}
+  editBtn: {fileID: 8668675988851036617}
 --- !u!1 &8109420990532172340
 GameObject:
   m_ObjectHideFlags: 0

@@ -97,9 +97,9 @@ namespace XGUI
             if (!IsActive() || string.IsNullOrEmpty(m_Text))
                 return;
 
-            UnityEngine.Profiling.Profiler.BeginSample("XText.Space");
-            m_Text = Space(m_Text);
-            UnityEngine.Profiling.Profiler.EndSample();
+            //UnityEngine.Profiling.Profiler.BeginSample("XText.Space");
+            //m_Text = Space(m_Text);
+            //UnityEngine.Profiling.Profiler.EndSample();
         }
 
 

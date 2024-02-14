@@ -35,9 +35,9 @@ namespace XModules.Main.Item
 
         }
 
-        public void Refresh(int index)
+        public void Refresh(string name)
         {
-            label.text = index.ToString();
+            label.text = name;
         }
     }
 }

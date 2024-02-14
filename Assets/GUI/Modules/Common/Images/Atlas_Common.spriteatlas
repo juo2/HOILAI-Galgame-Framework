@@ -148,6 +148,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: fba9dada031158642926929c85640d5d, type: 3}
   - {fileID: 21300000, guid: cb6b8c0b257f0094db1bdbe94810f365, type: 3}
   - {fileID: 21300000, guid: 74048b9baffbb424eababcebe1a50e8a, type: 3}
+  - {fileID: 21300000, guid: 5be2b1dc106c1ea438fd31c12d1468eb, type: 3}
   - {fileID: 21300000, guid: 24fd4adc210f2cd449afe86888aae83f, type: 3}
   - {fileID: 21300000, guid: 919cf36db549f3a45b2506f436fd1fb9, type: 3}
   - {fileID: 21300000, guid: 46b798ad5d52bdc4898ba8dd27daaa5e, type: 3}
@@ -157,7 +158,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 2e7fe91ff5e628c4cae62e19c3bceb7f, type: 3}
   - {fileID: 21300000, guid: 9197c72fde51a564288311b94d8f48dd, type: 3}
   m_PackedSpriteNamesToIndex:
-  - "\u4E0D\u4F73\u793A\u4F8B1@2x"
+  - bad1
   - letter
   - s_profile
   - btn
@@ -165,12 +166,12 @@ SpriteAtlas:
   - chat_normal
   - pop
   - pop_name
-  - "\u4E0D\u4F73\u793A\u4F8B3@2x"
+  - bad3
   - return2
   - refresh
-  - "\u5F62\u8C611@2x"
+  - bad5
   - return
-  - "\u9519\u8BEF@2x"
+  - wrong
   - n_profile
   - pop_bg
   - call
@@ -180,7 +181,7 @@ SpriteAtlas:
   - line
   - chat_input
   - return3
-  - "\u4E0D\u4F73\u793A\u4F8B2@2x"
+  - bad2
   - time
   - s_boy
   - pop_normal
@@ -190,14 +191,15 @@ SpriteAtlas:
   - white
   - n_home
   - borad
+  - custom
   - chat_self
   - s_chat
-  - "\u4E0D\u4F73\u793A\u4F8B4@2x"
+  - bad4
   - info
   - top
   - s_gril
   - s_home
-  - "\u6B63\u786E@2x"
+  - right
   m_RenderDataMap: {}
   m_Tag: Atlas_Common
   m_IsVariant: 0

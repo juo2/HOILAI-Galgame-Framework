@@ -44,9 +44,12 @@ namespace XModules.GalManager
             {
                 return;
             }
-            this.gameObject.transform.parent.GetComponent<GalManager_Choice>().Button_Click_Choice();
+            //this.gameObject.transform.parent.GetComponent<GalManager_Choice>().Button_Click_Choice();
             //GameObject.Find("EventSystem").GetComponent<GalManager>().Button_Click_NextPlot();
+
+
             XEvent.EventDispatcher.DispatchEvent("NEXT_STEP");
+            XEvent.EventDispatcher.DispatchEvent("CHOICE_COMPLETE");
 
             return;
         }

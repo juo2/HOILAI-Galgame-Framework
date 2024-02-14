@@ -7,39 +7,47 @@ using static XGUI.XListView;
 
 namespace XModules.Main
 {
-
-    public class DialogueView : XBaseView
+    public class ChooseImageView : XBaseView
     {
+        [SerializeField]
+        XButton closeBtn;
         [SerializeField]
         XListView xListView;
 
-        Dictionary<int, DialogueItem> dialogueItemDic;
+        Dictionary<int, ChooseImageItem> chooseImageItemDic;
+
 
         // Start is called before the first frame update
         void Start()
         {
-            dialogueItemDic = new Dictionary<int, DialogueItem>();
+            chooseImageItemDic = new Dictionary<int, ChooseImageItem>();
             xListView.onCreateRenderer.AddListener(onListCreateRenderer);
             xListView.onUpdateRenderer.AddListener(onListUpdateRenderer);
 
             xListView.dataCount = 1;
             xListView.ForceRefresh();
+
+            closeBtn.onClick.AddListener(() =>
+            {
+                XGUIManager.Instance.CloseView("ChooseImageView");
+            });
         }
+
 
         void onListCreateRenderer(ListItemRenderer listItem)
         {
             //Debug.Log("GalManager_Choice onListCreateRenderer");
 
-            DialogueItem dialogueItem = listItem.gameObject.GetComponent<DialogueItem>();
-            dialogueItemDic[listItem.instanceID] = dialogueItem;
+            ChooseImageItem chooseImageItem = listItem.gameObject.GetComponent<ChooseImageItem>();
+            chooseImageItemDic[listItem.instanceID] = chooseImageItem;
 
         }
 
         void onListUpdateRenderer(ListItemRenderer listItem)
         {
-            DialogueItem dialogueItem = dialogueItemDic[listItem.instanceID];
+            ChooseImageItem chooseImageItem = chooseImageItemDic[listItem.instanceID];
             //dialogueItem.Refresh(listItem.index);
-            dialogueItem.Refresh("Elena");
+            //dialogueItem.Refresh("Elena");
             //gl_choice.Init(choices_data.JumpID, choices_data.Title);
         }
 
@@ -48,7 +56,8 @@ namespace XModules.Main
         {
 
         }
+
+        
+
     }
 }
-
-
