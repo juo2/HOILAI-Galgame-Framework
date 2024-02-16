@@ -76,9 +76,13 @@ SpriteAtlas:
     - {fileID: 2800000, guid: 74048b9baffbb424eababcebe1a50e8a, type: 3}
     - {fileID: 2800000, guid: 661a09e1a99dfaa4e8844fa96a2d022a, type: 3}
     - {fileID: 2800000, guid: 8e1eef1411bcc0f40b6d9627e1d74fff, type: 3}
+    - {fileID: 2800000, guid: 07c9d07397a684b448f6d7f8d001ae94, type: 3}
+    - {fileID: 2800000, guid: ae0dd3dc26fce42ca9affc5a5ef0942e, type: 3}
+    - {fileID: 2800000, guid: 8058a43872bdc4e9f86e0f1f0764f457, type: 3}
     - {fileID: 2800000, guid: a0e65e878d79b4548b00f72862a5d182, type: 3}
     - {fileID: 2800000, guid: 4774b4724afe44e4da2f43bc3c0fe26f, type: 3}
     - {fileID: 2800000, guid: 24fd4adc210f2cd449afe86888aae83f, type: 3}
+    - {fileID: 2800000, guid: 27b24b8d51a957c4a9ebd1a981fd7fd5, type: 3}
     - {fileID: 2800000, guid: 27fa25e91049c43439c78dc099773bdb, type: 3}
     - {fileID: 2800000, guid: 5be2b1dc106c1ea438fd31c12d1468eb, type: 3}
     - {fileID: 2800000, guid: 984119dd134da0d4193150e907dbbc63, type: 3}
@@ -108,6 +112,7 @@ SpriteAtlas:
     - {fileID: 2800000, guid: 5025deca369c65d4c9b5f31005631f37, type: 3}
     - {fileID: 2800000, guid: 5234122413f786b46a59c2832a2d066e, type: 3}
     - {fileID: 2800000, guid: d0847f1e7912805428e6ebad547d055e, type: 3}
+    - {fileID: 2800000, guid: e8a60e3074ba04580a3b0b99c66f72a6, type: 3}
     - {fileID: 2800000, guid: fba9dada031158642926929c85640d5d, type: 3}
     - {fileID: 2800000, guid: 6b4f9183332ac164a806fa02b16b5f16, type: 3}
     bindAsDefault: 1
@@ -115,6 +120,7 @@ SpriteAtlas:
     cachedData: {fileID: 0}
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
+  - {fileID: 21300000, guid: e8a60e3074ba04580a3b0b99c66f72a6, type: 3}
   - {fileID: 21300000, guid: dbccb24039c623944ad3423c178c8db0, type: 3}
   - {fileID: 21300000, guid: ea8dd780249183d4db1996b31eb6ee8c, type: 3}
   - {fileID: 21300000, guid: 7e992d80f36f67540b4c56f840426219, type: 3}
@@ -128,6 +134,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: e6a060f2b2275aa44a6e1fe6d6dd58f2, type: 3}
   - {fileID: 21300000, guid: a1ffc0233fe98fd43b0798c8153e1cce, type: 3}
   - {fileID: 21300000, guid: 0ceed963671c18946a49a6055ef2d47f, type: 3}
+  - {fileID: 21300000, guid: 07c9d07397a684b448f6d7f8d001ae94, type: 3}
   - {fileID: 21300000, guid: 6b4f9183332ac164a806fa02b16b5f16, type: 3}
   - {fileID: 21300000, guid: dae7b00404fa3b246b544f6fdca0f43e, type: 3}
   - {fileID: 21300000, guid: 55f302047105f8e418771e158c402964, type: 3}
@@ -137,6 +144,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: be1bb5d691a1b184b85a5bb3726fbfd7, type: 3}
   - {fileID: 21300000, guid: 2b79b65792c2dd141814ba339a95ee4d, type: 3}
   - {fileID: 21300000, guid: a0e65e878d79b4548b00f72862a5d182, type: 3}
+  - {fileID: 21300000, guid: 8058a43872bdc4e9f86e0f1f0764f457, type: 3}
   - {fileID: 21300000, guid: 9faca738a50500f469d5790c97eb7297, type: 3}
   - {fileID: 21300000, guid: 628f9f485d9c2cd4faaa6c1fbf02064c, type: 3}
   - {fileID: 21300000, guid: 831b13e8b5d75f24fac2975246efb5c7, type: 3}
@@ -149,8 +157,10 @@ SpriteAtlas:
   - {fileID: 21300000, guid: cb6b8c0b257f0094db1bdbe94810f365, type: 3}
   - {fileID: 21300000, guid: 74048b9baffbb424eababcebe1a50e8a, type: 3}
   - {fileID: 21300000, guid: 5be2b1dc106c1ea438fd31c12d1468eb, type: 3}
+  - {fileID: 21300000, guid: ae0dd3dc26fce42ca9affc5a5ef0942e, type: 3}
   - {fileID: 21300000, guid: 24fd4adc210f2cd449afe86888aae83f, type: 3}
   - {fileID: 21300000, guid: 919cf36db549f3a45b2506f436fd1fb9, type: 3}
+  - {fileID: 21300000, guid: 27b24b8d51a957c4a9ebd1a981fd7fd5, type: 3}
   - {fileID: 21300000, guid: 46b798ad5d52bdc4898ba8dd27daaa5e, type: 3}
   - {fileID: 21300000, guid: 984119dd134da0d4193150e907dbbc63, type: 3}
   - {fileID: 21300000, guid: d0847f1e7912805428e6ebad547d055e, type: 3}
@@ -158,6 +168,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 2e7fe91ff5e628c4cae62e19c3bceb7f, type: 3}
   - {fileID: 21300000, guid: 9197c72fde51a564288311b94d8f48dd, type: 3}
   m_PackedSpriteNamesToIndex:
+  - top2
   - bad1
   - letter
   - s_profile
@@ -171,6 +182,7 @@ SpriteAtlas:
   - refresh
   - bad5
   - return
+  - cam
   - wrong
   - n_profile
   - pop_bg
@@ -180,6 +192,7 @@ SpriteAtlas:
   - pop_white
   - line
   - chat_input
+  - chat_bg2
   - return3
   - bad2
   - time
@@ -192,8 +205,10 @@ SpriteAtlas:
   - n_home
   - borad
   - custom
+  - chat_bg
   - chat_self
   - s_chat
+  - circle
   - bad4
   - info
   - top
