@@ -3,19 +3,45 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using UnityEngine.Networking; // 用于网络请求
+using UnityEngine.UI;
+using XModules.Data;
 
 public class ProxyTest : MonoBehaviour
 {
-
     public string email = "849616969@qq.com";
+    string url = "http://23.94.26.242:8080";
+
+    public Button sendCodeBtn;
+    public Button loginBtn;
+    public InputField inputField;
+
+    public Button npcAllListBtn;
+    public Button getChatRecordBtn;
+    
+    PlayerData playerData;
 
     // Start is called before the first frame update
     void Start()
     {
-        //StartCoroutine(SendCodeRequest("http://23.94.26.242:8080/chat/user/sendCode"));
-        //StartCoroutine(PostRequest("http://23.94.26.242:8080/chat/user/login"));
-        //StartCoroutine(GetNPCAllList("http://23.94.26.242:8080/chat/npc/npcAllList"));
-        StartCoroutine(GetChatRecord("http://23.94.26.242:8080/chat/chatRecord/getChatRecord"));
+        sendCodeBtn.onClick.AddListener(() => 
+        { 
+            StartCoroutine(SendCodeRequest($"{url}/chat/user/sendCode"));
+        });
+
+        loginBtn.onClick.AddListener(() => 
+        {
+            StartCoroutine(PostRequest($"{url}/chat/user/login", inputField.text));
+        });
+
+        npcAllListBtn.onClick.AddListener(() => 
+        {
+            StartCoroutine(GetNPCAllList($"{url}/chat/npc/npcAllList"));
+        });
+
+        getChatRecordBtn.onClick.AddListener(() => 
+        {
+            StartCoroutine(GetChatRecord($"{url}/chat/chatRecord/getChatRecord", playerData.data.id));
+        });
     }
 
     // Update is called once per frame
@@ -46,13 +72,16 @@ public class ProxyTest : MonoBehaviour
         }
     }
 
-    IEnumerator PostRequest(string url)
+    IEnumerator PostRequest(string url, string code)
     {
+
+        Debug.Log($"code:{code}");
+
         // 使用WWWForm来构建表单数据
         WWWForm form = new WWWForm();
         form.AddField("loginType", "1");
         form.AddField("email", email);
-        form.AddField("code", "9449");
+        form.AddField("code", code);
         form.AddField("accessToken", "");
 
         // 创建UnityWebRequest，设置URL和方法
@@ -74,6 +103,8 @@ public class ProxyTest : MonoBehaviour
         {
             // 请求成功，使用webRequest.downloadHandler.text获取响应内容
             Debug.Log(webRequest.downloadHandler.text);
+
+            playerData = JsonUtility.FromJson<PlayerData>(webRequest.downloadHandler.text);
         }
     }
 
@@ -99,10 +130,13 @@ public class ProxyTest : MonoBehaviour
         }
     }
 
-    IEnumerator GetChatRecord(string url)
+    IEnumerator GetChatRecord(string url,string playerid)
     {
+
+        Debug.Log($"playerData.data.id:{playerData.data.id}");
+
         WWWForm form = new WWWForm();
-        form.AddField("userId", "1761765043705843714");
+        form.AddField("userId", playerid);
         form.AddField("npcId", "1");
 
         UnityWebRequest webRequest = UnityWebRequest.Post(url, form);
