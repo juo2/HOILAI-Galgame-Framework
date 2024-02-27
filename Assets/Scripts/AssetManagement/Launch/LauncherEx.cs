@@ -97,7 +97,7 @@ public partial class Launcher : MonoBehaviour
             //XGUI.XCamera.guiCamera = cam;
             XGUI.XGUIManager.Instance.Init();
 
-            XGUI.XGUIManager.Instance.OpenView("MainView");
+            XGUI.XGUIManager.Instance.OpenView("LoginSelectView");
 
             XScene.onComplete = null;
         };

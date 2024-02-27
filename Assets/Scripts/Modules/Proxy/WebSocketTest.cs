@@ -3,36 +3,49 @@ using System.Collections.Generic;
 using UnityEngine;
 using NativeWebSocket;
 using UnityEngine.UI;
+using XModules.Data;
 
 public class WebSocketTest : MonoBehaviour
 {
-    WebSocket websocket;
+    WebSocket websocket = null;
 
     public Button send;
 
     public InputField inputField;
 
-    async void Start()
+    public bool isConnecting = false;
+    void Awake()
     {
-        websocket = new WebSocket("ws://23.94.26.242:8080/chat/websocket/1/1761765043705843714");
 
         send.onClick.AddListener(() => 
         {
             SendMessageWebSocket(inputField.text);
         });
+       
+    }
+
+    async void OnEnable()
+    {
+        if (DataManager.playerResponse == null)
+            return;
+
+        websocket = new WebSocket($"ws://23.94.26.242:8080/chat/websocket/1/{DataManager.playerResponse.data.id}");
 
         websocket.OnOpen += () =>
         {
+            isConnecting = true;
             Debug.Log("Connection open!");
         };
 
         websocket.OnError += (e) =>
         {
+            isConnecting = false;
             Debug.Log("Error! " + e);
         };
 
         websocket.OnClose += (e) =>
         {
+            isConnecting = false;
             Debug.Log("Connection closed!");
         };
 
@@ -40,9 +53,24 @@ public class WebSocketTest : MonoBehaviour
         {
             var message = System.Text.Encoding.UTF8.GetString(bytes);
             Debug.Log("Received OnMessage! " + message);
-        };
 
+            DataManager.createChatData("1", "user", inputField.text);
+            DataManager.createChatData("1", "assistant", message);
+        };
+        Debug.Log("调用了websocket.Connect");
         await websocket.Connect();
+    }
+
+    async void OnDisable()
+    {
+        if (websocket == null)
+            return;
+
+        Debug.Log("调用了websocket.Close");
+        websocket.CancelConnection();
+        await websocket.Close();
+
+        websocket = null;
     }
 
     // 调用这个方法来发送消息
@@ -59,13 +87,9 @@ public class WebSocketTest : MonoBehaviour
     void Update()
     {
 #if !UNITY_WEBGL || UNITY_EDITOR
-        websocket.DispatchMessageQueue();
+        if (isConnecting)
+            websocket.DispatchMessageQueue();
 #endif
-    }
-
-    private async void OnApplicationQuit()
-    {
-        await websocket.Close();
     }
 
     private void OnDestroy()

@@ -17,8 +17,6 @@ public class ProxyTest : MonoBehaviour
 
     public Button npcAllListBtn;
     public Button getChatRecordBtn;
-    
-    PlayerData playerData;
 
     // Start is called before the first frame update
     void Start()
@@ -35,12 +33,12 @@ public class ProxyTest : MonoBehaviour
 
         npcAllListBtn.onClick.AddListener(() => 
         {
-            StartCoroutine(GetNPCAllList($"{url}/chat/npc/npcAllList"));
+            StartCoroutine(GetNPCAllList($"{url}/chat/npc/npcAllList", DataManager.playerResponse.data.token));
         });
 
         getChatRecordBtn.onClick.AddListener(() => 
         {
-            StartCoroutine(GetChatRecord($"{url}/chat/chatRecord/getChatRecord", playerData.data.id));
+            StartCoroutine(GetChatRecord($"{url}/chat/chatRecord/getChatRecord", DataManager.playerResponse.data.id, DataManager.playerResponse.data.token));
         });
     }
 
@@ -102,21 +100,26 @@ public class ProxyTest : MonoBehaviour
         else
         {
             // 请求成功，使用webRequest.downloadHandler.text获取响应内容
+
+            DataManager.playerResponse = JsonUtility.FromJson<PlayerResponse>(webRequest.downloadHandler.text);
+
             Debug.Log(webRequest.downloadHandler.text);
 
-            playerData = JsonUtility.FromJson<PlayerData>(webRequest.downloadHandler.text);
         }
     }
 
-    IEnumerator GetNPCAllList(string url)
+    IEnumerator GetNPCAllList(string url,string token)
     {
+        Debug.Log($"token:{token}");
+
         // 这个请求没有表单数据，但我们依然创建一个空的WWWForm对象，以符合UnityWebRequest.Post的参数要求
         WWWForm form = new WWWForm();
-
+        //form.AddField("token", token);
         UnityWebRequest webRequest = UnityWebRequest.Post(url, form);
 
         // 设置User-Agent，虽然在Unity中这不是必需的，但为了保持一致性，我们仍然包含这个步骤
         webRequest.SetRequestHeader("User-Agent", "Apifox/1.0.0 (https://apifox.com)");
+        webRequest.SetRequestHeader("token", token);
 
         yield return webRequest.SendWebRequest();
 
@@ -126,14 +129,15 @@ public class ProxyTest : MonoBehaviour
         }
         else
         {
+            DataManager.npcResponse = JsonUtility.FromJson<NPCResponse>(webRequest.downloadHandler.text);
             Debug.Log(webRequest.downloadHandler.text);
         }
     }
 
-    IEnumerator GetChatRecord(string url,string playerid)
+    IEnumerator GetChatRecord(string url,string playerid,string token)
     {
 
-        Debug.Log($"playerData.data.id:{playerData.data.id}");
+        Debug.Log($"playerResponse.data.id:{DataManager.playerResponse.data.id}");
 
         WWWForm form = new WWWForm();
         form.AddField("userId", playerid);
@@ -143,6 +147,7 @@ public class ProxyTest : MonoBehaviour
 
         // 设置User-Agent
         webRequest.SetRequestHeader("User-Agent", "Apifox/1.0.0 (https://apifox.com)");
+        webRequest.SetRequestHeader("token", token);
 
         yield return webRequest.SendWebRequest();
 
@@ -152,6 +157,7 @@ public class ProxyTest : MonoBehaviour
         }
         else
         {
+            DataManager.chatResponse = JsonUtility.FromJson<ChatResponse>(webRequest.downloadHandler.text);
             Debug.Log(webRequest.downloadHandler.text);
         }
     }
