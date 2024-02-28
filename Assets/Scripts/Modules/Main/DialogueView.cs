@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using XGUI;
+using XModules.Data;
 using XModules.Main.Item;
 using static XGUI.XListView;
 
@@ -22,14 +23,12 @@ namespace XModules.Main
             xListView.onCreateRenderer.AddListener(onListCreateRenderer);
             xListView.onUpdateRenderer.AddListener(onListUpdateRenderer);
 
-            xListView.dataCount = 1;
+            xListView.dataCount = DataManager.getSessionList().Count;
             xListView.ForceRefresh();
         }
 
         void onListCreateRenderer(ListItemRenderer listItem)
         {
-            //Debug.Log("GalManager_Choice onListCreateRenderer");
-
             DialogueItem dialogueItem = listItem.gameObject.GetComponent<DialogueItem>();
             dialogueItemDic[listItem.instanceID] = dialogueItem;
 
@@ -38,9 +37,17 @@ namespace XModules.Main
         void onListUpdateRenderer(ListItemRenderer listItem)
         {
             DialogueItem dialogueItem = dialogueItemDic[listItem.instanceID];
-            //dialogueItem.Refresh(listItem.index);
-            dialogueItem.Refresh("Elena");
-            //gl_choice.Init(choices_data.JumpID, choices_data.Title);
+            SessionData sessionData = DataManager.getSessionList()[listItem.index];
+
+            NPCData npcData = DataManager.getNpcById(sessionData.npcId);
+
+            if (npcData == null)
+            {
+                Debug.Log($"Ã»ÓÐnpcId:{sessionData.npcId}");
+                return;
+            }
+
+            dialogueItem.Refresh(npcData.id,sessionData.id, npcData.content);
         }
 
         // Update is called once per frame

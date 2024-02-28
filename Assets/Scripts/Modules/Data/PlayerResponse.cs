@@ -11,8 +11,6 @@ namespace XModules.Data
         public string code;
         public string msg;
         public PlayerData data;
-
-        
     }
 
     [Serializable]
@@ -29,7 +27,6 @@ namespace XModules.Data
         public string createTime;
         public string updateTime;
         public string token;
-        public string tokenExpire;
     }
 }
 

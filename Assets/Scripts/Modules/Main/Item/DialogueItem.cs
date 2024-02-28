@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using XGUI;
+using XModules.Data;
+using XModules.Proxy;
 
 namespace XModules.Main.Item
 {
@@ -19,13 +21,26 @@ namespace XModules.Main.Item
         [SerializeField]
         XButton btn;
 
+        string npcId = null;
+        string sessionId = null;
+
         // Start is called before the first frame update
         void Start()
         {
             btn.onClick.AddListener(() => {
 
-                XGUIManager.Instance.OpenView("ChatWindow");
-
+                if (DataManager.IsHasChatResponse(npcId))
+                {
+                    XGUIManager.Instance.OpenView("ChatWindow",UILayer.BaseLayer,null, npcId, sessionId);
+                }
+                else
+                {
+                    ProxyManager.GetChatRecord(npcId, () =>
+                    {
+                        XGUIManager.Instance.OpenView("ChatWindow", UILayer.BaseLayer, null, npcId, sessionId);
+                    });
+                }
+               
             });
         }
 
@@ -35,8 +50,10 @@ namespace XModules.Main.Item
 
         }
 
-        public void Refresh(string name)
+        public void Refresh(string _npcId ,string _sessionId, string name)
         {
+            npcId = _npcId;
+            sessionId = _sessionId;
             label.text = name;
         }
     }

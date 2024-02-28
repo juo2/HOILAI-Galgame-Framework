@@ -37,9 +37,13 @@ namespace XModules.Main
                 {
                     ProxyManager.GetNPCAllList(() => {
 
-                        XGUIManager.Instance.CloseView("LoginView");
-                        XGUIManager.Instance.OpenView("MainView");
-                    
+                        ProxyManager.GetUserSessionList(() => {
+
+                            XGUIManager.Instance.CloseView("LoginView");
+                            XGUIManager.Instance.OpenView("MainView");
+
+                        });
+
                     });
                 });
             });

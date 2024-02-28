@@ -27,9 +27,19 @@ namespace XModules.Proxy
             TimerManager.AddCoroutine(GetNPCAllList($"{url}/chat/npc/npcAllList", callBack, errorBack));
         }
 
-        public static void GetChatRecord(Action callBack = null, Action errorBack = null)
+        public static void GetUserSessionList(Action callBack = null, Action errorBack = null)
         {
-            TimerManager.AddCoroutine(GetChatRecord($"{url}/chat/chatRecord/getChatRecord", callBack, errorBack));
+            TimerManager.AddCoroutine(GetUserSessionList($"{url}/chat/chatRecord/getUserSessionList", callBack, errorBack));
+        }
+
+        public static void GetChatRecord(string npcId,Action callBack = null, Action errorBack = null)
+        {
+            TimerManager.AddCoroutine(GetChatRecord($"{url}/chat/chatRecord/getChatRecord", npcId,callBack, errorBack));
+        }
+
+        public static void DeleteUserSession(string userSessionId, Action callBack = null, Action errorBack = null)
+        {
+            TimerManager.AddCoroutine(DeleteUserSession($"{url}/chat/chatRecord/deleteUserSession", userSessionId, callBack, errorBack));
         }
 
         static IEnumerator SendCodeRequest(string url, string email, Action callBack, Action errorBack)
@@ -53,7 +63,16 @@ namespace XModules.Proxy
             {
                 Debug.Log(webRequest.downloadHandler.text);
 
-                callBack?.Invoke();
+                BasicResponse basicResponse = JsonUtility.FromJson<BasicResponse>(webRequest.downloadHandler.text);
+                if(basicResponse.code == "0")
+                {
+                    callBack?.Invoke();
+
+                }
+                else
+                {
+                    errorBack?.Invoke();
+                }
             }
         }
 
@@ -89,10 +108,19 @@ namespace XModules.Proxy
             {
                 // 请求成功，使用webRequest.downloadHandler.text获取响应内容
 
-                DataManager.playerResponse = JsonUtility.FromJson<PlayerResponse>(webRequest.downloadHandler.text);
-
                 Debug.Log(webRequest.downloadHandler.text);
-                callBack?.Invoke();
+
+                PlayerResponse playerResponse = JsonUtility.FromJson<PlayerResponse>(webRequest.downloadHandler.text);
+                if (playerResponse.code == "0")
+                {
+                    DataManager.playerResponse = playerResponse;
+
+                    callBack?.Invoke();
+                }
+                else
+                {
+                    errorBack?.Invoke();
+                }
             }
         }
 
@@ -118,21 +146,30 @@ namespace XModules.Proxy
             }
             else
             {
-                DataManager.npcResponse = JsonUtility.FromJson<NPCResponse>(webRequest.downloadHandler.text);
                 Debug.Log(webRequest.downloadHandler.text);
+                
+                NPCResponse npcResponse = JsonUtility.FromJson<NPCResponse>(webRequest.downloadHandler.text);
 
-                callBack?.Invoke();
+                if (npcResponse.code == "0")
+                {
+                    DataManager.npcResponse = npcResponse;
+
+                    callBack?.Invoke();
+                }
+                else
+                {
+                    errorBack?.Invoke();
+                }
             }
         }
 
-        static IEnumerator GetChatRecord(string url, Action callBack, Action errorBack)
+        static IEnumerator GetUserSessionList(string url, Action callBack, Action errorBack)
         {
 
             Debug.Log($"playerResponse.data.id:{DataManager.getPlayerId()}");
 
             WWWForm form = new WWWForm();
             form.AddField("userId", DataManager.getPlayerId());
-            form.AddField("npcId", "1");
 
             UnityWebRequest webRequest = UnityWebRequest.Post(url, form);
 
@@ -149,12 +186,105 @@ namespace XModules.Proxy
             }
             else
             {
-                DataManager.chatResponse = JsonUtility.FromJson<ChatResponse>(webRequest.downloadHandler.text);
+
                 Debug.Log(webRequest.downloadHandler.text);
 
-                callBack?.Invoke();
+                SessionResponse sessionResponse = JsonUtility.FromJson<SessionResponse>(webRequest.downloadHandler.text);
+
+                if (sessionResponse.code == "0")
+                {
+                    DataManager.sessionResponse = sessionResponse;
+
+                    callBack?.Invoke();
+                }
+                else
+                {
+                    errorBack?.Invoke();
+                }
             }
         }
+
+        static IEnumerator GetChatRecord(string url, string npcId, Action callBack, Action errorBack)
+        {
+
+            Debug.Log($"playerResponse.data.id:{DataManager.getPlayerId()}");
+
+            WWWForm form = new WWWForm();
+            form.AddField("userId", DataManager.getPlayerId());
+            form.AddField("npcId", npcId);
+
+            UnityWebRequest webRequest = UnityWebRequest.Post(url, form);
+
+            // 设置User-Agent
+            webRequest.SetRequestHeader("User-Agent", "Apifox/1.0.0 (https://apifox.com)");
+            webRequest.SetRequestHeader("token", DataManager.getToken());
+
+            yield return webRequest.SendWebRequest();
+
+            if (webRequest.result == UnityWebRequest.Result.ConnectionError || webRequest.result == UnityWebRequest.Result.ProtocolError)
+            {
+                Debug.LogError(webRequest.error);
+                errorBack?.Invoke();
+            }
+            else
+            {
+
+                Debug.Log(webRequest.downloadHandler.text);
+
+                ChatResponse chatResponse = JsonUtility.FromJson<ChatResponse>(webRequest.downloadHandler.text);
+
+                if (chatResponse.code == "0")
+                {
+                    DataManager.addChatResponse(npcId, chatResponse);
+
+                    callBack?.Invoke();
+                }
+                else
+                {
+                    errorBack?.Invoke();
+                }
+            }
+        }
+
+        static IEnumerator DeleteUserSession(string url, string userSessionId, Action callBack, Action errorBack)
+        {
+
+            Debug.Log($"userSessionId:{userSessionId}");
+
+            WWWForm form = new WWWForm();
+            form.AddField("userSessionId", userSessionId);
+
+            UnityWebRequest webRequest = UnityWebRequest.Post(url, form);
+
+            // 设置User-Agent
+            webRequest.SetRequestHeader("User-Agent", "Apifox/1.0.0 (https://apifox.com)");
+            webRequest.SetRequestHeader("token", DataManager.getToken());
+
+            yield return webRequest.SendWebRequest();
+
+            if (webRequest.result == UnityWebRequest.Result.ConnectionError || webRequest.result == UnityWebRequest.Result.ProtocolError)
+            {
+                Debug.LogError(webRequest.error);
+                errorBack?.Invoke();
+            }
+            else
+            {
+
+                Debug.Log(webRequest.downloadHandler.text);
+
+                BasicResponse basicResponse = JsonUtility.FromJson<BasicResponse>(webRequest.downloadHandler.text);
+                if (basicResponse.code == "0")
+                {
+                    callBack?.Invoke();
+
+                }
+                else
+                {
+                    errorBack?.Invoke();
+                }
+            }
+        }
+
 
     }
 

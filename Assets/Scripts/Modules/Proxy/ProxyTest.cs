@@ -157,8 +157,8 @@ public class ProxyTest : MonoBehaviour
         }
         else
         {
-            DataManager.chatResponse = JsonUtility.FromJson<ChatResponse>(webRequest.downloadHandler.text);
-            Debug.Log(webRequest.downloadHandler.text);
+            //DataManager.chatResponse = JsonUtility.FromJson<ChatResponse>(webRequest.downloadHandler.text);
+            //Debug.Log(webRequest.downloadHandler.text);
         }
     }
 

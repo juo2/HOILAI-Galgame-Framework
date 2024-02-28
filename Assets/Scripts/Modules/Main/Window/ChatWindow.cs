@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using XGUI;
+using XModules.Data;
 using XModules.Main.Item;
 
 namespace XModules.Main.Window
@@ -28,6 +29,12 @@ namespace XModules.Main.Window
 
         [SerializeField]
         XScrollRect chatScrollRect;
+
+        Stack<ChatItem> gptChatItemPool;
+        Stack<ChatItem> meChatItemPool;
+
+        string npcId = null;
+        string sessionId = null;
 
         void AddChatItem(ChatItem chatItem,string content)
         {
@@ -57,6 +64,9 @@ namespace XModules.Main.Window
         // Start is called before the first frame update
         void Awake()
         {
+            gptChatItemPool = new Stack<ChatItem>();
+            meChatItemPool = new Stack<ChatItem>();
+
             chatRightItem.SetActive(false);
             chatLeftItem.SetActive(false);
 
@@ -70,10 +80,33 @@ namespace XModules.Main.Window
                 AddMeChatItem(inputField.text);
                 inputField.text = "";
 
-                AddGptChatItem("你好，我是平行原住的gpt机器人");
+                //AddGptChatItem("你好，我是平行原住的gpt机器人");
 
                 chatScrollRect.ScrollToBottom();
             });
+        }
+
+
+        public override void OnEnableView()
+        {
+            base.OnEnableView();
+
+            npcId = viewArgs[0] as string;
+            sessionId = viewArgs[1] as string;
+
+            List<ChatData> chatDataList = DataManager.getChatDatabyNpcId(npcId);
+
+            foreach(var data in chatDataList)
+            {
+                if (data.role == "user")
+                {
+                    AddMeChatItem(data.content);
+                }
+                else if(data.role == "assistant")
+                {
+                    AddGptChatItem(data.content);
+                }
+            }
         }
 
         // Update is called once per frame
