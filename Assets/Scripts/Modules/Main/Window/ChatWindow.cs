@@ -4,6 +4,8 @@ using UnityEngine;
 using XGUI;
 using XModules.Data;
 using XModules.Main.Item;
+using NativeWebSocket;
+using XModules.Proxy;
 
 namespace XModules.Main.Window
 {
@@ -30,12 +32,26 @@ namespace XModules.Main.Window
         [SerializeField]
         XScrollRect chatScrollRect;
 
+        [SerializeField]
+        XButton infoBtn;
+
+        [SerializeField]
+        XButton resetBtn;
+
+        [SerializeField]
+        XText nameLabel;
+
         Stack<ChatItem> gptChatItemPool;
         Stack<ChatItem> meChatItemPool;
 
+        List<ChatItem> gptChatItemList;
+        List<ChatItem> meChatItemList;
+
         string npcId = null;
         string sessionId = null;
-
+        
+        WebSocket websocket = null;
+        bool isConnecting = false;
         void AddChatItem(ChatItem chatItem,string content)
         {
             chatItem.SetActive(true);
@@ -48,16 +64,33 @@ namespace XModules.Main.Window
             chatItem.SetContent(content);
         }
 
-
         void AddGptChatItem(string content)
         {
-            ChatItem chatItem = Instantiate(chatRightItem);
+            ChatItem chatItem = null;
+            if (gptChatItemPool.Count > 0)
+            {
+                chatItem = gptChatItemPool.Pop();
+            }
+            else
+            {
+                chatItem = Instantiate(chatRightItem);
+            }
+            gptChatItemList.Add(chatItem);
             AddChatItem(chatItem, content);
         }
 
         void AddMeChatItem(string content)
         {
-            ChatItem chatItem = Instantiate(chatLeftItem);
+            ChatItem chatItem = null;
+            if (meChatItemPool.Count > 0)
+            {
+                chatItem = meChatItemPool.Pop();
+            }
+            else
+            {
+                chatItem = Instantiate(chatLeftItem);
+            }
+            meChatItemList.Add(chatItem);
             AddChatItem(chatItem, content);
         }
 
@@ -66,6 +99,9 @@ namespace XModules.Main.Window
         {
             gptChatItemPool = new Stack<ChatItem>();
             meChatItemPool = new Stack<ChatItem>();
+
+            gptChatItemList = new List<ChatItem>();
+            meChatItemList = new List<ChatItem>();
 
             chatRightItem.SetActive(false);
             chatLeftItem.SetActive(false);
@@ -77,12 +113,24 @@ namespace XModules.Main.Window
 
             sureBtn.onClick.AddListener(() =>
             {
-                AddMeChatItem(inputField.text);
+                SendMessageWebSocket(inputField.text);
+                //AddMeChatItem(inputField.text);
                 inputField.text = "";
-
                 //AddGptChatItem("你好，我是平行原住的gpt机器人");
+                //chatScrollRect.ScrollToBottom();
+            });
 
-                chatScrollRect.ScrollToBottom();
+            infoBtn.onClick.AddListener(() => 
+            {
+                resetBtn.SetActive(!resetBtn.gameObject.activeSelf);
+            });
+
+            resetBtn.onClick.AddListener(() => 
+            {
+                ProxyManager.DeleteUserSession(sessionId, () => 
+                {
+                    ClearAllChatItem();
+                });
             });
         }
 
@@ -93,6 +141,8 @@ namespace XModules.Main.Window
 
             npcId = viewArgs[0] as string;
             sessionId = viewArgs[1] as string;
+            
+            string npcName = viewArgs[2] as string;
 
             List<ChatData> chatDataList = DataManager.getChatDatabyNpcId(npcId);
 
@@ -107,12 +157,128 @@ namespace XModules.Main.Window
                     AddGptChatItem(data.content);
                 }
             }
+
+            EnableWebSocket();
+
+            LaterScroll();
+
+            nameLabel.text = npcName;
         }
 
-        // Update is called once per frame
+        public override void OnDisableView()
+        {
+            base.OnDisableView();
+
+            ClearAllChatItem();
+
+            DisableWebSocket();
+        }
+
+        void ClearAllChatItem()
+        {
+            foreach(var item in gptChatItemList)
+            {
+                item.SetActive(false);
+                gptChatItemPool.Push(item);
+            }
+
+            foreach (var item in meChatItemList)
+            {
+                item.SetActive(false);
+                meChatItemPool.Push(item);
+            }
+
+            gptChatItemList.Clear();
+            meChatItemList.Clear();
+        }
+
+        async void EnableWebSocket()
+        {
+            string url = $"ws://23.94.26.242:8080/chat/websocket/{npcId}/{DataManager.getPlayerId()}";
+
+            Debug.Log($"url:{url}");
+
+            websocket = new WebSocket(url);
+
+            websocket.OnOpen += () =>
+            {
+                isConnecting = true;
+                Debug.Log("Connection open!");
+            };
+
+            websocket.OnError += (e) =>
+            {
+                isConnecting = false;
+                Debug.Log("Error! " + e);
+            };
+
+            websocket.OnClose += (e) =>
+            {
+                isConnecting = false;
+                Debug.Log("Connection closed!");
+            };
+
+            websocket.OnMessage += (bytes) =>
+            {
+                var message = System.Text.Encoding.UTF8.GetString(bytes);
+                Debug.Log("Received OnMessage! " + message);
+
+                DataManager.createChatData(npcId, "assistant", message);
+
+                AddGptChatItem(message);
+
+                //chatScrollRect.ScrollToBottom();
+                LaterScroll();
+            };
+            Debug.Log("调用了websocket.Connect");
+            await websocket.Connect();
+        }
+
+        async void DisableWebSocket()
+        {
+            if (websocket == null)
+                return;
+
+            Debug.Log("调用了websocket.Close");
+            websocket.CancelConnection();
+            await websocket.Close();
+
+            websocket = null;
+        }
+
+        async void SendMessageWebSocket(string message)
+        {
+            if (websocket.State == WebSocketState.Open && isConnecting)
+            {
+                DataManager.createChatData(npcId, "user", message);
+
+                AddMeChatItem(message);
+
+                Debug.Log($"SendMessageWebSocket:{message}");
+
+                LaterScroll();
+                // 发送文本消息
+                await websocket.SendText(message);
+            }
+        }
+
         void Update()
         {
+#if !UNITY_WEBGL || UNITY_EDITOR
+            if (isConnecting)
+                websocket.DispatchMessageQueue();
+#endif
+        }
 
+        void LaterScroll()
+        {
+            StartCoroutine(LaterScrollExe());
+        }
+
+        IEnumerator LaterScrollExe()
+        {
+            yield return new WaitForEndOfFrame();
+            chatScrollRect.ScrollToBottom();
         }
     }
 }

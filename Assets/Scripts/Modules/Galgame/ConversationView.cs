@@ -88,6 +88,8 @@ namespace XModules.GalManager
         [SerializeField]
         XButton ButtonReturn;
 
+        bool loadXmlData = false;
+
         //string _CharacterInfoText;
         //string _DepartmentText;
 
@@ -260,10 +262,12 @@ namespace XModules.GalManager
             GameAPI.Print(Newtonsoft.Json.JsonConvert.SerializeObject(PlotData));
             //Button_Click_NextPlot();
 
-             foreach (var item in PlotData.ListMainPlot)
+            foreach (var item in PlotData.ListMainPlot)
             {
                 PlotData.MainPlot.Enqueue(item);
             }
+
+            loadXmlData = true;
 
             //开始游戏
             Button_Click_NextPlot();
@@ -285,11 +289,13 @@ namespace XModules.GalManager
         public void Button_Click_NextPlot ()
         {
 
-            if (PlotData.MainPlot.Count == 0)
-            {
-                GameAPI.Print("游戏结束!");
+            //if (PlotData.MainPlot.Count == 0)
+            //{
+            //    GameAPI.Print("游戏结束!");
+            //    return;
+            //}
+            if (!loadXmlData)
                 return;
-            }
 
             //IsCanJump这里有问题，如果一直点击会为false，而不是说true，这是因为没有点击按钮 ，没有添加按钮
             if (GalManager_Text.IsSpeak || !GalManager_Text.IsCanJump) { return; }

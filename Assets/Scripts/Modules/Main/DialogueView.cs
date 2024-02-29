@@ -47,7 +47,7 @@ namespace XModules.Main
                 return;
             }
 
-            dialogueItem.Refresh(npcData.id,sessionData.id, npcData.content);
+            dialogueItem.Refresh(npcData.id,sessionData.id, npcData.description);
         }
 
         // Update is called once per frame

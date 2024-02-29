@@ -23,7 +23,7 @@ namespace XModules.Main.Item
 
         string npcId = null;
         string sessionId = null;
-
+        string npcName = null;
         // Start is called before the first frame update
         void Start()
         {
@@ -31,13 +31,13 @@ namespace XModules.Main.Item
 
                 if (DataManager.IsHasChatResponse(npcId))
                 {
-                    XGUIManager.Instance.OpenView("ChatWindow",UILayer.BaseLayer,null, npcId, sessionId);
+                    XGUIManager.Instance.OpenView("ChatWindow",UILayer.BaseLayer,null, npcId, sessionId, npcName);
                 }
                 else
                 {
                     ProxyManager.GetChatRecord(npcId, () =>
                     {
-                        XGUIManager.Instance.OpenView("ChatWindow", UILayer.BaseLayer, null, npcId, sessionId);
+                        XGUIManager.Instance.OpenView("ChatWindow", UILayer.BaseLayer, null, npcId, sessionId, npcName);
                     });
                 }
                
@@ -55,6 +55,7 @@ namespace XModules.Main.Item
             npcId = _npcId;
             sessionId = _sessionId;
             label.text = name;
+            npcName = name;
         }
     }
 }

@@ -53,7 +53,7 @@ namespace XModules.Main
 
             editBtn.onClick.AddListener(() =>
             {
-                XGUIManager.Instance.OpenView("ChooseImageView");
+                XGUIManager.Instance.OpenView("EditorProfileWindow");
             });
         }
 

@@ -66,8 +66,8 @@ namespace XModules.Proxy
                 BasicResponse basicResponse = JsonUtility.FromJson<BasicResponse>(webRequest.downloadHandler.text);
                 if(basicResponse.code == "0")
                 {
+                    Debug.Log("<color=#4aff11>SendCodeRequest 请求成功!!!</color>");
                     callBack?.Invoke();
-
                 }
                 else
                 {
@@ -114,7 +114,7 @@ namespace XModules.Proxy
                 if (playerResponse.code == "0")
                 {
                     DataManager.playerResponse = playerResponse;
-
+                    Debug.Log("<color=#4aff11>LoginRequest 请求成功!!!</color>");
                     callBack?.Invoke();
                 }
                 else
@@ -153,7 +153,7 @@ namespace XModules.Proxy
                 if (npcResponse.code == "0")
                 {
                     DataManager.npcResponse = npcResponse;
-
+                    Debug.Log("<color=#4aff11>GetNPCAllList 请求成功!!!</color>");
                     callBack?.Invoke();
                 }
                 else
@@ -194,7 +194,7 @@ namespace XModules.Proxy
                 if (sessionResponse.code == "0")
                 {
                     DataManager.sessionResponse = sessionResponse;
-
+                    Debug.Log("<color=#4aff11>GetUserSessionList 请求成功!!!</color>");
                     callBack?.Invoke();
                 }
                 else
@@ -236,7 +236,7 @@ namespace XModules.Proxy
                 if (chatResponse.code == "0")
                 {
                     DataManager.addChatResponse(npcId, chatResponse);
-
+                    Debug.Log("<color=#4aff11>GetChatRecord 请求成功!!!</color>");
                     callBack?.Invoke();
                 }
                 else
@@ -275,6 +275,7 @@ namespace XModules.Proxy
                 BasicResponse basicResponse = JsonUtility.FromJson<BasicResponse>(webRequest.downloadHandler.text);
                 if (basicResponse.code == "0")
                 {
+                    Debug.Log("<color=#4aff11>DeleteUserSession 请求成功!!!</color>");
                     callBack?.Invoke();
 
                 }

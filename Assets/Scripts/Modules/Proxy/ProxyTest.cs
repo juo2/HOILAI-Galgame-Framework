@@ -17,6 +17,7 @@ public class ProxyTest : MonoBehaviour
 
     public Button npcAllListBtn;
     public Button getChatRecordBtn;
+    public Button getUserSessionBtn;
 
     // Start is called before the first frame update
     void Start()
@@ -39,6 +40,11 @@ public class ProxyTest : MonoBehaviour
         getChatRecordBtn.onClick.AddListener(() => 
         {
             StartCoroutine(GetChatRecord($"{url}/chat/chatRecord/getChatRecord", DataManager.playerResponse.data.id, DataManager.playerResponse.data.token));
+        });
+
+        getUserSessionBtn.onClick.AddListener(() => 
+        { 
+            StartCoroutine(GetUserSessionList($"{url}/chat/chatRecord/getUserSessionList"));
         });
     }
 
@@ -158,7 +164,45 @@ public class ProxyTest : MonoBehaviour
         else
         {
             //DataManager.chatResponse = JsonUtility.FromJson<ChatResponse>(webRequest.downloadHandler.text);
-            //Debug.Log(webRequest.downloadHandler.text);
+            Debug.Log(webRequest.downloadHandler.text);
+        }
+    }
+
+    static IEnumerator GetUserSessionList(string url)
+    {
+
+        Debug.Log($"playerResponse.data.id:{DataManager.getPlayerId()}");
+
+        WWWForm form = new WWWForm();
+        form.AddField("userId", DataManager.getPlayerId());
+
+        UnityWebRequest webRequest = UnityWebRequest.Post(url, form);
+
+        // 设置User-Agent
+        webRequest.SetRequestHeader("User-Agent", "Apifox/1.0.0 (https://apifox.com)");
+        webRequest.SetRequestHeader("token", DataManager.getToken());
+
+        yield return webRequest.SendWebRequest();
+
+        if (webRequest.result == UnityWebRequest.Result.ConnectionError || webRequest.result == UnityWebRequest.Result.ProtocolError)
+        {
+            Debug.LogError(webRequest.error);
+        }
+        else
+        {
+
+            Debug.Log(webRequest.downloadHandler.text);
+
+            SessionResponse sessionResponse = JsonUtility.FromJson<SessionResponse>(webRequest.downloadHandler.text);
+
+            if (sessionResponse.code == "0")
+            {
+                DataManager.sessionResponse = sessionResponse;
+                Debug.Log("<color=#4aff11>GetUserSessionList 请求成功!!!</color>");
+            }
+            else
+            {
+            }
         }
     }
 
