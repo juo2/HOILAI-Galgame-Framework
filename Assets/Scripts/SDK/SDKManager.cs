@@ -30,10 +30,10 @@ namespace SDK
 
 #if UNITY_IOS
         [DllImport("__Internal")]
-        private static extern void Login();
+        private static extern void Login_Internal();
 
         [DllImport("__Internal")]
-        private static extern void Photo();
+        private static extern void Photo_Internal();
 #endif
 
 
@@ -46,7 +46,7 @@ namespace SDK
                 testClass.CallStatic("login");
             }
 #elif UNITY_IOS
-            Login();
+            Login_Internal();
 #endif
         }
 
@@ -62,7 +62,7 @@ namespace SDK
                 }
             }
 #elif UNITY_IOS
-            Photo();
+            Photo_Internal();
 #endif
         }
 
