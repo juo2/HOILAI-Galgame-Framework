@@ -163,11 +163,12 @@ public class ExportStory : Editor
         }
     }
 
-    public static (string, string, string) MessageXml(XmlDocument doc, XmlElement element, Node node)
+    public static (string, string, string, string) MessageXml(XmlDocument doc, XmlElement element, Node node)
     {
         string jumpId1 = null;
         string jumpId2 = null;
         string jumpId3 = null;
+        string jumpId4 = null;
 
         if (node is StoryMessageNode)
         {
@@ -202,17 +203,27 @@ public class ExportStory : Editor
 
             jumpInt++;
 
+            jumpId4 = $"J{jumpInt}";
+
+            XmlElement choice4 = doc.CreateElement("Choice");
+            choice4.SetAttribute("JumpID", jumpId4);
+            choice4.InnerText = storyMessageNode.opt4;
+            speadxml.AppendChild(choice4);
+
+            jumpInt++;
+
             element.AppendChild(speadxml);
         }
 
-        return (jumpId1, jumpId2, jumpId3);
+        return (jumpId1, jumpId2, jumpId3, jumpId4);
     }
 
-    public static (string,string,string) SpeakXml(XmlDocument doc, XmlElement element, Node node)
+    public static (string,string,string,string) SpeakXml(XmlDocument doc, XmlElement element, Node node)
     {
         string jumpId1 = null;
         string jumpId2 = null;
         string jumpId3 = null;
+        string jumpId4 = null;
 
         if (node is StorySpeakNode)
         {
@@ -265,12 +276,21 @@ public class ExportStory : Editor
                 speak.AppendChild(choice3);
 
                 jumpInt++;
+
+                jumpId4 = $"J{jumpInt}";
+
+                XmlElement choice4 = doc.CreateElement("Choice");
+                choice4.SetAttribute("JumpID", jumpId4);
+                choice4.InnerText = storySpeakNode.opt4;
+                speak.AppendChild(choice4);
+
+                jumpInt++;
             }
 
             element.AppendChild(speak);
         }
 
-        return (jumpId1,jumpId2,jumpId3);
+        return (jumpId1,jumpId2,jumpId3,jumpId4);
     }
 
     static void SaveXmlFile(XmlDocument doc, string filePath)
@@ -298,13 +318,14 @@ public class ExportStory : Editor
             string jumpId1 = null;
             string jumpId2 = null;
             string jumpId3 = null;
+            string jumpId4 = null;
 
             AddCharacterXml(doc, element, currentNode);
             SpeakAsideXml(doc, element, currentNode);
-            (jumpId1,jumpId2,jumpId3) = SpeakXml(doc, element, currentNode);
+            (jumpId1,jumpId2,jumpId3,jumpId4) = SpeakXml(doc, element, currentNode);
 
             if (string.IsNullOrEmpty(jumpId1))
-                (jumpId1,jumpId2,jumpId3) = MessageXml(doc, element, currentNode);
+                (jumpId1,jumpId2,jumpId3, jumpId4) = MessageXml(doc, element, currentNode);
 
             DeleteCharacterXml(doc, element, currentNode);
             VideoXml(doc, element, currentNode);
@@ -315,10 +336,12 @@ public class ExportStory : Editor
                 Node nextNode1 = null;
                 Node nextNode2 = null;
                 Node nextNode3 = null;
+                Node nextNode4 = null;
                 bool _;
                 (_, nextNode1) = FindNextNode(currentNode, "outOpt1");
                 (_, nextNode2) = FindNextNode(currentNode, "outOpt2");
                 (_, nextNode3) = FindNextNode(currentNode, "outOpt3");
+                (_, nextNode4) = FindNextNode(currentNode, "outOpt4");
 
                 //������֧
                 XmlElement branchPlot = doc.CreateElement("BranchPlot");
@@ -341,6 +364,13 @@ public class ExportStory : Editor
                 branchPlot.AppendChild(branchPlotNode3);
 
                 (_, nextNode) = buildNodeXml(doc, branchPlotNode3, nextNode3);
+
+                XmlElement branchPlotNode4 = doc.CreateElement("BranchPlotNode");
+                branchPlotNode4.SetAttribute("ID", jumpId4);
+                branchPlot.AppendChild(branchPlotNode4);
+
+                (_, nextNode) = buildNodeXml(doc, branchPlotNode4, nextNode4);
+
             }
             else
             {

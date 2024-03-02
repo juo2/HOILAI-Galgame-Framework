@@ -31,6 +31,8 @@ namespace XNode.Story
 
         [Output] public Choice outOpt3;
 
+        [Output] public Choice outOpt4;
+
         [SerializeField]
         public string opt1;
 
@@ -39,5 +41,9 @@ namespace XNode.Story
 
         [SerializeField]
         public string opt3;
+
+        [SerializeField]
+        public string opt4;
+
     }
 }

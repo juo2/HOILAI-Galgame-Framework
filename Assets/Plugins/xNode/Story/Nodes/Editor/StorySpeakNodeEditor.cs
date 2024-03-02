@@ -34,9 +34,11 @@ namespace XNodeEditor.Story
                 NodeEditorGUILayout.PropertyField(serializedObject.FindProperty("outOpt1"));
                 NodeEditorGUILayout.PropertyField(serializedObject.FindProperty("outOpt2"));
                 NodeEditorGUILayout.PropertyField(serializedObject.FindProperty("outOpt3"));
+                NodeEditorGUILayout.PropertyField(serializedObject.FindProperty("outOpt4"));
                 NodeEditorGUILayout.PropertyField(serializedObject.FindProperty("opt1"));
                 NodeEditorGUILayout.PropertyField(serializedObject.FindProperty("opt2"));
                 NodeEditorGUILayout.PropertyField(serializedObject.FindProperty("opt3"));
+                NodeEditorGUILayout.PropertyField(serializedObject.FindProperty("opt4"));
             }
             else
             {
