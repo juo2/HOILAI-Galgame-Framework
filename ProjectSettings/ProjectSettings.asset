@@ -159,7 +159,7 @@ PlayerSettings:
   applicationIdentifier:
     Android: com.ai.mergeverse
     Standalone: com.UnityTechnologies.com.unity.template.urp-blank
-    iPhone: com.Unity-Technologies.com.unity.template.urp-blank
+    iPhone: com.ai.mergeverse
   buildNumber:
     Standalone: 0
     iPhone: 0
