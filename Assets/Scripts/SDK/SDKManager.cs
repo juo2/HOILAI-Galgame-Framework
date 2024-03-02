@@ -25,29 +25,42 @@ namespace SDK
 
         public void Login()
         {
-
             Debug.Log("SDK Login");
 
             // 检查当前平台是否为 Android
             if (Application.platform == RuntimePlatform.Android)
             {
-                // 使用AndroidJavaClass访问UnityPlayer类
-                AndroidJavaClass unityPlayer = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
-                // 获取当前的Activity
-                AndroidJavaObject currentActivity = unityPlayer.GetStatic<AndroidJavaObject>("currentActivity");
-                // 使用AndroidJavaObject调用Android方法
-                AndroidJavaObject androidInterface = new AndroidJavaObject("com.example.yourpackage.YourAndroidClass");
-                androidInterface.Call("yourMethodName", currentActivity);
+                using (AndroidJavaClass testClass = new AndroidJavaClass("com.unity3d.player.Login"))
+                {
+                    testClass.CallStatic("login");
+                }
             }
         }
 
         // 被Android调用的方法
         public void LoginRequest(string message)
         {
-            Debug.Log("Received message from Android: " + message);
+            Debug.Log("LoginRequest Received message from Android: " + message);
             // 在这里处理消息，比如更新UI等
         }
 
+
+        public void Photo()
+        {
+            Debug.Log("SDK Photo");
+
+            // 检查当前平台是否为 Android
+            if (Application.platform == RuntimePlatform.Android)
+            {
+
+            }
+        }
+
+        public void PhotoRequest(string message)
+        {
+            Debug.Log("PhotoRequest Received message from Android: " + message);
+            // 在这里处理消息，比如更新UI等
+        }
 
 
         // Start is called before the first frame update

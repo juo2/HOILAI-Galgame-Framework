@@ -19,8 +19,8 @@ namespace XModules.Main
         [SerializeField]
         XButton editBtn;
 
-        //[SerializeField]
-        //XButton logoutBtn;
+        [SerializeField]
+        XButton iconBtn;
 
         //[SerializeField]
         //XImage icon;
@@ -54,6 +54,11 @@ namespace XModules.Main
             editBtn.onClick.AddListener(() =>
             {
                 XGUIManager.Instance.OpenView("EditorProfileWindow");
+            });
+
+            iconBtn.onClick.AddListener(() => 
+            {
+                SDK.SDKManager.Instance.Photo();
             });
         }
 
