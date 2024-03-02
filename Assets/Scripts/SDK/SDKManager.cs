@@ -1,5 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+
+#if UNITY_IOS
+using System.Runtime.InteropServices;
+#endif
+
 using UnityEngine;
 
 namespace SDK
@@ -23,43 +28,53 @@ namespace SDK
             }
         }
 
+#if UNITY_IOS
+        [DllImport("__Internal")]
+        private static extern void Login();
+
+        [DllImport("__Internal")]
+        private static extern void Photo();
+#endif
+
+
         public void Login()
         {
             Debug.Log("SDK Login");
-
-            // 检查当前平台是否为 Android
-            if (Application.platform == RuntimePlatform.Android)
+#if UNITY_ANDROID
+            using (AndroidJavaClass testClass = new AndroidJavaClass("com.unity3d.player.UnityAndroidBridge"))
             {
-                using (AndroidJavaClass testClass = new AndroidJavaClass("com.unity3d.player.Login"))
-                {
-                    testClass.CallStatic("login");
-                }
+                testClass.CallStatic("login");
             }
+#elif UNITY_IOS
+            Login();
+#endif
         }
-
-        // 被Android调用的方法
-        public void LoginRequest(string message)
-        {
-            Debug.Log("LoginRequest Received message from Android: " + message);
-            // 在这里处理消息，比如更新UI等
-        }
-
 
         public void Photo()
         {
             Debug.Log("SDK Photo");
-
-            // 检查当前平台是否为 Android
+#if UNITY_ANDROID
             if (Application.platform == RuntimePlatform.Android)
             {
-
+                using (AndroidJavaClass testClass = new AndroidJavaClass("com.unity3d.player.UnityAndroidBridge"))
+                {
+                    testClass.CallStatic("getPhoto");
+                }
             }
+#elif UNITY_IOS
+            Photo();
+#endif
+        }
+
+
+        public void LoginRequest(string message)
+        {
+            Debug.Log("LoginRequest Received message from Android: " + message);
         }
 
         public void PhotoRequest(string message)
         {
             Debug.Log("PhotoRequest Received message from Android: " + message);
-            // 在这里处理消息，比如更新UI等
         }
 
 
