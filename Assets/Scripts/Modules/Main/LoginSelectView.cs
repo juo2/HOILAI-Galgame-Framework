@@ -15,6 +15,9 @@ namespace XModules.Main
         [SerializeField]
         XButton btn2;
 
+        [SerializeField]
+        XButton btn3;
+
         // Start is called before the first frame update
         void Start()
         {
@@ -29,6 +32,13 @@ namespace XModules.Main
                 XGUI.XGUIManager.Instance.CloseView("LoginSelectView");
                 XGUI.XGUIManager.Instance.OpenView("LoginView");
             });
+
+            btn3.onClick.AddListener(() => 
+            {
+                SDK.SDKManager.Instance.Login();
+            
+            });
+
         }
 
 
