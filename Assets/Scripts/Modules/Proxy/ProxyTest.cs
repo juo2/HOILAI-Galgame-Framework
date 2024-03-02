@@ -9,7 +9,7 @@ using XModules.Data;
 public class ProxyTest : MonoBehaviour
 {
     public string email = "849616969@qq.com";
-    string url = "http://23.94.26.242:8080";
+    string url = "http://ai.sorachat.site";
 
     public Button sendCodeBtn;
     public Button loginBtn;

@@ -10,7 +10,7 @@ namespace XModules.Proxy
 {
     public class ProxyManager
     {
-        static string url = "http://23.94.26.242:8080";
+        static string url = "http://ai.sorachat.site";
 
         public static void SendCodeRequest(string email, Action callBack = null, Action errorBack = null)
         {

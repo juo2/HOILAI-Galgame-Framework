@@ -194,7 +194,7 @@ namespace XModules.Main.Window
 
         async void EnableWebSocket()
         {
-            string url = $"ws://23.94.26.242:8080/chat/websocket/{npcId}/{DataManager.getPlayerId()}";
+            string url = $"ws://ai.sorachat.site/chat/websocket/{npcId}/{DataManager.getPlayerId()}";
 
             Debug.Log($"url:{url}");
 

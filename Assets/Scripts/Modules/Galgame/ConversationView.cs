@@ -119,6 +119,7 @@ namespace XModules.GalManager
             ButtonReturn.onClick.AddListener(() => {
 
                 XGUIManager.Instance.CloseView("ConversationView");
+                XGUIManager.Instance.OpenView("MainView");
             });
         }
 
