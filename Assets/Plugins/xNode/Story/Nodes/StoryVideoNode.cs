@@ -5,12 +5,8 @@ using XNode;
 
 namespace XNode.Story
 {
-    public class StoryVideoNode : Node
+    public class StoryVideoNode : StoryBaseNode
     {
-
-        [Input] public Empty In;
-        [Output] public Empty Out;
-
         [SerializeField]
         public string video;
 

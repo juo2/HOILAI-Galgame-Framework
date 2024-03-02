@@ -5,10 +5,8 @@ using XNode;
 
 namespace XNode.Story
 {
-    public class StorySpeakAsideNode : Node
+    public class StorySpeakAsideNode : StoryBaseNode
     {
-        [Input] public Empty In;
-        [Output] public Empty Out;
 
         [SerializeField]
         public string content;

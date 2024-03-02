@@ -5,11 +5,8 @@ using XNode;
 
 namespace XNode.Story
 {
-    public class StoryBackgroundNode : Node
+    public class StoryBackgroundNode : StoryBaseNode
     {
-
-        [Input] public Empty In;
-        [Output] public Empty Out;
 
         [SerializeField]
         public string background;

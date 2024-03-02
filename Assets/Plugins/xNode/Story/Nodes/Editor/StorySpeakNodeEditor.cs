@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using XNode.Story;
 
 namespace XNodeEditor.Story
 {
     [CustomNodeEditor(typeof(StorySpeakNode))]
-    public class StorySpeakNodeEditor : NodeEditor
+    public class StorySpeakNodeEditor : StoryBaseNodeEditor
     {
         public override void OnBodyGUI()
         {
@@ -41,7 +42,6 @@ namespace XNodeEditor.Story
             {
                 NodeEditorGUILayout.PropertyField(serializedObject.FindProperty("Out"));
             }
-
 
             // Apply property modifications
             serializedObject.ApplyModifiedProperties();
