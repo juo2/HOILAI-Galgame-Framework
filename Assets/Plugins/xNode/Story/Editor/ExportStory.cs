@@ -50,8 +50,6 @@ public class ExportStory : Editor
         });
 
 
-        //�жϸýڵ��Ƿ� �ص�����
-        //�������ڵ����� In
         if (nextNode != null)
         {
             nextNode.Ports.ToList().ForEach(port =>
@@ -69,12 +67,6 @@ public class ExportStory : Editor
         return (isReture, nextNode);
     }
 
-    /// <summary>
-    /// ��ӽ�ɫ
-    /// </summary>
-    /// <param name="doc"></param>
-    /// <param name="element"></param>
-    /// <param name="node"></param>
     public static void AddCharacterXml(XmlDocument doc, XmlElement element,Node node)
     {
         if (node is StoryAddCharacterNode)
@@ -92,12 +84,7 @@ public class ExportStory : Editor
         }
     }
 
-    /// <summary>
-    /// ��ӽ�ɫ
-    /// </summary>
-    /// <param name="doc"></param>
-    /// <param name="element"></param>
-    /// <param name="node"></param>
+
     public static void VideoXml(XmlDocument doc, XmlElement element, Node node)
     {
         if (node is StoryVideoNode)
@@ -126,12 +113,6 @@ public class ExportStory : Editor
         }
     }
 
-    /// <summary>
-    /// ɾ����ɫ
-    /// </summary>
-    /// <param name="doc"></param>
-    /// <param name="element"></param>
-    /// <param name="node"></param>
     public static void DeleteCharacterXml(XmlDocument doc, XmlElement element, Node node)
     {
         if (node is StoryDeleteCharacterNode)
@@ -295,12 +276,10 @@ public class ExportStory : Editor
 
     static void SaveXmlFile(XmlDocument doc, string filePath)
     {
-        // ����XmlWriterSettings��ָ�������ʽ
         XmlWriterSettings settings = new XmlWriterSettings();
         settings.Encoding = new UTF8Encoding(false); // ����BOM
         settings.Indent = true;
 
-        // ʹ��XmlWriter����XML�ļ�
         using (XmlWriter writer = XmlWriter.Create(filePath, settings))
         {
             doc.Save(writer);
@@ -383,7 +362,7 @@ public class ExportStory : Editor
         return (isReture, currentNode);
     }
 
-    [MenuItem("Tools/ExportStoryTool")]
+    //[MenuItem("Tools/ExportStoryTool")]
     public static void ExportStoryTool()
     {
 
@@ -407,8 +386,7 @@ public class ExportStory : Editor
         buildNodeXml(doc, mainPlot, startNode);
 
         SaveXmlFile(doc,"Assets/StreamingAssets/A_AssetBundles/HGF/story.xml");
-        Debug.Log("XML�ļ������ɡ�");
+        Debug.Log("XML generate finish !!!!");
     }
-
     
 }

@@ -13,5 +13,9 @@ namespace XNode.Story
         [HideInInspector]
         [SerializeField]
         public bool isChangeColor = false;
+
+        [HideInInspector]
+        [SerializeField]
+        public bool isError = false;
     }
 }
