@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Story Next Chapter
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 424, y: -104}
+  position: {x: 8, y: -88}
   ports:
     keys:
     - In
@@ -23,10 +23,7 @@ MonoBehaviour:
       _node: {fileID: -5783416957653592561}
       _typeQualifiedName: XNode.Story.Empty, Assembly-CSharp-firstpass, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
-      connections:
-      - fieldName: Out
-        node: {fileID: -3057035216579611519}
-        reroutePoints: []
+      connections: []
       _direction: 0
       _connectionType: 0
       _typeConstraint: 0
@@ -41,53 +38,8 @@ MonoBehaviour:
       _typeConstraint: 0
       _dynamic: 0
   isChangeColor: 0
+  isError: 1
   storyGraphicName: Story2
---- !u!114 &-3057035216579611519
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 988f2b9968468134fb33d287f7df3fa5, type: 3}
-  m_Name: Story Add Character
-  m_EditorClassIdentifier: 
-  graph: {fileID: 11400000}
-  position: {x: 40, y: -88}
-  ports:
-    keys:
-    - In
-    - Out
-    values:
-    - _fieldName: In
-      _node: {fileID: -3057035216579611519}
-      _typeQualifiedName: XNode.Story.Empty, Assembly-CSharp-firstpass, Version=0.0.0.0,
-        Culture=neutral, PublicKeyToken=null
-      connections: []
-      _direction: 0
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 0
-    - _fieldName: Out
-      _node: {fileID: -3057035216579611519}
-      _typeQualifiedName: XNode.Story.Empty, Assembly-CSharp-firstpass, Version=0.0.0.0,
-        Culture=neutral, PublicKeyToken=null
-      connections:
-      - fieldName: In
-        node: {fileID: -5783416957653592561}
-        reroutePoints: []
-      _direction: 1
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 0
-  isChangeColor: 0
-  ID: 
-  image: 
-  p_name: 
-  isSelf: 0
-  animate: 0
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -101,5 +53,4 @@ MonoBehaviour:
   m_Name: Enter
   m_EditorClassIdentifier: 
   nodes:
-  - {fileID: -3057035216579611519}
   - {fileID: -5783416957653592561}

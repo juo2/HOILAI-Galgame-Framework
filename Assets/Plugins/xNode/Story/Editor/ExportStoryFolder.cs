@@ -18,11 +18,13 @@ public class ExportStoryFolder : EditorWindow
 
     static string s_storyGraphicPath;
 
-    static Node startNode;
+    static Node s_startNode;
 
     static int s_index = 1;
 
     static HashSet<string> s_alreadyLoadGraphicSet = new HashSet<string>();
+
+    static Dictionary<string, Node> s_startNodeDic = new Dictionary<string, Node>();
 
     public class StoryEditorNode
     {
@@ -40,9 +42,7 @@ public class ExportStoryFolder : EditorWindow
     {
         // 清除旧的文件夹列表
         folders.Clear();
-        s_storyEditorNodeDic.Clear();
-        s_alreadyLoadGraphicSet.Clear();
-        s_index = 1;
+       
 
         // 获取指定路径下所有的文件夹
         var directories = Directory.GetDirectories(path, "*", SearchOption.TopDirectoryOnly);
@@ -52,7 +52,13 @@ public class ExportStoryFolder : EditorWindow
         }
     }
 
-
+    static void ClearAllStoryGraphic()
+    {
+        s_storyEditorNodeDic.Clear();
+        s_alreadyLoadGraphicSet.Clear();
+        s_startNodeDic.Clear();
+        s_index = 1;
+    }
 
     public static Node FindStartNode(StoryGraph storyGraph)
     {
@@ -70,6 +76,11 @@ public class ExportStoryFolder : EditorWindow
                 {
                     startNode = node;
                     count++;
+
+                    if(count > 1)
+                    {
+                        (startNode as StoryBaseNode).isError = true;
+                    }
                 }
             });
         }
@@ -119,6 +130,31 @@ public class ExportStoryFolder : EditorWindow
             findNextNodeXml(videoxml, s_node.baseNode);
 
             element.AppendChild(videoxml);
+        }
+    }
+
+    public static void NextChapterXml(XmlDocument doc, XmlElement element, StoryEditorNode s_node)
+    {
+        if (s_node.baseNode is StoryNextChapter)
+        {
+            StoryNextChapter storyNextChapter = s_node.baseNode as StoryNextChapter;
+
+            XmlElement nextxml = doc.CreateElement("NextChapter");
+            nextxml.SetAttribute("NodeId", s_node.index.ToString());
+
+            if (s_startNodeDic.ContainsKey(storyNextChapter.storyGraphicName))
+            {
+                Node nextNode = s_startNodeDic[storyNextChapter.storyGraphicName];
+                StoryEditorNode s_nextNode = s_storyEditorNodeDic[nextNode.GetInstanceID()];
+                nextxml.SetAttribute("JumpId", s_nextNode.index.ToString());
+            }
+            else
+            {
+                storyNextChapter.isError = true;
+                Debug.LogError($"instanceId:{storyNextChapter.GetInstanceID()} has not next chapter");
+            }
+
+            element.AppendChild(nextxml);
         }
     }
 
@@ -186,34 +222,48 @@ public class ExportStoryFolder : EditorWindow
             XmlElement speadxml = doc.CreateElement("Message");
             speadxml.SetAttribute("NodeId", s_node.index.ToString());
 
-            XmlElement choice1 = doc.CreateElement("Choice");
-            
-            findNextNodeXml(choice1, s_node.baseNode, "outOpt1");
+            if (!string.IsNullOrEmpty(storyMessageNode.opt1))
+            {
+                XmlElement choice1 = doc.CreateElement("Choice");
 
-            choice1.InnerText = storyMessageNode.opt1;
-            speadxml.AppendChild(choice1);
+                findNextNodeXml(choice1, s_node.baseNode, "outOpt1");
 
-            XmlElement choice2 = doc.CreateElement("Choice");
-
-            findNextNodeXml(choice2, s_node.baseNode, "outOpt2");
-
-            choice2.InnerText = storyMessageNode.opt2;
-            speadxml.AppendChild(choice2);
+                choice1.InnerText = storyMessageNode.opt1;
+                speadxml.AppendChild(choice1);
+            }
 
 
-            XmlElement choice3 = doc.CreateElement("Choice");
+            if (!string.IsNullOrEmpty(storyMessageNode.opt2))
+            {
+                XmlElement choice2 = doc.CreateElement("Choice");
 
-            findNextNodeXml(choice3, s_node.baseNode, "outOpt3");
+                findNextNodeXml(choice2, s_node.baseNode, "outOpt2");
 
-            choice3.InnerText = storyMessageNode.opt3;
-            speadxml.AppendChild(choice3);
+                choice2.InnerText = storyMessageNode.opt2;
+                speadxml.AppendChild(choice2);
 
-            XmlElement choice4 = doc.CreateElement("Choice");
+            }
 
-            findNextNodeXml(choice4, s_node.baseNode, "outOpt4");
+            if (!string.IsNullOrEmpty(storyMessageNode.opt3))
+            {
+                XmlElement choice3 = doc.CreateElement("Choice");
 
-            choice4.InnerText = storyMessageNode.opt4;
-            speadxml.AppendChild(choice4);
+                findNextNodeXml(choice3, s_node.baseNode, "outOpt3");
+
+                choice3.InnerText = storyMessageNode.opt3;
+                speadxml.AppendChild(choice3);
+            }
+
+            if (!string.IsNullOrEmpty(storyMessageNode.opt4))
+            {
+
+                XmlElement choice4 = doc.CreateElement("Choice");
+
+                findNextNodeXml(choice4, s_node.baseNode, "outOpt4");
+
+                choice4.InnerText = storyMessageNode.opt4;
+                speadxml.AppendChild(choice4);
+            }
 
             element.AppendChild(speadxml);
         }
@@ -249,33 +299,47 @@ public class ExportStoryFolder : EditorWindow
 
             if (storySpeakNode.isJump)
             {
+                if (!string.IsNullOrEmpty(storySpeakNode.opt1))
+                {
+                    XmlElement choice1 = doc.CreateElement("Choice");
+                    findNextNodeXml(choice1, s_node.baseNode, "outOpt1");
+                    choice1.InnerText = storySpeakNode.opt1;
+                    speak.AppendChild(choice1);
+                }
 
-                XmlElement choice1 = doc.CreateElement("Choice");
-                findNextNodeXml(choice1, s_node.baseNode, "outOpt1");
-                choice1.InnerText = storySpeakNode.opt1;
-                speak.AppendChild(choice1);
+                if (!string.IsNullOrEmpty(storySpeakNode.opt2))
+                {
+                    XmlElement choice2 = doc.CreateElement("Choice");
 
-                XmlElement choice2 = doc.CreateElement("Choice");
-  
-                findNextNodeXml(choice2, s_node.baseNode, "outOpt2");
+                    findNextNodeXml(choice2, s_node.baseNode, "outOpt2");
 
-                choice2.InnerText = storySpeakNode.opt2;
-                speak.AppendChild(choice2);
+                    choice2.InnerText = storySpeakNode.opt2;
+                    speak.AppendChild(choice2);
+                }
 
-                XmlElement choice3 = doc.CreateElement("Choice");
+                if (!string.IsNullOrEmpty(storySpeakNode.opt3))
+                {
+                    XmlElement choice3 = doc.CreateElement("Choice");
 
-                findNextNodeXml(choice3, s_node.baseNode, "outOpt3");
+                    findNextNodeXml(choice3, s_node.baseNode, "outOpt3");
 
-                choice3.InnerText = storySpeakNode.opt3;
-                speak.AppendChild(choice3);
+                    choice3.InnerText = storySpeakNode.opt3;
+                    speak.AppendChild(choice3);
+                }
 
-                XmlElement choice4 = doc.CreateElement("Choice");
+                if (!string.IsNullOrEmpty(storySpeakNode.opt4))
+                {
+                    XmlElement choice4 = doc.CreateElement("Choice");
 
-                findNextNodeXml(choice4, s_node.baseNode, "outOpt4");
+                    findNextNodeXml(choice4, s_node.baseNode, "outOpt4");
 
-                choice4.InnerText = storySpeakNode.opt4;
-                speak.AppendChild(choice4);
-
+                    choice4.InnerText = storySpeakNode.opt4;
+                    speak.AppendChild(choice4);
+                }
+            }
+            else
+            {
+                findNextNodeXml(speak, s_node.baseNode);
             }
 
             element.AppendChild(speak);
@@ -316,6 +380,7 @@ public class ExportStoryFolder : EditorWindow
             {
                 if(port.ConnectionCount > 1)
                 {
+                    resIndex = -2;
                 }
                 else if(port.Connection != null)
                 {
@@ -329,7 +394,7 @@ public class ExportStoryFolder : EditorWindow
             }
         });
 
-        if (resIndex != -1)
+        if (resIndex == -2)
         {
             StoryBaseNode storyBase = node as StoryBaseNode;
             storyBase.isError = true;
@@ -345,15 +410,15 @@ public class ExportStoryFolder : EditorWindow
 
         foreach (var node in storyGraph.nodes)
         {
-            if (startNode.GetInstanceID() != node.GetInstanceID())
+            if (s_startNode.GetInstanceID() != node.GetInstanceID())
             {
                 addNode(node);
+            }
 
-                if (node is StoryNextChapter)
-                {
-                    StoryNextChapter nextChapter = node as StoryNextChapter;
-                    needToLoadChapterList.Add(nextChapter.storyGraphicName);
-                }
+            if (node is StoryNextChapter)
+            {
+                StoryNextChapter nextChapter = node as StoryNextChapter;
+                needToLoadChapterList.Add(nextChapter.storyGraphicName);
             }
         }
 
@@ -368,6 +433,7 @@ public class ExportStoryFolder : EditorWindow
     {
         StoryEditorNode storyEditorNode = new StoryEditorNode();
         storyEditorNode.baseNode = node as StoryBaseNode;
+        storyEditorNode.baseNode.isError = false;
         storyEditorNode.index = s_index;
         s_index++;
 
@@ -405,12 +471,13 @@ public class ExportStoryFolder : EditorWindow
             DeleteCharacterXml(doc, element, item);
             VideoXml(doc, element, item);
             BackGroundXml(doc, element, item);
+            NextChapterXml(doc, element, item);
         }
 
         return doc;
     }
 
-    public static void ExportStoryNode(string storyPath,bool findFirst = false)
+    public static void ExportStoryNode(string storyPath,bool addFirst = false)
     {
         if (s_alreadyLoadGraphicSet.Contains(storyPath))
         {
@@ -422,16 +489,28 @@ public class ExportStoryFolder : EditorWindow
 
         StoryGraph storyGraph = AssetDatabase.LoadAssetAtPath<StoryGraph>(storyPath);
 
-        if (findFirst)
+        Node startNode = FindStartNode(storyGraph);
+        if (startNode == null)
         {
-            startNode = FindStartNode(storyGraph);
-            if (startNode == null)
-            {
-                Debug.LogError("generate fail!!!");
-                return;
-            }
+            Debug.LogError("generate fail!!!");
+            return;
+        }
 
-            addNode(startNode);
+        string pathName = Path.GetFileNameWithoutExtension(storyPath);
+
+        if (!s_startNodeDic.ContainsKey(pathName))
+        {
+            s_startNodeDic[pathName] = startNode;
+        }
+        else
+        {
+            Debug.LogError("s_startNodeDic is error！！！！");
+        }
+
+        if (addFirst)
+        {
+            s_startNode = startNode;
+            addNode(s_startNode);
         }
 
         buildNode(storyGraph);
@@ -467,6 +546,8 @@ public class ExportStoryFolder : EditorWindow
             // 创建一个按钮，当点击时输出选中的文件夹
             if (GUILayout.Button("Export"))
             {
+                ClearAllStoryGraphic();
+               
                 s_storyGraphicPath = $"{path}/{ folders[selectedIndex]}";
 
                 ExportStoryTool($"{s_storyGraphicPath}/Enter.asset");

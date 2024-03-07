@@ -30,7 +30,12 @@ namespace XNodeEditor.Story
             Color color = base.GetTint(); // 默认使用基类的颜色
 
             StoryBaseNode node = target as StoryBaseNode;
-            if (node.isChangeColor)
+
+            if (node.isError)
+            {
+                ColorUtility.TryParseHtmlString("#981D2BFF", out color);
+            }
+            else if (node.isChangeColor)
             {
                 // 尝试将字符串转换为颜色值，如果成功，则`color`变量会被更新
                 ColorUtility.TryParseHtmlString("#2D6B6BFF", out color);
