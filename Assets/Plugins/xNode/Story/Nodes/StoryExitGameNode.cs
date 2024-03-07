@@ -5,18 +5,13 @@ using XNode;
 
 namespace XNode.Story
 {
-    public class StoryNextChapter : StoryBaseNode
+    public class StoryExitGameNode : StoryBaseNode
     {
-        [SerializeField]
-        public string storyGraphicName;
-
         public override object GetValue(NodePort port)
         {
             //if (port.fieldName == "b") return GetInputValue<float>("a", a);
             //else return null;
             return null;
         }
-
-        
     }
 }

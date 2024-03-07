@@ -52,5 +52,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57d5558d16be3884498a7c2374c082ce, type: 3}
   m_Name: Enter
   m_EditorClassIdentifier: 
-  nodes:
-  - {fileID: -5783416957653592561}
+  nodes: []

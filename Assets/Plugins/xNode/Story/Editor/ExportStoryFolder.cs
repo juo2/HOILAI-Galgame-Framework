@@ -135,9 +135,9 @@ public class ExportStoryFolder : EditorWindow
 
     public static void NextChapterXml(XmlDocument doc, XmlElement element, StoryEditorNode s_node)
     {
-        if (s_node.baseNode is StoryNextChapter)
+        if (s_node.baseNode is StoryNextChapterNode)
         {
-            StoryNextChapter storyNextChapter = s_node.baseNode as StoryNextChapter;
+            StoryNextChapterNode storyNextChapter = s_node.baseNode as StoryNextChapterNode;
 
             XmlElement nextxml = doc.CreateElement("NextChapter");
             nextxml.SetAttribute("NodeId", s_node.index.ToString());
@@ -347,6 +347,19 @@ public class ExportStoryFolder : EditorWindow
 
     }
 
+    public static void ExitGameXml(XmlDocument doc, XmlElement element, StoryEditorNode s_node)
+    {
+        if (s_node.baseNode is StoryExitGameNode)
+        {
+            StoryExitGameNode storyExitGameNode = s_node.baseNode as StoryExitGameNode;
+
+            XmlElement videoxml = doc.CreateElement("ExitGame");
+            videoxml.SetAttribute("NodeId", s_node.index.ToString());
+            element.AppendChild(videoxml);
+        }
+    }
+
+
     static void SaveXmlFile(XmlDocument doc, string filePath)
     {
         XmlWriterSettings settings = new XmlWriterSettings();
@@ -365,6 +378,12 @@ public class ExportStoryFolder : EditorWindow
 
         if (resIndex != -1)
             element.SetAttribute("JumpId", resIndex.ToString());
+        else
+        {
+            (node as StoryBaseNode).isError = true;
+            Debug.LogError($"node : {node.GetInstanceID()} can not find nextnode");
+        }
+
     }
 
     static int findNextNode(Node node, string nodeName = "Out")
@@ -415,9 +434,9 @@ public class ExportStoryFolder : EditorWindow
                 addNode(node);
             }
 
-            if (node is StoryNextChapter)
+            if (node is StoryNextChapterNode)
             {
-                StoryNextChapter nextChapter = node as StoryNextChapter;
+                StoryNextChapterNode nextChapter = node as StoryNextChapterNode;
                 needToLoadChapterList.Add(nextChapter.storyGraphicName);
             }
         }
@@ -472,6 +491,7 @@ public class ExportStoryFolder : EditorWindow
             VideoXml(doc, element, item);
             BackGroundXml(doc, element, item);
             NextChapterXml(doc, element, item);
+            ExitGameXml(doc, element, item);
         }
 
         return doc;

@@ -20,13 +20,13 @@ namespace XModules.GalManager
         /// <summary>
         /// 这个选项要跳转到的ID
         /// </summary>
-        public string _JumpID;
+        public int _JumpID;
 
         /// <summary>
         /// 显示的文本
         /// </summary>
         public Text _Title;
-        public void Init (string JumpID, string Title)
+        public void Init (int JumpID, string Title)
         {
             _JumpID = JumpID;
             _Title.text = Title;
@@ -37,16 +37,16 @@ namespace XModules.GalManager
         public void Button_Click_JumpTo ()
         {
 
-            ConversationView.PlotData.NowJumpID = _JumpID;
-            ConversationView.PlotData.IsBranch = true;
+            ConversationView.PlotData.NextJumpID = _JumpID;
             GalManager_Text.IsCanJump = true;
-            if (_JumpID == "-1")
+            if (_JumpID == -1)
             {
                 return;
             }
             //this.gameObject.transform.parent.GetComponent<GalManager_Choice>().Button_Click_Choice();
             //GameObject.Find("EventSystem").GetComponent<GalManager>().Button_Click_NextPlot();
 
+            ConversationView.PlotData.NextJumpID = _JumpID;
 
             XEvent.EventDispatcher.DispatchEvent("NEXT_STEP");
             XEvent.EventDispatcher.DispatchEvent("CHOICE_COMPLETE");

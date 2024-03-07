@@ -21,16 +21,11 @@ namespace XModules.GalManager
     [Serializable]
     public class Struct_PlotData
     {
-        public string Title;
-        public string Synopsis;
-        public List<XElement> BranchPlot = new();
-        public Queue<XElement> BranchPlotInfo = new();
-        public Queue<XElement> MainPlot = new();
         public List<XElement> ListMainPlot = new();
         public class Struct_Choice
         {
             public string Title;
-            public string JumpID;
+            public int JumpID;
         }
         public class Struct_CharacterInfo
         {
@@ -49,8 +44,7 @@ namespace XModules.GalManager
         /// <summary>
         /// 当前是否为分支剧情节点
         /// </summary>
-        public bool IsBranch = false;
-        public string NowJumpID;
+        public int NextJumpID;
 
     }
 
@@ -129,13 +123,12 @@ namespace XModules.GalManager
 
             ClearGame();
 
-            foreach (var item in PlotData.ListMainPlot)
-            {
-                PlotData.MainPlot.Enqueue(item);
-            }
-
             XEvent.EventDispatcher.AddEventListener("NEXT_STEP", Button_Click_NextPlot,this);
             XEvent.EventDispatcher.AddEventListener("CHOICE_COMPLETE", ChoiceComplete, this);
+
+            if (!loadXmlData)
+                return;
+
 
             //开始游戏
             Button_Click_NextPlot();
@@ -154,10 +147,6 @@ namespace XModules.GalManager
             {
                 DestroyCharacterByID(item.characterID);
             }
-            PlotData.MainPlot.Clear();
-            //PlotData.BranchPlot.Clear();
-            PlotData.BranchPlotInfo.Clear();
-            PlotData.IsBranch = false;
         }
 
         void ChoiceComplete()
@@ -217,56 +206,24 @@ namespace XModules.GalManager
                 {
                     switch (item.Name.ToString())
                     {
-                        case "title":
+                        case "Plot":
                             {
-                                PlotData.Title = item.Value;
-                                break;
-                            }
-                        case "Synopsis":
-                            {
-                                PlotData.Synopsis = item.Value;
-                                break;
-                            }
-                        case "BranchPlot":
-                            {
-                                foreach (var BranchItem in item.Elements())
+                                foreach (var MainPlotItem in item.Elements())
                                 {
-                                    PlotData.BranchPlot.Add(BranchItem);
+                                    PlotData.ListMainPlot.Add(MainPlotItem);
                                 }
                                 break;
                             }
-                        case "MainPlot":
-                        {
-                            foreach (var MainPlotItem in item.Elements())
-                            {
-                                    //PlotData.MainPlot.Enqueue(MainPlotItem);
-                                    PlotData.ListMainPlot.Add(MainPlotItem);
-                            }
-                            break;
-                        }
                         default:
-                        {
-                            throw new Exception("无法识别的根标签");
+                            {
+                                throw new Exception("无法识别的根标签");
 
-                        }
+                            }
                     }
                 }
             }
-            //catch (Exception ex)
-            //{
-            //    if (ex.Message != "无法识别的根标签")
-            //    {
-
-            //        GameAPI.Print(ex.Message, "error");
-            //    }
-            //}
+ 
             GameAPI.Print(Newtonsoft.Json.JsonConvert.SerializeObject(PlotData));
-            //Button_Click_NextPlot();
-
-            foreach (var item in PlotData.ListMainPlot)
-            {
-                PlotData.MainPlot.Enqueue(item);
-            }
 
             loadXmlData = true;
 
@@ -295,43 +252,39 @@ namespace XModules.GalManager
             //    GameAPI.Print("游戏结束!");
             //    return;
             //}
-            if (!loadXmlData)
-                return;
-
             //IsCanJump这里有问题，如果一直点击会为false，而不是说true，这是因为没有点击按钮 ，没有添加按钮
             if (GalManager_Text.IsSpeak || !GalManager_Text.IsCanJump) { return; }
 
-            if (!PlotData.IsBranch)
-            {
-                PlotData.MainPlot.TryDequeue(out PlotData.NowPlotDataNode);//队列出队+内联 出一个temp节点
-                PlotData.BranchPlotInfo.Clear();
-            }
-            else//当前为分支节点
-            {
-                //这块得妥善处理
-                PlotData.NowPlotDataNode = GetBranchByID(PlotData.NowJumpID);
-            }
-
             PlotData.ChoiceTextList.Clear();
+
             if (PlotData.NowPlotDataNode == null)
             {
-                GameAPI.Print("无效的剧情结点", "error");
-                return;
+                PlotData.NowPlotDataNode = PlotData.ListMainPlot[0];
+                Debug.Log("NowPlotDataNode 是空节点，从头开始");
+            }
+            else 
+            {
+                PlotData.NowPlotDataNode = PlotData.ListMainPlot[PlotData.NextJumpID-1];
+                Debug.Log($"正在运行 {PlotData.NextJumpID} 节点");
             }
 
             DisableAllText();
 
-
             switch (PlotData.NowPlotDataNode.Name.ToString())
             {
+                case "NextChapter"://空节点
+                    {
+                        PlotData.NextJumpID = int.Parse(PlotData.NowPlotDataNode.Attribute("JumpId").Value);
+                        Button_Click_NextPlot();
+
+                        break;
+                    }
                 case "AddCharacter"://处理添加角色信息的东西
                     {
                         var characterInfo = new Struct_CharacterInfo();
                         var _CharacterId = PlotData.NowPlotDataNode.Attribute("CharacterID").Value;
                         characterInfo.name = PlotData.NowPlotDataNode.Attribute("CharacterName").Value;
                         characterInfo.image = PlotData.NowPlotDataNode.Attribute("CharacterImage").Value;
-
-
                         characterInfo.characterID = _CharacterId;
                         characterInfo.isSelf = PlotData.NowPlotDataNode.Attribute("IsSelf").Value == "True";
 
@@ -339,7 +292,6 @@ namespace XModules.GalManager
                         {
                             SelfCharacterInfo = characterInfo;
                         }
-
                         
                         character_img.SetImage(characterInfo.image);
 
@@ -349,8 +301,10 @@ namespace XModules.GalManager
                         }
 
                         PlotData.CharacterInfoList.Add(characterInfo);
+                        PlotData.NextJumpID = int.Parse(PlotData.NowPlotDataNode.Attribute("JumpId").Value);
 
                         Button_Click_NextPlot();
+
                         break;
                     }
                 case "SpeakAside": //处理旁白
@@ -360,6 +314,8 @@ namespace XModules.GalManager
 
                         if (PlotData.NowPlotDataNode.Attributes("AudioPath").Count() != 0)
                             PlayAudio(PlotData.NowPlotDataNode.Attribute("AudioPath").Value);
+
+                        PlotData.NextJumpID = int.Parse(PlotData.NowPlotDataNode.Attribute("JumpId").Value);
 
                         break;
                     }
@@ -375,7 +331,7 @@ namespace XModules.GalManager
                             foreach (var ClildItem in PlotData.NowPlotDataNode.Elements())
                             {
                                 if (ClildItem.Name.ToString() == "Choice")
-                                    PlotData.ChoiceTextList.Add(new Struct_Choice { Title = ClildItem.Value, JumpID = ClildItem.Attribute("JumpID").Value });
+                                    PlotData.ChoiceTextList.Add(new Struct_Choice { Title = ClildItem.Value, JumpID = int.Parse(ClildItem.Attribute("JumpId").Value) });
                             }
 
                             Gal_Message.SetActive(true);
@@ -410,7 +366,7 @@ namespace XModules.GalManager
                                 foreach (var ClildItem in PlotData.NowPlotDataNode.Elements())
                                 {
                                     if (ClildItem.Name.ToString() == "Choice")
-                                        PlotData.ChoiceTextList.Add(new Struct_Choice { Title = ClildItem.Value, JumpID = ClildItem.Attribute("JumpID").Value });
+                                        PlotData.ChoiceTextList.Add(new Struct_Choice { Title = ClildItem.Value, JumpID = int.Parse(ClildItem.Attribute("JumpId").Value) });
 
                                 }
                                 Gal_SelfText.StartTextContent(PlotData.NowPlotDataNode.Attribute("Content").Value, characterInfo.name, () =>
@@ -422,12 +378,14 @@ namespace XModules.GalManager
                             else
                             {
                                 Gal_SelfText.StartTextContent(PlotData.NowPlotDataNode.Attribute("Content").Value, characterInfo.name);
+                                PlotData.NextJumpID = int.Parse(PlotData.NowPlotDataNode.Attribute("JumpId").Value);
                             }
                         }
                         else
                         {
                             Gal_OtherText.SetActive(true);
                             Gal_OtherText.StartTextContent(PlotData.NowPlotDataNode.Attribute("Content").Value, characterInfo.name);
+                            PlotData.NextJumpID = int.Parse(PlotData.NowPlotDataNode.Attribute("JumpId").Value);
                         }
 
                         //处理消息
@@ -440,9 +398,9 @@ namespace XModules.GalManager
                 case "ChangeBackImg"://更换背景图片
                     {
                         var _Path = PlotData.NowPlotDataNode.Attribute("Path").Value;
-
-                    
                         Gal_BackImg.SetImage(_Path);
+
+                        PlotData.NextJumpID = int.Parse(PlotData.NowPlotDataNode.Attribute("JumpId").Value);
                         Button_Click_NextPlot();
                         break;
                     }
@@ -450,26 +408,25 @@ namespace XModules.GalManager
                     {
                         character_img.SetActive(true);
                         DestroyCharacterByID(PlotData.NowPlotDataNode.Attribute("CharacterID").Value);
+                        PlotData.NextJumpID = int.Parse(PlotData.NowPlotDataNode.Attribute("JumpId").Value);
+
                         break;
                     }
                 case "Video":
                     {
                         var _Path = PlotData.NowPlotDataNode.Attribute("Path").Value;
+                        PlotData.NextJumpID = int.Parse(PlotData.NowPlotDataNode.Attribute("JumpId").Value);
 
                         XGUIManager.Instance.OpenView("VideoView",UILayer.VideoLayer, Button_Click_NextPlot, _Path);
-
                         break;
                     }
                 case "ExitGame":
-                {
+                    {
                         ClearGame();
                         break;
-                }
+                    }
             }
-            if (PlotData.BranchPlotInfo.Count == 0)
-            {
-                PlotData.IsBranch = false;
-            }
+
             return;
         }
         public void Button_Click_FastMode ()
@@ -483,17 +440,6 @@ namespace XModules.GalManager
             return PlotData.CharacterInfoList.Find(t => t.characterID == ID);
         }
 
-        public XElement GetBranchByID (string ID)
-        {
-            if (PlotData.BranchPlotInfo.Count == 0)
-                foreach (var item in PlotData.BranchPlot.Find(t => t.Attribute("ID").Value == ID).Elements())
-                {
-                    PlotData.BranchPlotInfo.Enqueue(item);
-
-                }
-            PlotData.BranchPlotInfo.TryDequeue(out XElement t);
-            return t;
-        }
         /// <summary>
         /// 销毁一个角色
         /// </summary>
@@ -516,18 +462,6 @@ namespace XModules.GalManager
 
         private void PlayAudio (string fileName)
         {
-            ////获取.wav文件，并转成AudioClip
-            //GameAPI.Print($"{GameAPI.GetWritePath()}/{fileName}");
-            //UnityWebRequest www = UnityWebRequestMultimedia.GetAudioClip($"{GameAPI.GetWritePath()}/HGF/Audio/Plot/{fileName}", AudioType.MPEG);
-            ////等待转换完成
-            //yield return www.SendWebRequest();
-            ////获取AudioClip
-            //AudioClip audioClip = DownloadHandlerAudioClip.GetContent(www);
-            ////设置当前AudioSource组件的AudioClip
-            //audioSource.clip = audioClip;
-            ////播放声音
-            //audioSource.Play();
-
             Debug.Log("播放了声音:" + fileName);
 
             XAudio.XAudioManager.instance.PlayGameMusic(fileName);
