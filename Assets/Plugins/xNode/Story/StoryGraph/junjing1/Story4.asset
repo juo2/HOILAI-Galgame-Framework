@@ -1,0 +1,2378 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8609044333107727616
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f90bfcf430c22d6418e445a2cad8e34c, type: 3}
+  m_Name: Story Speak
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 1624, y: 216}
+  ports:
+    keys:
+    - In
+    - Out
+    - outOpt1
+    - outOpt2
+    - outOpt3
+    - outOpt4
+    values:
+    - _fieldName: In
+      _node: {fileID: -8609044333107727616}
+      _typeQualifiedName: XNode.Story.Empty, Assembly-CSharp-firstpass, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: Out
+        node: {fileID: 2818467922801912622}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: Out
+      _node: {fileID: -8609044333107727616}
+      _typeQualifiedName: XNode.Story.Empty, Assembly-CSharp-firstpass, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: In
+        node: {fileID: 8626512835415685544}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: outOpt1
+      _node: {fileID: -8609044333107727616}
+      _typeQualifiedName: XNode.Story.Choice, Assembly-CSharp-firstpass, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: outOpt2
+      _node: {fileID: -8609044333107727616}
+      _typeQualifiedName: XNode.Story.Choice, Assembly-CSharp-firstpass, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: outOpt3
+      _node: {fileID: -8609044333107727616}
+      _typeQualifiedName: XNode.Story.Choice, Assembly-CSharp-firstpass, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: outOpt4
+      _node: {fileID: -8609044333107727616}
+      _typeQualifiedName: XNode.Story.Choice, Assembly-CSharp-firstpass, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  isChangeColor: 0
+  isError: 0
+  ID: 3
+  image: 3.png
+  content: "\u6211\u6709\u4E00\u4E2A\u670B\u53CB\u5728\u4E8E\u6C0F\u96C6\u56E2\u5DE5\u4F5C\uFF0C\u4ED6\u900F\u9732\u7ED9\u6211\u4E86\u4E00\u4E9B\u5185\u90E8\u4FE1\u606F\u3002\u6211\u89C9\u5F97\u8FD9\u4E2A\u9879\u76EE\u4F1A\u5F15\u8D77\u5F88\u5927\u7684\u8F70\u52A8\uFF0C\u6211\u4EEC\u53EF\u4EE5\u901A\u8FC7\u72EC\u5BB6\u62A5\u9053\u6765\u5438\u5F15\u66F4\u591A\u7684\u8BFB\u8005\u3002"
+  animate: 0
+  audio: 
+  isJump: 0
+  opt1: 
+  opt2: 
+  opt3: 
+  opt4: 
+--- !u!114 &-8186142545524208319
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1490394837d404134ad586492943d4a5, type: 3}
+  m_Name: Story Message
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 2952, y: 120}
+  ports:
+    keys:
+    - In
+    - Out
+    - outOpt1
+    - outOpt2
+    - outOpt3
+    - outOpt4
+    values:
+    - _fieldName: In
+      _node: {fileID: -8186142545524208319}
+      _typeQualifiedName: XNode.Story.Empty, Assembly-CSharp-firstpass, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: Out
+        node: {fileID: -4808446015653503871}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: Out
+      _node: {fileID: -8186142545524208319}
+      _typeQualifiedName: XNode.Story.Empty, Assembly-CSharp-firstpass, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: outOpt1
+      _node: {fileID: -8186142545524208319}
+      _typeQualifiedName: XNode.Story.Choice, Assembly-CSharp-firstpass, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: In
+        node: {fileID: -2546269815522119755}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: outOpt2
+      _node: {fileID: -8186142545524208319}
+      _typeQualifiedName: XNode.Story.Choice, Assembly-CSharp-firstpass, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: In
+        node: {fileID: -8164441119039175887}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: outOpt3
+      _node: {fileID: -8186142545524208319}
+      _typeQualifiedName: XNode.Story.Choice, Assembly-CSharp-firstpass, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: outOpt4
+      _node: {fileID: -8186142545524208319}
+      _typeQualifiedName: XNode.Story.Choice, Assembly-CSharp-firstpass, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  isChangeColor: 0
+  isError: 0
+  image: 3.png
+  opt1: "\u51C6\u5907\u9762\u8BD5\uFF0C\u5BFB\u627E\u526F\u4E1A\u673A\u4F1A"
+  opt2: "\u5BFB\u627E\u5176\u4ED6\u89E3\u51B3\u529E\u6CD5\u6765\u6539\u5584\u7ECF\u6D4E\u72B6\u51B5"
+  opt3: 
+  opt4: 
+--- !u!114 &-8164441119039175887
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2560b8359a5343a9af337a6640da7bf, type: 3}
+  m_Name: Story Speak Aside
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 3640, y: 200}
+  ports:
+    keys:
+    - In
+    - Out
+    values:
+    - _fieldName: In
+      _node: {fileID: -8164441119039175887}
+      _typeQualifiedName: XNode.Story.Empty, Assembly-CSharp-firstpass, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: Out
+        node: {fileID: -2546269815522119755}
+        reroutePoints: []
+      - fieldName: outOpt2
+        node: {fileID: -8186142545524208319}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: Out
+      _node: {fileID: -8164441119039175887}
+      _typeQualifiedName: XNode.Story.Empty, Assembly-CSharp-firstpass, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: In
+        node: {fileID: 4987260757996732414}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  isChangeColor: 0
+  isError: 0
+  content: "\u5C1D\u8BD5\u526F\u4E1A\u8D5A\u4E86\u4E00\u7B14\u94B1"
+  audio: 
+--- !u!114 &-7627269837543721606
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2560b8359a5343a9af337a6640da7bf, type: 3}
+  m_Name: Story Speak Aside
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 2504, y: -8}
+  ports:
+    keys:
+    - In
+    - Out
+    values:
+    - _fieldName: In
+      _node: {fileID: -7627269837543721606}
+      _typeQualifiedName: XNode.Story.Empty, Assembly-CSharp-firstpass, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: Out
+        node: {fileID: -4777450042020993965}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: Out
+      _node: {fileID: -7627269837543721606}
+      _typeQualifiedName: XNode.Story.Empty, Assembly-CSharp-firstpass, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: In
+        node: {fileID: -4808446015653503871}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  isChangeColor: 0
+  isError: 0
+  content: "\uFF08\u4F60\u63A5\u53D7\u4E86\u517C\u804C\u5DE5\u4F5C\uFF0C\u5728\u665A\u4E0A\u7684\u9910\u5385\u5F53\u8D77\u4E86\u670D\u52A1\u5458\u3002\uFF09
+    \u4F60\u52AA\u529B\u5DE5\u4F5C\uFF0C\u5C3D\u529B\u63D0\u4F9B\u4F18\u8D28\u7684\u670D\u52A1\uFF0C\u4EE5\u8D5A\u53D6\u989D\u5916\u7684\u6536\u5165\u3002"
+  audio: 
+--- !u!114 &-7200996635975285095
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1490394837d404134ad586492943d4a5, type: 3}
+  m_Name: Story Message
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 648, y: 72}
+  ports:
+    keys:
+    - In
+    - Out
+    - outOpt1
+    - outOpt2
+    - outOpt3
+    - outOpt4
+    values:
+    - _fieldName: In
+      _node: {fileID: -7200996635975285095}
+      _typeQualifiedName: XNode.Story.Empty, Assembly-CSharp-firstpass, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: Out
+        node: {fileID: 8788763635178283096}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: Out
+      _node: {fileID: -7200996635975285095}
+      _typeQualifiedName: XNode.Story.Empty, Assembly-CSharp-firstpass, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: outOpt1
+      _node: {fileID: -7200996635975285095}
+      _typeQualifiedName: XNode.Story.Choice, Assembly-CSharp-firstpass, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: In
+        node: {fileID: 6166395393851478068}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: outOpt2
+      _node: {fileID: -7200996635975285095}
+      _typeQualifiedName: XNode.Story.Choice, Assembly-CSharp-firstpass, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: In
+        node: {fileID: -2347670983323819453}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: outOpt3
+      _node: {fileID: -7200996635975285095}
+      _typeQualifiedName: XNode.Story.Choice, Assembly-CSharp-firstpass, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: outOpt4
+      _node: {fileID: -7200996635975285095}
+      _typeQualifiedName: XNode.Story.Choice, Assembly-CSharp-firstpass, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  isChangeColor: 0
+  isError: 0
+  image: 3.png
+  opt1: "\u63A5\u53D7\u603B\u7F16\u7684\u51B3\u5B9A\uFF0C\u9ED8\u9ED8\u79BB\u5F00\u529E\u516C\u5BA4\uFF0C\u9ED8\u9ED8\u79BB\u5F00\u529E\u516C\u5BA4"
+  opt2: "\u62FF\u51FA\u4E8E\u6C0F\u96C6\u56E2\u673A\u5BC6\u9879\u76EE\u8BA1\u5212\u8BA9\u603B\u7F16\u7ED9\u6D3B\u8DEF"
+  opt3: 
+  opt4: 
+--- !u!114 &-7177533538140424860
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e68dfd84ff1464a79b24bdc805e5cb3d, type: 3}
+  m_Name: Story Background
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: -1048, y: -88}
+  ports:
+    keys:
+    - In
+    - Out
+    values:
+    - _fieldName: In
+      _node: {fileID: -7177533538140424860}
+      _typeQualifiedName: XNode.Story.Empty, Assembly-CSharp-firstpass, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: Out
+        node: {fileID: -5526345120775307461}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: Out
+      _node: {fileID: -7177533538140424860}
+      _typeQualifiedName: XNode.Story.Empty, Assembly-CSharp-firstpass, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: In
+        node: {fileID: 4386766214273861046}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  isChangeColor: 0
+  isError: 0
+  background: office.png
+--- !u!114 &-6950061501765351187
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f90bfcf430c22d6418e445a2cad8e34c, type: 3}
+  m_Name: Story Speak
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 1112, y: 104}
+  ports:
+    keys:
+    - In
+    - Out
+    - outOpt1
+    - outOpt2
+    - outOpt3
+    - outOpt4
+    values:
+    - _fieldName: In
+      _node: {fileID: -6950061501765351187}
+      _typeQualifiedName: XNode.Story.Empty, Assembly-CSharp-firstpass, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: Out
+        node: {fileID: -2347670983323819453}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: Out
+      _node: {fileID: -6950061501765351187}
+      _typeQualifiedName: XNode.Story.Empty, Assembly-CSharp-firstpass, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: In
+        node: {fileID: 2818467922801912622}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: outOpt1
+      _node: {fileID: -6950061501765351187}
+      _typeQualifiedName: XNode.Story.Choice, Assembly-CSharp-firstpass, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: outOpt2
+      _node: {fileID: -6950061501765351187}
+      _typeQualifiedName: XNode.Story.Choice, Assembly-CSharp-firstpass, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: outOpt3
+      _node: {fileID: -6950061501765351187}
+      _typeQualifiedName: XNode.Story.Choice, Assembly-CSharp-firstpass, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: outOpt4
+      _node: {fileID: -6950061501765351187}
+      _typeQualifiedName: XNode.Story.Choice, Assembly-CSharp-firstpass, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  isChangeColor: 0
+  isError: 0
+  ID: 3
+  image: 3.png
+  content: "\u603B\u7F16\uFF0C\u8BF7\u60A8\u770B\u770B\u8FD9\u4E2A\u3002\u8FD9\u662F\u6211\u6700\u8FD1\u53D1\u73B0\u7684\u4E8E\u6C0F\u96C6\u56E2\u7684\u673A\u5BC6\u9879\u76EE\u8BA1\u5212\uFF0C\u6211\u8BA4\u4E3A\u8FD9\u5BF9\u6211\u4EEC\u7684\u6742\u5FD7\u6709\u5F88\u5927\u7684\u72EC\u5BB6\u4EF7\u503C\u3002"
+  animate: 0
+  audio: 
+  isJump: 0
+  opt1: 
+  opt2: 
+  opt3: 
+  opt4: 
+--- !u!114 &-6564851506359890709
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f90bfcf430c22d6418e445a2cad8e34c, type: 3}
+  m_Name: Story Speak
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 1512, y: -104}
+  ports:
+    keys:
+    - In
+    - Out
+    - outOpt1
+    - outOpt2
+    - outOpt3
+    - outOpt4
+    values:
+    - _fieldName: In
+      _node: {fileID: -6564851506359890709}
+      _typeQualifiedName: XNode.Story.Empty, Assembly-CSharp-firstpass, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: outOpt2
+        node: {fileID: 841515927261329673}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: Out
+      _node: {fileID: -6564851506359890709}
+      _typeQualifiedName: XNode.Story.Empty, Assembly-CSharp-firstpass, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: In
+        node: {fileID: -2752113519173737701}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: outOpt1
+      _node: {fileID: -6564851506359890709}
+      _typeQualifiedName: XNode.Story.Choice, Assembly-CSharp-firstpass, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: outOpt2
+      _node: {fileID: -6564851506359890709}
+      _typeQualifiedName: XNode.Story.Choice, Assembly-CSharp-firstpass, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: outOpt3
+      _node: {fileID: -6564851506359890709}
+      _typeQualifiedName: XNode.Story.Choice, Assembly-CSharp-firstpass, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: outOpt4
+      _node: {fileID: -6564851506359890709}
+      _typeQualifiedName: XNode.Story.Choice, Assembly-CSharp-firstpass, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  isChangeColor: 0
+  isError: 0
+  ID: 3
+  image: 3.png
+  content: "\u623F\u4E1C\uFF0C\u5B9E\u9645\u4E0A\u6211\u6700\u8FD1\u9047\u5230\u4E86\u4E00\u4E9B\u7ECF\u6D4E\u56F0\u96BE\uFF0C\u6682\u65F6\u65E0\u6CD5\u6309\u65F6\u652F\u4ED8\u623F\u79DF\u3002\u6211\u4F1A\u5C3D\u5FEB\u89E3\u51B3\u8FD9\u4E2A\u95EE\u9898\uFF0C\u5E0C\u671B\u60A8\u80FD\u7ED9\u6211\u4E00\u4E9B\u5BBD\u9650\u3002"
+  animate: 0
+  audio: 
+  isJump: 0
+  opt1: 
+  opt2: 
+  opt3: 
+  opt4: 
+--- !u!114 &-5526345120775307461
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 988f2b9968468134fb33d287f7df3fa5, type: 3}
+  m_Name: Story Add Character
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: -1320, y: -120}
+  ports:
+    keys:
+    - In
+    - Out
+    values:
+    - _fieldName: In
+      _node: {fileID: -5526345120775307461}
+      _typeQualifiedName: XNode.Story.Empty, Assembly-CSharp-firstpass, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: Out
+      _node: {fileID: -5526345120775307461}
+      _typeQualifiedName: XNode.Story.Empty, Assembly-CSharp-firstpass, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: In
+        node: {fileID: -7177533538140424860}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  isChangeColor: 0
+  isError: 0
+  ID: zongbian
+  image: zongbian.png
+  p_name: 
+  isSelf: 0
+  animate: 0
+--- !u!114 &-4808446015653503871
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2560b8359a5343a9af337a6640da7bf, type: 3}
+  m_Name: Story Speak Aside
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 2728, y: 8}
+  ports:
+    keys:
+    - In
+    - Out
+    values:
+    - _fieldName: In
+      _node: {fileID: -4808446015653503871}
+      _typeQualifiedName: XNode.Story.Empty, Assembly-CSharp-firstpass, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: Out
+        node: {fileID: -7627269837543721606}
+        reroutePoints: []
+      - fieldName: Out
+        node: {fileID: 3032638659917522535}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: Out
+      _node: {fileID: -4808446015653503871}
+      _typeQualifiedName: XNode.Story.Empty, Assembly-CSharp-firstpass, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: In
+        node: {fileID: -8186142545524208319}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  isChangeColor: 0
+  isError: 0
+  content: "\uFF08\u4F60\u52AA\u529B\u5DE5\u4F5C\uFF0C\u6BCF\u5929\u52E4\u594B\u5730\u4E3A\u5BA2\u4EBA\u63D0\u4F9B\u670D\u52A1\uFF0C\u8D5A\u53D6\u8DB3\u591F\u7684\u94B1\u652F\u4ED8\u623F\u79DF\u3002\uFF09
+    \u7ECF\u8FC7\u51E0\u5929\u7684\u8F9B\u52E4\u52AA\u529B\uFF0C\u4F60\u6210\u529F\u5730\u8D5A\u53D6\u4E86\u8DB3\u591F\u7684\u94B1\u652F\u4ED8\u4E86\u903E\u671F\u7684\u623F\u79DF\u3002\u4F60\u611F\u5230\u4E00\u79CD\u83AB\u5927\u7684\u6EE1\u8DB3\u548C\u89E3\u8131\uFF0C\u540C\u65F6\u4E5F\u5BF9\u81EA\u5DF1\u7684\u80FD\u529B\u548C\u6BC5\u529B\u611F\u5230\u81EA\u8C6A\u3002
+    \u4F46\u662F\uFF0C\u4F60\u5E76\u6CA1\u6709\u505C\u4E0B\u811A\u6B65\u3002\u4F60\u7EE7\u7EED\u5BFB\u627E\u65B0\u7684\u5DE5\u4F5C\u673A\u4F1A\uFF0C\u60F3\u8981\u786E\u4FDD\u81EA\u5DF1\u80FD\u591F\u7A33\u5B9A\u5730\u8D1F\u62C5\u8D77\u751F\u6D3B\u8D39\u7528\u548C\u623F\u79DF\u3002\u4F60\u5229\u7528\u4F60\u7684\u4EBA\u8109\u548C\u7ECF\u9A8C\uFF0C\u79EF\u6781\u5730\u7533\u8BF7\u5404\u79CD\u804C\u4F4D\uFF0C\u5E76\u53C2\u52A0\u9762\u8BD5\u3002"
+  audio: 
+--- !u!114 &-4777450042020993965
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2560b8359a5343a9af337a6640da7bf, type: 3}
+  m_Name: Story Speak Aside
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 2280, y: -24}
+  ports:
+    keys:
+    - In
+    - Out
+    values:
+    - _fieldName: In
+      _node: {fileID: -4777450042020993965}
+      _typeQualifiedName: XNode.Story.Empty, Assembly-CSharp-firstpass, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: outOpt1
+        node: {fileID: 5367672649206727342}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: Out
+      _node: {fileID: -4777450042020993965}
+      _typeQualifiedName: XNode.Story.Empty, Assembly-CSharp-firstpass, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: In
+        node: {fileID: -7627269837543721606}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  isChangeColor: 0
+  isError: 0
+  content: "\uFF08\u4F60\u51B3\u5B9A\u5BFB\u627E\u517C\u804C\u5DE5\u4F5C\uFF0C\u4EE5\u8D5A\u53D6\u989D\u5916\u7684\u6536\u5165\u6765\u652F\u4ED8\u623F\u79DF\u3002\uFF09
+    \u4F60\u5229\u7528\u7F51\u7EDC\u8D44\u6E90\u548C\u793E\u4EA4\u5173\u7CFB\u5F00\u59CB\u5BFB\u627E\u517C\u804C\u673A\u4F1A\u3002\u7ECF\u8FC7\u4E00\u756A\u52AA\u529B\uFF0C\u4F60\u627E\u5230\u4E86\u4E00\u4E2A\u4E34\u65F6\u7684\u670D\u52A1\u5458\u5C97\u4F4D\uFF0C\u53EF\u4EE5\u5728\u665A\u4E0A\u7684\u9910\u5385\u5DE5\u4F5C\u3002"
+  audio: 
+--- !u!114 &-3413935261361348860
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1490394837d404134ad586492943d4a5, type: 3}
+  m_Name: Story Message
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 104, y: -152}
+  ports:
+    keys:
+    - In
+    - Out
+    - outOpt1
+    - outOpt2
+    - outOpt3
+    - outOpt4
+    values:
+    - _fieldName: In
+      _node: {fileID: -3413935261361348860}
+      _typeQualifiedName: XNode.Story.Empty, Assembly-CSharp-firstpass, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: Out
+        node: {fileID: 1331646939579007466}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: Out
+      _node: {fileID: -3413935261361348860}
+      _typeQualifiedName: XNode.Story.Empty, Assembly-CSharp-firstpass, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: outOpt1
+      _node: {fileID: -3413935261361348860}
+      _typeQualifiedName: XNode.Story.Choice, Assembly-CSharp-firstpass, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: In
+        node: {fileID: 6166395393851478068}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: outOpt2
+      _node: {fileID: -3413935261361348860}
+      _typeQualifiedName: XNode.Story.Choice, Assembly-CSharp-firstpass, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: In
+        node: {fileID: 8788763635178283096}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: outOpt3
+      _node: {fileID: -3413935261361348860}
+      _typeQualifiedName: XNode.Story.Choice, Assembly-CSharp-firstpass, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: outOpt4
+      _node: {fileID: -3413935261361348860}
+      _typeQualifiedName: XNode.Story.Choice, Assembly-CSharp-firstpass, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  isChangeColor: 0
+  isError: 0
+  image: 3.png
+  opt1: "\u63A5\u53D7\u603B\u7F16\u7684\u51B3\u5B9A\uFF0C\u9ED8\u9ED8\u79BB\u5F00\u529E\u516C\u5BA4"
+  opt2: "\u7EE7\u7EED\u82E6\u82E6\u54C0\u6C42\u603B\u7F16"
+  opt3: 
+  opt4: 
+--- !u!114 &-2752113519173737701
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f90bfcf430c22d6418e445a2cad8e34c, type: 3}
+  m_Name: Story Speak
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 1736, y: -8}
+  ports:
+    keys:
+    - In
+    - Out
+    - outOpt1
+    - outOpt2
+    - outOpt3
+    - outOpt4
+    values:
+    - _fieldName: In
+      _node: {fileID: -2752113519173737701}
+      _typeQualifiedName: XNode.Story.Empty, Assembly-CSharp-firstpass, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: Out
+        node: {fileID: -6564851506359890709}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: Out
+      _node: {fileID: -2752113519173737701}
+      _typeQualifiedName: XNode.Story.Empty, Assembly-CSharp-firstpass, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: In
+        node: {fileID: 214718723530358338}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: outOpt1
+      _node: {fileID: -2752113519173737701}
+      _typeQualifiedName: XNode.Story.Choice, Assembly-CSharp-firstpass, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: outOpt2
+      _node: {fileID: -2752113519173737701}
+      _typeQualifiedName: XNode.Story.Choice, Assembly-CSharp-firstpass, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: outOpt3
+      _node: {fileID: -2752113519173737701}
+      _typeQualifiedName: XNode.Story.Choice, Assembly-CSharp-firstpass, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: outOpt4
+      _node: {fileID: -2752113519173737701}
+      _typeQualifiedName: XNode.Story.Choice, Assembly-CSharp-firstpass, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  isChangeColor: 0
+  isError: 1
+  ID: zongbian
+  image: 
+  content: "\u4F60\u5DF2\u7ECF\u62D6\u6B20\u4E86\u597D\u51E0\u4E2A\u6708\u7684\u623F\u79DF\uFF0C\u6211\u4E5F\u4E0D\u80FD\u4E00\u76F4\u7B49\u4E0B\u53BB\u3002\u5982\u679C\u4E09\u5929\u5185\u8FD8\u6CA1\u6709\u6536\u5230\u623F\u79DF\uFF0C\u6211\u5C06\u88AB\u8FEB\u91C7\u53D6\u6CD5\u5F8B\u884C\u52A8\u3002"
+  animate: 0
+  audio: 
+  isJump: 0
+  opt1: 
+  opt2: 
+  opt3: 
+  opt4: 
+--- !u!114 &-2546269815522119755
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2560b8359a5343a9af337a6640da7bf, type: 3}
+  m_Name: Story Speak Aside
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 3352, y: -8}
+  ports:
+    keys:
+    - In
+    - Out
+    values:
+    - _fieldName: In
+      _node: {fileID: -2546269815522119755}
+      _typeQualifiedName: XNode.Story.Empty, Assembly-CSharp-firstpass, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: outOpt1
+        node: {fileID: -8186142545524208319}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: Out
+      _node: {fileID: -2546269815522119755}
+      _typeQualifiedName: XNode.Story.Empty, Assembly-CSharp-firstpass, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: In
+        node: {fileID: -8164441119039175887}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  isChangeColor: 0
+  isError: 0
+  content: "\u51C6\u5907\u9762\u8BD5\uFF0C\u5BFB\u627E\u65B0\u7684\u5DE5\u4F5C\u673A\u4F1A
+    \u4F60\u5F00\u59CB\u51C6\u5907\u9762\u8BD5\uFF0C\u67E5\u9605\u516C\u53F8\u8D44\u6599\uFF0C\u6574\u7406\u81EA\u5DF1\u7684\u7B80\u5386\u5E76\u8FDB\u884C\u81EA\u6211\u63A8\u9500\u3002\u4F60\u5BF9\u6BCF\u4E2A\u9762\u8BD5\u673A\u4F1A\u90FD\u5145\u6EE1\u671F\u5F85\uFF0C\u5E76\u8BA4\u771F\u51C6\u5907\u56DE\u7B54\u53EF\u80FD\u7684\u95EE\u9898\u3002\u5728\u63A5\u4E0B\u6765\u7684\u51E0\u5468\u91CC\uFF0C\u4F60\u53C2\u52A0\u4E86\u591A\u4E2A\u9762\u8BD5\uFF0C\u5C55\u793A\u4E86\u81EA\u5DF1\u7684\u6280\u80FD\u548C\u7ECF\u9A8C\u3002\u4E00\u4E9B\u9762\u8BD5\u8FDB\u5C55\u987A\u5229\uFF0C\u4F60\u53D7\u5230\u4E86\u51E0\u5BB6\u516C\u53F8\u7684\u9752\u7750\uFF0C\u5E76\u6700\u7EC8\u63A5\u5230\u4E86\u4E00\u4EFD\u526F\u4E1A\u7684\u5DE5\u4F5C\u673A\u4F1A\u3002\u5C1D\u8BD5\u7ED9\u522B\u7684\u516C\u53F8\u63D0\u4F9B\u526F\u4E1A\u670D\u52A1"
+  audio: 
+--- !u!114 &-2347670983323819453
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2560b8359a5343a9af337a6640da7bf, type: 3}
+  m_Name: Story Speak Aside
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 888, y: 136}
+  ports:
+    keys:
+    - In
+    - Out
+    values:
+    - _fieldName: In
+      _node: {fileID: -2347670983323819453}
+      _typeQualifiedName: XNode.Story.Empty, Assembly-CSharp-firstpass, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: outOpt2
+        node: {fileID: -7200996635975285095}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: Out
+      _node: {fileID: -2347670983323819453}
+      _typeQualifiedName: XNode.Story.Empty, Assembly-CSharp-firstpass, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: In
+        node: {fileID: -6950061501765351187}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  isChangeColor: 0
+  isError: 0
+  content: "\u603B\u76D1\u770B\u4E86\u673A\u5BC6\u9879\u76EE\u8BA1\u5212\uFF0C\u6682\u65F6\u628A\u4F60\u7559\u4E0B
+    \uFF08\u4F60\u62FF\u51FA\u4E00\u4EFD\u4E8E\u6C0F\u96C6\u56E2\u7684\u673A\u5BC6\u9879\u76EE\u8BA1\u5212\uFF0C\u9012\u7ED9\u603B\u7F16\u3002\uFF09"
+  audio: 
+--- !u!114 &-1332666447345338565
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2560b8359a5343a9af337a6640da7bf, type: 3}
+  m_Name: Story Speak Aside
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 2280, y: 120}
+  ports:
+    keys:
+    - In
+    - Out
+    values:
+    - _fieldName: In
+      _node: {fileID: -1332666447345338565}
+      _typeQualifiedName: XNode.Story.Empty, Assembly-CSharp-firstpass, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: outOpt2
+        node: {fileID: 5367672649206727342}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: Out
+      _node: {fileID: -1332666447345338565}
+      _typeQualifiedName: XNode.Story.Empty, Assembly-CSharp-firstpass, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: In
+        node: {fileID: 3589867796501544111}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  isChangeColor: 0
+  isError: 0
+  content: "\uFF08\u4F60\u51B3\u5B9A\u5411\u670B\u53CB\u501F\u94B1\uFF0C\u4E34\u65F6\u7F13\u89E3\u56F0\u5883\u3002\uFF09
+    \u4F60\u8054\u7CFB\u4E86\u4F60\u6700\u4EB2\u8FD1\u7684\u670B\u53CB\uFF0C\u5411\u4ED6\u4EEC\u503E\u8BC9\u81EA\u5DF1\u7684\u56F0\u5883\uFF0C\u5E76\u8BF7\u6C42\u4ED6\u4EEC\u63D0\u4F9B\u4E00\u4E9B\u7ECF\u6D4E\u652F\u63F4\u3002"
+  audio: 
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57d5558d16be3884498a7c2374c082ce, type: 3}
+  m_Name: Story4
+  m_EditorClassIdentifier: 
+  nodes:
+  - {fileID: -7177533538140424860}
+  - {fileID: 4386766214273861046}
+  - {fileID: 6500107906528655662}
+  - {fileID: 1331646939579007466}
+  - {fileID: -3413935261361348860}
+  - {fileID: 6166395393851478068}
+  - {fileID: 1835068347970164399}
+  - {fileID: 4125705167794910030}
+  - {fileID: 4884595771655983536}
+  - {fileID: 841515927261329673}
+  - {fileID: 544507648997231732}
+  - {fileID: 5367672649206727342}
+  - {fileID: -4777450042020993965}
+  - {fileID: -1332666447345338565}
+  - {fileID: -7627269837543721606}
+  - {fileID: -4808446015653503871}
+  - {fileID: -8186142545524208319}
+  - {fileID: -2546269815522119755}
+  - {fileID: -8164441119039175887}
+  - {fileID: -7200996635975285095}
+  - {fileID: 8788763635178283096}
+  - {fileID: -2347670983323819453}
+  - {fileID: -6950061501765351187}
+  - {fileID: 2818467922801912622}
+  - {fileID: -8609044333107727616}
+  - {fileID: 8626512835415685544}
+  - {fileID: -6564851506359890709}
+  - {fileID: -2752113519173737701}
+  - {fileID: 214718723530358338}
+  - {fileID: 3589867796501544111}
+  - {fileID: 3032638659917522535}
+  - {fileID: 4987260757996732414}
+  - {fileID: -5526345120775307461}
+--- !u!114 &214718723530358338
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1490394837d404134ad586492943d4a5, type: 3}
+  m_Name: Story Message
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 2168, y: 184}
+  ports:
+    keys:
+    - In
+    - Out
+    - outOpt1
+    - outOpt2
+    - outOpt3
+    - outOpt4
+    values:
+    - _fieldName: In
+      _node: {fileID: 214718723530358338}
+      _typeQualifiedName: XNode.Story.Empty, Assembly-CSharp-firstpass, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: Out
+        node: {fileID: -2752113519173737701}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: Out
+      _node: {fileID: 214718723530358338}
+      _typeQualifiedName: XNode.Story.Empty, Assembly-CSharp-firstpass, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: outOpt1
+      _node: {fileID: 214718723530358338}
+      _typeQualifiedName: XNode.Story.Choice, Assembly-CSharp-firstpass, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: In
+        node: {fileID: 544507648997231732}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: outOpt2
+      _node: {fileID: 214718723530358338}
+      _typeQualifiedName: XNode.Story.Choice, Assembly-CSharp-firstpass, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: In
+        node: {fileID: 544507648997231732}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: outOpt3
+      _node: {fileID: 214718723530358338}
+      _typeQualifiedName: XNode.Story.Choice, Assembly-CSharp-firstpass, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: outOpt4
+      _node: {fileID: 214718723530358338}
+      _typeQualifiedName: XNode.Story.Choice, Assembly-CSharp-firstpass, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  isChangeColor: 0
+  isError: 0
+  image: 3.png
+  opt1: "\u5BFB\u627E\u89E3\u51B3\u529E\u6CD5\uFF0C\u5C3D\u5FEB\u7B79\u96C6\u8D44\u91D1"
+  opt2: "\u8BF7\u6C42\u623F\u4E1C\u518D\u7ED9\u4E00\u4E9B\u65F6\u95F4"
+  opt3: 
+  opt4: 
+--- !u!114 &544507648997231732
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2560b8359a5343a9af337a6640da7bf, type: 3}
+  m_Name: Story Speak Aside
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 1640, y: -264}
+  ports:
+    keys:
+    - In
+    - Out
+    values:
+    - _fieldName: In
+      _node: {fileID: 544507648997231732}
+      _typeQualifiedName: XNode.Story.Empty, Assembly-CSharp-firstpass, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: outOpt1
+        node: {fileID: 841515927261329673}
+        reroutePoints: []
+      - fieldName: outOpt1
+        node: {fileID: 214718723530358338}
+        reroutePoints: []
+      - fieldName: outOpt2
+        node: {fileID: 214718723530358338}
+        reroutePoints: []
+      - fieldName: outOpt2
+        node: {fileID: 3589867796501544111}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: Out
+      _node: {fileID: 544507648997231732}
+      _typeQualifiedName: XNode.Story.Empty, Assembly-CSharp-firstpass, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: In
+        node: {fileID: 5367672649206727342}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  isChangeColor: 0
+  isError: 0
+  content: "\uFF08\u4F60\u51B3\u5B9A\u5BFB\u627E\u89E3\u51B3\u529E\u6CD5\u6765\u5E94\u5BF9\u623F\u79DF\u95EE\u9898\u3002\uFF09
+    \u4F60\u5F00\u59CB\u601D\u8003\u600E\u6837\u624D\u80FD\u5C3D\u5FEB\u7B79\u96C6\u5230\u8D44\u91D1\u3002\u4F60\u56DE\u5FC6\u8D77\u81EA\u5DF1\u7684\u6280\u80FD\u548C\u8D44\u6E90\uFF0C\u5BFB\u627E\u89E3\u51B3\u65B9\u6848\u3002"
+  audio: 
+--- !u!114 &841515927261329673
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1490394837d404134ad586492943d4a5, type: 3}
+  m_Name: Story Message
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 1256, y: -248}
+  ports:
+    keys:
+    - In
+    - Out
+    - outOpt1
+    - outOpt2
+    - outOpt3
+    - outOpt4
+    values:
+    - _fieldName: In
+      _node: {fileID: 841515927261329673}
+      _typeQualifiedName: XNode.Story.Empty, Assembly-CSharp-firstpass, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: Out
+        node: {fileID: 4884595771655983536}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: Out
+      _node: {fileID: 841515927261329673}
+      _typeQualifiedName: XNode.Story.Empty, Assembly-CSharp-firstpass, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: outOpt1
+      _node: {fileID: 841515927261329673}
+      _typeQualifiedName: XNode.Story.Choice, Assembly-CSharp-firstpass, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: In
+        node: {fileID: 544507648997231732}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: outOpt2
+      _node: {fileID: 841515927261329673}
+      _typeQualifiedName: XNode.Story.Choice, Assembly-CSharp-firstpass, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: In
+        node: {fileID: -6564851506359890709}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: outOpt3
+      _node: {fileID: 841515927261329673}
+      _typeQualifiedName: XNode.Story.Choice, Assembly-CSharp-firstpass, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: outOpt4
+      _node: {fileID: 841515927261329673}
+      _typeQualifiedName: XNode.Story.Choice, Assembly-CSharp-firstpass, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  isChangeColor: 0
+  isError: 0
+  image: 3.png
+  opt1: "\u62D6\u5EF6\u65F6\u95F4\uFF0C\u5BFB\u627E\u89E3\u51B3\u529E\u6CD5"
+  opt2: "\u4E0E\u623F\u4E1C\u5766\u8BDA\u76F8\u544A"
+  opt3: 
+  opt4: 
+--- !u!114 &1331646939579007466
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f90bfcf430c22d6418e445a2cad8e34c, type: 3}
+  m_Name: Story Speak
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: -152, y: -120}
+  ports:
+    keys:
+    - In
+    - Out
+    - outOpt1
+    - outOpt2
+    - outOpt3
+    - outOpt4
+    values:
+    - _fieldName: In
+      _node: {fileID: 1331646939579007466}
+      _typeQualifiedName: XNode.Story.Empty, Assembly-CSharp-firstpass, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: Out
+        node: {fileID: 6500107906528655662}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: Out
+      _node: {fileID: 1331646939579007466}
+      _typeQualifiedName: XNode.Story.Empty, Assembly-CSharp-firstpass, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: In
+        node: {fileID: -3413935261361348860}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: outOpt1
+      _node: {fileID: 1331646939579007466}
+      _typeQualifiedName: XNode.Story.Choice, Assembly-CSharp-firstpass, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: outOpt2
+      _node: {fileID: 1331646939579007466}
+      _typeQualifiedName: XNode.Story.Choice, Assembly-CSharp-firstpass, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: outOpt3
+      _node: {fileID: 1331646939579007466}
+      _typeQualifiedName: XNode.Story.Choice, Assembly-CSharp-firstpass, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: outOpt4
+      _node: {fileID: 1331646939579007466}
+      _typeQualifiedName: XNode.Story.Choice, Assembly-CSharp-firstpass, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  isChangeColor: 0
+  isError: 1
+  ID: zongbian
+  image: 
+  content: "\u653E\u5F00\uFF0C\u4F60\u8FD9\u6837\u505A\u53EA\u4F1A\u8BA9\u4EBA\u4EA7\u751F\u8D1F\u9762\u8054\u60F3\u3002\u4E0A\u5B8C\u8FD9\u4E2A\u6708\u7684\u73ED\u5C31\u7ED9\u6211\uFF01\u4F60\u8FD8\u6709\u4E24\u5468\u7684\u65F6\u95F4\u5B8C\u6210\u6700\u540E\u4E00\u671F\u6742\u5FD7\uFF0C\u4E24\u5468\u7684\u65F6\u95F4\u627E\u5230\u4E0B\u4E00\u4EFD\u5DE5\u4F5C\u3002"
+  animate: 0
+  audio: 
+  isJump: 0
+  opt1: 
+  opt2: 
+  opt3: 
+  opt4: 
+--- !u!114 &1835068347970164399
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2560b8359a5343a9af337a6640da7bf, type: 3}
+  m_Name: Story Speak Aside
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 808, y: -232}
+  ports:
+    keys:
+    - In
+    - Out
+    values:
+    - _fieldName: In
+      _node: {fileID: 1835068347970164399}
+      _typeQualifiedName: XNode.Story.Empty, Assembly-CSharp-firstpass, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: Out
+        node: {fileID: 6166395393851478068}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: Out
+      _node: {fileID: 1835068347970164399}
+      _typeQualifiedName: XNode.Story.Empty, Assembly-CSharp-firstpass, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: In
+        node: {fileID: 4125705167794910030}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  isChangeColor: 0
+  isError: 0
+  content: "\u84DD\u5FC3\u5317\uFF01\u9650\u4F60\u4E09\u5929\u5185\u4EA4\u623F\u79DF\uFF0C\u518D\u4E0D\u4EA4\u6211\u5C31\u8981\u8D76\u4EBA\u4E86\uFF01\uFF01\uFF01"
+  audio: 
+--- !u!114 &2818467922801912622
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f90bfcf430c22d6418e445a2cad8e34c, type: 3}
+  m_Name: Story Speak
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 1384, y: 200}
+  ports:
+    keys:
+    - In
+    - Out
+    - outOpt1
+    - outOpt2
+    - outOpt3
+    - outOpt4
+    values:
+    - _fieldName: In
+      _node: {fileID: 2818467922801912622}
+      _typeQualifiedName: XNode.Story.Empty, Assembly-CSharp-firstpass, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: Out
+        node: {fileID: -6950061501765351187}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: Out
+      _node: {fileID: 2818467922801912622}
+      _typeQualifiedName: XNode.Story.Empty, Assembly-CSharp-firstpass, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: In
+        node: {fileID: -8609044333107727616}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: outOpt1
+      _node: {fileID: 2818467922801912622}
+      _typeQualifiedName: XNode.Story.Choice, Assembly-CSharp-firstpass, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: outOpt2
+      _node: {fileID: 2818467922801912622}
+      _typeQualifiedName: XNode.Story.Choice, Assembly-CSharp-firstpass, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: outOpt3
+      _node: {fileID: 2818467922801912622}
+      _typeQualifiedName: XNode.Story.Choice, Assembly-CSharp-firstpass, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: outOpt4
+      _node: {fileID: 2818467922801912622}
+      _typeQualifiedName: XNode.Story.Choice, Assembly-CSharp-firstpass, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  isChangeColor: 0
+  isError: 1
+  ID: zongbian
+  image: 
+  content: "\u8FD9...\u8FD9\u786E\u5B9E\u662F\u4E2A\u4E0D\u9519\u7684\u53D1\u73B0\u3002\u4F60\u5BF9\u4E8E\u6C0F\u96C6\u56E2\u7684\u4E86\u89E3\u662F\u600E\u4E48\u6765\u7684\uFF1F"
+  animate: 0
+  audio: 
+  isJump: 0
+  opt1: 
+  opt2: 
+  opt3: 
+  opt4: 
+--- !u!114 &3032638659917522535
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2560b8359a5343a9af337a6640da7bf, type: 3}
+  m_Name: Story Speak Aside
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 2760, y: 216}
+  ports:
+    keys:
+    - In
+    - Out
+    values:
+    - _fieldName: In
+      _node: {fileID: 3032638659917522535}
+      _typeQualifiedName: XNode.Story.Empty, Assembly-CSharp-firstpass, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: outOpt1
+        node: {fileID: 3589867796501544111}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: Out
+      _node: {fileID: 3032638659917522535}
+      _typeQualifiedName: XNode.Story.Empty, Assembly-CSharp-firstpass, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: In
+        node: {fileID: -4808446015653503871}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  isChangeColor: 0
+  isError: 0
+  content: "\uFF08\u4F60\u6210\u529F\u5730\u501F\u5230\u4E86\u670B\u53CB\u7684\u94B1\uFF0C\u89E3\u51B3\u4E86\u623F\u79DF\u95EE\u9898\u3002\uFF09
+    \u611F\u6FC0\u4E4B\u60C5\u6D8C\u4E0A\u5FC3\u5934\uFF0C\u4F60\u51B3\u5B9A\u5C3D\u5FEB\u507F\u8FD8\u501F\u6B3E\uFF0C\u540C\u65F6\u5BFB\u627E\u526F\u4E1A\u673A\u4F1A\u3002"
+  audio: 
+--- !u!114 &3589867796501544111
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1490394837d404134ad586492943d4a5, type: 3}
+  m_Name: Story Message
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 2488, y: 216}
+  ports:
+    keys:
+    - In
+    - Out
+    - outOpt1
+    - outOpt2
+    - outOpt3
+    - outOpt4
+    values:
+    - _fieldName: In
+      _node: {fileID: 3589867796501544111}
+      _typeQualifiedName: XNode.Story.Empty, Assembly-CSharp-firstpass, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: Out
+        node: {fileID: -1332666447345338565}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: Out
+      _node: {fileID: 3589867796501544111}
+      _typeQualifiedName: XNode.Story.Empty, Assembly-CSharp-firstpass, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: outOpt1
+      _node: {fileID: 3589867796501544111}
+      _typeQualifiedName: XNode.Story.Choice, Assembly-CSharp-firstpass, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: In
+        node: {fileID: 3032638659917522535}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: outOpt2
+      _node: {fileID: 3589867796501544111}
+      _typeQualifiedName: XNode.Story.Choice, Assembly-CSharp-firstpass, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: In
+        node: {fileID: 544507648997231732}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: outOpt3
+      _node: {fileID: 3589867796501544111}
+      _typeQualifiedName: XNode.Story.Choice, Assembly-CSharp-firstpass, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: outOpt4
+      _node: {fileID: 3589867796501544111}
+      _typeQualifiedName: XNode.Story.Choice, Assembly-CSharp-firstpass, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  isChangeColor: 0
+  isError: 0
+  image: 3.png
+  opt1: "\u6210\u529F\u501F\u5230\u94B1\uFF0C\u89E3\u51B3\u623F\u79DF\u95EE\u9898"
+  opt2: "\u670B\u53CB\u65E0\u6CD5\u63D0\u4F9B\u5E2E\u52A9\uFF0C\u5BFB\u627E\u5176\u4ED6\u89E3\u51B3\u529E\u6CD5"
+  opt3: 
+  opt4: 
+--- !u!114 &4125705167794910030
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2560b8359a5343a9af337a6640da7bf, type: 3}
+  m_Name: Story Speak Aside
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 904, y: -56}
+  ports:
+    keys:
+    - In
+    - Out
+    values:
+    - _fieldName: In
+      _node: {fileID: 4125705167794910030}
+      _typeQualifiedName: XNode.Story.Empty, Assembly-CSharp-firstpass, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: Out
+        node: {fileID: 1835068347970164399}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: Out
+      _node: {fileID: 4125705167794910030}
+      _typeQualifiedName: XNode.Story.Empty, Assembly-CSharp-firstpass, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: In
+        node: {fileID: 4884595771655983536}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  isChangeColor: 0
+  isError: 0
+  content: "\uFF08\u4F60\u6CAE\u4E27\u5730\u5750\u5728\u6C99\u53D1\u4E0A\uFF0C\u610F\u8BC6\u5230\u81EA\u5DF1\u65E0\u6CD5\u6309\u65F6\u4EA4\u623F\u79DF\u3002\uFF09"
+  audio: 
+--- !u!114 &4386766214273861046
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2560b8359a5343a9af337a6640da7bf, type: 3}
+  m_Name: Story Speak Aside
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: -744, y: -88}
+  ports:
+    keys:
+    - In
+    - Out
+    values:
+    - _fieldName: In
+      _node: {fileID: 4386766214273861046}
+      _typeQualifiedName: XNode.Story.Empty, Assembly-CSharp-firstpass, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: Out
+        node: {fileID: -7177533538140424860}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: Out
+      _node: {fileID: 4386766214273861046}
+      _typeQualifiedName: XNode.Story.Empty, Assembly-CSharp-firstpass, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: In
+        node: {fileID: 6500107906528655662}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  isChangeColor: 0
+  isError: 0
+  content: "\u6C42\u603B\u7F16\u518D\u7ED9\u5DE5\u4F5C\u673A\u4F1A \uFF08\u4F60\u62D6\u7740\u7834\u76F8\u7684\u5965\u8FEA\u56DE\u5230\u516C\u53F8\uFF0C\u5FC3\u6025\u5982\u711A\u5730\u6765\u5230\u603B\u7F16\u7684\u529E\u516C\u5BA4\uFF0C\u8DEA\u5728\u5730\u4E0A\u62B1\u7740\u603B\u7F16\u7684\u5927\u817F\u82E6\u82E6\u54C0\u6C42\u3002\uFF09"
+  audio: 
+--- !u!114 &4884595771655983536
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2560b8359a5343a9af337a6640da7bf, type: 3}
+  m_Name: Story Speak Aside
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 1080, y: -200}
+  ports:
+    keys:
+    - In
+    - Out
+    values:
+    - _fieldName: In
+      _node: {fileID: 4884595771655983536}
+      _typeQualifiedName: XNode.Story.Empty, Assembly-CSharp-firstpass, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: Out
+        node: {fileID: 4125705167794910030}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: Out
+      _node: {fileID: 4884595771655983536}
+      _typeQualifiedName: XNode.Story.Empty, Assembly-CSharp-firstpass, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: In
+        node: {fileID: 841515927261329673}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  isChangeColor: 0
+  isError: 0
+  content: "\u8FD9\u5DF2\u7ECF\u662F\u623F\u4E1C\u7B2C\u4E94\u6B21\u50AC\u623F\u79DF\u4E86\uFF0C\u4F60\u4E0D\u662F\u4E0D\u7F34\uFF0C\u800C\u662F\u771F\u7684\u6CA1\u6709\u94B1\u3002"
+  audio: 
+--- !u!114 &4987260757996732414
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d5101a477dda7b44ae305da4fddff3e, type: 3}
+  m_Name: Story Next Chapter
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 3896, y: 216}
+  ports:
+    keys:
+    - In
+    - Out
+    values:
+    - _fieldName: In
+      _node: {fileID: 4987260757996732414}
+      _typeQualifiedName: XNode.Story.Empty, Assembly-CSharp-firstpass, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: Out
+        node: {fileID: -8164441119039175887}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: Out
+      _node: {fileID: 4987260757996732414}
+      _typeQualifiedName: XNode.Story.Empty, Assembly-CSharp-firstpass, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  isChangeColor: 0
+  isError: 0
+  storyGraphicName: Story5
+--- !u!114 &5367672649206727342
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1490394837d404134ad586492943d4a5, type: 3}
+  m_Name: Story Message
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 1992, y: -88}
+  ports:
+    keys:
+    - In
+    - Out
+    - outOpt1
+    - outOpt2
+    - outOpt3
+    - outOpt4
+    values:
+    - _fieldName: In
+      _node: {fileID: 5367672649206727342}
+      _typeQualifiedName: XNode.Story.Empty, Assembly-CSharp-firstpass, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: Out
+        node: {fileID: 544507648997231732}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: Out
+      _node: {fileID: 5367672649206727342}
+      _typeQualifiedName: XNode.Story.Empty, Assembly-CSharp-firstpass, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: outOpt1
+      _node: {fileID: 5367672649206727342}
+      _typeQualifiedName: XNode.Story.Choice, Assembly-CSharp-firstpass, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: In
+        node: {fileID: -4777450042020993965}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: outOpt2
+      _node: {fileID: 5367672649206727342}
+      _typeQualifiedName: XNode.Story.Choice, Assembly-CSharp-firstpass, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: In
+        node: {fileID: -1332666447345338565}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: outOpt3
+      _node: {fileID: 5367672649206727342}
+      _typeQualifiedName: XNode.Story.Choice, Assembly-CSharp-firstpass, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: outOpt4
+      _node: {fileID: 5367672649206727342}
+      _typeQualifiedName: XNode.Story.Choice, Assembly-CSharp-firstpass, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  isChangeColor: 0
+  isError: 0
+  image: 3.png
+  opt1: "\u5F00\u59CB\u517C\u804C\u5DE5\u4F5C\uFF0C\u8D5A\u53D6\u989D\u5916\u7684\u6536\u5165"
+  opt2: "\u5411\u670B\u53CB\u501F\u94B1\uFF0C\u4E34\u65F6\u7F13\u89E3\u56F0\u5883"
+  opt3: 
+  opt4: 
+--- !u!114 &6166395393851478068
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2560b8359a5343a9af337a6640da7bf, type: 3}
+  m_Name: Story Speak Aside
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 568, y: -216}
+  ports:
+    keys:
+    - In
+    - Out
+    values:
+    - _fieldName: In
+      _node: {fileID: 6166395393851478068}
+      _typeQualifiedName: XNode.Story.Empty, Assembly-CSharp-firstpass, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: outOpt1
+        node: {fileID: -3413935261361348860}
+        reroutePoints: []
+      - fieldName: outOpt1
+        node: {fileID: -7200996635975285095}
+        reroutePoints: []
+      - fieldName: Out
+        node: {fileID: 8626512835415685544}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: Out
+      _node: {fileID: 6166395393851478068}
+      _typeQualifiedName: XNode.Story.Empty, Assembly-CSharp-firstpass, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: In
+        node: {fileID: 1835068347970164399}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  isChangeColor: 0
+  isError: 0
+  content: "\u9762\u5BF9\u623F\u79DF\u50AC\u7F34\u95EE\u9898"
+  audio: 
+--- !u!114 &6500107906528655662
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f90bfcf430c22d6418e445a2cad8e34c, type: 3}
+  m_Name: Story Speak
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: -504, y: -104}
+  ports:
+    keys:
+    - In
+    - Out
+    - outOpt1
+    - outOpt2
+    - outOpt3
+    - outOpt4
+    values:
+    - _fieldName: In
+      _node: {fileID: 6500107906528655662}
+      _typeQualifiedName: XNode.Story.Empty, Assembly-CSharp-firstpass, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: Out
+        node: {fileID: 4386766214273861046}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: Out
+      _node: {fileID: 6500107906528655662}
+      _typeQualifiedName: XNode.Story.Empty, Assembly-CSharp-firstpass, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: In
+        node: {fileID: 1331646939579007466}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: outOpt1
+      _node: {fileID: 6500107906528655662}
+      _typeQualifiedName: XNode.Story.Choice, Assembly-CSharp-firstpass, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: outOpt2
+      _node: {fileID: 6500107906528655662}
+      _typeQualifiedName: XNode.Story.Choice, Assembly-CSharp-firstpass, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: outOpt3
+      _node: {fileID: 6500107906528655662}
+      _typeQualifiedName: XNode.Story.Choice, Assembly-CSharp-firstpass, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: outOpt4
+      _node: {fileID: 6500107906528655662}
+      _typeQualifiedName: XNode.Story.Choice, Assembly-CSharp-firstpass, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  isChangeColor: 0
+  isError: 0
+  ID: 3
+  image: 3.png
+  content: "\u603B\u7F16\uFF0C\u6C42\u6C42\u60A8\u518D\u7ED9\u6211\u4E00\u6B21\u673A\u4F1A\uFF01\u6211\u771F\u7684\u4F1A\u6539\u6B63\u9519\u8BEF\u7684\uFF0C\u6211\u8FD8\u6709\u5F88\u591A\u6F5C\u529B\u53EF\u4EE5\u53D1\u5C55\uFF01"
+  animate: 0
+  audio: 
+  isJump: 0
+  opt1: 
+  opt2: 
+  opt3: 
+  opt4: 
+--- !u!114 &8626512835415685544
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f90bfcf430c22d6418e445a2cad8e34c, type: 3}
+  m_Name: Story Speak
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 1880, y: 200}
+  ports:
+    keys:
+    - In
+    - Out
+    - outOpt1
+    - outOpt2
+    - outOpt3
+    - outOpt4
+    values:
+    - _fieldName: In
+      _node: {fileID: 8626512835415685544}
+      _typeQualifiedName: XNode.Story.Empty, Assembly-CSharp-firstpass, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: Out
+        node: {fileID: -8609044333107727616}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: Out
+      _node: {fileID: 8626512835415685544}
+      _typeQualifiedName: XNode.Story.Empty, Assembly-CSharp-firstpass, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: In
+        node: {fileID: 6166395393851478068}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: outOpt1
+      _node: {fileID: 8626512835415685544}
+      _typeQualifiedName: XNode.Story.Choice, Assembly-CSharp-firstpass, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: outOpt2
+      _node: {fileID: 8626512835415685544}
+      _typeQualifiedName: XNode.Story.Choice, Assembly-CSharp-firstpass, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: outOpt3
+      _node: {fileID: 8626512835415685544}
+      _typeQualifiedName: XNode.Story.Choice, Assembly-CSharp-firstpass, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: outOpt4
+      _node: {fileID: 8626512835415685544}
+      _typeQualifiedName: XNode.Story.Choice, Assembly-CSharp-firstpass, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  isChangeColor: 0
+  isError: 1
+  ID: zongbian
+  image: 
+  content: "\u597D\u5427\uFF0C\u770B\u5728\u4F60\u6709\u8FD9\u4E2A\u773C\u5149\u7684\u4EFD\u4E0A\uFF0C\u6211\u53EF\u4EE5\u6682\u65F6\u7559\u4E0B\u4F60\u3002\u4F46\u8BB0\u4F4F\uFF0C\u4F60\u53EA\u6709\u4E24\u5468\u7684\u65F6\u95F4\u5B8C\u6210\u6700\u540E\u4E00\u671F\u6742\u5FD7\u548C\u627E\u5230\u4E0B\u4E00\u4EFD\u5DE5\u4F5C\u3002"
+  animate: 0
+  audio: 
+  isJump: 0
+  opt1: 
+  opt2: 
+  opt3: 
+  opt4: 
+--- !u!114 &8788763635178283096
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f90bfcf430c22d6418e445a2cad8e34c, type: 3}
+  m_Name: Story Speak
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 408, y: -72}
+  ports:
+    keys:
+    - In
+    - Out
+    - outOpt1
+    - outOpt2
+    - outOpt3
+    - outOpt4
+    values:
+    - _fieldName: In
+      _node: {fileID: 8788763635178283096}
+      _typeQualifiedName: XNode.Story.Empty, Assembly-CSharp-firstpass, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: outOpt2
+        node: {fileID: -3413935261361348860}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: Out
+      _node: {fileID: 8788763635178283096}
+      _typeQualifiedName: XNode.Story.Empty, Assembly-CSharp-firstpass, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: In
+        node: {fileID: -7200996635975285095}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: outOpt1
+      _node: {fileID: 8788763635178283096}
+      _typeQualifiedName: XNode.Story.Choice, Assembly-CSharp-firstpass, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: outOpt2
+      _node: {fileID: 8788763635178283096}
+      _typeQualifiedName: XNode.Story.Choice, Assembly-CSharp-firstpass, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: outOpt3
+      _node: {fileID: 8788763635178283096}
+      _typeQualifiedName: XNode.Story.Choice, Assembly-CSharp-firstpass, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: outOpt4
+      _node: {fileID: 8788763635178283096}
+      _typeQualifiedName: XNode.Story.Choice, Assembly-CSharp-firstpass, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  isChangeColor: 0
+  isError: 1
+  ID: zongbian
+  image: 
+  content: "\u4F60\u7684\u673A\u4F1A\u5DF2\u7ECF\u7528\u5B8C\u4E86\uFF0C\u6211\u4E0D\u518D\u76F8\u4FE1\u4F60\u80FD\u4E3A\u8FD9\u4E2A\u6742\u5FD7\u505A\u51FA\u4EC0\u4E48\u8D21\u732E\u3002\u4F60\u53EA\u5269\u4E0B\u4E24\u5468\u7684\u65F6\u95F4\uFF0C\u6293\u7D27\u627E\u4E0B\u4E00\u4EFD\u5DE5\u4F5C\u5427\u3002"
+  animate: 0
+  audio: 
+  isJump: 0
+  opt1: 
+  opt2: 
+  opt3: 
+  opt4: 

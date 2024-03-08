@@ -7,6 +7,7 @@ using XNode.Story;
 using System.Xml;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 
 public class ExportStoryFolder : EditorWindow
 {
@@ -25,6 +26,14 @@ public class ExportStoryFolder : EditorWindow
     static HashSet<string> s_alreadyLoadGraphicSet = new HashSet<string>();
 
     static Dictionary<string, Node> s_startNodeDic = new Dictionary<string, Node>();
+
+    static List<string> s_errorMessage = new List<string>();
+
+    // 检测字符串是否包含中文
+    public static bool ContainsChinese(string input)
+    {
+        return Regex.IsMatch(input, @"[\u4e00-\u9fff]");
+    }
 
     public class StoryEditorNode
     {
@@ -57,7 +66,17 @@ public class ExportStoryFolder : EditorWindow
         s_storyEditorNodeDic.Clear();
         s_alreadyLoadGraphicSet.Clear();
         s_startNodeDic.Clear();
+        s_errorMessage.Clear();
         s_index = 1;
+    }
+
+
+    static void ErrorMessage(StoryBaseNode storyBase,string errorMessage)
+    {
+        storyBase.isError = true;
+        Debug.LogError(errorMessage);
+
+        s_errorMessage.Add(errorMessage);
     }
 
     public static Node FindStartNode(StoryGraph storyGraph)
@@ -79,16 +98,11 @@ public class ExportStoryFolder : EditorWindow
 
                     if(count > 1)
                     {
-                        (startNode as StoryBaseNode).isError = true;
+                        ErrorMessage(startNode as StoryBaseNode, "have two enter point!!!!");
+                        startNode = null;
                     }
                 }
             });
-        }
-
-        if (count > 1)
-        {
-            startNode = null;
-            Debug.LogError("have two enter point!!!!");
         }
 
         return startNode;
@@ -105,6 +119,12 @@ public class ExportStoryFolder : EditorWindow
             addCharacter.SetAttribute("NodeId", s_node.index.ToString());
             addCharacter.SetAttribute("CharacterID", storyAddCharacterNode.ID);
             addCharacter.SetAttribute("CharacterName", storyAddCharacterNode.p_name);
+
+            if( ContainsChinese(storyAddCharacterNode.image))
+            {
+                ErrorMessage(storyAddCharacterNode, $"addCharacter node :{storyAddCharacterNode.GetInstanceID()} png is chinese");
+            }
+
             addCharacter.SetAttribute("CharacterImage", storyAddCharacterNode.image);
             addCharacter.SetAttribute("IsSelf", storyAddCharacterNode.isSelf.ToString());
             addCharacter.SetAttribute("SendMessage", storyAddCharacterNode.animate.ToString());
@@ -125,6 +145,11 @@ public class ExportStoryFolder : EditorWindow
 
             XmlElement videoxml = doc.CreateElement("Video");
             videoxml.SetAttribute("NodeId", s_node.index.ToString());
+
+            if (ContainsChinese(storyVideoNode.video))
+            {
+                ErrorMessage(storyVideoNode, $"video node :{storyVideoNode.GetInstanceID()} video is chinese");
+            }
             videoxml.SetAttribute("Path", storyVideoNode.video);
 
             findNextNodeXml(videoxml, s_node.baseNode);
@@ -142,6 +167,11 @@ public class ExportStoryFolder : EditorWindow
             XmlElement nextxml = doc.CreateElement("NextChapter");
             nextxml.SetAttribute("NodeId", s_node.index.ToString());
 
+            if (ContainsChinese(storyNextChapter.storyGraphicName))
+            {
+                ErrorMessage(storyNextChapter, $"nextchapter node :{storyNextChapter.GetInstanceID()} storyGraphicName is chinese");
+            }
+
             if (s_startNodeDic.ContainsKey(storyNextChapter.storyGraphicName))
             {
                 Node nextNode = s_startNodeDic[storyNextChapter.storyGraphicName];
@@ -150,8 +180,7 @@ public class ExportStoryFolder : EditorWindow
             }
             else
             {
-                storyNextChapter.isError = true;
-                Debug.LogError($"instanceId:{storyNextChapter.GetInstanceID()} has not next chapter");
+                ErrorMessage(storyNextChapter, $"instanceId:{storyNextChapter.GetInstanceID()} has not next chapter");
             }
 
             element.AppendChild(nextxml);
@@ -167,6 +196,12 @@ public class ExportStoryFolder : EditorWindow
             XmlElement backxml = doc.CreateElement("ChangeBackImg");
 
             backxml.SetAttribute("NodeId", s_node.index.ToString());
+
+            if (ContainsChinese(storyBackgroundNode.background))
+            {
+                ErrorMessage(storyBackgroundNode, $"background node :{storyBackgroundNode.GetInstanceID()} png is chinese");
+            }
+
             backxml.SetAttribute("Path", storyBackgroundNode.background);
 
             findNextNodeXml(backxml, s_node.baseNode);
@@ -204,6 +239,10 @@ public class ExportStoryFolder : EditorWindow
             speadxml.SetAttribute("Content", storySpeakAsideNode.content);
             if (!string.IsNullOrEmpty(storySpeakAsideNode.audio))
             {
+                if (ContainsChinese(storySpeakAsideNode.audio))
+                {
+                    ErrorMessage(storySpeakAsideNode, $"speak aside node :{storySpeakAsideNode.GetInstanceID()} audio is chinese");
+                }
                 speadxml.SetAttribute("AudioPath", storySpeakAsideNode.audio);
             }
 
@@ -269,6 +308,23 @@ public class ExportStoryFolder : EditorWindow
         }
     }
 
+    public static bool CheckHasCharacterID(string characterID)
+    {
+        foreach (var item in s_storyEditorNodeDic.Values)
+        {
+            if(item.baseNode is StoryAddCharacterNode)
+            {
+                StoryAddCharacterNode addNode = item.baseNode as StoryAddCharacterNode;
+                if (addNode.ID == characterID)
+                {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
     public static void SpeakXml(XmlDocument doc, XmlElement element, StoryEditorNode s_node)
     {
 
@@ -279,10 +335,21 @@ public class ExportStoryFolder : EditorWindow
             XmlElement speak = doc.CreateElement("Speak");
 
             speak.SetAttribute("NodeId", s_node.index.ToString());
+
+            if(!CheckHasCharacterID(storySpeakNode.ID))
+            {
+                ErrorMessage(storySpeakNode, $"speak node :{storySpeakNode.GetInstanceID()} has not CharacterID:{storySpeakNode.ID}");
+            }
+
             speak.SetAttribute("CharacterID", storySpeakNode.ID);
 
             if (!string.IsNullOrEmpty(storySpeakNode.image))
             {
+                if (ContainsChinese(storySpeakNode.audio))
+                {
+                    ErrorMessage(storySpeakNode, $"speak node :{storySpeakNode.GetInstanceID()} png is chinese");
+                }
+
                 speak.SetAttribute("CharacterImage", storySpeakNode.image);
             }
 
@@ -380,8 +447,7 @@ public class ExportStoryFolder : EditorWindow
             element.SetAttribute("JumpId", resIndex.ToString());
         else
         {
-            (node as StoryBaseNode).isError = true;
-            Debug.LogError($"node : {node.GetInstanceID()} can not find nextnode");
+            ErrorMessage(node as StoryBaseNode, $"node : {node.GetInstanceID()} can not find nextnode");
         }
 
     }
@@ -416,8 +482,7 @@ public class ExportStoryFolder : EditorWindow
         if (resIndex == -2)
         {
             StoryBaseNode storyBase = node as StoryBaseNode;
-            storyBase.isError = true;
-            Debug.LogError($"instanceId:{node.GetInstanceID()} has two outNode");
+            ErrorMessage(storyBase, $"instanceId:{node.GetInstanceID()} has two outNode");
         }
 
         return resIndex;
@@ -493,6 +558,8 @@ public class ExportStoryFolder : EditorWindow
             NextChapterXml(doc, element, item);
             ExitGameXml(doc, element, item);
         }
+
+        
 
         return doc;
     }
@@ -571,6 +638,9 @@ public class ExportStoryFolder : EditorWindow
                 s_storyGraphicPath = $"{path}/{ folders[selectedIndex]}";
 
                 ExportStoryTool($"{s_storyGraphicPath}/Enter.asset");
+
+                if(s_errorMessage.Count > 0)
+                    EditorUtility.DisplayDialog("Error Title", "Error See Unity Console For Detail", "OK");
             }
         }
     }
