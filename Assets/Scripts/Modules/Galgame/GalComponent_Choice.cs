@@ -48,8 +48,8 @@ namespace XModules.GalManager
 
             ConversationView.PlotData.NextJumpID = _JumpID;
 
-            XEvent.EventDispatcher.DispatchEvent("NEXT_STEP");
             XEvent.EventDispatcher.DispatchEvent("CHOICE_COMPLETE");
+            XEvent.EventDispatcher.DispatchEvent("NEXT_STEP");
 
             return;
         }

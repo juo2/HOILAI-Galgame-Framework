@@ -429,14 +429,22 @@ namespace XModules.GalManager
                 case "ExitGame":
                     {
                         ClearGame();
-                        XGUIManager.Instance.CloseView("ConversationView");
-                        XGUIManager.Instance.OpenView("MainView");
+                        StartCoroutine(closeGameEndOfFrame());
                         break;
                     }
             }
 
             return;
         }
+
+        IEnumerator closeGameEndOfFrame()
+        {
+            yield return new WaitForEndOfFrame();
+
+            XGUIManager.Instance.CloseView("ConversationView");
+            XGUIManager.Instance.OpenView("MainView");
+        }
+
         public void Button_Click_FastMode ()
         {
             GalManager_Text.IsFastMode = true;
