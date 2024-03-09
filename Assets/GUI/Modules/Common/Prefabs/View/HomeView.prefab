@@ -963,3 +963,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   beginBtn: {fileID: 8166068898730893053}
+  storyNameLabel: {fileID: 8166068898470580922}

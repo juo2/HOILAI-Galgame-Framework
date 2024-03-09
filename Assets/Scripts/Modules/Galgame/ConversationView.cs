@@ -101,9 +101,6 @@ namespace XModules.GalManager
         public static Struct_PlotData PlotData = new();
         private void Awake ()
         {
-            ResetPlotData();
-
-            StartCoroutine(LoadPlot());
 
             TouchBack.onClick.AddListener(() =>
             {
@@ -123,15 +120,20 @@ namespace XModules.GalManager
 
             ClearGame();
 
+            ResetPlotData();
+
+            string storyName = viewArgs[0] as string;
+
+            StartCoroutine(LoadPlot(storyName));
+
             XEvent.EventDispatcher.AddEventListener("NEXT_STEP", Button_Click_NextPlot,this);
             XEvent.EventDispatcher.AddEventListener("CHOICE_COMPLETE", ChoiceComplete, this);
 
-            if (!loadXmlData)
-                return;
+            //if (!loadXmlData)
+            //    return;
 
-
-            //开始游戏
-            Button_Click_NextPlot();
+            ////开始游戏
+            //Button_Click_NextPlot();
         }
 
         public override void OnDisableView()
@@ -167,13 +169,13 @@ namespace XModules.GalManager
         /// 解析框架文本
         /// </summary>
         /// <returns></returns>
-        public IEnumerator LoadPlot ()
+        public IEnumerator LoadPlot (string storyName)
         {
             yield return null;
 
             string _PlotText = string.Empty;
             //string filePath = Path.Combine(AssetDefine.BuildinAssetPath, "HGF/Test.xml");
-            string filePath = Path.Combine(AssetDefine.BuildinAssetPath, "HGF/story.xml");
+            string filePath = Path.Combine(AssetDefine.BuildinAssetPath, $"HGF/{storyName}.xml");
 
 #if UNITY_STANDALONE_OSX || UNITY_EDITOR_OSX
             filePath = "file://" + filePath;
@@ -391,10 +393,11 @@ namespace XModules.GalManager
                         }
 
                         //处理消息
-                        if (PlotData.NowPlotDataNode.Attributes("SendMessage").Count() != 0)
-                        {
-                            SendCharMessage(characterInfo.characterID, PlotData.NowPlotDataNode.Attribute("SendMessage").Value, characterInfo.isSelf);
-                        }
+                        //if (PlotData.NowPlotDataNode.Attributes("SendMessage").Count() != 0)
+                        //{
+                        //    SendCharMessage(characterInfo.characterID, PlotData.NowPlotDataNode.Attribute("SendMessage").Value, characterInfo.isSelf);
+                        //}
+                        SendCharMessage(characterInfo.characterID, "", characterInfo.isSelf);
 
                         if (PlotData.NowPlotDataNode.Attributes("AudioPath").Count() != 0)
                             PlayAudio(PlotData.NowPlotDataNode.Attribute("AudioPath").Value);

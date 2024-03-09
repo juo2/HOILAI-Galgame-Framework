@@ -10,6 +10,11 @@ namespace XModules.Main.Item
         [SerializeField]
         XButton beginBtn;
 
+        [SerializeField]
+        XText storyNameLabel;
+
+        string storyName;
+
         // Start is called before the first frame update
         void Start()
         {
@@ -17,9 +22,15 @@ namespace XModules.Main.Item
 
                 XGUIManager.Instance.CloseView("MainView");
 
-                XGUIManager.Instance.OpenView("ConversationView");
+                XGUIManager.Instance.OpenView("ConversationView",UILayer.BaseLayer,null, storyName);
 
             });
+        }
+
+        public void Refresh(string _storyName)
+        {
+            storyName = _storyName;
+            storyNameLabel.text = storyName;
         }
 
         // Update is called once per frame

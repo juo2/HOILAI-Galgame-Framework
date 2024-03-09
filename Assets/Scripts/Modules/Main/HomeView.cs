@@ -10,6 +10,8 @@ namespace XModules.Main
     public class HomeView : XBaseView
     {
 
+        List<string> storyList = new List<string>{ "buqun1", "junjing1" };
+
         [SerializeField]
         XListView xListView;
 
@@ -23,7 +25,7 @@ namespace XModules.Main
             xListView.onCreateRenderer.AddListener(onListCreateRenderer);
             xListView.onUpdateRenderer.AddListener(onListUpdateRenderer);
 
-            xListView.dataCount = 1;
+            xListView.dataCount = storyList.Count;
             xListView.ForceRefresh();
         }
 
@@ -39,7 +41,7 @@ namespace XModules.Main
         void onListUpdateRenderer(ListItemRenderer listItem)
         {
             DiscoverItem discoverItem = discoverItemDic[listItem.instanceID];
-            //discoverItem.Refresh(listItem.index);
+            discoverItem.Refresh(storyList[listItem.index]);
             //gl_choice.Init(choices_data.JumpID, choices_data.Title);
         }
 

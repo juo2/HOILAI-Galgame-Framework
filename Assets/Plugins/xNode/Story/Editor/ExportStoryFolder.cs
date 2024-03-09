@@ -603,7 +603,7 @@ public class ExportStoryFolder : EditorWindow
         buildNode(storyGraph);
     }
 
-    public static void ExportStoryTool(string storyPath)
+    public static void ExportStoryTool(string storyPath,string name)
     {
         Debug.Log("Custom Tool Clicked!");
 
@@ -611,7 +611,7 @@ public class ExportStoryFolder : EditorWindow
 
         XmlDocument doc  = buildNodeXml();
 
-        SaveXmlFile(doc, "Assets/StreamingAssets/A_AssetBundles/HGF/story.xml");
+        SaveXmlFile(doc, $"Assets/StreamingAssets/A_AssetBundles/HGF/{name}.xml");
 
         Debug.Log("XML generate finish !!!!");
     }
@@ -637,7 +637,7 @@ public class ExportStoryFolder : EditorWindow
                
                 s_storyGraphicPath = $"{path}/{ folders[selectedIndex]}";
 
-                ExportStoryTool($"{s_storyGraphicPath}/Enter.asset");
+                ExportStoryTool($"{s_storyGraphicPath}/Enter.asset", folders[selectedIndex]);
 
                 if(s_errorMessage.Count > 0)
                     EditorUtility.DisplayDialog("Error Title", "Error See Unity Console For Detail", "OK");

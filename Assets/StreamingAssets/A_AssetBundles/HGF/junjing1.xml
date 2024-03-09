@@ -1,0 +1,419 @@
+<?xml version="1.0" encoding="utf-8"?>
+<data>
+  <Plot>
+    <NextChapter NodeId="1" JumpId="2" />
+    <ChangeBackImg NodeId="2" Path="output.png" JumpId="3" />
+    <AddCharacter NodeId="3" CharacterID="2" CharacterName="Stefan" CharacterImage="2.png" IsSelf="False" SendMessage="None" JumpId="26" />
+    <Speak NodeId="4" CharacterID="2" CharacterImage="2.png" SendMessage="ToLeft" Content=" &quot;你这个疯女人，你疯了吗？&quot;" JumpId="7" />
+    <Message NodeId="5">
+      <Choice JumpId="4">选择砸在倒咖啡和冰块</Choice>
+      <Choice JumpId="6">选择谩骂</Choice>
+    </Message>
+    <Speak NodeId="6" CharacterID="3" CharacterImage="3.png" SendMessage="ToRight" Content="“狗男女不得好死！”愤怒的话语充斥在咖啡馆。" JumpId="8" />
+    <Speak NodeId="7" CharacterID="3" CharacterImage="3.png" SendMessage="ToRight" Content=" &quot;这是你自找的，别想逃过这场羞辱！&quot;" JumpId="25" />
+    <Speak NodeId="8" CharacterID="2" CharacterImage="2.png" SendMessage="ToLeft" Content=" &quot;你有病吧？！&quot;" JumpId="15" />
+    <AddCharacter NodeId="9" CharacterID="3" CharacterName="Nina" CharacterImage="3.png" IsSelf="True" SendMessage="None" JumpId="5" />
+    <Speak NodeId="10" CharacterID="2" CharacterImage="2.png" SendMessage="ToLeft" Content="&quot;你这样做有意思吗？&quot;" JumpId="11" />
+    <Speak NodeId="11" CharacterID="3" CharacterImage="3.png" SendMessage="ToRight" Content=" &quot;有意思，很有意思。看看你平时那副嚣张的样子，今天终于让你尝尝被羞辱的滋味了！&quot;" JumpId="12" />
+    <Message NodeId="12">
+      <Choice JumpId="16">继续对质</Choice>
+      <Choice JumpId="17">和解</Choice>
+    </Message>
+    <Speak NodeId="13" CharacterID="3" CharacterImage="3.png" SendMessage="ToRight" Content=" &quot;好吧，我也不想再闹下去了。对不起，我真的是太冲动了。&quot;" JumpId="14" />
+    <Speak NodeId="14" CharacterID="2" CharacterImage="2.png" SendMessage="ToLeft" Content="&quot; &quot;哼，道歉有什么用，给我赔偿！&quot;？&quot;" JumpId="27" />
+    <Speak NodeId="15" CharacterID="3" CharacterImage="3.png" SendMessage="ToRight" Content="&quot;有病是你有病，还敢出来害人！&quot;" JumpId="76" />
+    <SpeakAside NodeId="16" Content="你继续与于子灏对质，争吵声不绝于耳。" JumpId="13" />
+    <SpeakAside NodeId="17" Content="你感觉争吵已经足够，选择低头道歉。" JumpId="13" />
+    <Speak NodeId="18" CharacterID="3" CharacterImage="3.png" SendMessage="ToRight" Content="“喂，欣欣，我已经赶到山山咖啡店了，对，他坐在窗边。不，不是两个人，是一个人，什么？你也在山山咖啡店？我怎么没看到你？”" JumpId="19" />
+    <SpeakAside NodeId="19" Content=" &quot;北北，你说的这个咖啡馆是山山还是屾？&quot;，争吵声不绝于耳。" JumpId="20" />
+    <Message NodeId="20">
+      <Choice JumpId="21">坚称是山山</Choice>
+      <Choice JumpId="23">承认错误</Choice>
+    </Message>
+    <Speak NodeId="21" CharacterID="3" CharacterImage="3.png" SendMessage="ToRight" Content="&quot;当然是山山了，你在哪里？&quot;。对不起，我真的是太冲动了。&quot;" JumpId="22" />
+    <SpeakAside NodeId="22" Content=" &quot;我在屾啊，这个咖啡馆里面有两家呢。&quot;" JumpId="41" />
+    <Speak NodeId="23" CharacterID="3" CharacterImage="3.png" SendMessage="ToRight" Content="&quot;噢，我可能记错了，不好意思。&quot;" JumpId="24" />
+    <SpeakAside NodeId="24" Content=" &quot;你怎么这么马虎啊？算了，快处理掉那个疯狗。&quot;" JumpId="28" />
+    <ChangeBackImg NodeId="25" Path="output.png" JumpId="10" />
+    <SpeakAside NodeId="26" Content="Stefan正在喝咖啡" JumpId="9" />
+    <Speak NodeId="27" CharacterID="3" CharacterImage="3.png" SendMessage="ToRight" Content="&quot; &quot;对不起，我真的是太冲动了，我会赔偿你的衣服。&quot;。&quot;" JumpId="31" />
+    <ChangeBackImg NodeId="28" Path="4.png" JumpId="29" />
+    <Speak NodeId="29" CharacterID="2" CharacterImage="2.png" SendMessage="ToRight" Content=" &quot;你以为这样就结束了吗？&quot;。&quot;" JumpId="30" />
+    <Speak NodeId="30" CharacterID="3" CharacterImage="3.png" SendMessage="ToRight" Content=" &quot;结束不了，我还没报复够呢！&quot;？&quot;。&quot;" JumpId="32" />
+    <Speak NodeId="31" CharacterID="2" CharacterImage="2.png" SendMessage="ToRight" Content="&quot;那就别再出现在我面前，省得我动手！&quot; &quot;赔偿？你以为你赔得起吗？&quot;？&quot;。&quot;" JumpId="37" />
+    <Message NodeId="32">
+      <Choice JumpId="33">制止报复</Choice>
+      <Choice JumpId="34">继续报复</Choice>
+    </Message>
+    <SpeakAside NodeId="33" Content="你开始思考后果，选择制止报复。" JumpId="35" />
+    <SpeakAside NodeId="34" Content="你决定继续报复，不让于子灏就这么轻松过去。" JumpId="50" />
+    <Speak NodeId="35" CharacterID="3" CharacterImage="3.png" SendMessage="ToRight" Content="&quot;算了，我也不想再闹下去了。&quot;" JumpId="36" />
+    <Speak NodeId="36" CharacterID="2" CharacterImage="2.png" SendMessage="ToRight" Content=" &quot;庆幸你还有点理智。&quot;" JumpId="27" />
+    <Message NodeId="37">
+      <Choice JumpId="38">接受挑战</Choice>
+      <Choice JumpId="39">拒绝挑战</Choice>
+    </Message>
+    <Speak NodeId="38" CharacterID="3" CharacterImage="3.png" SendMessage="ToRight" Content="&quot;我会赔偿，不信你说个价格。&quot;" JumpId="46" />
+    <Speak NodeId="39" CharacterID="3" CharacterImage="3.png" SendMessage="ToRight" Content="&quot;我不会输给你，但我也不会接受你的挑战。&quot;" JumpId="45" />
+    <Speak NodeId="40" CharacterID="3" CharacterImage="3.png" SendMessage="ToRight" Content="&quot;当然是山山了，你在哪里？&quot;" JumpId="42" />
+    <SpeakAside NodeId="41" Content="&quot;北北，你说的这个咖啡馆是山山还是屾？&quot;" JumpId="40" />
+    <SpeakAside NodeId="42" Content="&quot;我在屾啊，这个咖啡馆里面有两家呢。&quot;" JumpId="44" />
+    <Speak NodeId="43" CharacterID="2" CharacterImage="2.png" SendMessage="ToRight" Content=" &quot;原来是记错了，这么不靠谱的人也敢来报复。&quot; &quot;原来是记错了，这么不靠谱的人也敢来报复。&quot; &quot;原来是记错了，这么不靠谱的人也敢来报复。&quot;" JumpId="29" />
+    <SpeakAside NodeId="44" Content="于子灏露出一丝嘲讽的笑容。" JumpId="43" />
+    <Speak NodeId="45" CharacterID="2" CharacterImage="2.png" SendMessage="ToRight" Content="&quot;&quot;那就别再出现在我面前，省得我动手！&quot;，省得我动手！&quot; &quot;赔偿？你以为你赔得起吗？&quot;？&quot;。&quot;" JumpId="63" />
+    <Speak NodeId="46" CharacterID="2" CharacterImage="2.png" SendMessage="ToRight" Content=" &quot;25600一件，你，赔得起吗？&quot;" JumpId="47" />
+    <Message NodeId="47">
+      <Choice JumpId="48">接受</Choice>
+      <Choice JumpId="49">拒绝</Choice>
+    </Message>
+    <Speak NodeId="48" CharacterID="2" CharacterImage="2.png" SendMessage="ToRight" Content=" &quot;好吧，我答应你的条件，25600一件。&quot;" JumpId="70" />
+    <Speak NodeId="49" CharacterID="2" CharacterImage="2.png" SendMessage="ToRight" Content=" &quot;好吧， &quot;太离谱了，我可不会接受这么高的赔偿要求。&quot;，25600一件。&quot;" JumpId="71" />
+    <Message NodeId="50">
+      <Choice JumpId="51">恶作剧</Choice>
+      <Choice JumpId="52">公开羞辱</Choice>
+    </Message>
+    <SpeakAside NodeId="51" Content="你决定通过恶作剧来报复于子灏。，不让于子灏就这么轻松过去。" JumpId="53" />
+    <SpeakAside NodeId="52" Content="你决定通过在社交媒体上公开羞辱于子灏来报复。，不让于子灏就这么轻松过去。" JumpId="54" />
+    <Message NodeId="53">
+      <Choice JumpId="55">加盐咖啡</Choice>
+      <Choice JumpId="56">椅子松动</Choice>
+    </Message>
+    <Message NodeId="54">
+      <Choice JumpId="57">拍照上传</Choice>
+      <Choice JumpId="58">撰写长文</Choice>
+    </Message>
+    <SpeakAside NodeId="55" Content="你偷偷在于子灏的咖啡里加了大量盐，然后坐回到你的座位上。" JumpId="64" />
+    <SpeakAside NodeId="56" Content="你故意让于子灏坐在一把松动的椅子上，等待他尴尬的瞬间。。，不让于子灏就这么轻松过去。" JumpId="65" />
+    <SpeakAside NodeId="57" Content="你拍下于子灏尴尬的瞬间，上传到社交媒体上。。。，不让于子灏就这么轻松过去。" JumpId="59" />
+    <SpeakAside NodeId="58" Content="你撰写一篇长文详细描述于子灏的丑态，发表在社交媒体上。。，不让于子灏就这么轻松过去。" JumpId="60" />
+    <SpeakAside NodeId="59" Content="社交媒体评论： &quot;这个人是谁？被羞辱的样子好笑！&quot;。，不让于子灏就这么轻松过去。" JumpId="61" />
+    <SpeakAside NodeId="60" Content="社交媒体评论：&quot;这对冤家也太搞笑了吧，哈哈！&quot; &quot;这个人也太可怜了吧，被写成这样。&quot;" JumpId="61" />
+    <SpeakAside NodeId="61" Content="由于你的报复行为，社交媒体上掀起了一场风波，大家争相评论。" JumpId="62" />
+    <SpeakAside NodeId="62" Content="&quot;这对冤家也太搞笑了吧，哈哈！&quot;，社交媒体上掀起了一场风波，大家争相评论。" JumpId="63" />
+    <SpeakAside NodeId="63" Content="&quot;你的选择和行为在咖啡馆和社交媒体上引起了轰动，与于子灏的冲突也得到了一些解决。无论是和解还是继续纠缠，这段经历将成为你人生中一个难忘的片段。，哈哈！&quot;，社交媒体上掀起了一场风波，大家争相评论。" JumpId="77" />
+    <Speak NodeId="64" CharacterID="2" CharacterImage="2.png" SendMessage="ToRight" Content=" &quot; &quot;这是什么破咖啡，好咸啊！&quot;。&quot;" JumpId="66" />
+    <Speak NodeId="65" CharacterID="2" CharacterImage="2.png" SendMessage="ToRight" Content=" &quot;这是什么椅子，差点摔死我！&quot;" JumpId="67" />
+    <Speak NodeId="66" CharacterID="3" CharacterImage="3.png" SendMessage="ToRight" Content="&quot;算了， &quot;哎呀，真的吗？可能是咖啡师失误了吧。&quot;。&quot;" JumpId="68" />
+    <Speak NodeId="67" CharacterID="3" CharacterImage="3.png" SendMessage="ToRight" Content=" &quot;哎呀，真的吗？可能是咖啡馆的设备老化了吧。&quot;" JumpId="68" />
+    <SpeakAside NodeId="68" Content="由于你的恶作剧，咖啡馆陷入一片混乱，大家议论纷纷。，然后坐回到你的座位上。" JumpId="69" />
+    <SpeakAside NodeId="69" Content="服务员： &quot;大家请冷静，我们会处理好这个问题的。&quot;，咖啡馆陷入一片混乱，大家议论纷纷。，然后坐回到你的座位上。" JumpId="63" />
+    <Speak NodeId="70" CharacterID="3" CharacterImage="3.png" SendMessage="ToRight" Content="&quot;算了， &quot;好吧，我答应你的条件，25600一件。&quot;。&quot;" JumpId="72" />
+    <Speak NodeId="71" CharacterID="3" CharacterImage="3.png" SendMessage="ToRight" Content=" &quot;太离谱了，我可不会接受这么高的赔偿要求。&quot;" JumpId="73" />
+    <Speak NodeId="72" CharacterID="2" CharacterImage="2.png" SendMessage="ToRight" Content=" &quot;那就赶紧去准备钱，别让我等太久。&quot;" JumpId="74" />
+    <Speak NodeId="73" CharacterID="2" CharacterImage="2.png" SendMessage="ToRight" Content=" &quot; &quot;那就别废话了，滚吧！&quot;。&quot;" JumpId="63" />
+    <SpeakAside NodeId="74" Content="你匆匆离开咖啡馆，开始准备赔偿款项。。，不让于子灏就这么轻松过去。" JumpId="75" />
+    <SpeakAside NodeId="75" Content=" &quot;喂，北北，你怎么了？&quot;，开始准备赔偿款项。。，不让于子灏就这么轻松过去。" JumpId="63" />
+    <ChangeBackImg NodeId="76" Path="output.png" JumpId="18" />
+    <NextChapter NodeId="77" JumpId="92" />
+    <SpeakAside NodeId="78" Content="总编看到了你在咖啡馆和社交媒体上引起的轰动，你提着高仿CHANEL走进公司，就被总编叫到办公室，总编对你进行了指责。" JumpId="80" />
+    <Message NodeId="79">
+      <Choice JumpId="81">继续责备</Choice>
+      <Choice JumpId="82">察觉你的情绪</Choice>
+    </Message>
+    <SpeakAside NodeId="80" Content="你沉默不发一言" JumpId="79" />
+    <SpeakAside NodeId="81" Content="总编继续责备你，并强调你的表现必须改善。总编继续责备你，并强调你的表现必须改善。" JumpId="84" />
+    <SpeakAside NodeId="82" Content="总编察觉到你心情低落" JumpId="83" />
+    <Message NodeId="83">
+      <Choice JumpId="100">关心你</Choice>
+      <Choice JumpId="84">不理会你的情绪</Choice>
+    </Message>
+    <SpeakAside NodeId="84" Content="总编强调你必须改善工作表现，他可以选择" JumpId="85" />
+    <Message NodeId="85">
+      <Choice JumpId="86">提供帮助</Choice>
+      <Choice JumpId="87">威胁解雇</Choice>
+    </Message>
+    <SpeakAside NodeId="86" Content="总编提供帮助，例如给你指导或资源，以改善你负责的美食周边板块。" JumpId="88" />
+    <SpeakAside NodeId="87" Content="总编威胁解雇你，如果你不能改善表现，他将不再容忍你的存在。" JumpId="88" />
+    <SpeakAside NodeId="88" Content="你决定去挖掘关于于氏集团总监听的八卦。你选择调查餐饮行业的消息渠道，寻找关于于氏集团总监听的线索。" JumpId="89" />
+    <SpeakAside NodeId="89" Content="你通过调查餐饮行业的消息渠道，获得了一些关于于氏集团总监听的线索。。你选择调查餐饮行业的消息渠道，寻找关于于氏集团总监听的线索。" JumpId="90" />
+    <Message NodeId="90">
+      <Choice JumpId="94">私下调查</Choice>
+      <Choice JumpId="96">与同行交流</Choice>
+    </Message>
+    <AddCharacter NodeId="91" CharacterID="4" CharacterName="Editor" CharacterImage="zongbian.png" IsSelf="False" SendMessage="None" JumpId="78" />
+    <ChangeBackImg NodeId="92" Path="office.png" JumpId="91" />
+    <SpeakAside NodeId="93" Content="你揭露了关于于氏集团总监听的八卦，引起了轰动。 总编对你的努力和成果表示赞赏，并决定给予你一个机会证明自己。" JumpId="99" />
+    <SpeakAside NodeId="94" Content="你决定私下调查这些线索，以获取更多关于总监听的信息。" JumpId="93" />
+    <Message NodeId="95">
+      <Choice JumpId="97">得到有效建议</Choice>
+      <Choice JumpId="98">遭遇挫折</Choice>
+    </Message>
+    <SpeakAside NodeId="96" Content="你寻求他人的帮助，以改进自己的工作表现。，引起了轰动。 总编对你的努力和成果表示赞赏，并决定给予你一个机会证明自己。" JumpId="95" />
+    <SpeakAside NodeId="97" Content="你从他人那里得到了有效的建议和指导，能够改进自己的工作。" JumpId="99" />
+    <SpeakAside NodeId="98" Content="你遭遇到一些挫折，无法获得有效的帮助，导致工作表现没有明显的改善。" JumpId="99" />
+    <SpeakAside NodeId="99" Content="你在一次重要的活动中展示了自己的才华和能力，赢得了于氏集团总监听的认可。 最终，你成功改进了美食周边板块的表现，为《酷潮杂志》贡献了重要的成就。 故事以你在工作上取得的成功结局结束，你和总编达成了共赢的局面，同时也找回了自己失去的自信和决心。" JumpId="107" />
+    <Message NodeId="100">
+      <Choice JumpId="101">加班加点</Choice>
+      <Choice JumpId="102">寻求他人帮助</Choice>
+    </Message>
+    <SpeakAside NodeId="101" Content="你决定加班加点，投入更多时间和精力，改进你负责的美食周边板块。" JumpId="103" />
+    <SpeakAside NodeId="102" Content="你决定寻求他人的帮助，例如同事或专业顾问，以改进你的工作表现。" JumpId="104" />
+    <SpeakAside NodeId="103" Content="你加班加点，努力改进自己负责的美食周边板块。 经过一段时间的努力，你的工作表现逐渐得到认可。" JumpId="99" />
+    <Message NodeId="104">
+      <Choice JumpId="105">得到有效建议</Choice>
+      <Choice JumpId="106">遭遇挫折</Choice>
+    </Message>
+    <SpeakAside NodeId="105" Content="你从他人那里得到了有效的建议和指导，能够改进自己的工作。，投入更多时间和精力，改进你负责的美食周边板块。" JumpId="99" />
+    <SpeakAside NodeId="106" Content="你遭遇到一些挫折，无法获得有效的帮助，导致工作表现没有明显的改善。" JumpId="93" />
+    <NextChapter NodeId="107" JumpId="108" />
+    <ChangeBackImg NodeId="108" Path="car.png" JumpId="109" />
+    <SpeakAside NodeId="109" Content="你的车撞上了于子灏的车 3" JumpId="110" />
+    <Message NodeId="110">
+      <Choice JumpId="111">争吵</Choice>
+      <Choice JumpId="112">道歉</Choice>
+    </Message>
+    <Speak NodeId="111" CharacterID="3" CharacterImage="3.png" Content="你这人怎么开车的 " JumpId="113" />
+    <Speak NodeId="112" CharacterID="3" CharacterImage="3.png" Content="对不起，修车的钱你会尽快赔他的" JumpId="115" />
+    <Speak NodeId="113" CharacterID="2" CharacterImage="2.png" Content="你是猪吗" JumpId="114" />
+    <Speak NodeId="114" CharacterID="3" CharacterImage="3.png" Content="“我不是，这谁的责任还不一定。“" JumpId="116" />
+    <Speak NodeId="115" CharacterID="3" CharacterImage="3.png" Content="”这是我的电话和地址，你放心，我有钱随时会赔你！”" JumpId="116" />
+    <Speak NodeId="116" CharacterID="2" CharacterImage="2.png" Content="&quot;我觉得你还是从此在我眼前消失，到天涯海角去躲债比较明智。&quot;" JumpId="117" />
+    <Message NodeId="117">
+      <Choice JumpId="118">威胁回击</Choice>
+      <Choice JumpId="119">忍气吞声</Choice>
+    </Message>
+    <SpeakAside NodeId="118" Content="你瞪了一眼于子灏，然后挺直脊梁走进电梯。" JumpId="120" />
+    <SpeakAside NodeId="119" Content="你默默忍受于子灏的挑衅，赶紧走进电梯。" JumpId="120" />
+    <SpeakAside NodeId="120" Content="电梯门将关上时，于子灏一手撑开了电梯门。他冷冷地注视着你。" JumpId="121" />
+    <Message NodeId="121">
+      <Choice JumpId="122">坚持原则</Choice>
+      <Choice JumpId="123">寻求合作</Choice>
+    </Message>
+    <Speak NodeId="122" CharacterID="3" CharacterImage="3.png" Content="&quot;即使跳楼，我也会先赔你的钱。我是来采访于总裁的。&quot;" JumpId="124" />
+    <Speak NodeId="123" CharacterID="3" CharacterImage="3.png" Content="&quot;你放心，我会好好赔你的钱。我们能不能合作一下，你帮我争取一次和总裁的见面机会？&quot;" JumpId="125" />
+    <Speak NodeId="124" CharacterID="2" CharacterImage="2.png" Content="&quot;不自量力。&quot;" JumpId="127" />
+    <Speak NodeId="125" CharacterID="2" CharacterImage="2.png" Content="&quot;你可以求我，我帮你和总裁争取一下，也许有机会。&quot;" JumpId="126" />
+    <Message NodeId="126">
+      <Choice JumpId="128">感激道谢</Choice>
+      <Choice JumpId="129">怀疑他的动机</Choice>
+    </Message>
+    <SpeakAside NodeId="127" Content="你呆在电梯间，滴水未进，滴米未沾，就等着于总裁出来好饿狼扑食。与此同时，石磊整个人呆在总裁办公室里不敢出来。" JumpId="132" />
+    <Speak NodeId="128" CharacterID="3" CharacterImage="3.png" Content="&quot;真的？你有这个能力？&quot;&quot;真的？你有这个能力？&quot;" JumpId="130" />
+    <Speak NodeId="129" CharacterID="3" CharacterImage="3.png" Content="&quot;你为什么要帮我？你有什么目的？&quot;" JumpId="127" />
+    <Speak NodeId="130" CharacterID="2" CharacterImage="2.png" Content="&quot;你可以不信，可以继续在这里等着，等到天黑看看总裁会不会见你。&quot;" JumpId="131" />
+    <SpeakAside NodeId="131" Content="你琢磨了一下，觉得情况不妙，于是你决定相信他，离开了于氏集团。" JumpId="127" />
+    <Message NodeId="132">
+      <Choice JumpId="133">再次求助于子灏</Choice>
+      <Choice JumpId="134">决定自己行动</Choice>
+    </Message>
+    <SpeakAside NodeId="133" Content="你决定再次找到于子灏，请求他帮忙。" JumpId="135" />
+    <SpeakAside NodeId="134" Content="你决定不再依赖于子灏，决定自己想办法进入总裁办公室。你绕到总裁办公室外，试图找到一个可以进入的突破口。" JumpId="137" />
+    <Speak NodeId="135" CharacterID="2" CharacterImage="2.png" Content="&quot;这么轻易就求我？你不是很有骨气吗？&quot;" JumpId="136" />
+    <Message NodeId="136">
+      <Choice JumpId="140">坚定立场</Choice>
+      <Choice JumpId="141">妥协</Choice>
+    </Message>
+    <Message NodeId="137">
+      <Choice JumpId="139">试图偷窃通行卡</Choice>
+      <Choice JumpId="138">寻找其他入口</Choice>
+    </Message>
+    <SpeakAside NodeId="138" Content="你决定不冒险偷窃通行卡，而是寻找其他可以进入办公室的入口。，决定自己想办法进入总裁办公室。你绕到总裁办公室外，试图找到一个可以进入的突破口。" JumpId="144" />
+    <SpeakAside NodeId="139" Content="你注意到办公室门边放了几张通行卡，你打算偷一张通行卡尝试进入办公室。" JumpId="143" />
+    <Speak NodeId="140" CharacterID="3" CharacterImage="3.png" Content="&quot;你们这些有钱人怎么会明白什么是忍辱负重，苟且偷生。我已经求你了，你去帮我和总裁争取一下吧。&quot;" JumpId="142" />
+    <Speak NodeId="141" CharacterID="3" CharacterImage="3.png" Content="你低下头，无奈地说：&quot;好的，我知道我之前有些过于冲动。请你再帮帮我。" JumpId="142" />
+    <Speak NodeId="142" CharacterID="2" CharacterImage="2.png" Content="&quot;好吧，不过你要记住，这是我唯一的帮忙。&quot;他带着你去找总裁。" JumpId="148" />
+    <SpeakAside NodeId="143" Content="你小心翼翼地伸手去拿通行卡，但正当你要拿到手时，门外突然传来了脚步声。，觉得情况不妙，于是你决定相信他，离开了于氏集团。" JumpId="145" />
+    <SpeakAside NodeId="144" Content="你绕到总裁办公室的其他一侧，寻找其他可以进入办公室的入口。你发现了一个窗户，但是窗户被安装了防护网。" JumpId="145" />
+    <Message NodeId="145">
+      <Choice JumpId="146">继续行动</Choice>
+      <Choice JumpId="147">放弃行动</Choice>
+    </Message>
+    <SpeakAside NodeId="146" Content="你决定冒险继续拿通行卡。，但正当你要拿到手时，门外突然传来了脚步声。，觉得情况不妙，于是你决定相信他，离开了于氏集团。" JumpId="158" />
+    <SpeakAside NodeId="147" Content="你觉得形势不妙，决定放弃偷窃通行卡的行动。" JumpId="159" />
+    <SpeakAside NodeId="148" Content="你得到了关于总裁的一些线索，还得到了一张通行卡，你打算继续寻找总裁的行踪。" JumpId="149" />
+    <SpeakAside NodeId="149" Content="你成功地藏匿了通行卡，保安人员没有发现你的行踪。你决定继续追踪总裁的行踪，希望能够找到他的下落并获取更多关键信息。 通过进一步的调查和与公司员工交流，你得知总裁最近经常在一家高档会所会见重要客户和合作伙伴。这个会所位于城市中心的一栋高楼内，是一个非常独特和高度安全的场所。 你开始计划进入会所，并决定采取潜入的方式，以便能够在那里找到总裁并获取一些有价值的情报。" JumpId="150" />
+    <SpeakAside NodeId="150" Content="你决定潜入总裁经常光顾的高档会所，希望能够在那里找到总裁并获取一些有用的情报。你开始研究会所的布局和安保措施，以寻找进入的最佳时机和方法。 经过一段时间的观察和计划，你发现了一个适合潜入的时机。在一个深夜，当会所的活动相对较少且员工巡逻相对稀少时，你决定发起行动。 你穿着黑色便装，悄悄地进入了会所的地下停车场。你避开了安保摄像头和巡逻的保安，成功地进入了会所的内部。" JumpId="151" />
+    <SpeakAside NodeId="151" Content="之后，你成功通过破坏防护网进入了总裁办公室。你发现办公室内空无一人，只有一台开着的电脑。你决定查看电脑里的文件，希望找到一些线索。" JumpId="152" />
+    <Message NodeId="152">
+      <Choice JumpId="153">查看电脑文件</Choice>
+      <Choice JumpId="154">搜索办公室</Choice>
+    </Message>
+    <SpeakAside NodeId="153" Content="你开始浏览电脑里的文件，发现了一份名为&quot;机密项目计划&quot;的文件。你打开文件，里面包含了关于公司未来发展的重要计划和战略。" JumpId="155" />
+    <SpeakAside NodeId="154" Content="你决定搜索办公室，希望能找到一些有用的线索。你打开抽屉、翻找文件柜，但并没有找到太多有价值的信息。" JumpId="156" />
+    <SpeakAside NodeId="155" Content="你仔细阅读了&quot;机密项目计划&quot;的文件，里面详细描述了公司计划开展一项革命性的科技项目，该项目有望改变行业格局并带来巨大的利润。你意识到这是一个重要的发现，于是你决定将文件保存到你的存储设备中，并离开办公室。" JumpId="157" />
+    <SpeakAside NodeId="156" Content="你搜索了办公室的各个角落，但没有找到任何有用的线索。你开始感到失望，意识到你需要寻找其他的方式来了解更多信息。你决定离开办公室。" JumpId="157" />
+    <SpeakAside NodeId="157" Content="你离开了总裁办公室，心中充满了重要计划的信息。你开始思考下一步的行动，希望能够利用这份信息取得一些优势。" JumpId="160" />
+    <Message NodeId="158">
+      <Choice JumpId="149">快速藏匿通行卡</Choice>
+      <Choice JumpId="150">投降</Choice>
+    </Message>
+    <SpeakAside NodeId="159" Content="解开密码保险柜的谜题。你决定放弃偷窃通行卡的行动，因为情况变得太危险了。你开始寻找其他进入办公室的方法，希望能找到一些有用的线索。 你仔细观察办公室，并注意到总裁办公室内有一个密码保险柜。你推测这个保险柜可能包含一些重要的文件或线索。 你走近保险柜，发现它有一个数字键盘和一个显示屏。屏幕上显示着以下提示：&quot;找到我，你将找到答案。我是时间的守护者，却被遗忘在过去。寻找数字的线索，将会指引你前进。&quot; 你开始思考线索的含义。你回顾了之前的调查和收集到的信息。突然，你想到了公司成立的日期——1985年3月15日。你觉得这可能是一个线索。 你在数字键盘上输入了0315，保险柜的显示屏上出现了“Access Granted”的提示。保险柜的门随后打开，你发现里面有一些重要文件和一把钥匙。 你将文件保存起来，并拿起钥匙，准备离开办公室去追踪总裁的行踪。" JumpId="149" />
+    <SpeakAside NodeId="160" Content="监控外： 于子灏不知道为什么，看着你费劲力气找他的样子，有一丝丝开心。 于子灏从来都是一个非常克制内敛的人，开心要绷着，不开心要绷着；不能骄傲任性，不能恣意妄为；只能做该做的事，而不是想做的事。 于子灏从来没有料想过这一生会被一个陌生人泼咖啡，也没想到过自己会还击。 此刻的于子灏只是想稍稍地放纵一下自己，在别人看不见的地方，在不影响大局的地方，稍稍地任性一下。 于子灏的人生仿佛在一条被设定好的轨道上，偶尔跑出轨道，都会被严苛的父亲用无法想象的手段拽回来。 于子灏从来没有朋友，这个世界，可能根本没人真心喜欢他。 而他唯一喜欢过的人，也在昨天，嫁人了。 于子灏曾为了那个姑娘和家里据理力争，吵翻了天，撂挑子不干，为了伟大的爱情，要和姑娘到天涯海角去流浪。 但当于子灏被父亲断了口粮，没了经济来源，像普通人一样，住在租来的隔板间，挤公车上班，为了买一把青菜和小贩讲价时，那个爱他如爱生命的姑娘却毅然决然地离开了。 当于子灏回到家时，他的父亲并没有太多的惊讶，仿佛知道，他迟早是要回来的。 姑娘嫁人了，新郎不是他。 新郎是于子灏的父亲介绍给她的，一个更有钱的男人，当于子灏不是于氏接班人，没钱没权没势时，姑娘抓住了她人生中另外一个飞黄腾达的机会。 拜高踩低、趋炎附势是女人的天性吧。 于子灏总忘不了那个姑娘天真的眼神背后的贪婪和欺骗。 而你对于子灏丝毫不谄媚的样子，真实不做作的性情，一步步让他不自觉间沦陷。" JumpId="161" />
+    <NextChapter NodeId="161" JumpId="194" />
+    <ChangeBackImg NodeId="162" Path="office.png" JumpId="163" />
+    <SpeakAside NodeId="163" Content="求总编再给工作机会 （你拖着破相的奥迪回到公司，心急如焚地来到总编的办公室，跪在地上抱着总编的大腿苦苦哀求。）" JumpId="164" />
+    <Speak NodeId="164" CharacterID="3" CharacterImage="3.png" Content="总编，求求您再给我一次机会！我真的会改正错误的，我还有很多潜力可以发展！" JumpId="165" />
+    <Speak NodeId="165" CharacterID="zongbian" Content="放开，你这样做只会让人产生负面联想。上完这个月的班就给我！你还有两周的时间完成最后一期杂志，两周的时间找到下一份工作。" JumpId="166" />
+    <Message NodeId="166">
+      <Choice JumpId="167">接受总编的决定，默默离开办公室</Choice>
+      <Choice JumpId="182">继续苦苦哀求总编</Choice>
+    </Message>
+    <SpeakAside NodeId="167" Content="面对房租催缴问题" JumpId="168" />
+    <SpeakAside NodeId="168" Content="蓝心北！限你三天内交房租，再不交我就要赶人了！！！" JumpId="169" />
+    <SpeakAside NodeId="169" Content="（你沮丧地坐在沙发上，意识到自己无法按时交房租。）" JumpId="170" />
+    <SpeakAside NodeId="170" Content="这已经是房东第五次催房租了，你不是不缴，而是真的没有钱。" JumpId="171" />
+    <Message NodeId="171">
+      <Choice JumpId="172">拖延时间，寻找解决办法</Choice>
+      <Choice JumpId="188">与房东坦诚相告</Choice>
+    </Message>
+    <SpeakAside NodeId="172" Content="（你决定寻找解决办法来应对房租问题。） 你开始思考怎样才能尽快筹集到资金。你回忆起自己的技能和资源，寻找解决方案。" JumpId="173" />
+    <Message NodeId="173">
+      <Choice JumpId="174">开始兼职工作，赚取额外的收入</Choice>
+      <Choice JumpId="175">向朋友借钱，临时缓解困境</Choice>
+    </Message>
+    <SpeakAside NodeId="174" Content="（你决定寻找兼职工作，以赚取额外的收入来支付房租。） 你利用网络资源和社交关系开始寻找兼职机会。经过一番努力，你找到了一个临时的服务员岗位，可以在晚上的餐厅工作。" JumpId="176" />
+    <SpeakAside NodeId="175" Content="（你决定向朋友借钱，临时缓解困境。） 你联系了你最亲近的朋友，向他们倾诉自己的困境，并请求他们提供一些经济支援。" JumpId="191" />
+    <SpeakAside NodeId="176" Content="（你接受了兼职工作，在晚上的餐厅当起了服务员。） 你努力工作，尽力提供优质的服务，以赚取额外的收入。" JumpId="177" />
+    <SpeakAside NodeId="177" Content="（你努力工作，每天勤奋地为客人提供服务，赚取足够的钱支付房租。） 经过几天的辛勤努力，你成功地赚取了足够的钱支付了逾期的房租。你感到一种莫大的满足和解脱，同时也对自己的能力和毅力感到自豪。 但是，你并没有停下脚步。你继续寻找新的工作机会，想要确保自己能够稳定地负担起生活费用和房租。你利用你的人脉和经验，积极地申请各种职位，并参加面试。" JumpId="178" />
+    <Message NodeId="178">
+      <Choice JumpId="179">准备面试，寻找副业机会</Choice>
+      <Choice JumpId="180">寻找其他解决办法来改善经济状况</Choice>
+    </Message>
+    <SpeakAside NodeId="179" Content="准备面试，寻找新的工作机会 你开始准备面试，查阅公司资料，整理自己的简历并进行自我推销。你对每个面试机会都充满期待，并认真准备回答可能的问题。在接下来的几周里，你参加了多个面试，展示了自己的技能和经验。一些面试进展顺利，你受到了几家公司的青睐，并最终接到了一份副业的工作机会。尝试给别的公司提供副业服务" JumpId="180" />
+    <SpeakAside NodeId="180" Content="尝试副业赚了一笔钱" JumpId="193" />
+    <Message NodeId="181">
+      <Choice JumpId="167">接受总编的决定，默默离开办公室，默默离开办公室</Choice>
+      <Choice JumpId="183">拿出于氏集团机密项目计划让总编给活路</Choice>
+    </Message>
+    <Speak NodeId="182" CharacterID="zongbian" Content="你的机会已经用完了，我不再相信你能为这个杂志做出什么贡献。你只剩下两周的时间，抓紧找下一份工作吧。" JumpId="181" />
+    <SpeakAside NodeId="183" Content="总监看了机密项目计划，暂时把你留下 （你拿出一份于氏集团的机密项目计划，递给总编。）" JumpId="184" />
+    <Speak NodeId="184" CharacterID="3" CharacterImage="3.png" Content="总编，请您看看这个。这是我最近发现的于氏集团的机密项目计划，我认为这对我们的杂志有很大的独家价值。" JumpId="185" />
+    <Speak NodeId="185" CharacterID="zongbian" Content="这...这确实是个不错的发现。你对于氏集团的了解是怎么来的？" JumpId="186" />
+    <Speak NodeId="186" CharacterID="3" CharacterImage="3.png" Content="我有一个朋友在于氏集团工作，他透露给我了一些内部信息。我觉得这个项目会引起很大的轰动，我们可以通过独家报道来吸引更多的读者。" JumpId="187" />
+    <Speak NodeId="187" CharacterID="zongbian" Content="好吧，看在你有这个眼光的份上，我可以暂时留下你。但记住，你只有两周的时间完成最后一期杂志和找到下一份工作。" JumpId="167" />
+    <Speak NodeId="188" CharacterID="3" CharacterImage="3.png" Content="房东，实际上我最近遇到了一些经济困难，暂时无法按时支付房租。我会尽快解决这个问题，希望您能给我一些宽限。" JumpId="189" />
+    <Speak NodeId="189" CharacterID="zongbian" Content="你已经拖欠了好几个月的房租，我也不能一直等下去。如果三天内还没有收到房租，我将被迫采取法律行动。" JumpId="190" />
+    <Message NodeId="190">
+      <Choice JumpId="172">寻找解决办法，尽快筹集资金</Choice>
+      <Choice JumpId="172">请求房东再给一些时间</Choice>
+    </Message>
+    <Message NodeId="191">
+      <Choice JumpId="192">成功借到钱，解决房租问题</Choice>
+      <Choice JumpId="172">朋友无法提供帮助，寻找其他解决办法</Choice>
+    </Message>
+    <SpeakAside NodeId="192" Content="（你成功地借到了朋友的钱，解决了房租问题。） 感激之情涌上心头，你决定尽快偿还借款，同时寻找副业机会。" JumpId="177" />
+    <NextChapter NodeId="193" JumpId="215" />
+    <AddCharacter NodeId="194" CharacterID="zongbian" CharacterName="" CharacterImage="zongbian.png" IsSelf="False" SendMessage="None" JumpId="162" />
+    <SpeakAside NodeId="195" Content="深夜，你蹲在小圆凳上，浏览着网页，看着一道一道的美食推荐，肚子咕咕作响，突然灵光乍现。你浏览网页灵光乍现的画面 最后一期杂志你推出了“美食黑洞”，专门介绍美食中的泥石流，揭露那些被水军高评刷上榜，却又贵又难吃的店铺。 吃货们本着求真的精神挨个店面去亲测，发现你的推荐才是良心推荐，瞬间引起了吃货的强烈共鸣。 这一期杂志差点脱销。杂志卖脱销画面 总编多拨了一个月的工资给你，让你多吃点，下期杂志接着爆料。 你终于暂时保住了饭碗。 不仅付了房租，分期还了一小部分旧债，还炖起了肉肉。 在“美食黑洞”后面，你附上了私家菜谱。 亲测过的粉丝们呼声甚高，要你快快出山，开一家自己的小餐馆。 各路表扬信纷至沓来之时， 你收到了恐吓信，而且还是从门缝塞进来的。 “如果下一期‘美食黑洞’的板块还没有取消，就请你吃大便。” 你手一抖，纸条掉在地上。 你心生疑惑，觉得和于子灏脱不了干系，你打算出发去找他，然后在路上......深夜，你蹲在小圆凳上，浏览着网页，看着一道一道的美食推荐，肚子咕咕作响，突然灵光乍现。你浏览网页灵光乍现的画面 最后一期杂志你推出了“美食黑洞”，专门介绍美食中的泥石流，揭露那些被水军高评刷上榜，却又贵又难吃的店铺。 吃货们本着求真的精神挨个店面去亲测，发现你的推荐才是良心推荐，瞬间引起了吃货的强烈共鸣。 这一期杂志差点脱销。杂志卖脱销画面 总编多拨了一个月的工资给你，让你多吃点，下期杂志接着爆料。 你终于暂时保住了饭碗。 不仅付了房租，分期还了一小部分旧债，还炖起了肉肉。 在“美食黑洞”后面，你附上了私家菜谱。 亲测过的粉丝们呼声甚高，要你快快出山，开一家自己的小餐馆。 各路表扬信纷至沓来之时， 你收到了恐吓信，而且还是从门缝塞进来的。 “如果下一期‘美食黑洞’的板块还没有取消，就请你吃大便。” 你手一抖，纸条掉在地上。 你心生疑惑，觉得和于子灏脱不了干系，你打算出发去找他，然后在路上......深夜，你蹲在小圆凳上，浏览着网页，看着一道一道的美食推荐，肚子咕咕作响，突然灵光乍现。你浏览网页灵光乍现的画面 最后一期杂志你推出了“美食黑洞”，专门介绍美食中的泥石流，揭露那些被水军高评刷上榜，却又贵又难吃的店铺。 吃货们本着求真的精神挨个店面去亲测，发现你的推荐才是良心推荐，瞬间引起了吃货的强烈共鸣。 这一期杂志差点脱销。杂志卖脱销画面 总编多拨了一个月的工资给你，让你多吃点，下期杂志接着爆料。 你终于暂时保住了饭碗。 不仅付了房租，分期还了一小部分旧债，还炖起了肉肉。 在“美食黑洞”后面，你附上了私家菜谱。 亲测过的粉丝们呼声甚高，要你快快出山，开一家自己的小餐馆。 各路表扬信纷至沓来之时， 你收到了恐吓信，而且还是从门缝塞进来的。 “如果下一期‘美食黑洞’的板块还没有取消，就请你吃大便。” 你手一抖，纸条掉在地上。 你心生疑惑，觉得和于子灏脱不了干系，你打算出发去找他，然后在路上......" JumpId="197" />
+    <ChangeBackImg NodeId="196" Path="office.png" JumpId="195" />
+    <ChangeBackImg NodeId="197" Path="yushijituan.png" JumpId="198" />
+    <SpeakAside NodeId="198" Content="石磊早晨刚到公司就收到前台小姐送来的信封，拆开一看竟是2500块钱。 信封上写着50000块分20期还，每期2500。 石磊还在纳闷天上掉馅饼了？就被于子灏抢了去。 于子灏哗啦啦翻着崭新的人民币，心想，五万块我只是随口说说，没想到你当真了。" JumpId="199" />
+    <Speak NodeId="199" CharacterID="shilei" Content="石磊给于子灏信封和一摞杂志：“于总这是蓝小姐给您的钱。”（信封上写着50000块分20期还，每期2500。），最近《酷潮杂志》最近出了一版‘美食黑洞’的板块，我们旗下的三家连锁店都榜上有名，而且有一家店连续两期位列前三名。”" JumpId="200" />
+    <Speak NodeId="200" CharacterID="2" CharacterImage="2.png" Content="“哦？那上榜的还有哪些店？廖文集团旗下的呢？”" JumpId="201" />
+    <SpeakAside NodeId="201" Content="廖文集团目前是餐饮行业里的霸主，也是于氏集团的劲敌。" JumpId="202" />
+    <Speak NodeId="202" CharacterID="shilei" Content="廖文集团目前是餐饮行业里的霸主，也是于氏集团的劲敌。" JumpId="203" />
+    <SpeakAside NodeId="203" Content="廖文集团的公关在业内是出了名的一流，竟然被一个杂志曝出如此的负面信息，看来这个杂志不简单。" JumpId="204" />
+    <Speak NodeId="204" CharacterID="2" CharacterImage="2.png" Content="“‘美食黑洞’项目是谁负责？”" JumpId="205" />
+    <Speak NodeId="205" CharacterID="shilei" Content="“是上次来采访的那个蓝小姐。”" JumpId="206" />
+    <SpeakAside NodeId="206" Content="于子灏的眼睛亮了一下，饶有兴致地翻着石磊递过来的杂志。" JumpId="207" />
+    <Speak NodeId="207" CharacterID="shilei" Content="“那个，总裁，您之前让我送去干洗的衬衫已经试了5家干洗店，上面的咖啡渍可能洗不掉了。”" JumpId="208" />
+    <SpeakAside NodeId="208" Content="石磊等着于子灏爆发，因为那件衬衫是于子灏最重要的衬衫，听说是于子灏和前任的情侣衫。可是有洁癖的于子灏怎么会把衬衫弄上大片大片的咖啡渍呢？" JumpId="209" />
+    <Speak NodeId="209" CharacterID="2" CharacterImage="2.png" Content="“知道了，扔了吧。”" JumpId="210" />
+    <Speak NodeId="210" CharacterID="2" CharacterImage="2.png" Content="“车修好了吗？”" JumpId="211" />
+    <Speak NodeId="211" CharacterID="shilei" Content="“已经在4S店了，预估的报价是9万8。”" JumpId="212" />
+    <Speak NodeId="212" CharacterID="2" CharacterImage="2.png" Content="：“去开一张涵盖了所有修理费的维修单，总价格不超过2500，越快越好。愣着干嘛？听不懂吗？”" JumpId="213" />
+    <SpeakAside NodeId="213" Content="石磊忙退出了办公室。 于子灏也不知道怎么了，但总感觉你不安全，于是立马动身出发前来找你。" JumpId="214" />
+    <NextChapter NodeId="214" JumpId="216" />
+    <AddCharacter NodeId="215" CharacterID="shilei" CharacterName="" CharacterImage="shilei.png" IsSelf="False" SendMessage="None" JumpId="196" />
+    <ChangeBackImg NodeId="216" Path="yushijituan.png" JumpId="217" />
+    <SpeakAside NodeId="217" Content="被抢劫" JumpId="218" />
+    <Message NodeId="218">
+      <Choice JumpId="219">坚持抵抗</Choice>
+      <Choice JumpId="219">利用美色拖延时间，直到歹徒忍无可忍 </Choice>
+    </Message>
+    <SpeakAside NodeId="219" Content="歹徒气愤，开始动刀子歹徒气愤，开始动刀子" JumpId="220" />
+    <SpeakAside NodeId="220" Content="被于子灏拯救" JumpId="221" />
+    <SpeakAside NodeId="221" Content="回家并相互了解 你和于子灏一起回到你的家。当你们打开家门时，发现房间一片狼藉，像是被盗了一样。你开始检查是否有东西丢失。" JumpId="222" />
+    <Message NodeId="222">
+      <Choice JumpId="223">检查是否有贵重物品被盗</Choice>
+      <Choice JumpId="223">认为只是你没收拾家里</Choice>
+    </Message>
+    <SpeakAside NodeId="223" Content="于子灏对你的家境感到震惊，他问你是否一直住在这样的环境中。你解释说这个地方是你目前承受得起的唯一住所。 于子灏告诉你，在找到你的公司之前，他绕了大半个城市。他并不是为了约你吃饭或者讨论杂志，而只是想见你。然后他一路跟着你，直到目睹了你被歹徒袭击的一幕，他才感到紧张。" JumpId="224" />
+    <Message NodeId="224">
+      <Choice JumpId="225">感激于子灏的关心</Choice>
+      <Choice JumpId="226">不以为意</Choice>
+    </Message>
+    <SpeakAside NodeId="225" Content="你深深感激于子灏的关心和勇敢行动。你觉得他的到来是你生活中的一股暖流。" JumpId="227" />
+    <SpeakAside NodeId="226" Content="你对于子灏的行为并不以为意，你认为他只是个路过的陌生人，对他的关心和行动并不在意。" JumpId="227" />
+    <SpeakAside NodeId="227" Content="你决定给于子灏做一碗普通的泡面。你把泡面烹饪得非常美味，加入了青菜、火腿、卧蛋和你的私家红烧肉。这一碗泡面因为你的烹饪而变得与众不同。" JumpId="228" />
+    <Message NodeId="228">
+      <Choice JumpId="229">你们一起坐下来，用你们各自的方式享受这顿晚餐。你细心地喂给于子灏一口一口，两人之间的氛围变得温馨而亲密。</Choice>
+      <Choice JumpId="229">你觉得这只是一顿普通的泡面，不值得过多的关注。你们继续吃着泡面，没有发生什么特别的事情。</Choice>
+    </Message>
+    <Speak NodeId="229" CharacterID="2" CharacterImage="2.png" Content="在共进晚餐的过程中，于子灏感受到了你的温暖和关怀。他开始意识到自己已经爱上了你。" JumpId="230" />
+    <NextChapter NodeId="230" JumpId="255" />
+    <ChangeBackImg NodeId="231" Path="office.png" JumpId="232" />
+    <SpeakAside NodeId="232" Content="第二天发了工资，你决定去商场买一件男士衬衫赔给他，毕竟他救了你一命。 25600的衬衫你可买不起，256的衬衫还是可以挑一挑的。 一件一件仔细挑去，颜色、款式、做工，虽然远远望去都差不多，但是想到他那么挑剔的一个人，你不由得多用了些心思，逛着逛着就从256逛到了2560，然后一狠心，一咬牙，真买了一件。 你是个穷兮兮的女人，对自己总是很吝啬，但是对在意的男生却向来很大方。 你想象着穿在他身上，挺拔、帅气、阳光。他可能一脸冰冷呢？还是一脸得意呢？他一定自以为很了不起，但其实像一个幼稚的小孩子呢，想到这里你轻声笑了。" JumpId="233" />
+    <SpeakAside NodeId="233" Content="店员：“我们家牌子的衬衫很好穿的，如果您爱人穿着不合适，大小可以来调换的。”，你决定去商场买一件男士衬衫赔给他，毕竟他救了你一命。 25600的衬衫你可买不起，256的衬衫还是可以挑一挑的。 一件一件仔细挑去，颜色、款式、做工，虽然远远望去都差不多，但是想到他那么挑剔的一个人，你不由得多用了些心思，逛着逛着就从256逛到了2560，然后一狠心，一咬牙，真买了一件。 你是个穷兮兮的女人，对自己总是很吝啬，但是对在意的男生却向来很大方。 你想象着穿在他身上，挺拔、帅气、阳光。他可能一脸冰冷呢？还是一脸得意呢？他一定自以为很了不起，但其实像一个幼稚的小孩子呢，想到这里你轻声笑了。" JumpId="234" />
+    <Speak NodeId="234" CharacterID="3" CharacterImage="3.png" Content="“嗯？”" JumpId="235" />
+    <SpeakAside NodeId="235" Content="你愣神的时间售货员小姐已经把衬衫装好，妥帖地放在袋子里递给了你。" JumpId="236" />
+    <Speak NodeId="236" CharacterID="3" CharacterImage="3.png" Content="“不不，不是爱人。”" JumpId="237" />
+    <SpeakAside NodeId="237" Content="售货员小姐只是微笑着看着你，看着你微红了脸。 你提着购物袋，走出男装店，隔壁就是女装。 你看着隔壁橱窗里的一件镂空宝蓝色鱼尾裙，一字肩包臀设计，腰线很高，裙摆很大，衬得模特身材高挑、皮肤雪白。 “好好看啊。”你站在橱窗前羡慕地看着，可是再看看模特胸前的吊牌，1988。现在商场的东西真的是越来越贵了，不知道某宝上有没有同款代购。" JumpId="238" />
+    <SpeakAside NodeId="238" Content="遇到前男友高望挽着一个老女人 " JumpId="239" />
+    <Message NodeId="239">
+      <Choice JumpId="240">当作不认识没看见</Choice>
+      <Choice JumpId="244">打招呼</Choice>
+    </Message>
+    <SpeakAside NodeId="240" Content="高望一直看着你" JumpId="244" />
+    <Message NodeId="241">
+      <Choice JumpId="242">当作不认识没看见</Choice>
+      <Choice JumpId="245">打招呼</Choice>
+    </Message>
+    <Speak NodeId="242" CharacterID="3" CharacterImage="3.png" Content="（装作没有听到）不好意思，我没听清楚。" JumpId="243" />
+    <Speak NodeId="243" CharacterID="oldLady" Content="（不满地哼了一声）真是没教养的人。" JumpId="252" />
+    <Speak NodeId="244" CharacterID="oldLady" Content="难道你们认识" JumpId="241" />
+    <Speak NodeId="245" CharacterID="3" CharacterImage="3.png" Content="（礼貌地）嗨，高望，很久不见。" JumpId="246" />
+    <Speak NodeId="246" CharacterID="gaowang" Content="（尴尬地）嗯，是啊，很久不见。" JumpId="247" />
+    <Speak NodeId="247" CharacterID="oldLady" Content="（冷笑）你们两个怎么认识的？我从没听过高望提起过你。" JumpId="248" />
+    <Message NodeId="248">
+      <Choice JumpId="249">解释认识的原因</Choice>
+      <Choice JumpId="253">保持沉默</Choice>
+    </Message>
+    <Speak NodeId="249" CharacterID="3" CharacterImage="3.png" Content="我们曾经是朋友，但最近失去了联系。" JumpId="250" />
+    <Speak NodeId="250" CharacterID="oldLady" Content="（不屑地看着主人公）原来是以前的朋友，没什么意思。进去试衣服吧。" JumpId="251" />
+    <Speak NodeId="251" CharacterID="gaowang" Content="（紧随在老女人身后）对不起，我们得走了。" JumpId="253" />
+    <ExitGame NodeId="252" />
+    <NextChapter NodeId="253" JumpId="282" />
+    <AddCharacter NodeId="254" CharacterID="oldLady" CharacterName="老女人" CharacterImage="oldLady.png" IsSelf="False" SendMessage="None" JumpId="231" />
+    <AddCharacter NodeId="255" CharacterID="gaowang" CharacterName="高望" CharacterImage="lushang.png" IsSelf="False" SendMessage="None" JumpId="254" />
+    <ChangeBackImg NodeId="256" Path="office.png" JumpId="257" />
+    <SpeakAside NodeId="257" Content="（你一个人傻傻站在店外，突然被于子灏拉起手）" JumpId="258" />
+    <Speak NodeId="258" CharacterID="2" CharacterImage="2.png" Content="跟我来" JumpId="259" />
+    <SpeakAside NodeId="259" Content="（你被于子灏带进店内），突然被于子灏拉起手）" JumpId="260" />
+    <Speak NodeId="260" CharacterID="2" CharacterImage="2.png" Content="店里所有适合我女朋友尺码的裙子都包起来，包括模特身上那件。" JumpId="261" />
+    <Speak NodeId="261" CharacterID="dianyuan" Content="（吃惊）您是说，所有？" JumpId="262" />
+    <Speak NodeId="262" CharacterID="2" CharacterImage="2.png" Content="（坚定地）对，所有款式，所有色号，包起来，现在，立刻。" JumpId="263" />
+    <SpeakAside NodeId="263" Content="（店员忙碌起来，核对货号，包裹裙子）" JumpId="264" />
+    <Message NodeId="264">
+      <Choice JumpId="265">感激于子灏</Choice>
+      <Choice JumpId="268">怀疑于子灏</Choice>
+    </Message>
+    <Speak NodeId="265" CharacterID="3" CharacterImage="3.png" Content="（感激地）谢谢你，子灏。" JumpId="266" />
+    <Speak NodeId="266" CharacterID="2" CharacterImage="2.png" Content="（微笑）你喜欢的，我都给你，谁都抢不走。" JumpId="267" />
+    <SpeakAside NodeId="267" Content="（于子灏低下头，亲吻主人公的额头）" JumpId="281" />
+    <SpeakAside NodeId="268" Content="（老女人一跺脚，看了看于子灏和主人公，又看了看高望，然后转身离开，高望小步快跑跟在老女人的身后）" JumpId="269" />
+    <Message NodeId="269">
+      <Choice JumpId="270">对高望的心情</Choice>
+      <Choice JumpId="271">对于子灏的怀疑对于子灏的怀疑对于子灏的怀疑</Choice>
+    </Message>
+    <SpeakAside NodeId="270" Content="（心情复杂）或许，我们注定走向不同的方向。" JumpId="281" />
+    <SpeakAside NodeId="271" Content="（主人公心存疑虑，开始怀疑于子灏对自己的好是出于炫耀还是真的爱上自己）" JumpId="272" />
+    <Message NodeId="272">
+      <Choice JumpId="273">质问于子灏</Choice>
+      <Choice JumpId="275">观察于子灏</Choice>
+    </Message>
+    <Speak NodeId="273" CharacterID="3" CharacterImage="3.png" Content="（怀疑地）子灏，你对我这么好，是不是只是为了炫耀？" JumpId="274" />
+    <Speak NodeId="274" CharacterID="2" CharacterImage="2.png" Content="（轻笑）我知道你可能会这么想，但其实不是的。我对你的感情是真实的，我爱你。" JumpId="281" />
+    <SpeakAside NodeId="275" Content="（你开始细致观察于子灏的行动和态度，试图找出真相）" JumpId="276" />
+    <Message NodeId="276">
+      <Choice JumpId="277">于子灏的细心关怀</Choice>
+      <Choice JumpId="278">于子灏的炫耀行为</Choice>
+    </Message>
+    <Speak NodeId="277" CharacterID="3" CharacterImage="3.png" Content="（怀疑地）子灏，你对我这么好，（发现于子灏频繁炫耀）子灏，你总是喜欢炫耀你的财富和能力，难道对我只是一种炫耀的手段吗？？" JumpId="279" />
+    <Speak NodeId="278" CharacterID="2" CharacterImage="2.png" Content="（认真地）我承认我有时候会过分展示，但这并不代表我对你的感情不真实。我真心对你好，不仅是为了炫耀，更是因为我爱你。" JumpId="279" />
+    <Speak NodeId="279" CharacterID="3" CharacterImage="3.png" Content="（感动）或许我误会了你，子灏。谢谢你对我的细心关怀，我相信你的爱是真实的。" JumpId="280" />
+    <Speak NodeId="280" CharacterID="2" CharacterImage="2.png" Content="（真诚地）我会一直对你好，不辜负你的信任和爱。" JumpId="281" />
+    <ExitGame NodeId="281" />
+    <AddCharacter NodeId="282" CharacterID="dianyuan" CharacterName="店员" CharacterImage="oldLady" IsSelf="False" SendMessage="None" JumpId="256" />
+  </Plot>
+</data>
