@@ -336,6 +336,8 @@ namespace XModules.GalManager
 
                             Gal_Message.SetActive(true);
                             Gal_Message.CreatNewChoice(ConversationView.PlotData.ChoiceTextList);
+
+                            SendCharMessage("","", true);
                         }
 
                         break;
@@ -390,7 +392,10 @@ namespace XModules.GalManager
 
                         //处理消息
                         if (PlotData.NowPlotDataNode.Attributes("SendMessage").Count() != 0)
-                            SendCharMessage(characterInfo.characterID, PlotData.NowPlotDataNode.Attribute("SendMessage").Value);
+                        {
+                            SendCharMessage(characterInfo.characterID, PlotData.NowPlotDataNode.Attribute("SendMessage").Value, characterInfo.isSelf);
+                        }
+
                         if (PlotData.NowPlotDataNode.Attributes("AudioPath").Count() != 0)
                             PlayAudio(PlotData.NowPlotDataNode.Attribute("AudioPath").Value);
                         break;
@@ -447,17 +452,17 @@ namespace XModules.GalManager
         public void DestroyCharacterByID (string ID)
         {
             var _ = PlotData.CharacterInfoList.Find(t => t.characterID == ID);
-            SendCharMessage(ID, "Quit");
+            //SendCharMessage(ID, "Quit");
             PlotData.CharacterInfoList.Remove(_);
         }
         
-        public void SendCharMessage (string CharacterID, string Message)
+        public void SendCharMessage (string CharacterID, string Message,bool isSelf)
         {
             //var _t = GetCharacterObjectByName(CharacterID);
             //_t.CharacterLoader.HandleMessage(Message);
 
-            character_animate.Animate_type = Message;
-            character_animate.HandleMessgae();
+            //character_animate.Animate_type = Message;
+            character_animate.HandleMessgaeTemp(isSelf);
         }
 
         private void PlayAudio (string fileName)

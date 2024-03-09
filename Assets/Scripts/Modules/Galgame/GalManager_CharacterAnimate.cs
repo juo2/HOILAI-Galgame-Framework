@@ -31,6 +31,12 @@ namespace XModules.GalManager
 
         private float m_SpriteWidth = 800;
 
+        [SerializeField]
+        Transform rightTran;
+
+        [SerializeField]
+        Transform leftTran;
+
         private void Awake ()
         {
             CharacterImg = this.gameObject.GetComponent<Image>();
@@ -39,9 +45,21 @@ namespace XModules.GalManager
         [Button(nameof(Start), "重新执行入场动画")]
         private void Start ()
         {
-            HandleInOrOutsideMessgae(Animate_StartOrOutside);
-
+            //HandleInOrOutsideMessgae(Animate_StartOrOutside);
         }
+
+        public void HandleMessgaeTemp(bool isSelf)
+        {
+            if (isSelf)
+            {
+                CharacterImg.rectTransform.localPosition = rightTran.localPosition;
+            }
+            else
+            {
+                CharacterImg.rectTransform.localPosition = leftTran.localPosition;
+            }
+        }
+
         [Button(nameof(Start), "重新执行及时动画")]
         public void HandleMessgae ()
         {
