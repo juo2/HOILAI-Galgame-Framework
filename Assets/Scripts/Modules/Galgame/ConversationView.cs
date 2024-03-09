@@ -92,10 +92,6 @@ namespace XModules.GalManager
         /// </summary>
         [Title("当前场景角色数量")]
         public int CharacterNum;
-        private class CharacterConfig
-        {
-            public static GameConfig CharacterInfo;
-        }
 
         private XDocument PlotxDoc;
         public static Struct_PlotData PlotData = new();
@@ -145,10 +141,12 @@ namespace XModules.GalManager
 
         void ClearGame()
         {
-            foreach (var item in PlotData.CharacterInfoList)
-            {
-                DestroyCharacterByID(item.characterID);
-            }
+            //foreach (var item in PlotData.CharacterInfoList)
+            //{
+            //    DestroyCharacterByID(item.characterID);
+            //}
+
+            PlotData.CharacterInfoList.Clear();
         }
 
         void ChoiceComplete()
@@ -431,6 +429,8 @@ namespace XModules.GalManager
                 case "ExitGame":
                     {
                         ClearGame();
+                        XGUIManager.Instance.CloseView("ConversationView");
+                        XGUIManager.Instance.OpenView("MainView");
                         break;
                     }
             }
