@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
+using XModules.Data;
 
 namespace XModules.GalManager
 {
@@ -14,12 +15,7 @@ namespace XModules.GalManager
         /// </summary>
         public static bool IsFastMode;
 
-        /// <summary>
-        /// 当前是否正在发言
-        /// 如果为假则可以开始下一句
-        /// 当这个文本快结束的时候也为True
-        /// </summary>
-        public static bool IsSpeak;
+        
 
         /// <summary>
         /// 文本内容打字机动画事件
@@ -35,11 +31,6 @@ namespace XModules.GalManager
         /// 发言人
         /// </summary>
         public Text Text_CharacterName;
-
-        /// <summary>
-        ///是否可以跳过 
-        /// </summary>
-        public static bool IsCanJump = true;
 
         /// <summary>
         /// 设置对话内容
@@ -74,23 +65,23 @@ namespace XModules.GalManager
                 SetText_CharacterName(CharacterName);
 
             }
-            if (IsSpeak && Text_TextContent.text.Length >= TextContent.Length * 0.75f && IsCanJump)//当前还正在发言
+            if (ConversationData.IsSpeak && Text_TextContent.text.Length >= TextContent.Length * 0.75f && ConversationData.IsCanJump)//当前还正在发言
             {
                 //但是 ，如果当前到了总文本的三分之二，也可以下一句
                 SetText_Content(TextContent);
-                IsSpeak = false;
+                ConversationData.IsSpeak = false;
                 TextAnimateEvemt.Kill();
                 Always_Temp();
                 return TextAnimateEvemt;
             }
-            else if (IsSpeak) return TextAnimateEvemt;
-            IsSpeak = true;
+            else if (ConversationData.IsSpeak) return TextAnimateEvemt;
+            ConversationData.IsSpeak = true;
             SetText_Content(string.Empty);//先清空内容
             Always_Temp();
             TextAnimateEvemt = Text_TextContent.DOText(TextContent, TextContent.Length * (IsFastMode ? FastSpeed : DefaultSpeed)).SetEase(Ease.Linear).OnComplete(() =>
             {
 
-                IsSpeak = false;
+                ConversationData.IsSpeak = false;
                 CallBack?.Invoke();
             });
             return TextAnimateEvemt;

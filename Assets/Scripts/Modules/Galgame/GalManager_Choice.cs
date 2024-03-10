@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using XGUI;
-using static XModules.GalManager.Struct_PlotData;
 using static XGUI.XListView;
+using static XModules.Data.ConversationData.Struct_PlotData;
 
 namespace XModules.GalManager
 {

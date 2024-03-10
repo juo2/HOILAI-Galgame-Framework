@@ -11,43 +11,11 @@ using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
 using XGUI;
-using static XModules.GalManager.Struct_PlotData;
+using XModules.Data;
+using static XModules.Data.ConversationData;
+
 namespace XModules.GalManager
 {
-    /// <summary>
-    /// 存储整个剧本的XML文档
-    /// </summary>
-    
-    [Serializable]
-    public class Struct_PlotData
-    {
-        public List<XElement> ListMainPlot = new();
-        public class Struct_Choice
-        {
-            public string Title;
-            public int JumpID;
-        }
-        public class Struct_CharacterInfo
-        {
-            public string characterID;
-            public string name;
-            public string image;
-            public bool isSelf = false;
-        }
-        public List<Struct_CharacterInfo> CharacterInfoList = new();
-        public List<Struct_Choice> ChoiceTextList = new();
-        /// <summary>
-        /// 当前的剧情节点
-        /// </summary>
-        public XElement NowPlotDataNode;
-
-        /// <summary>
-        /// 当前是否为分支剧情节点
-        /// </summary>
-        public int NextJumpID;
-
-    }
-
     public class ConversationView : XBaseView
     {
         //旁白
@@ -74,15 +42,12 @@ namespace XModules.GalManager
         //背景
         public GalManager_BackImg Gal_BackImg;
 
-        Struct_CharacterInfo SelfCharacterInfo = null;
 
         [SerializeField]
         XButton TouchBack;
 
         [SerializeField]
         XButton ButtonReturn;
-
-        bool loadXmlData = false;
 
         //string _CharacterInfoText;
         //string _DepartmentText;
@@ -94,7 +59,6 @@ namespace XModules.GalManager
         public int CharacterNum;
 
         private XDocument PlotxDoc;
-        public static Struct_PlotData PlotData = new();
         private void Awake ()
         {
 
@@ -116,7 +80,7 @@ namespace XModules.GalManager
 
             ClearGame();
 
-            ResetPlotData();
+            ConversationData.ResetPlotData();
 
             string storyName = viewArgs[0] as string;
 
@@ -147,6 +111,7 @@ namespace XModules.GalManager
             //}
 
             PlotData.CharacterInfoList.Clear();
+            ClearHistoryContent();
         }
 
         void ChoiceComplete()
@@ -155,14 +120,6 @@ namespace XModules.GalManager
             Gal_Message.SetActive(false);
         }
 
-
-        /// <summary>
-        /// 重置
-        /// </summary>
-        private void ResetPlotData ()
-        {
-            PlotData = new Struct_PlotData();
-        }
         /// <summary>
         /// 解析框架文本
         /// </summary>
@@ -225,8 +182,6 @@ namespace XModules.GalManager
  
             GameAPI.Print(Newtonsoft.Json.JsonConvert.SerializeObject(PlotData));
 
-            loadXmlData = true;
-
             //开始游戏
             Button_Click_NextPlot();
         }
@@ -253,7 +208,7 @@ namespace XModules.GalManager
             //    return;
             //}
             //IsCanJump这里有问题，如果一直点击会为false，而不是说true，这是因为没有点击按钮 ，没有添加按钮
-            if (GalManager_Text.IsSpeak || !GalManager_Text.IsCanJump) { return; }
+            if (ConversationData.IsSpeak || !ConversationData.IsCanJump) { return; }
 
             PlotData.ChoiceTextList.Clear();
 
@@ -281,18 +236,8 @@ namespace XModules.GalManager
                     }
                 case "AddCharacter"://处理添加角色信息的东西
                     {
-                        var characterInfo = new Struct_CharacterInfo();
-                        var _CharacterId = PlotData.NowPlotDataNode.Attribute("CharacterID").Value;
-                        characterInfo.name = PlotData.NowPlotDataNode.Attribute("CharacterName").Value;
-                        characterInfo.image = PlotData.NowPlotDataNode.Attribute("CharacterImage").Value;
-                        characterInfo.characterID = _CharacterId;
-                        characterInfo.isSelf = PlotData.NowPlotDataNode.Attribute("IsSelf").Value == "True";
 
-                        if(characterInfo.isSelf)
-                        {
-                            SelfCharacterInfo = characterInfo;
-                        }
-                        
+                        var characterInfo =  ConversationData.AddCharacter();
                         character_img.SetImage(characterInfo.image);
 
                         if (PlotData.NowPlotDataNode.Attributes("SendMessage").Count() != 0)
@@ -308,14 +253,17 @@ namespace XModules.GalManager
                         break;
                     }
                 case "SpeakAside": //处理旁白
-                    { 
+                    {
+                        string content = PlotData.NowPlotDataNode.Attribute("Content").Value;
                         Gal_AsideText.SetActive(true);
-                        Gal_AsideText.StartTextContent(PlotData.NowPlotDataNode.Attribute("Content").Value);
+                        Gal_AsideText.StartTextContent(content);
 
                         if (PlotData.NowPlotDataNode.Attributes("AudioPath").Count() != 0)
                             PlayAudio(PlotData.NowPlotDataNode.Attribute("AudioPath").Value);
 
                         PlotData.NextJumpID = int.Parse(PlotData.NowPlotDataNode.Attribute("JumpId").Value);
+
+                        AddHistoryContent("", "旁白", content);
 
                         break;
                     }
@@ -327,15 +275,17 @@ namespace XModules.GalManager
                             character_img.SetActive(true);
                             character_img.SetImage(SelfCharacterInfo.image);
 
-                            GalManager_Text.IsCanJump = false;
+                            ConversationData.IsCanJump = false;
                             foreach (var ClildItem in PlotData.NowPlotDataNode.Elements())
                             {
                                 if (ClildItem.Name.ToString() == "Choice")
-                                    PlotData.ChoiceTextList.Add(new Struct_Choice { Title = ClildItem.Value, JumpID = int.Parse(ClildItem.Attribute("JumpId").Value) });
+                                    PlotData.ChoiceTextList.Add(new Struct_PlotData.Struct_Choice { Title = ClildItem.Value, JumpID = int.Parse(ClildItem.Attribute("JumpId").Value) });
                             }
 
+                            
+
                             Gal_Message.SetActive(true);
-                            Gal_Message.CreatNewChoice(ConversationView.PlotData.ChoiceTextList);
+                            Gal_Message.CreatNewChoice(PlotData.ChoiceTextList);
 
                             SendCharMessage("","", true);
                         }
@@ -345,7 +295,9 @@ namespace XModules.GalManager
                 case "Speak":  //处理发言
                     {
                         character_img.SetActive(true);
+
                         var characterInfo = GetCharacterObjectByName(PlotData.NowPlotDataNode.Attribute("CharacterID").Value);
+                        var content = PlotData.NowPlotDataNode.Attribute("Content").Value;
 
                         var imagePathNode = PlotData.NowPlotDataNode.Attribute("CharacterImage");
                         if (imagePathNode != null)
@@ -363,30 +315,30 @@ namespace XModules.GalManager
                             Gal_SelfText.SetActive(true);
                             if (PlotData.NowPlotDataNode.Elements().Count() != 0) //有选项，因为他有子节点数目了
                             {
-                                
-                                GalManager_Text.IsCanJump = false;
+
+                                ConversationData.IsCanJump = false;
                                 foreach (var ClildItem in PlotData.NowPlotDataNode.Elements())
                                 {
                                     if (ClildItem.Name.ToString() == "Choice")
-                                        PlotData.ChoiceTextList.Add(new Struct_Choice { Title = ClildItem.Value, JumpID = int.Parse(ClildItem.Attribute("JumpId").Value) });
+                                        PlotData.ChoiceTextList.Add(new Struct_PlotData.Struct_Choice { Title = ClildItem.Value, JumpID = int.Parse(ClildItem.Attribute("JumpId").Value) });
 
                                 }
-                                Gal_SelfText.StartTextContent(PlotData.NowPlotDataNode.Attribute("Content").Value, characterInfo.name, () =>
+                                Gal_SelfText.StartTextContent(content, characterInfo.name, () =>
                                 {
                                     Gal_Choice.SetActive(true);
-                                    Gal_Choice.CreatNewChoice(ConversationView.PlotData.ChoiceTextList);
+                                    Gal_Choice.CreatNewChoice(PlotData.ChoiceTextList);
                                 });
                             }
                             else
                             {
-                                Gal_SelfText.StartTextContent(PlotData.NowPlotDataNode.Attribute("Content").Value, characterInfo.name);
+                                Gal_SelfText.StartTextContent(content, characterInfo.name);
                                 PlotData.NextJumpID = int.Parse(PlotData.NowPlotDataNode.Attribute("JumpId").Value);
                             }
                         }
                         else
                         {
                             Gal_OtherText.SetActive(true);
-                            Gal_OtherText.StartTextContent(PlotData.NowPlotDataNode.Attribute("Content").Value, characterInfo.name);
+                            Gal_OtherText.StartTextContent(content, characterInfo.name);
                             PlotData.NextJumpID = int.Parse(PlotData.NowPlotDataNode.Attribute("JumpId").Value);
                         }
 
@@ -399,6 +351,9 @@ namespace XModules.GalManager
 
                         if (PlotData.NowPlotDataNode.Attributes("AudioPath").Count() != 0)
                             PlayAudio(PlotData.NowPlotDataNode.Attribute("AudioPath").Value);
+
+                        AddHistoryContent(characterInfo.characterID, characterInfo.name, content);
+
                         break;
                     }
                 case "ChangeBackImg"://更换背景图片
@@ -449,22 +404,6 @@ namespace XModules.GalManager
         {
             GalManager_Text.IsFastMode = true;
             return;
-        }
-
-        public Struct_CharacterInfo GetCharacterObjectByName (string ID)
-        {
-            return PlotData.CharacterInfoList.Find(t => t.characterID == ID);
-        }
-
-        /// <summary>
-        /// 销毁一个角色
-        /// </summary>
-        /// <param name="ID"></param>
-        public void DestroyCharacterByID (string ID)
-        {
-            var _ = PlotData.CharacterInfoList.Find(t => t.characterID == ID);
-            //SendCharMessage(ID, "Quit");
-            PlotData.CharacterInfoList.Remove(_);
         }
         
         public void SendCharMessage (string CharacterID, string Message,bool isSelf)

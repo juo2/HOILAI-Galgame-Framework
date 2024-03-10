@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using XGUI;
+using XModules.Data;
 
 namespace XModules.GalManager
 { 
@@ -17,40 +18,38 @@ namespace XModules.GalManager
             xButton.onClick.AddListener(Button_Click_JumpTo);
         }
 
+        bool isMessage = false;
+        
         /// <summary>
         /// 这个选项要跳转到的ID
         /// </summary>
-        public int _JumpID;
-
+        public int JumpID;
         /// <summary>
         /// 显示的文本
         /// </summary>
         public Text _Title;
-        public void Init (int JumpID, string Title)
+        public void Init (int _JumpID, string Title,bool _isMessage = false)
         {
-            _JumpID = JumpID;
+            this.JumpID = _JumpID;
             _Title.text = Title;
+            isMessage = _isMessage;
         }
+
+
         /// <summary>
         /// 当玩家按下了选项
         /// </summary>
         public void Button_Click_JumpTo ()
         {
+            ConversationData.JumpNext(JumpID,_Title.text);
 
-            ConversationView.PlotData.NextJumpID = _JumpID;
-            GalManager_Text.IsCanJump = true;
-            if (_JumpID == -1)
+            if (isMessage)
             {
-                return;
+                ConversationData.AddHistoryContent(ConversationData.SelfCharacterInfo.characterID, ConversationData.SelfCharacterInfo.name,"", _Title.text);
             }
-            //this.gameObject.transform.parent.GetComponent<GalManager_Choice>().Button_Click_Choice();
-            //GameObject.Find("EventSystem").GetComponent<GalManager>().Button_Click_NextPlot();
-
-            ConversationView.PlotData.NextJumpID = _JumpID;
 
             XEvent.EventDispatcher.DispatchEvent("CHOICE_COMPLETE");
             XEvent.EventDispatcher.DispatchEvent("NEXT_STEP");
-
             return;
         }
     }
