@@ -456,8 +456,11 @@ public class XBuildUtility
             string[] files = Directory.GetFiles(folder, "*", SearchOption.AllDirectories);
             foreach (var file in files)
             {
-                string fileName = file.Replace(folder + "\\", "");//Path.Get
-                                                                  //FileName(file);
+#if UNITY_EDITOR_WIN
+                string fileName = file.Replace(folder + "\\", "");
+#else
+                string fileName = file.Replace(folder + "/", "");
+#endif
                 string ext = Path.GetExtension(file);
                 if (ext == ".txt" || ext == ".manifest" || fileName == folderName)
                 {
