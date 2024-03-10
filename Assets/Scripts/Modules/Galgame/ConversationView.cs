@@ -238,7 +238,7 @@ namespace XModules.GalManager
                     {
 
                         var characterInfo =  ConversationData.AddCharacter();
-                        character_img.SetImage(characterInfo.image);
+                        //character_img.SetImage(characterInfo.image);
 
                         if (PlotData.NowPlotDataNode.Attributes("SendMessage").Count() != 0)
                         {

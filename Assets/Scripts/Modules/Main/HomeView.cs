@@ -10,7 +10,7 @@ namespace XModules.Main
     public class HomeView : XBaseView
     {
 
-        List<string> storyList = new List<string> { "buqun1", "junjing1","test" };
+        List<string> storyList = new List<string> { "buqun1", "junjing1", };
 
         [SerializeField]
         XListView xListView;
