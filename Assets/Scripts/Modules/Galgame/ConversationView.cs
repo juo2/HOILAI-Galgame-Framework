@@ -83,6 +83,8 @@ namespace XModules.GalManager
             ConversationData.ResetPlotData();
 
             string storyName = viewArgs[0] as string;
+            
+            ConversationData.currentStory = storyName;
 
             StartCoroutine(LoadPlot(storyName));
 
@@ -206,14 +208,11 @@ namespace XModules.GalManager
 
             character_img.SetActive(true);
             character_img.SetImage(ConversationData.TempNpcCharacterInfo.image);
-
-            Gal_SelfText.StartTextContent(content, ConversationData.TempNpcCharacterInfo.name);
-            PlotData.NextJumpID = int.Parse(PlotData.NowPlotDataNode.Attribute("JumpId").Value);
+            
+            Gal_OtherText.SetActive(true);
+            Gal_OtherText.StartTextContent(content, ConversationData.TempNpcCharacterInfo.name);
 
             SendCharMessage(ConversationData.TempNpcCharacterInfo.characterID, "", ConversationData.TempNpcCharacterInfo.isSelf);
-
-            if (PlotData.NowPlotDataNode.Attributes("AudioPath").Count() != 0)
-                PlayAudio(PlotData.NowPlotDataNode.Attribute("AudioPath").Value);
 
             AddHistoryContent(ConversationData.TempNpcCharacterInfo.characterID, ConversationData.TempNpcCharacterInfo.name, content);
 
@@ -222,6 +221,8 @@ namespace XModules.GalManager
             Struct_PlotData.Struct_Choice choice = PlotData.ChoiceTextList[oneShotSelect - 1];
 
             PlotData.NextJumpID = choice.JumpID;
+
+            ConversationData.IsCanJump = true;
         }
 
         /// <summary>

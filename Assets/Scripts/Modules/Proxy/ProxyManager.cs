@@ -324,7 +324,7 @@ namespace XModules.Proxy
                 DataManager.oneShotChatResponse = JsonUtility.FromJson<OneShotChatResponse>(webRequest.downloadHandler.text);
                 if (DataManager.oneShotChatResponse.code == "0")
                 {
-                    Debug.Log("<color=#4aff11>DeleteUserSession 请求成功!!!</color>");
+                    Debug.Log("<color=#4aff11>StreamOneShotChat 请求成功!!!</color>");
                     callBack?.Invoke();
 
                 }
