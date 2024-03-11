@@ -2,6 +2,7 @@
 using UnityEngine;
 using XGUI;
 using XModules.Data;
+using XModules.Proxy;
 using static XGUI.XListView;
 using static XModules.Data.ConversationData.Struct_PlotData;
 
@@ -31,21 +32,39 @@ namespace XModules.GalManager
             //GameObject_Choice = Resources.Load<GameObject>("HGF/Button-Choice");
             sendBtn.onClick.AddListener(() => 
             {
-                foreach(var history in ConversationData.GetHistoryContentList())
+                if (ConversationData.TempNpcCharacterInfo != null)
                 {
-                    Debug.Log($"history.id:{history.id}");
-                    Debug.Log($"history.speaker:{history.speaker}");
-                    Debug.Log($"history.content:{history.content}");
-                    Debug.Log($"history.optContent:{history.optContent}");
-                    Debug.Log("------------------------------------------");
-                }
+                    string textContent = "";
+                    foreach (var history in ConversationData.GetHistoryContentList())
+                    {
+                        //Debug.Log($"history.id:{history.id}");
+                        //Debug.Log($"history.speaker:{history.speaker}");
+                        //Debug.Log($"history.content:{history.content}");
+                        //Debug.Log($"history.optContent:{history.optContent}");
+                        //Debug.Log("------------------------------------------");
+                        textContent = textContent +  $"{history.speaker}:{ history.content } { history.optContent}";
+                    }
 
-                foreach (var choice in struct_Choices)
-                {
-                    Debug.Log($"choice.Title:{choice.Title}");
-                }
+                    string options = "";
+                    for (int i = 0; i < struct_Choices.Count; i++)
+                    {
+                        var choice = struct_Choices[i];
+                        //Debug.Log($"choice.Title:{choice.Title}");
+                        options = $"{options}{i}:{choice.Title}";
+                    }
 
-                Debug.Log("inputField.text:" + inputField.text);
+                    Debug.Log("inputField.text:" + inputField.text);
+                     
+                    Debug.Log($"textContent:{textContent}");
+                    Debug.Log($"options:{options}");
+
+                    ProxyManager.StreamOneShotChat(ConversationData.TempNpcCharacterInfo.characterID, textContent, inputField.text, options,()=> {
+
+                        XEvent.EventDispatcher.DispatchEvent("ONESHOTCHAT");
+
+                        inputField.text = "";
+                    });
+                }
 
             });
         }

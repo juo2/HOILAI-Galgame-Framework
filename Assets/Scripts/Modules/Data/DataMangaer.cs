@@ -12,7 +12,7 @@ namespace XModules.Data
         public static NPCResponse npcResponse = null;
         public static PlayerResponse playerResponse = null;
         public static SessionResponse sessionResponse = null;
-        
+        public static OneShotChatResponse oneShotChatResponse = null;
 
         public static string getPlayerId()
         {
@@ -79,6 +79,16 @@ namespace XModules.Data
             }
 
             return null;
+        }
+
+        public static string getNpcResponse()
+        {
+            return oneShotChatResponse.data.npcResponse;
+        }
+
+        public static int getOneShotChatSelect()
+        {
+            return oneShotChatResponse.data.select;
         }
 
     }

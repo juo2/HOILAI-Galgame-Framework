@@ -87,6 +87,7 @@ namespace XModules.GalManager
             StartCoroutine(LoadPlot(storyName));
 
             XEvent.EventDispatcher.AddEventListener("NEXT_STEP", Button_Click_NextPlot,this);
+            XEvent.EventDispatcher.AddEventListener("ONESHOTCHAT", OneShotChat, this);
             XEvent.EventDispatcher.AddEventListener("CHOICE_COMPLETE", ChoiceComplete, this);
 
             //if (!loadXmlData)
@@ -100,6 +101,7 @@ namespace XModules.GalManager
         {
             base.OnDisableView();
             XEvent.EventDispatcher.RemoveEventListener("NEXT_STEP", Button_Click_NextPlot, this);
+            XEvent.EventDispatcher.RemoveEventListener("ONESHOTCHAT", OneShotChat, this);
             XEvent.EventDispatcher.RemoveEventListener("CHOICE_COMPLETE", ChoiceComplete, this);
         }
 
@@ -194,6 +196,32 @@ namespace XModules.GalManager
             Gal_OtherText.SetActive(false);
             Gal_Message.SetActive(false);
             character_img.SetActive(false);
+        }
+
+        public void OneShotChat()
+        {
+            ChoiceComplete();
+
+            string content = DataManager.getNpcResponse();
+
+            character_img.SetActive(true);
+            character_img.SetImage(ConversationData.TempNpcCharacterInfo.image);
+
+            Gal_SelfText.StartTextContent(content, ConversationData.TempNpcCharacterInfo.name);
+            PlotData.NextJumpID = int.Parse(PlotData.NowPlotDataNode.Attribute("JumpId").Value);
+
+            SendCharMessage(ConversationData.TempNpcCharacterInfo.characterID, "", ConversationData.TempNpcCharacterInfo.isSelf);
+
+            if (PlotData.NowPlotDataNode.Attributes("AudioPath").Count() != 0)
+                PlayAudio(PlotData.NowPlotDataNode.Attribute("AudioPath").Value);
+
+            AddHistoryContent(ConversationData.TempNpcCharacterInfo.characterID, ConversationData.TempNpcCharacterInfo.name, content);
+
+            int oneShotSelect = DataManager.getOneShotChatSelect();
+
+            Struct_PlotData.Struct_Choice choice = PlotData.ChoiceTextList[oneShotSelect - 1];
+
+            PlotData.NextJumpID = choice.JumpID;
         }
 
         /// <summary>

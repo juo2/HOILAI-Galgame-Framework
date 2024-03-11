@@ -42,6 +42,11 @@ namespace XModules.Proxy
             TimerManager.AddCoroutine(DeleteUserSession($"{url}/chat/chatRecord/deleteUserSession", userSessionId, callBack, errorBack));
         }
 
+        public static void StreamOneShotChat(string npcId,string textContent,string question,string options, Action callBack = null, Action errorBack = null)
+        {
+            TimerManager.AddCoroutine(StreamOneShotChat($"{url}/chat/chatRecord/streamOneShotChat", npcId, textContent, question, options, callBack, errorBack));
+        }
+
         static IEnumerator SendCodeRequest(string url, string email, Action callBack, Action errorBack)
         {
             WWWForm form = new WWWForm();
@@ -286,6 +291,51 @@ namespace XModules.Proxy
             }
         }
 
+        static IEnumerator StreamOneShotChat(string url,string npcId, string textContent, string question, string options, Action callBack, Action errorBack)
+        {
+
+            Debug.Log($"npcId:{npcId}");
+
+            WWWForm form = new WWWForm();
+            form.AddField("userId",DataManager.getPlayerId());
+            form.AddField("npcId", npcId);
+            form.AddField("textContent", textContent);
+            form.AddField("question", question);
+            form.AddField("options", options);
+
+            UnityWebRequest webRequest = UnityWebRequest.Post(url, form);
+
+            // 设置User-Agent
+            webRequest.SetRequestHeader("User-Agent", "Apifox/1.0.0 (https://apifox.com)");
+            webRequest.SetRequestHeader("token", DataManager.getToken());
+
+            yield return webRequest.SendWebRequest();
+
+            if (webRequest.result == UnityWebRequest.Result.ConnectionError || webRequest.result == UnityWebRequest.Result.ProtocolError)
+            {
+                Debug.LogError(webRequest.error);
+                errorBack?.Invoke();
+            }
+            else
+            {
+
+                Debug.Log(webRequest.downloadHandler.text);
+
+                DataManager.oneShotChatResponse = JsonUtility.FromJson<OneShotChatResponse>(webRequest.downloadHandler.text);
+                if (DataManager.oneShotChatResponse.code == "0")
+                {
+                    Debug.Log("<color=#4aff11>DeleteUserSession 请求成功!!!</color>");
+                    callBack?.Invoke();
+
+                }
+                else
+                {
+                    errorBack?.Invoke();
+                }
+            }
+        }
+
+        
 
     }
 

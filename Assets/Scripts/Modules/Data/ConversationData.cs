@@ -53,6 +53,8 @@ namespace XModules.Data
 
         public static Struct_PlotData.Struct_CharacterInfo SelfCharacterInfo = null;
 
+        public static Struct_PlotData.Struct_CharacterInfo TempNpcCharacterInfo = null;
+
         public static Struct_PlotData.Struct_CharacterInfo AddCharacter()
         {
             var characterInfo = new Struct_PlotData.Struct_CharacterInfo();
@@ -65,6 +67,10 @@ namespace XModules.Data
             if (characterInfo.isSelf)
             {
                 SelfCharacterInfo = characterInfo;
+            }
+            else
+            {
+                TempNpcCharacterInfo = characterInfo;
             }
 
             return characterInfo;
@@ -94,6 +100,8 @@ namespace XModules.Data
             PlotData = new Struct_PlotData();
             IsCanJump = true;
             IsSpeak = false;
+            SelfCharacterInfo = null;
+            TempNpcCharacterInfo = null;
         }
 
         /// <summary>
