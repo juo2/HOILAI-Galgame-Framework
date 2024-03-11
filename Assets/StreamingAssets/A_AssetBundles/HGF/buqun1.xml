@@ -3,7 +3,7 @@
   <Plot>
     <NextChapter NodeId="1" JumpId="2" />
     <ChangeBackImg NodeId="2" Path="buqun_scene.png" JumpId="3" />
-    <AddCharacter NodeId="3" CharacterID="1" CharacterName="user" CharacterImage="buqun_man.png" IsSelf="True" SendMessage="None" JumpId="4" />
+    <AddCharacter NodeId="3" CharacterID="1" CharacterName="user" CharacterImage="buqun_man.png" IsSelf="True" SendMessage="None" JumpId="169" />
     <SpeakAside NodeId="4" Content="今天是你第一天转到这所学校的日子" JumpId="5" />
     <Speak NodeId="5" CharacterID="1" Content="此时你会选择坐在...">
       <Choice JumpId="40">羞涩型少女</Choice>
@@ -61,7 +61,7 @@
     <Speak NodeId="42" CharacterID="11" Content="啊...我..我是不是又给你添麻烦了...对不起" JumpId="43" />
     <Speak NodeId="43" CharacterID="1" Content="不要总是这么想啊，我们已经是朋友了不是吗?" JumpId="44" />
     <Speak NodeId="44" CharacterID="11" Content="谢谢你!你人真是太好了..." JumpId="45" />
-    <SpeakAside NodeId="45" Content="第二天" JumpId="46" />
+    <SpeakAside NodeId="45" Content="第二天" JumpId="170" />
     <Speak NodeId="46" CharacterID="11" Content="那个...昨天，真的谢谢你。" JumpId="47" />
     <Speak NodeId="47" CharacterID="11" Content="如果不嫌弃的话，我想给你做一份便当，来当作为回礼，可以么？" JumpId="48" />
     <Speak NodeId="48" CharacterID="11" Content="别看我这个样子，但是对做菜，我还是挺拿手的！" JumpId="49" />
@@ -78,12 +78,12 @@
     <Speak NodeId="56" CharacterID="11" Content="你有什么心事也一定要告诉我，我会帮你一起解决的!!" JumpId="57" />
     <SpeakAside NodeId="57" Content="很快，到了傍晚放学的时间，你与景瑶一起走出教学楼" JumpId="58" />
     <SpeakAside NodeId="58" Content="你们在聊了一会儿之后，就各自回家了。" JumpId="59" />
-    <SpeakAside NodeId="59" Content="但你忽然看到走到街角的景瑶被同校的几个女生拽进了小巷，你打算:" JumpId="60" />
+    <SpeakAside NodeId="59" Content="但你忽然看到走到街角的景瑶被同校的几个女生拽进了小巷，你打算:" JumpId="171" />
     <Message NodeId="60">
       <Choice JumpId="61">A好像都是女生，我过去也不太合适</Choice>
       <Choice JumpId="62">B似乎有些不对劲，先跟上去看看吧</Choice>
     </Message>
-    <SpeakAside NodeId="61" Content="第二天，你来到学校，发现景瑶并没有来上课。" JumpId="63" />
+    <SpeakAside NodeId="61" Content="第二天，你来到学校，发现景瑶并没有来上课。" JumpId="172" />
     <SpeakAside NodeId="62" Content="你来到了小巷里，发现那几个女生将景瑶围在中间，景瑶看起来很着急的样子" JumpId="64" />
     <SpeakAside NodeId="63" Content="这时班主任走进来" JumpId="65" />
     <Speak NodeId="64" CharacterID="11" Content="为什么要我道歉?还要赔那么多钱?" JumpId="66" />
@@ -97,8 +97,8 @@
     <SpeakAside NodeId="72" Content="景瑶完全没有料到你的出现，直到你转身之后，才回过神来" JumpId="73" />
     <Speak NodeId="73" CharacterID="11" Content="为什么每次你都会在我需要帮助的时候出现..." JumpId="74" />
     <Message NodeId="74">
-      <Choice JumpId="75">A我只是做了我应该做的事情而已</Choice>
-      <Choice JumpId="75">B你遇到危险我可不会不管的</Choice>
+      <Choice JumpId="173">A我只是做了我应该做的事情而已</Choice>
+      <Choice JumpId="173">B你遇到危险我可不会不管的</Choice>
     </Message>
     <SpeakAside NodeId="75" Content="为了安全起见，你陪景瑶一起走到了车站，看到她上了巴士才回家。" JumpId="76" />
     <SpeakAside NodeId="76" Content="回到家之后发现你把景瑶的作业本带回来了，于是你打算给景瑶送过去。" JumpId="77" />
@@ -112,7 +112,7 @@
       <Choice JumpId="84">A不用了，不早了，你快回去吧</Choice>
       <Choice JumpId="85">B嗯好。我正好也有一些事想问你</Choice>
     </Message>
-    <Speak NodeId="84" CharacterID="11" Content="好吧，现在也不早了，那你回去注意安全!" JumpId="86" />
+    <Speak NodeId="84" CharacterID="11" Content="好吧，现在也不早了，那你回去注意安全!" JumpId="174" />
     <SpeakAside NodeId="85" Content="你对今天下午发生的事还是很在意，于是想问景瑶。" JumpId="87" />
     <SpeakAside NodeId="86" Content="时间飞逝，转眼一周过去了" JumpId="88" />
     <Speak NodeId="87" CharacterID="11" Content="你问那几个女生吗?" JumpId="89" />
@@ -157,8 +157,8 @@
     <Speak NodeId="123" CharacterID="11" Content="这段时间，最开心的事情就是遇到了你。" JumpId="124" />
     <Speak NodeId="124" CharacterID="11" Content="但是，我一直很想问...你为什么要对我这么好呢?" JumpId="125" />
     <Message NodeId="125">
-      <Choice JumpId="127">A大概是因为我对你有种特别的感觉吧</Choice>
-      <Choice JumpId="128">B 因为你有一种让我很想保护的冲动</Choice>
+      <Choice JumpId="175">A大概是因为我对你有种特别的感觉吧</Choice>
+      <Choice JumpId="176">B 因为你有一种让我很想保护的冲动</Choice>
     </Message>
     <Speak NodeId="126" CharacterID="11" Content="一种...特殊的感觉?，她好像明白了你的心意，脸红得像是樱桃一样" JumpId="130" />
     <SpeakAside NodeId="127" Content="景瑶楞了一下，她好像明白了你的心意，脸红得像是樱桃一样。" JumpId="126" />
@@ -206,5 +206,13 @@
     <ExitGame NodeId="166" />
     <ExitGame NodeId="167" />
     <ExitGame NodeId="168" />
+    <Bgm NodeId="169" Path="first_encounter.mp3" JumpId="4" />
+    <Bgm NodeId="170" Path="date.mp3" JumpId="46" />
+    <Bgm NodeId="171" Path="conflict.mp3" JumpId="60" />
+    <Bgm NodeId="172" Path="BadEnd.mp3" JumpId="63" />
+    <Bgm NodeId="173" Path="first_encounter.mp3" JumpId="75" />
+    <Bgm NodeId="174" Path="BadEnd.mp3" JumpId="86" />
+    <Bgm NodeId="175" Path="Confession.mp3" JumpId="127" />
+    <Bgm NodeId="176" Path="Confession.mp3" JumpId="128" />
   </Plot>
 </data>
