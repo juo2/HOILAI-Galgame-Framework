@@ -4,6 +4,7 @@ using UnityEngine;
 using XGUI;
 using XModules.Data;
 using XModules.Main.Item;
+using XModules.Proxy;
 using static XGUI.XListView;
 
 namespace XModules.Main
@@ -22,9 +23,20 @@ namespace XModules.Main
             dialogueItemDic = new Dictionary<int, DialogueItem>();
             xListView.onCreateRenderer.AddListener(onListCreateRenderer);
             xListView.onUpdateRenderer.AddListener(onListUpdateRenderer);
+        }
 
-            xListView.dataCount = DataManager.getSessionList().Count;
-            xListView.ForceRefresh();
+        public override void OnEnableView()
+        {
+            base.OnEnableView();
+
+            xListView.SetActive(false);
+
+            ProxyManager.GetUserSessionList(() => {
+
+                xListView.SetActive(true);
+                xListView.dataCount = DataManager.getSessionList().Count;
+                xListView.ForceRefresh();
+            });
         }
 
         void onListCreateRenderer(ListItemRenderer listItem)

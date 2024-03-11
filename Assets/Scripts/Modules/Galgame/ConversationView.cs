@@ -12,6 +12,7 @@ using UnityEngine.Networking;
 using UnityEngine.UI;
 using XGUI;
 using XModules.Data;
+using XModules.Proxy;
 using static XModules.Data.ConversationData;
 
 namespace XModules.GalManager
@@ -326,6 +327,10 @@ namespace XModules.GalManager
                         character_img.SetActive(true);
 
                         var characterInfo = GetCharacterObjectByName(PlotData.NowPlotDataNode.Attribute("CharacterID").Value);
+
+                        if (!characterInfo.isSelf)
+                            ProxyManager.SaveUserSession(characterInfo.characterID);
+
                         var content = PlotData.NowPlotDataNode.Attribute("Content").Value;
 
                         var imagePathNode = PlotData.NowPlotDataNode.Attribute("CharacterImage");

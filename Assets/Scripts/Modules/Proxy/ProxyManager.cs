@@ -47,6 +47,11 @@ namespace XModules.Proxy
             TimerManager.AddCoroutine(StreamOneShotChat($"{url}/chat/chatRecord/streamOneShotChat", npcId, textContent, question, options, callBack, errorBack));
         }
 
+        public static void SaveUserSession(string npcId, Action callBack = null,Action errorBack = null)
+        {
+            TimerManager.AddCoroutine(SaveUserSession($"{url}/chat/chatRecord/saveUserSession",npcId, callBack, errorBack));
+        }
+
         static IEnumerator SendCodeRequest(string url, string email, Action callBack, Action errorBack)
         {
             WWWForm form = new WWWForm();
@@ -335,7 +340,45 @@ namespace XModules.Proxy
             }
         }
 
-        
+        static IEnumerator SaveUserSession(string url, string npcId, Action callBack, Action errorBack)
+        {
+
+            Debug.Log($"npcId:{npcId}");
+
+            WWWForm form = new WWWForm();
+            form.AddField("userId", DataManager.getPlayerId());
+            form.AddField("npcId", npcId);
+
+            UnityWebRequest webRequest = UnityWebRequest.Post(url, form);
+
+            // 设置User-Agent
+            webRequest.SetRequestHeader("User-Agent", "Apifox/1.0.0 (https://apifox.com)");
+            webRequest.SetRequestHeader("token", DataManager.getToken());
+
+            yield return webRequest.SendWebRequest();
+
+            if (webRequest.result == UnityWebRequest.Result.ConnectionError || webRequest.result == UnityWebRequest.Result.ProtocolError)
+            {
+                Debug.LogError(webRequest.error);
+                errorBack?.Invoke();
+            }
+            else
+            {
+                Debug.Log(webRequest.downloadHandler.text);
+
+                BasicResponse basicResponse = JsonUtility.FromJson<BasicResponse>(webRequest.downloadHandler.text);
+                if (basicResponse.code == "0")
+                {
+                    Debug.Log("<color=#4aff11>SaveUserSession 请求成功!!!</color>");
+                    callBack?.Invoke();
+
+                }
+                else
+                {
+                    errorBack?.Invoke();
+                }
+            }
+        }
 
     }
 
