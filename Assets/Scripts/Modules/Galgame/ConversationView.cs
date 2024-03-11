@@ -264,6 +264,16 @@ namespace XModules.GalManager
 
                         break;
                     }
+                case "Bgm"://空节点
+                    {
+                        var _Path = PlotData.NowPlotDataNode.Attribute("Path").Value;
+                        PlotData.NextJumpID = int.Parse(PlotData.NowPlotDataNode.Attribute("JumpId").Value);
+                        PlayBgm(_Path);
+
+                        Button_Click_NextPlot();
+
+                        break;
+                    }
                 case "AddCharacter"://处理添加角色信息的东西
                     {
 
@@ -454,6 +464,12 @@ namespace XModules.GalManager
             Debug.Log("播放了声音:" + fileName);
 
             XAudio.XAudioManager.instance.PlayGameMusic(fileName);
+        }
+
+        private void PlayBgm(string fileName)
+        {
+            Debug.Log("播放了BGM:" + fileName);
+            XAudio.XAudioManager.instance.PlayBgmMusic(fileName);
         }
 
         private void FixedUpdate ()

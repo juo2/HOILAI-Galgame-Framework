@@ -10,7 +10,7 @@ using static XGUI.XListView;
 namespace XModules.Main
 {
 
-    public class DialogueView : XBaseView
+    public class DialogueView : MonoBehaviour
     {
         [SerializeField]
         XListView xListView;
@@ -25,10 +25,8 @@ namespace XModules.Main
             xListView.onUpdateRenderer.AddListener(onListUpdateRenderer);
         }
 
-        public override void OnEnableView()
+        void OnEnable()
         {
-            base.OnEnableView();
-
             xListView.SetActive(false);
 
             ProxyManager.GetUserSessionList(() => {

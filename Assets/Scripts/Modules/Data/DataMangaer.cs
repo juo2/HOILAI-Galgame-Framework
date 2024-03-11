@@ -26,18 +26,30 @@ namespace XModules.Data
 
         public static ChatData createChatData(string npcId,string role,string content)
         {
-            ChatData chatdate = new ChatData();
-            chatdate.userId = getPlayerId();
-            chatdate.content = content;
-            chatdate.npcId = npcId;
-            chatdate.role = role;
+            ChatData chatdata = new ChatData();
+            chatdata.userId = getPlayerId();
+            chatdata.content = content;
+            chatdata.npcId = npcId;
+            chatdata.role = role;
 
-            return chatdate;
+            if (chatResponseDic.TryGetValue(npcId, out ChatResponse chatResponse))
+            {
+                chatResponse.data.Add(chatdata);
+            }
+
+            return chatdata;
         }
 
         public static List<NPCData> getNpcList()
         {
-            return npcResponse.data;
+            if (npcResponse == null)
+            {
+                return new List<NPCData>();
+            }
+            else
+            {
+                return npcResponse.data;
+            }
         }
 
         public static NPCData getNpcById(string npcId)
