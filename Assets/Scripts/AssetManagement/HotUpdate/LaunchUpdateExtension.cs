@@ -289,9 +289,10 @@ public partial class LaunchUpdate
             string buildinPath = Path.Combine(AssetDefine.BuildinAssetPath, c_FileListFileName);
             string jsonData = string.Empty;
             bool isExist = true;
-//#if UNITY_EDITOR || UNITY_STANDALONE || UNITY_IOS
+
+#if UNITY_EDITOR || UNITY_STANDALONE || UNITY_IOS
             isExist = File.Exists(buildinPath);
-//#endif
+#endif
             if (isExist)
             {
                 AssetBundleCreateRequest abcr = AssetBundle.LoadFromFileAsync(buildinPath);
