@@ -16,12 +16,27 @@ namespace XModules.Data
 
         public static string getPlayerId()
         {
-            return playerResponse.data.id;
+            //临时把token记住
+            string id = PlayerPrefs.GetString("TEMP_ID");
+            if (string.IsNullOrEmpty(id))
+            {
+                return playerResponse.data.id;
+            }
+
+            return id;
         }
 
         public static string getToken()
         {
-            return playerResponse.data.token;
+            //临时把token记住
+            string token = PlayerPrefs.GetString("TEMP_TOKEN");
+
+            if (string.IsNullOrEmpty(token))
+            {
+                return playerResponse.data.token;
+            }
+
+            return token;
         }
 
         public static ChatData createChatData(string npcId,string role,string content)
@@ -95,12 +110,26 @@ namespace XModules.Data
 
         public static string getNpcResponse()
         {
-            return oneShotChatResponse.data.npcResponse;
+            if (oneShotChatResponse == null)
+            {
+                return "请求失败";
+            }
+            else
+            {
+                return oneShotChatResponse.data.npcResponse;
+            }
         }
 
         public static int getOneShotChatSelect()
         {
-            return oneShotChatResponse.data.select;
+            if (oneShotChatResponse == null)
+            {
+                return 1;
+            }
+            else
+            {
+                return oneShotChatResponse.data.select;
+            }
         }
 
     }

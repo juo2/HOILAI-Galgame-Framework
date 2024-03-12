@@ -48,6 +48,9 @@ namespace XModules.GalManager
         XButton TouchBack;
 
         [SerializeField]
+        XButton MessageTouchBack;
+
+        [SerializeField]
         XButton ButtonReturn;
 
         //string _CharacterInfoText;
@@ -67,6 +70,17 @@ namespace XModules.GalManager
             {
                 Button_Click_NextPlot();
             });
+
+            MessageTouchBack.onClick.AddListener(() => 
+            {
+                if (ConversationData.isRequestChating)
+                {
+                    return;
+                }
+                Button_Click_Message();
+            });
+
+            MessageTouchBack.SetActive(false);
 
             ButtonReturn.onClick.AddListener(() => {
 
@@ -204,12 +218,26 @@ namespace XModules.GalManager
         public void OneShotChat()
         {
             ChoiceComplete();
+            
+            character_img.SetActive(true);
+            var content = ConversationData.tempInputMessage;
+            character_img.SetImage(ConversationData.SelfCharacterInfo.image);
+             Gal_SelfText.SetActive(true);
+
+            Gal_SelfText.StartTextContent(content, ConversationData.SelfCharacterInfo.name);
+
+            //下一步
+            MessageTouchBack.SetActive(true);
+        }
+
+        void Button_Click_Message()
+        {
 
             string content = DataManager.getNpcResponse();
 
             character_img.SetActive(true);
             character_img.SetImage(ConversationData.TempNpcCharacterInfo.image);
-            
+
             Gal_OtherText.SetActive(true);
             Gal_OtherText.StartTextContent(content, ConversationData.TempNpcCharacterInfo.name);
 
@@ -221,9 +249,12 @@ namespace XModules.GalManager
 
             Struct_PlotData.Struct_Choice choice = PlotData.ChoiceTextList[oneShotSelect - 1];
 
+            //回归主线
             PlotData.NextJumpID = choice.JumpID;
 
             ConversationData.IsCanJump = true;
+
+            MessageTouchBack.SetActive(false);
         }
 
         /// <summary>
@@ -240,6 +271,8 @@ namespace XModules.GalManager
             //IsCanJump这里有问题，如果一直点击会为false，而不是说true，这是因为没有点击按钮 ，没有添加按钮
             if (ConversationData.IsSpeak || !ConversationData.IsCanJump) { return; }
 
+            DisableAllText();
+
             PlotData.ChoiceTextList.Clear();
 
             if (PlotData.NowPlotDataNode == null)
@@ -252,8 +285,6 @@ namespace XModules.GalManager
                 PlotData.NowPlotDataNode = PlotData.ListMainPlot[PlotData.NextJumpID-1];
                 Debug.Log($"正在运行 {PlotData.NextJumpID} 节点");
             }
-
-            DisableAllText();
 
             switch (PlotData.NowPlotDataNode.Name.ToString())
             {

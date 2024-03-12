@@ -55,7 +55,12 @@ namespace XModules.Data
 
         public static Struct_PlotData.Struct_CharacterInfo TempNpcCharacterInfo = null;
 
+        public static string tempInputMessage = null;
+
+        public static bool isRequestChating = false;
+
         public static string currentStory = null;
+
 
         public static Struct_PlotData.Struct_CharacterInfo AddCharacter()
         {

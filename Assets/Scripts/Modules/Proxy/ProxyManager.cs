@@ -124,6 +124,11 @@ namespace XModules.Proxy
                 if (playerResponse.code == "0")
                 {
                     DataManager.playerResponse = playerResponse;
+
+                    //临时把token记住
+                    PlayerPrefs.SetString("TEMP_TOKEN", DataManager.playerResponse.data.token);
+                    PlayerPrefs.SetString("TEMP_ID", DataManager.playerResponse.data.id);
+
                     Debug.Log("<color=#4aff11>LoginRequest 请求成功!!!</color>");
                     callBack?.Invoke();
                 }
@@ -337,6 +342,8 @@ namespace XModules.Proxy
                 {
                     errorBack?.Invoke();
                 }
+
+                ConversationData.isRequestChating = false;
             }
         }
 

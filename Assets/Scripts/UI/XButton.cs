@@ -302,13 +302,13 @@ namespace XGUI
             {
                 if (m_IsCanClick)
                 {
-                    //m_timerId = TimerManager.AddTimer(() =>
-                    //{
-                    //    m_IsCanClick = true;
-                    //    TimerManager.DelTimer(m_timerId);
-                    //}, m_CDSecond);
-                    //m_IsCanClick = false;
-                    //OnPointEvent(eventData);
+                    m_timerId = TimerManager.AddTimer(() =>
+                    {
+                        m_IsCanClick = true;
+                        TimerManager.DelTimer(m_timerId);
+                    }, m_CDSecond);
+                    m_IsCanClick = false;
+                    OnPointEvent(eventData);
                 }
             }
             else

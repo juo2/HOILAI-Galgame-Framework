@@ -58,12 +58,13 @@ namespace XModules.GalManager
                     Debug.Log($"textContent:{textContent}");
                     Debug.Log($"options:{options}");
 
+                    ConversationData.tempInputMessage = inputField.text;
+                    ConversationData.isRequestChating = true;
                     ProxyManager.StreamOneShotChat(ConversationData.TempNpcCharacterInfo.characterID, textContent, inputField.text, options,()=> {
-
-                        XEvent.EventDispatcher.DispatchEvent("ONESHOTCHAT");
-
                         inputField.text = "";
                     });
+
+                    XEvent.EventDispatcher.DispatchEvent("ONESHOTCHAT");
                 }
 
             });
