@@ -12,10 +12,20 @@ namespace XNode.Story
 		[Header("Graph")]
 		public StoryGraph graph;
 		[Header("Prefabs")]
-		public UGUIMathNode runtimeMathNodePrefab;
-		public UGUIVector runtimeVectorPrefab;
-		public UGUIDisplayValue runtimeDisplayValuePrefab;
+
+		public UGUIAddCharacter runtimeAddCharacterPrefab;
+		public UGUIBackground runtimeBackgroundPrefab;
+		public UGUIDeleteCharacter runtimeDeleteCharacterPrefab;
+		public UGUIExitGame runtimeExitGamePrefab;
+		public UGUIMessage runtimeMessagePrefab;
+		public UGUINextChapter runtimeNextChapterPrefab;
+		public UGUISpeak runtimeSpeakPrefab;
+		public UGUISpeakAside runtimeSpeakAsidePrefab;
+		public UGUIVideo runtimeVideoPrefab;
+
 		public Connection runtimeConnectionPrefab;
+
+
 		[Header("References")]
 		public UGUIContextMenu graphContextMenu;
 		public UGUIContextMenu nodeContextMenu;
@@ -58,39 +68,39 @@ namespace XNode.Story
 				UGUIMathBaseNode runtimeNode = null;
 				if (node is StoryAddCharacterNode) 
 				{
-					runtimeNode = Instantiate(runtimeMathNodePrefab);
+					runtimeNode = Instantiate(runtimeAddCharacterPrefab);
 				} 
 				else if (node is StoryBackgroundNode) 
 				{
-					runtimeNode = Instantiate(runtimeVectorPrefab);
+					runtimeNode = Instantiate(runtimeBackgroundPrefab);
 				} 
 				else if (node is StoryDeleteCharacterNode) 
 				{
-					runtimeNode = Instantiate(runtimeDisplayValuePrefab);
+					runtimeNode = Instantiate(runtimeDeleteCharacterPrefab);
 				}
 				else if (node is StoryExitGameNode)
 				{
-					runtimeNode = Instantiate(runtimeDisplayValuePrefab);
+					runtimeNode = Instantiate(runtimeExitGamePrefab);
 				}
 				else if (node is StoryMessageNode)
 				{
-					runtimeNode = Instantiate(runtimeDisplayValuePrefab);
+					runtimeNode = Instantiate(runtimeMessagePrefab);
 				}
 				else if (node is StoryNextChapterNode)
 				{
-					runtimeNode = Instantiate(runtimeDisplayValuePrefab);
+					runtimeNode = Instantiate(runtimeNextChapterPrefab);
 				}
 				else if (node is StorySpeakAsideNode)
 				{
-					runtimeNode = Instantiate(runtimeDisplayValuePrefab);
+					runtimeNode = Instantiate(runtimeSpeakAsidePrefab);
 				}
 				else if (node is StorySpeakNode)
 				{
-					runtimeNode = Instantiate(runtimeDisplayValuePrefab);
+					runtimeNode = Instantiate(runtimeSpeakPrefab);
 				}
 				else if (node is StoryVideoNode)
 				{
-					runtimeNode = Instantiate(runtimeDisplayValuePrefab);
+					runtimeNode = Instantiate(runtimeVideoPrefab);
 				}
 
 				runtimeNode.transform.SetParent(scrollRect.content);

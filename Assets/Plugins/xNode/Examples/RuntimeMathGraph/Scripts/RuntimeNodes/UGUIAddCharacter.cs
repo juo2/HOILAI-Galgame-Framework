@@ -34,10 +34,10 @@ namespace XNode.Story
 			//image.gameObject.SetActive(!portY.IsConnected);
 			//p_name.gameObject.SetActive(!portZ.IsConnected);
 
-			Vector vectorNode = node as Vector;
-			ID.text = vectorNode.x.ToString();
-			image.text = vectorNode.y.ToString();
-			p_name.text = vectorNode.z.ToString();
+			//Vector vectorNode = node as Vector;
+			ID.text = addCharacterNode.ID;
+			image.text = addCharacterNode.image;
+			p_name.text = addCharacterNode.p_name;
 		}
 
 		private void OnChangeID(string val) {
