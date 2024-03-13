@@ -3,15 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace XNode.Examples.RuntimeMathNodes {
+namespace XNode.Story
+{
 	public class UGUITooltip : MonoBehaviour {
 		public CanvasGroup group;
 		public Text label;
 		private bool show;
-		private RuntimeMathGraph graph;
+		private RuntimeStoryGraph graph;
 
 		private void Awake() {
-			graph = GetComponentInParent<RuntimeMathGraph>();
+			graph = GetComponentInParent<RuntimeStoryGraph>();
 		}
 
 		private void Start() {

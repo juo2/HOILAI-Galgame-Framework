@@ -4,7 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using XNode.Examples.MathNodes;
 
-namespace XNode.Examples.RuntimeMathNodes {
+namespace XNode.Story
+{
 	public class UGUIDisplayValue : UGUIMathBaseNode {
 		public Text label;
 

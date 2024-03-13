@@ -127,7 +127,6 @@ public class ExportStoryFolder : EditorWindow
 
             addCharacter.SetAttribute("CharacterImage", storyAddCharacterNode.image);
             addCharacter.SetAttribute("IsSelf", storyAddCharacterNode.isSelf.ToString());
-            addCharacter.SetAttribute("SendMessage", storyAddCharacterNode.animate.ToString());
 
             findNextNodeXml(addCharacter, s_node.baseNode);
 
@@ -220,7 +219,6 @@ public class ExportStoryFolder : EditorWindow
 
             deleteCharacter.SetAttribute("NodeId", s_node.index.ToString());
             deleteCharacter.SetAttribute("CharacterID", storyDelCharacterNode.ID);
-            deleteCharacter.SetAttribute("SendMessage", storyDelCharacterNode.animate.ToString());
 
             findNextNodeXml(deleteCharacter, s_node.baseNode);
 
@@ -356,10 +354,6 @@ public class ExportStoryFolder : EditorWindow
             if (!string.IsNullOrEmpty(storySpeakNode.audio))
             {
                 speak.SetAttribute("AudioPath", storySpeakNode.audio);
-            }
-            if (storySpeakNode.animate != Animate_type.None)
-            {
-                speak.SetAttribute("SendMessage", storySpeakNode.animate.ToString());
             }
 
             speak.SetAttribute("Content", storySpeakNode.content);

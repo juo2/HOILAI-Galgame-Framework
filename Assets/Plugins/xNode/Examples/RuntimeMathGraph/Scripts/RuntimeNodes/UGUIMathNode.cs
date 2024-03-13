@@ -4,7 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using XNode.Examples.MathNodes;
 
-namespace XNode.Examples.RuntimeMathNodes {
+namespace XNode.Story
+{
 	public class UGUIMathNode : UGUIMathBaseNode {
 		public InputField valA;
 		public InputField valB;
@@ -31,6 +32,7 @@ namespace XNode.Examples.RuntimeMathNodes {
 			valA.text = mathNode.a.ToString();
 			valB.text = mathNode.b.ToString();
 			dropDown.value = (int) mathNode.mathType;
+			dropDown.options = new List<Dropdown.OptionData>();
 		}
 
 		private void OnChangeValA(string val) {

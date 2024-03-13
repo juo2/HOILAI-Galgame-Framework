@@ -79,7 +79,6 @@ public class ExportStory : Editor
             addCharacter.SetAttribute("CharacterName", storyAddCharacterNode.p_name);
             addCharacter.SetAttribute("CharacterImage", storyAddCharacterNode.image);
             addCharacter.SetAttribute("IsSelf", storyAddCharacterNode.isSelf.ToString());
-            addCharacter.SetAttribute("SendMessage", storyAddCharacterNode.animate.ToString());
             element.AppendChild(addCharacter);
         }
     }
@@ -122,7 +121,6 @@ public class ExportStory : Editor
             XmlElement deleteCharacter = doc.CreateElement("DeleteCharacter");
 
             deleteCharacter.SetAttribute("CharacterID", storyDelCharacterNode.ID);
-            deleteCharacter.SetAttribute("SendMessage", storyDelCharacterNode.animate.ToString());
             element.AppendChild(deleteCharacter);
         }
     }
@@ -221,10 +219,6 @@ public class ExportStory : Editor
             if(!string.IsNullOrEmpty(storySpeakNode.audio))
             {
                 speak.SetAttribute("AudioPath", storySpeakNode.audio);
-            }
-            if (storySpeakNode.animate != Animate_type.None)
-            {
-                speak.SetAttribute("SendMessage", storySpeakNode.animate.ToString());
             }
 
             speak.SetAttribute("Content",storySpeakNode.content);

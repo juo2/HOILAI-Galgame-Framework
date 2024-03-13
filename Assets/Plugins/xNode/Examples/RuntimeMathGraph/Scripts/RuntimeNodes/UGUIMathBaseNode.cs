@@ -5,10 +5,12 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using XNode.Examples.MathNodes;
 
-namespace XNode.Examples.RuntimeMathNodes {
+namespace XNode.Story
+{
 	public class UGUIMathBaseNode : MonoBehaviour, IDragHandler {
+
 		[HideInInspector] public Node node;
-		[HideInInspector] public RuntimeMathGraph graph;
+		[HideInInspector] public RuntimeStoryGraph graph;
 		public Text header;
 
 		private UGUIPort[] ports;

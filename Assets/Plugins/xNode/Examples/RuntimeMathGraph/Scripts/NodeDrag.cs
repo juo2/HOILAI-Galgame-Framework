@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace XNode.Examples.RuntimeMathNodes {
+namespace XNode.Story
+{
 	public class NodeDrag : MonoBehaviour, IPointerClickHandler, IBeginDragHandler, IDragHandler, IEndDragHandler {
 		private Vector3 offset;
 		private UGUIMathBaseNode node;

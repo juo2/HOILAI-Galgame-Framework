@@ -6,15 +6,16 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using XNode.Examples.MathNodes;
 
-namespace XNode.Examples.RuntimeMathNodes {
-	public class RuntimeMathGraph : MonoBehaviour, IPointerClickHandler {
+namespace XNode.Story
+{
+	public class RuntimeStoryGraph : MonoBehaviour, IPointerClickHandler {
 		[Header("Graph")]
-		public MathGraph graph;
+		public StoryGraph graph;
 		[Header("Prefabs")]
-		public XNode.Examples.RuntimeMathNodes.UGUIMathNode runtimeMathNodePrefab;
-		public XNode.Examples.RuntimeMathNodes.UGUIVector runtimeVectorPrefab;
-		public XNode.Examples.RuntimeMathNodes.UGUIDisplayValue runtimeDisplayValuePrefab;
-		public XNode.Examples.RuntimeMathNodes.Connection runtimeConnectionPrefab;
+		public UGUIMathNode runtimeMathNodePrefab;
+		public UGUIVector runtimeVectorPrefab;
+		public UGUIDisplayValue runtimeDisplayValuePrefab;
+		public Connection runtimeConnectionPrefab;
 		[Header("References")]
 		public UGUIContextMenu graphContextMenu;
 		public UGUIContextMenu nodeContextMenu;
@@ -25,7 +26,7 @@ namespace XNode.Examples.RuntimeMathNodes {
 
 		private void Awake() {
 			// Create a clone so we don't modify the original asset
-			graph = graph.Copy() as MathGraph;
+			graph = graph.Copy() as StoryGraph;
 			scrollRect = GetComponentInChildren<ScrollRect>();
 			graphContextMenu.onClickSpawn -= SpawnNode;
 			graphContextMenu.onClickSpawn += SpawnNode;
@@ -55,13 +56,43 @@ namespace XNode.Examples.RuntimeMathNodes {
 				Node node = graph.nodes[i];
 
 				UGUIMathBaseNode runtimeNode = null;
-				if (node is XNode.Examples.MathNodes.MathNode) {
+				if (node is StoryAddCharacterNode) 
+				{
 					runtimeNode = Instantiate(runtimeMathNodePrefab);
-				} else if (node is XNode.Examples.MathNodes.Vector) {
+				} 
+				else if (node is StoryBackgroundNode) 
+				{
 					runtimeNode = Instantiate(runtimeVectorPrefab);
-				} else if (node is XNode.Examples.MathNodes.DisplayValue) {
+				} 
+				else if (node is StoryDeleteCharacterNode) 
+				{
 					runtimeNode = Instantiate(runtimeDisplayValuePrefab);
 				}
+				else if (node is StoryExitGameNode)
+				{
+					runtimeNode = Instantiate(runtimeDisplayValuePrefab);
+				}
+				else if (node is StoryMessageNode)
+				{
+					runtimeNode = Instantiate(runtimeDisplayValuePrefab);
+				}
+				else if (node is StoryNextChapterNode)
+				{
+					runtimeNode = Instantiate(runtimeDisplayValuePrefab);
+				}
+				else if (node is StorySpeakAsideNode)
+				{
+					runtimeNode = Instantiate(runtimeDisplayValuePrefab);
+				}
+				else if (node is StorySpeakNode)
+				{
+					runtimeNode = Instantiate(runtimeDisplayValuePrefab);
+				}
+				else if (node is StoryVideoNode)
+				{
+					runtimeNode = Instantiate(runtimeDisplayValuePrefab);
+				}
+
 				runtimeNode.transform.SetParent(scrollRect.content);
 				runtimeNode.node = node;
 				runtimeNode.graph = this;

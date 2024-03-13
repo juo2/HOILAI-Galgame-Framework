@@ -6,7 +6,8 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using XNode;
 
-namespace XNode.Examples.RuntimeMathNodes {
+namespace XNode.Story
+{
 	public class UGUIPort : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerEnterHandler, IPointerExitHandler {
 
 		public string fieldName;
@@ -16,13 +17,13 @@ namespace XNode.Examples.RuntimeMathNodes {
 		private Connection tempConnection;
 		private NodePort startPort;
 		private UGUIPort tempHovered;
-		private RuntimeMathGraph graph;
+		private RuntimeStoryGraph graph;
 		private Vector2 startPos;
 		private List<Connection> connections = new List<Connection>();
 
 		void Start() {
 			port = node.GetPort(fieldName);
-			graph = GetComponentInParent<RuntimeMathGraph>();
+			graph = GetComponentInParent<RuntimeStoryGraph>();
 			if (port.IsOutput && port.IsConnected) {
 				for (int i = 0; i < port.ConnectionCount; i++) {
 					AddConnection();

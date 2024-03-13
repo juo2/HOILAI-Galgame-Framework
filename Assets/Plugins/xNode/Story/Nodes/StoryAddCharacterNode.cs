@@ -19,10 +19,7 @@ namespace XNode.Story
 
         [SerializeField]
         public bool isSelf = false;
-
-        [SerializeField]
-        public Animate_StartOrOutside animate;
-
+        
         public override object GetValue(NodePort port)
         {
             //if (port.fieldName == "b") return GetInputValue<float>("a", a);

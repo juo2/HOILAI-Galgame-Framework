@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using XNode;
 
-namespace XNode.Examples.RuntimeMathNodes {
+namespace XNode.Story
+{
 	public class Connection : MonoBehaviour {
 		private RectTransform rectTransform;
 		public void SetPosition(Vector2 start, Vector2 end) {

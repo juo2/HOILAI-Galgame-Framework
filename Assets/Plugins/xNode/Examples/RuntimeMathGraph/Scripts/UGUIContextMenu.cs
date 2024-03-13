@@ -4,7 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace XNode.Examples.RuntimeMathNodes {
+namespace XNode.Story
+{
 	public class UGUIContextMenu : MonoBehaviour, IPointerExitHandler {
 
 		public Action<Type, Vector2> onClickSpawn;
@@ -48,7 +49,7 @@ namespace XNode.Examples.RuntimeMathNodes {
 		}
 
 		public void RemoveNode() {
-			RuntimeMathGraph runtimeMathGraph = GetComponentInParent<RuntimeMathGraph>();
+			RuntimeStoryGraph runtimeMathGraph = GetComponentInParent<RuntimeStoryGraph>();
 			runtimeMathGraph.graph.RemoveNode(selectedNode);
 			runtimeMathGraph.Refresh();
 			Close();
