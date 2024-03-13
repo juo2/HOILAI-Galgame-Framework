@@ -80,7 +80,7 @@ namespace XModules.GalManager
                 Button_Click_Message();
             });
 
-            MessageTouchBack.SetActive(false);
+            
 
             ButtonReturn.onClick.AddListener(() => {
 
@@ -92,6 +92,7 @@ namespace XModules.GalManager
         public override void OnEnableView()
         {
             base.OnEnableView();
+
 
             ClearGame();
 
@@ -116,6 +117,7 @@ namespace XModules.GalManager
 
         public override void OnDisableView()
         {
+            XAudio.XAudioManager.instance.StopBgmMusic();
             base.OnDisableView();
             XEvent.EventDispatcher.RemoveEventListener("NEXT_STEP", Button_Click_NextPlot, this);
             XEvent.EventDispatcher.RemoveEventListener("ONESHOTCHAT", OneShotChat, this);
@@ -128,7 +130,10 @@ namespace XModules.GalManager
             //{
             //    DestroyCharacterByID(item.characterID);
             //}
+            MessageTouchBack.SetActive(false);
 
+            ChoiceComplete();
+            DisableAllText();
             PlotData.CharacterInfoList.Clear();
             ClearHistoryContent();
         }

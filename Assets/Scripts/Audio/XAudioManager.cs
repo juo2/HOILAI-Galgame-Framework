@@ -104,6 +104,12 @@ namespace XAudio
             return bgmSource;
         }
 
+        public void StopBgmMusic()
+        {
+            bgmSource.Stop();
+        }
+
+
         public float GetCurrentGameTime()
         {
             return gameSource.audioSource.time;

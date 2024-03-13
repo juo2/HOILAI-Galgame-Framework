@@ -36,6 +36,12 @@ namespace XAudio
             loader.onComplete += LoadClipDone;
         }
 
+        public void Stop()
+        {
+            if (audioSource.clip != null)
+                audioSource.Stop();
+        }
+
         void LoadClipDone(AssetManagement.AssetInternalLoader load)
         {
             loader.onComplete -= LoadClipDone;
