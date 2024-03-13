@@ -55,14 +55,26 @@ namespace XModules.Data
 
         public static Struct_PlotData.Struct_CharacterInfo TempNpcCharacterInfo = null;
 
+        public static string tempInputMessage = null;
+
+        public static bool isRequestChating = false;
+
+        public static string currentStory = null;
+
+
         public static Struct_PlotData.Struct_CharacterInfo AddCharacter()
         {
             var characterInfo = new Struct_PlotData.Struct_CharacterInfo();
             var _CharacterId = PlotData.NowPlotDataNode.Attribute("CharacterID").Value;
             characterInfo.name = PlotData.NowPlotDataNode.Attribute("CharacterName").Value;
             characterInfo.image = PlotData.NowPlotDataNode.Attribute("CharacterImage").Value;
-            characterInfo.characterID = _CharacterId;
+            characterInfo.characterID = $"{currentStory}_{ _CharacterId}";
             characterInfo.isSelf = PlotData.NowPlotDataNode.Attribute("IsSelf").Value == "True";
+
+            if (DataManager.getNpcById(characterInfo.characterID) == null)
+            {
+                Debug.LogError($"前后端数据不对应 characterInfo.characterID:{characterInfo.characterID}");
+            }
 
             if (characterInfo.isSelf)
             {
@@ -76,8 +88,9 @@ namespace XModules.Data
             return characterInfo;
         }
 
-        public static Struct_PlotData.Struct_CharacterInfo GetCharacterObjectByName(string ID)
+        public static Struct_PlotData.Struct_CharacterInfo GetCharacterObjectByName(string _ID)
         {
+            string ID = $"{currentStory}_{ _ID}";
             return PlotData.CharacterInfoList.Find(t => t.characterID == ID);
         }
 
@@ -85,8 +98,10 @@ namespace XModules.Data
         /// 销毁一个角色
         /// </summary>
         /// <param name="ID"></param>
-        public static void DestroyCharacterByID(string ID)
+        public static void DestroyCharacterByID(string _ID)
         {
+            string ID = $"{currentStory}_{ _ID}";
+
             var _ = PlotData.CharacterInfoList.Find(t => t.characterID == ID);
             //SendCharMessage(ID, "Quit");
             PlotData.CharacterInfoList.Remove(_);

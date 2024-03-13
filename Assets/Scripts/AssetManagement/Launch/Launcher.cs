@@ -33,6 +33,8 @@ public partial class Launcher : MonoBehaviour
 
         XLogger.INFO_Format("Launcher 游戏启动！！！");
 
+        XLogger.INFO($"checkUpdate:{checkUpdate}");
+
 #if UNITY_EDITOR
         Resources.UnloadUnusedAssets();
 #endif

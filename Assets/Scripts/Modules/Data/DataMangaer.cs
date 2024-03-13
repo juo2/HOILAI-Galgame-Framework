@@ -16,28 +16,55 @@ namespace XModules.Data
 
         public static string getPlayerId()
         {
-            return playerResponse.data.id;
+            //临时把token记住
+            string id = PlayerPrefs.GetString("TEMP_ID");
+            if (string.IsNullOrEmpty(id))
+            {
+                return playerResponse.data.id;
+            }
+
+            return id;
         }
 
         public static string getToken()
         {
-            return playerResponse.data.token;
+            //临时把token记住
+            string token = PlayerPrefs.GetString("TEMP_TOKEN");
+
+            if (string.IsNullOrEmpty(token))
+            {
+                return playerResponse.data.token;
+            }
+
+            return token;
         }
 
         public static ChatData createChatData(string npcId,string role,string content)
         {
-            ChatData chatdate = new ChatData();
-            chatdate.userId = getPlayerId();
-            chatdate.content = content;
-            chatdate.npcId = npcId;
-            chatdate.role = role;
+            ChatData chatdata = new ChatData();
+            chatdata.userId = getPlayerId();
+            chatdata.content = content;
+            chatdata.npcId = npcId;
+            chatdata.role = role;
 
-            return chatdate;
+            if (chatResponseDic.TryGetValue(npcId, out ChatResponse chatResponse))
+            {
+                chatResponse.data.Add(chatdata);
+            }
+
+            return chatdata;
         }
 
         public static List<NPCData> getNpcList()
         {
-            return npcResponse.data;
+            if (npcResponse == null)
+            {
+                return new List<NPCData>();
+            }
+            else
+            {
+                return npcResponse.data;
+            }
         }
 
         public static NPCData getNpcById(string npcId)
@@ -83,12 +110,26 @@ namespace XModules.Data
 
         public static string getNpcResponse()
         {
-            return oneShotChatResponse.data.npcResponse;
+            if (oneShotChatResponse == null)
+            {
+                return "请求失败";
+            }
+            else
+            {
+                return oneShotChatResponse.data.npcResponse;
+            }
         }
 
         public static int getOneShotChatSelect()
         {
-            return oneShotChatResponse.data.select;
+            if (oneShotChatResponse == null)
+            {
+                return 1;
+            }
+            else
+            {
+                return oneShotChatResponse.data.select;
+            }
         }
 
     }

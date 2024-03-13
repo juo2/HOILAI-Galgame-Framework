@@ -420,6 +420,27 @@ public class ExportStoryFolder : EditorWindow
         }
     }
 
+    public static void BgmXml(XmlDocument doc, XmlElement element, StoryEditorNode s_node)
+    {
+        if (s_node.baseNode is StoryBgmNode)
+        {
+            StoryBgmNode storyBgmNode = s_node.baseNode as StoryBgmNode;
+
+            XmlElement bgmxml = doc.CreateElement("Bgm");
+            bgmxml.SetAttribute("NodeId", s_node.index.ToString());
+
+            if (ContainsChinese(storyBgmNode.bgm))
+            {
+                ErrorMessage(storyBgmNode, $"bgm node :{storyBgmNode.GetInstanceID()} bgm is chinese");
+            }
+            bgmxml.SetAttribute("Path", storyBgmNode.bgm);
+
+            findNextNodeXml(bgmxml, s_node.baseNode);
+
+            element.AppendChild(bgmxml);
+        }
+    }
+
 
     static void SaveXmlFile(XmlDocument doc, string filePath)
     {
@@ -551,6 +572,7 @@ public class ExportStoryFolder : EditorWindow
             BackGroundXml(doc, element, item);
             NextChapterXml(doc, element, item);
             ExitGameXml(doc, element, item);
+            BgmXml(doc, element, item);
         }
 
         

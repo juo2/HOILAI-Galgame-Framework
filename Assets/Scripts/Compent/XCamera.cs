@@ -21,6 +21,7 @@ namespace XGUI
             guiCamera.farClipPlane = 1000f;
 
             guiCamera.transform.position = new Vector3(0, 1, -10);
+            guiCamera.AddComponent<AudioListener>();
 
             DontDestroyOnLoad(cameraGo);
         }

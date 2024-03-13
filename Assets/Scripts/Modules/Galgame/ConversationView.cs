@@ -12,6 +12,7 @@ using UnityEngine.Networking;
 using UnityEngine.UI;
 using XGUI;
 using XModules.Data;
+using XModules.Proxy;
 using static XModules.Data.ConversationData;
 
 namespace XModules.GalManager
@@ -47,6 +48,9 @@ namespace XModules.GalManager
         XButton TouchBack;
 
         [SerializeField]
+        XButton MessageTouchBack;
+
+        [SerializeField]
         XButton ButtonReturn;
 
         //string _CharacterInfoText;
@@ -67,6 +71,17 @@ namespace XModules.GalManager
                 Button_Click_NextPlot();
             });
 
+            MessageTouchBack.onClick.AddListener(() => 
+            {
+                if (ConversationData.isRequestChating)
+                {
+                    return;
+                }
+                Button_Click_Message();
+            });
+
+            MessageTouchBack.SetActive(false);
+
             ButtonReturn.onClick.AddListener(() => {
 
                 XGUIManager.Instance.CloseView("ConversationView");
@@ -83,6 +98,8 @@ namespace XModules.GalManager
             ConversationData.ResetPlotData();
 
             string storyName = viewArgs[0] as string;
+            
+            ConversationData.currentStory = storyName;
 
             StartCoroutine(LoadPlot(storyName));
 
@@ -201,19 +218,30 @@ namespace XModules.GalManager
         public void OneShotChat()
         {
             ChoiceComplete();
+            
+            character_img.SetActive(true);
+            var content = ConversationData.tempInputMessage;
+            character_img.SetImage(ConversationData.SelfCharacterInfo.image);
+             Gal_SelfText.SetActive(true);
+
+            Gal_SelfText.StartTextContent(content, ConversationData.SelfCharacterInfo.name);
+
+            //下一步
+            MessageTouchBack.SetActive(true);
+        }
+
+        void Button_Click_Message()
+        {
 
             string content = DataManager.getNpcResponse();
 
             character_img.SetActive(true);
             character_img.SetImage(ConversationData.TempNpcCharacterInfo.image);
 
-            Gal_SelfText.StartTextContent(content, ConversationData.TempNpcCharacterInfo.name);
-            PlotData.NextJumpID = int.Parse(PlotData.NowPlotDataNode.Attribute("JumpId").Value);
+            Gal_OtherText.SetActive(true);
+            Gal_OtherText.StartTextContent(content, ConversationData.TempNpcCharacterInfo.name);
 
             SendCharMessage(ConversationData.TempNpcCharacterInfo.characterID, "", ConversationData.TempNpcCharacterInfo.isSelf);
-
-            if (PlotData.NowPlotDataNode.Attributes("AudioPath").Count() != 0)
-                PlayAudio(PlotData.NowPlotDataNode.Attribute("AudioPath").Value);
 
             AddHistoryContent(ConversationData.TempNpcCharacterInfo.characterID, ConversationData.TempNpcCharacterInfo.name, content);
 
@@ -221,7 +249,12 @@ namespace XModules.GalManager
 
             Struct_PlotData.Struct_Choice choice = PlotData.ChoiceTextList[oneShotSelect - 1];
 
+            //回归主线
             PlotData.NextJumpID = choice.JumpID;
+
+            ConversationData.IsCanJump = true;
+
+            MessageTouchBack.SetActive(false);
         }
 
         /// <summary>
@@ -238,6 +271,8 @@ namespace XModules.GalManager
             //IsCanJump这里有问题，如果一直点击会为false，而不是说true，这是因为没有点击按钮 ，没有添加按钮
             if (ConversationData.IsSpeak || !ConversationData.IsCanJump) { return; }
 
+            DisableAllText();
+
             PlotData.ChoiceTextList.Clear();
 
             if (PlotData.NowPlotDataNode == null)
@@ -251,13 +286,21 @@ namespace XModules.GalManager
                 Debug.Log($"正在运行 {PlotData.NextJumpID} 节点");
             }
 
-            DisableAllText();
-
             switch (PlotData.NowPlotDataNode.Name.ToString())
             {
                 case "NextChapter"://空节点
                     {
                         PlotData.NextJumpID = int.Parse(PlotData.NowPlotDataNode.Attribute("JumpId").Value);
+                        Button_Click_NextPlot();
+
+                        break;
+                    }
+                case "Bgm"://空节点
+                    {
+                        var _Path = PlotData.NowPlotDataNode.Attribute("Path").Value;
+                        PlotData.NextJumpID = int.Parse(PlotData.NowPlotDataNode.Attribute("JumpId").Value);
+                        PlayBgm(_Path);
+
                         Button_Click_NextPlot();
 
                         break;
@@ -325,6 +368,10 @@ namespace XModules.GalManager
                         character_img.SetActive(true);
 
                         var characterInfo = GetCharacterObjectByName(PlotData.NowPlotDataNode.Attribute("CharacterID").Value);
+
+                        if (!characterInfo.isSelf)
+                            ProxyManager.SaveUserSession(characterInfo.characterID);
+
                         var content = PlotData.NowPlotDataNode.Attribute("Content").Value;
 
                         var imagePathNode = PlotData.NowPlotDataNode.Attribute("CharacterImage");
@@ -448,6 +495,12 @@ namespace XModules.GalManager
             Debug.Log("播放了声音:" + fileName);
 
             XAudio.XAudioManager.instance.PlayGameMusic(fileName);
+        }
+
+        private void PlayBgm(string fileName)
+        {
+            Debug.Log("播放了BGM:" + fileName);
+            XAudio.XAudioManager.instance.PlayBgmMusic(fileName);
         }
 
         private void FixedUpdate ()

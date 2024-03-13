@@ -51,13 +51,11 @@ namespace XAudio
                 clipSet.Add(audioClip);
             }
 
-
             audioSource.clip = audioClip;
             audioSource.outputAudioMixerGroup = mixerGroup;
             audioSource.Play();
 
             onComplete?.Invoke();
-
         }
 
         public void Update()

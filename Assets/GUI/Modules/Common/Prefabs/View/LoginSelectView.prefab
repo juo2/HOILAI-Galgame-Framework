@@ -145,10 +145,10 @@ MonoBehaviour:
   m_EnableSelect: 1
   m_LabelText: {fileID: 170265089710236406}
   m_BtnImage: {fileID: 0}
-  m_IsHasCD: 0
+  m_IsHasCD: 1
   m_IsSlectImgScale: 0
   m_ZoomSelectGameObject: 0
-  m_CDSecond: 0.2
+  m_CDSecond: 2
 --- !u!114 &170265088393114103
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -608,10 +608,10 @@ MonoBehaviour:
   m_EnableSelect: 1
   m_LabelText: {fileID: 170265089322625601}
   m_BtnImage: {fileID: 0}
-  m_IsHasCD: 0
+  m_IsHasCD: 1
   m_IsSlectImgScale: 0
   m_ZoomSelectGameObject: 0
-  m_CDSecond: 0.2
+  m_CDSecond: 2
 --- !u!114 &170265089964388199
 MonoBehaviour:
   m_ObjectHideFlags: 0

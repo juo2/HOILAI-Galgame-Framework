@@ -3785,7 +3785,7 @@ MonoBehaviour:
       _typeConstraint: 0
       _dynamic: 0
   isChangeColor: 0
-  isError: 0
+  isError: 1
   ID: 2
   image: 2.png
   p_name: Stefan

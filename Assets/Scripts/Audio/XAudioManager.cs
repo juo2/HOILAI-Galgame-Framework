@@ -28,6 +28,7 @@ namespace XAudio
 
         XAudioSource uiSource;
         XAudioSource gameSource;
+        XAudioSource bgmSource;
 
         AudioMixer audioMixer;
         AssetManagement.AssetInternalLoader loader;
@@ -39,12 +40,16 @@ namespace XAudio
             LoadTemplateAsset();
             AudioSource ui = gameObject.AddComponent<AudioSource>();
             AudioSource game = gameObject.AddComponent<AudioSource>();
+            AudioSource bgm = gameObject.AddComponent<AudioSource>();
 
             uiSource = new XAudioSource();
             gameSource = new XAudioSource();
+            bgmSource = new XAudioSource();
 
             uiSource.audioSource = ui;
             gameSource.audioSource = game;
+            bgmSource.audioSource = bgm;
+            bgm.loop = true;
         }
 
         void LoadTemplateAsset()
@@ -77,7 +82,7 @@ namespace XAudio
 
             uiSource.mixerGroup = m_AudioMixerGroupMap["UI"];
             gameSource.mixerGroup = m_AudioMixerGroupMap["Game"];
-
+            bgmSource.mixerGroup = m_AudioMixerGroupMap["BGM"];
             isInitSuccessful = true;
         }
 
@@ -93,9 +98,14 @@ namespace XAudio
             return gameSource;
         }
 
+        public XAudioSource PlayBgmMusic(string assetName)
+        {
+            bgmSource.Play(assetName);
+            return bgmSource;
+        }
+
         public float GetCurrentGameTime()
         {
-            
             return gameSource.audioSource.time;
         }
 
@@ -124,6 +134,9 @@ namespace XAudio
 
             if (gameSource != null)
                 gameSource.OnDestroy();
+
+            if (bgmSource != null)
+                bgmSource.OnDestroy();
 
             m_AudioMixerGroupMap.Clear();
 
