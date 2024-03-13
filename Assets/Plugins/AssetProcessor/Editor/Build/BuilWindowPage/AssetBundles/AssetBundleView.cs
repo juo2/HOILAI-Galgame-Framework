@@ -138,7 +138,7 @@ public class AssetBundleView
 
 
         EditorGUI.BeginDisabledGroup(m_Download.isDonwload);
-        m_AssetBundleTreeView.OnGUI(new Rect(0, 42, rect.width, rect.height - 62));
+        m_AssetBundleTreeView.OnGUI(new Rect(0, 42, rect.width, rect.height - 100));
         EditorGUI.EndDisabledGroup();
 
         if (m_Download.isDonwload)
