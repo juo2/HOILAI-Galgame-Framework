@@ -135,6 +135,8 @@ MonoBehaviour:
     type: 3}
   runtimeBackgroundPrefab: {fileID: 5632075341056218058, guid: e4059518884742f4fbb9a0ca1b70683a,
     type: 3}
+  runtimeBgmPrefab: {fileID: 6090766829132136655, guid: 845f86d9dcc5a114398490877efc58d7,
+    type: 3}
   runtimeDeleteCharacterPrefab: {fileID: 4981547026553835813, guid: 916f3b46d67ea0f42b51d836a46e7f5c,
     type: 3}
   runtimeExitGamePrefab: {fileID: 5518901990466222810, guid: f1c11c3259169b9439713082f8208f62,

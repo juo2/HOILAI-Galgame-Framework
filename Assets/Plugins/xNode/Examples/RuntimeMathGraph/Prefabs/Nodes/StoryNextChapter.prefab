@@ -207,7 +207,7 @@ GameObject:
   - component: {fileID: 5497676920517251031}
   - component: {fileID: 5497676920517251030}
   m_Layer: 5
-  m_Name: vector
+  m_Name: Out
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -283,7 +283,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76c005fc401e40f42b1e76d5ffc80292, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fieldName: vector
+  fieldName: Out
   node: {fileID: 0}
 --- !u!1 &5497676920531556548
 GameObject:
@@ -596,7 +596,7 @@ GameObject:
   - component: {fileID: 5497676921107885275}
   - component: {fileID: 5497676921107885274}
   m_Layer: 5
-  m_Name: x
+  m_Name: In
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -672,7 +672,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76c005fc401e40f42b1e76d5ffc80292, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fieldName: x
+  fieldName: In
   node: {fileID: 0}
 --- !u!1 &5497676921358254782
 GameObject:
@@ -710,9 +710,9 @@ RectTransform:
   m_Father: {fileID: 5497676921565325721}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 100, y: -32}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 100, y: 0}
   m_SizeDelta: {x: 184, y: 0}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &5497676921358254781

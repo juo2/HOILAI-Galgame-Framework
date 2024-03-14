@@ -6,7 +6,7 @@ using XNode.Examples.MathNodes;
 
 namespace XNode.Story
 {
-	public class UGUINextChapter : UGUIMathBaseNode {
+	public class UGUINextChapter : UGUIBaseNode {
 		
 		private StoryNextChapterNode nextChapterNode;
 

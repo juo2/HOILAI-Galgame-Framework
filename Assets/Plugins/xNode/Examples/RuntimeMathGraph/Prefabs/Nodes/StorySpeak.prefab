@@ -618,7 +618,7 @@ GameObject:
   - component: {fileID: 167463309677785092}
   - component: {fileID: 167463309677785093}
   m_Layer: 5
-  m_Name: vector
+  m_Name: outOpt1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -694,7 +694,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76c005fc401e40f42b1e76d5ffc80292, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fieldName: vector
+  fieldName: outOpt1
   node: {fileID: 0}
 --- !u!1 &167463309761813205
 GameObject:
@@ -1089,8 +1089,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 100, y: 0}
+  m_SizeDelta: {x: 184, y: 0}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &167463310093827874
 MonoBehaviour:
@@ -1222,7 +1222,7 @@ GameObject:
   m_Component:
   - component: {fileID: 167463310643114436}
   m_Layer: 5
-  m_Name: StringProperty (1)
+  m_Name: StringProperty
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1263,7 +1263,7 @@ GameObject:
   - component: {fileID: 167463310695821648}
   - component: {fileID: 167463310695821649}
   m_Layer: 5
-  m_Name: x
+  m_Name: In
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1339,7 +1339,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76c005fc401e40f42b1e76d5ffc80292, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fieldName: x
+  fieldName: In
   node: {fileID: 0}
 --- !u!1 &167463310798465476
 GameObject:
@@ -2750,7 +2750,7 @@ GameObject:
   - component: {fileID: 4331009520221845758}
   - component: {fileID: 4331009520221845729}
   m_Layer: 5
-  m_Name: vector
+  m_Name: outOpt3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2826,7 +2826,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76c005fc401e40f42b1e76d5ffc80292, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fieldName: vector
+  fieldName: outOpt3
   node: {fileID: 0}
 --- !u!1 &4331009520261796723
 GameObject:
@@ -3105,7 +3105,7 @@ GameObject:
   - component: {fileID: 4331009520279695539}
   - component: {fileID: 4331009520279695538}
   m_Layer: 5
-  m_Name: vector
+  m_Name: outOpt2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3181,7 +3181,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76c005fc401e40f42b1e76d5ffc80292, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fieldName: vector
+  fieldName: outOpt2
   node: {fileID: 0}
 --- !u!1 &4331009520323107597
 GameObject:
@@ -3196,7 +3196,7 @@ GameObject:
   - component: {fileID: 4331009520323107592}
   - component: {fileID: 4331009520323107595}
   m_Layer: 5
-  m_Name: vector
+  m_Name: outOpt4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3272,7 +3272,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76c005fc401e40f42b1e76d5ffc80292, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fieldName: vector
+  fieldName: outOpt4
   node: {fileID: 0}
 --- !u!1 &4331009520379288868
 GameObject:
@@ -3287,7 +3287,7 @@ GameObject:
   - component: {fileID: 4331009520379288867}
   - component: {fileID: 4331009520379288866}
   m_Layer: 5
-  m_Name: vector
+  m_Name: Out
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3363,7 +3363,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76c005fc401e40f42b1e76d5ffc80292, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fieldName: vector
+  fieldName: Out
   node: {fileID: 0}
 --- !u!1 &4331009520482315516
 GameObject:

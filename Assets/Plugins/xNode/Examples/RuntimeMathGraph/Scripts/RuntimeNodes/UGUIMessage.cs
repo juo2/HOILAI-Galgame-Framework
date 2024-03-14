@@ -6,7 +6,7 @@ using XNode.Examples.MathNodes;
 
 namespace XNode.Story
 {
-	public class UGUIMessage : UGUIMathBaseNode {
+	public class UGUIMessage : UGUIBaseNode {
 		
 		public InputField image;
 		public InputField opt1;
@@ -30,13 +30,6 @@ namespace XNode.Story
 		}
 
 		public override void UpdateGUI() {
-			NodePort portX = node.GetInputPort("x");
-			NodePort portY = node.GetInputPort("y");
-			NodePort portZ = node.GetInputPort("z");
-			//ID.gameObject.SetActive(!portX.IsConnected);
-			//image.gameObject.SetActive(!portY.IsConnected);
-			//p_name.gameObject.SetActive(!portZ.IsConnected);
-
 			image.text = messageNode.image;
 			opt1.text = messageNode.opt1;
 			opt2.text = messageNode.opt2;

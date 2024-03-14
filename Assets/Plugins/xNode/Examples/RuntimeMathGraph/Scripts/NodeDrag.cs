@@ -7,10 +7,10 @@ namespace XNode.Story
 {
 	public class NodeDrag : MonoBehaviour, IPointerClickHandler, IBeginDragHandler, IDragHandler, IEndDragHandler {
 		private Vector3 offset;
-		private UGUIMathBaseNode node;
+		private UGUIBaseNode node;
 
 		private void Awake() {
-			node = GetComponentInParent<UGUIMathBaseNode>();
+			node = GetComponentInParent<UGUIBaseNode>();
 		}
 
 		public void OnDrag(PointerEventData eventData) {

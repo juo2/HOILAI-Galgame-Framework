@@ -7,7 +7,7 @@ using XNode.Examples.MathNodes;
 
 namespace XNode.Story
 {
-	public class UGUIMathBaseNode : MonoBehaviour, IDragHandler {
+	public class UGUIBaseNode : MonoBehaviour, IDragHandler {
 
 		[HideInInspector] public Node node;
 		[HideInInspector] public RuntimeStoryGraph graph;
@@ -17,15 +17,21 @@ namespace XNode.Story
 
 		public virtual void Start() {
 			ports = GetComponentsInChildren<UGUIPort>();
-			foreach (UGUIPort port in ports) port.node = node;
-			header.text = node.name;
+			foreach (UGUIPort port in ports)
+			{
+				port.node = node;
+			}
+            header.text = node.name;
 			SetPosition(node.position);
 		}
 
 		public virtual void UpdateGUI() { }
 		
 		private void LateUpdate() {
-			foreach (UGUIPort port in ports) port.UpdateConnectionTransforms();
+			foreach (UGUIPort port in ports)
+			{
+				port.UpdateConnectionTransforms();
+			}
 		}
 
 		public UGUIPort GetPort(string name) {

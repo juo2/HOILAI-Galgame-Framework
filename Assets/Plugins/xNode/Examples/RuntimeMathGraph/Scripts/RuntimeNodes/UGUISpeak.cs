@@ -6,7 +6,7 @@ using XNode.Examples.MathNodes;
 
 namespace XNode.Story
 {
-	public class UGUISpeak : UGUIMathBaseNode {
+	public class UGUISpeak : UGUIBaseNode {
 		
 		public InputField ID;
 		public InputField image;
@@ -38,18 +38,17 @@ namespace XNode.Story
 			opt4.onValueChanged.AddListener(OnChangeOpt4);
 			isJump.onValueChanged.AddListener(OnChangeJump);
 
+			Invoke("startPanel", 0.5f);
 			UpdateGUI();
 		}
 
-		public override void UpdateGUI() {
-			NodePort portX = node.GetInputPort("x");
-			NodePort portY = node.GetInputPort("y");
-			NodePort portZ = node.GetInputPort("z");
-			//ID.gameObject.SetActive(!portX.IsConnected);
-			//image.gameObject.SetActive(!portY.IsConnected);
-			//p_name.gameObject.SetActive(!portZ.IsConnected);
+		void startPanel()
+        {
+			panel.SetActive(speakNode.isJump);
+		}
 
-			Vector vectorNode = node as Vector;
+        public override void UpdateGUI() {
+			
 			ID.text = speakNode.ID;
 			image.text = speakNode.image;
 			content.text = speakNode.content;
@@ -78,10 +77,10 @@ namespace XNode.Story
 			speakNode.audio = p_audio.text;
 		}
 
-		private void OnChangeJump(bool isJump)
+		private void OnChangeJump(bool _isJump)
         {
-			panel.SetActive(isJump);
-			speakNode.isJump = isJump;
+			panel.SetActive(_isJump);
+			speakNode.isJump = _isJump;
 		}
 
 		private void OnChangeOpt1(string val)

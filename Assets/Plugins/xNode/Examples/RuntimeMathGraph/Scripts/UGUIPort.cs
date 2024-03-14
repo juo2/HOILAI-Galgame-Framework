@@ -24,6 +24,7 @@ namespace XNode.Story
 		void Start() {
 			port = node.GetPort(fieldName);
 			graph = GetComponentInParent<RuntimeStoryGraph>();
+
 			if (port.IsOutput && port.IsConnected) {
 				for (int i = 0; i < port.ConnectionCount; i++) {
 					AddConnection();
@@ -55,7 +56,7 @@ namespace XNode.Story
 			// Loop through connections
 			for (int i = 0; i < port.ConnectionCount; i++) {
 				NodePort other = port.GetConnection(i);
-				UGUIMathBaseNode otherNode = graph.GetRuntimeNode(other.node);
+				UGUIBaseNode otherNode = graph.GetRuntimeNode(other.node);
 				if (!otherNode) Debug.LogWarning(other.node.name + " node not found", this);
 				Transform port2 = otherNode.GetPort(other.fieldName).transform;
 				if (!port2) Debug.LogWarning(other.fieldName + " not found", this);
@@ -81,7 +82,7 @@ namespace XNode.Story
 					NodePort output = port.Connection;
 					Debug.Log("has " + port.ConnectionCount + " connections");
 					Debug.Log(port.GetConnection(0));
-					UGUIMathBaseNode otherNode = graph.GetRuntimeNode(output.node);
+					UGUIBaseNode otherNode = graph.GetRuntimeNode(output.node);
 					UGUIPort otherUGUIPort = otherNode.GetPort(output.fieldName);
 					Debug.Log("Disconnect");
 					output.Disconnect(port);

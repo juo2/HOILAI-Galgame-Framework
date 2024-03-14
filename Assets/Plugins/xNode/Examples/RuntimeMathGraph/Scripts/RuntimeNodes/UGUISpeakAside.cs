@@ -6,7 +6,7 @@ using XNode.Examples.MathNodes;
 
 namespace XNode.Story
 {
-	public class UGUISpeakAside : UGUIMathBaseNode {
+	public class UGUISpeakAside : UGUIBaseNode {
 		
 		public InputField content;
 		public InputField p_audio;

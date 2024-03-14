@@ -6,7 +6,7 @@ using XNode.Examples.MathNodes;
 
 namespace XNode.Story
 {
-	public class UGUIVideo : UGUIMathBaseNode {
+	public class UGUIVideo : UGUIBaseNode {
 		
 		public InputField video;
 

@@ -15,6 +15,7 @@ namespace XNode.Story
 
 		public UGUIAddCharacter runtimeAddCharacterPrefab;
 		public UGUIBackground runtimeBackgroundPrefab;
+		public UGUIBgm runtimeBgmPrefab;
 		public UGUIDeleteCharacter runtimeDeleteCharacterPrefab;
 		public UGUIExitGame runtimeExitGamePrefab;
 		public UGUIMessage runtimeMessagePrefab;
@@ -32,7 +33,7 @@ namespace XNode.Story
 		public UGUITooltip tooltip;
 
 		public ScrollRect scrollRect { get; private set; }
-		private List<UGUIMathBaseNode> nodes;
+		private List<UGUIBaseNode> nodes;
 
 		private void Awake() {
 			// Create a clone so we don't modify the original asset
@@ -40,10 +41,12 @@ namespace XNode.Story
 			scrollRect = GetComponentInChildren<ScrollRect>();
 			graphContextMenu.onClickSpawn -= SpawnNode;
 			graphContextMenu.onClickSpawn += SpawnNode;
+
+			SpawnGraph();
 		}
 
 		private void Start() {
-			SpawnGraph();
+			
 		}
 
 		public void Refresh() {
@@ -60,12 +63,12 @@ namespace XNode.Story
 
 		public void SpawnGraph() {
 			if (nodes != null) nodes.Clear();
-			else nodes = new List<UGUIMathBaseNode>();
+			else nodes = new List<UGUIBaseNode>();
 
 			for (int i = 0; i < graph.nodes.Count; i++) {
 				Node node = graph.nodes[i];
 
-				UGUIMathBaseNode runtimeNode = null;
+				UGUIBaseNode runtimeNode = null;
 				if (node is StoryAddCharacterNode) 
 				{
 					runtimeNode = Instantiate(runtimeAddCharacterPrefab);
@@ -73,7 +76,11 @@ namespace XNode.Story
 				else if (node is StoryBackgroundNode) 
 				{
 					runtimeNode = Instantiate(runtimeBackgroundPrefab);
-				} 
+				}
+				else if (node is StoryBgmNode)
+				{
+					runtimeNode = Instantiate(runtimeBgmPrefab);
+				}
 				else if (node is StoryDeleteCharacterNode) 
 				{
 					runtimeNode = Instantiate(runtimeDeleteCharacterPrefab);
@@ -102,6 +109,7 @@ namespace XNode.Story
 				{
 					runtimeNode = Instantiate(runtimeVideoPrefab);
 				}
+				
 
 				runtimeNode.transform.SetParent(scrollRect.content);
 				runtimeNode.node = node;
@@ -110,7 +118,7 @@ namespace XNode.Story
 			}
 		}
 
-		public UGUIMathBaseNode GetRuntimeNode(Node node) {
+		public UGUIBaseNode GetRuntimeNode(Node node) {
 			for (int i = 0; i < nodes.Count; i++) {
 				if (nodes[i].node == node) {
 					return nodes[i];

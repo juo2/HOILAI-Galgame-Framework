@@ -6,22 +6,28 @@ using XNode.Examples.MathNodes;
 
 namespace XNode.Story
 {
-	public class UGUIExitGame : UGUIBaseNode {
+	public class UGUIBgm : UGUIBaseNode {
 		
-		private StoryExitGameNode exitGameNode;
+		public InputField Bgm;
+
+		private StoryBgmNode bgmNode;
 
 		public override void Start() {
 			base.Start();
-			exitGameNode = node as StoryExitGameNode;
+			bgmNode = node as StoryBgmNode;
 
-			
+			Bgm.onValueChanged.AddListener(OnChangeBgm);
 			UpdateGUI();
 		}
 
 		public override void UpdateGUI() {
 			
-
+			Bgm.text = bgmNode.bgm;
 		}
 
+		private void OnChangeBgm(string val) {
+			bgmNode.bgm = Bgm.text;
+		}
+		
 	}
 }
