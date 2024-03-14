@@ -127,6 +127,7 @@ public class ExportStoryFolder : EditorWindow
 
             addCharacter.SetAttribute("CharacterImage", storyAddCharacterNode.image);
             addCharacter.SetAttribute("IsSelf", storyAddCharacterNode.isSelf.ToString());
+            addCharacter.SetAttribute("Position", storyAddCharacterNode.position.ToString());
 
             findNextNodeXml(addCharacter, s_node.baseNode);
 
@@ -144,6 +145,7 @@ public class ExportStoryFolder : EditorWindow
 
             XmlElement videoxml = doc.CreateElement("Video");
             videoxml.SetAttribute("NodeId", s_node.index.ToString());
+            videoxml.SetAttribute("Position", storyVideoNode.position.ToString());
 
             if (ContainsChinese(storyVideoNode.video))
             {
@@ -165,6 +167,7 @@ public class ExportStoryFolder : EditorWindow
 
             XmlElement nextxml = doc.CreateElement("NextChapter");
             nextxml.SetAttribute("NodeId", s_node.index.ToString());
+            nextxml.SetAttribute("Position", storyNextChapter.position.ToString());
 
             if (ContainsChinese(storyNextChapter.storyGraphicName))
             {
@@ -195,6 +198,7 @@ public class ExportStoryFolder : EditorWindow
             XmlElement backxml = doc.CreateElement("ChangeBackImg");
 
             backxml.SetAttribute("NodeId", s_node.index.ToString());
+            backxml.SetAttribute("Position", storyBackgroundNode.position.ToString());
 
             if (ContainsChinese(storyBackgroundNode.background))
             {
@@ -219,6 +223,7 @@ public class ExportStoryFolder : EditorWindow
 
             deleteCharacter.SetAttribute("NodeId", s_node.index.ToString());
             deleteCharacter.SetAttribute("CharacterID", storyDelCharacterNode.ID);
+            deleteCharacter.SetAttribute("Position", storyDelCharacterNode.position.ToString());
 
             findNextNodeXml(deleteCharacter, s_node.baseNode);
 
@@ -235,6 +240,9 @@ public class ExportStoryFolder : EditorWindow
             XmlElement speadxml = doc.CreateElement("SpeakAside");
             speadxml.SetAttribute("NodeId", s_node.index.ToString());
             speadxml.SetAttribute("Content", storySpeakAsideNode.content);
+            speadxml.SetAttribute("Position", storySpeakAsideNode.position.ToString());
+
+
             if (!string.IsNullOrEmpty(storySpeakAsideNode.audio))
             {
                 if (ContainsChinese(storySpeakAsideNode.audio))
@@ -258,6 +266,7 @@ public class ExportStoryFolder : EditorWindow
 
             XmlElement speadxml = doc.CreateElement("Message");
             speadxml.SetAttribute("NodeId", s_node.index.ToString());
+            speadxml.SetAttribute("Position", storyMessageNode.position.ToString());
 
             if (!string.IsNullOrEmpty(storyMessageNode.opt1))
             {
@@ -333,8 +342,9 @@ public class ExportStoryFolder : EditorWindow
             XmlElement speak = doc.CreateElement("Speak");
 
             speak.SetAttribute("NodeId", s_node.index.ToString());
+            speak.SetAttribute("Position", storySpeakNode.position.ToString());
 
-            if(!CheckHasCharacterID(storySpeakNode.ID))
+            if (!CheckHasCharacterID(storySpeakNode.ID))
             {
                 ErrorMessage(storySpeakNode, $"speak node :{storySpeakNode.GetInstanceID()} has not CharacterID:{storySpeakNode.ID}");
             }
@@ -415,6 +425,7 @@ public class ExportStoryFolder : EditorWindow
             StoryExitGameNode storyExitGameNode = s_node.baseNode as StoryExitGameNode;
 
             XmlElement videoxml = doc.CreateElement("ExitGame");
+            videoxml.SetAttribute("Position", storyExitGameNode.position.ToString());
             videoxml.SetAttribute("NodeId", s_node.index.ToString());
             element.AppendChild(videoxml);
         }
@@ -428,6 +439,7 @@ public class ExportStoryFolder : EditorWindow
 
             XmlElement bgmxml = doc.CreateElement("Bgm");
             bgmxml.SetAttribute("NodeId", s_node.index.ToString());
+            bgmxml.SetAttribute("Position", storyBgmNode.position.ToString());
 
             if (ContainsChinese(storyBgmNode.bgm))
             {

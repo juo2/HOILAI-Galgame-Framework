@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
+using System.Xml.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.Networking;
 using UnityEngine.UI;
 using XNode.Examples.MathNodes;
 
@@ -33,20 +36,30 @@ namespace XNode.Story
 		public UGUITooltip tooltip;
 
 		public ScrollRect scrollRect { get; private set; }
-		private List<UGUIBaseNode> nodes;
+        private List<UGUIBaseNode> nodes;
+
+		public Button exportBtn;
 
 		private void Awake() {
 			// Create a clone so we don't modify the original asset
+			
 			graph = graph.Copy() as StoryGraph;
 			scrollRect = GetComponentInChildren<ScrollRect>();
 			graphContextMenu.onClickSpawn -= SpawnNode;
 			graphContextMenu.onClickSpawn += SpawnNode;
 
-			SpawnGraph();
-		}
+			exportBtn.onClick.AddListener(() => 
+			{
+				//buildNode();
 
-		private void Start() {
-			
+				//buildNodeXml();
+
+				//SaveXmlFile(doc, $"Assets/StreamingAssets/A_AssetBundles/HGF/{name}.xml");
+
+				//Debug.Log("XML generate finish !!!!");
+			});
+
+			SpawnGraph();
 		}
 
 		public void Refresh() {
@@ -139,6 +152,64 @@ namespace XNode.Story
 				return;
 
 			graphContextMenu.OpenAt(eventData.position);
+		}
+
+		public IEnumerator LoadPlot(string storyName)
+		{
+			yield return null;
+
+			string _PlotText = string.Empty;
+			//string filePath = Path.Combine(AssetDefine.BuildinAssetPath, "HGF/Test.xml");
+			string filePath = Path.Combine(Application.streamingAssetsPath, "A_AssetBundles/HGF/buqun1.xml");
+
+#if UNITY_STANDALONE_OSX || UNITY_EDITOR_OSX
+            filePath = "file://" + filePath;
+#endif
+			//            if (Application.platform == RuntimePlatform.Android)
+			//            {
+			//                filePath = "jar:file://" + Application.dataPath + "!/assets/HGF/Test.xml";
+			//            }
+
+			UnityWebRequest www = UnityWebRequest.Get(filePath);
+			yield return www.SendWebRequest();
+
+			if (www.result == UnityWebRequest.Result.Success)
+			{
+				_PlotText = www.downloadHandler.text;
+			}
+			else
+			{
+				Debug.Log("Error: " + www.error);
+			}
+			//try
+			{
+				//GameAPI.Print($"游戏剧本：{_PlotText}");
+				var PlotxDoc = XDocument.Parse(_PlotText);
+
+				//-----开始读取数据
+
+				foreach (var item in PlotxDoc.Root.Elements())
+				{
+					switch (item.Name.ToString())
+					{
+						case "Plot":
+							{
+								foreach (var MainPlotItem in item.Elements())
+								{
+								}
+								break;
+							}
+						default:
+							{
+								throw new Exception("无法识别的根标签");
+
+							}
+					}
+				}
+			}
+
+
+
 		}
 	}
 }

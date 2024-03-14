@@ -24,7 +24,7 @@ namespace XNodeEditor.Story
 
 
             NodeEditorGUILayout.PropertyField(serializedObject.FindProperty("content"));
-            NodeEditorGUILayout.PropertyField(serializedObject.FindProperty("animate"));
+            //NodeEditorGUILayout.PropertyField(serializedObject.FindProperty("animate"));
             NodeEditorGUILayout.PropertyField(serializedObject.FindProperty("audio"));
 
             NodeEditorGUILayout.PropertyField(serializedObject.FindProperty("isJump"));
