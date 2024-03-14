@@ -75,6 +75,7 @@ namespace XModules.GalManager
             {
                 if (ConversationData.isRequestChating)
                 {
+                    Button_Click_isRequestChating();
                     return;
                 }
                 Button_Click_Message();
@@ -234,10 +235,20 @@ namespace XModules.GalManager
             //下一步
             MessageTouchBack.SetActive(true);
         }
+        
+        void Button_Click_isRequestChating()
+        {
+            character_img.SetActive(true);
+            character_img.SetImage(ConversationData.TempNpcCharacterInfo.image);
+
+            Gal_OtherText.SetActive(true);
+            Gal_OtherText.StartTextContent("............", ConversationData.TempNpcCharacterInfo.name);
+
+            SendCharMessage(ConversationData.TempNpcCharacterInfo.characterID, "", ConversationData.TempNpcCharacterInfo.isSelf);
+        }
 
         void Button_Click_Message()
         {
-
             string content = DataManager.getNpcResponse();
 
             character_img.SetActive(true);
@@ -252,7 +263,7 @@ namespace XModules.GalManager
 
             int oneShotSelect = DataManager.getOneShotChatSelect();
 
-            Struct_PlotData.Struct_Choice choice = PlotData.ChoiceTextList[oneShotSelect - 1];
+            Struct_PlotData.Struct_Choice choice = PlotData.ChoiceTextList[oneShotSelect];
 
             //回归主线
             PlotData.NextJumpID = choice.JumpID;

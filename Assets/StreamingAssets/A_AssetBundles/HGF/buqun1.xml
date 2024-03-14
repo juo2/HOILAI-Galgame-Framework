@@ -1,218 +1,218 @@
 <?xml version="1.0" encoding="utf-8"?>
 <data>
   <Plot>
-    <NextChapter NodeId="1" JumpId="2" />
-    <ChangeBackImg NodeId="2" Path="buqun_scene.png" JumpId="3" />
-    <AddCharacter NodeId="3" CharacterID="1" CharacterName="user" CharacterImage="buqun_man.png" IsSelf="True" SendMessage="None" JumpId="169" />
-    <SpeakAside NodeId="4" Content="今天是你第一天转到这所学校的日子" JumpId="5" />
-    <Speak NodeId="5" CharacterID="1" Content="此时你会选择坐在...">
+    <NextChapter NodeId="1" Position="(-248.50, -159.00)" JumpId="2" />
+    <ChangeBackImg NodeId="2" Position="(-632.00, -248.00)" Path="buqun_scene.png" JumpId="3" />
+    <AddCharacter NodeId="3" CharacterID="1" CharacterName="user" CharacterImage="buqun_man.png" IsSelf="True" Position="(-296.00, -392.00)" JumpId="169" />
+    <SpeakAside NodeId="4" Content="今天是你第一天转到这所学校的日子" Position="(-296.00, -56.00)" JumpId="5" />
+    <Speak NodeId="5" Position="(-8.00, -56.00)" CharacterID="1" Content="此时你会选择坐在...">
       <Choice JumpId="40">羞涩型少女</Choice>
       <Choice JumpId="40">成熟型御姐</Choice>
       <Choice JumpId="40">傲娇型少女</Choice>
     </Speak>
-    <SpeakAside NodeId="6" Content="旁白：你决定坐在那个看上去很害羞的少女的身边，看到你向她走过去，少女好像有些不知所措" JumpId="7" />
-    <Speak NodeId="7" CharacterID="11" Content="景瑶：你好，我...我叫景瑶。那个，你为什么会坐在我旁边啊?啊，对...对不起，我不是在讨厌你，我只不太擅长跟陌生的人交谈.你...你千万别误会" JumpId="8" />
-    <Message NodeId="8">
+    <SpeakAside NodeId="6" Content="旁白：你决定坐在那个看上去很害羞的少女的身边，看到你向她走过去，少女好像有些不知所措" Position="(360.00, -392.00)" JumpId="7" />
+    <Speak NodeId="7" Position="(616.00, -392.00)" CharacterID="11" Content="景瑶：你好，我...我叫景瑶。那个，你为什么会坐在我旁边啊?啊，对...对不起，我不是在讨厌你，我只不太擅长跟陌生的人交谈.你...你千万别误会" JumpId="8" />
+    <Message NodeId="8" Position="(952.00, -392.00)">
       <Choice JumpId="9">A别这么紧张，我不会误会什么的</Choice>
       <Choice JumpId="9">B如果你觉得紧张的话，无视我就好</Choice>
     </Message>
-    <Speak NodeId="9" CharacterID="11" Content="真的很对不起，我一见到不熟悉的人就不知道该说什么了....." JumpId="10" />
-    <SpeakAside NodeId="10" Content="你轻轻的笑了一下，摆手表示你并不在意" JumpId="11" />
-    <Speak NodeId="11" CharacterID="11" Content="但是，我的确说了很没礼貌的话。那……作为补偿，下课以后，我带你去熟悉一下这所学校吧" JumpId="12" />
-    <Message NodeId="12">
+    <Speak NodeId="9" Position="(1240.00, -392.00)" CharacterID="11" Content="真的很对不起，我一见到不熟悉的人就不知道该说什么了....." JumpId="10" />
+    <SpeakAside NodeId="10" Content="你轻轻的笑了一下，摆手表示你并不在意" Position="(1544.00, -392.00)" JumpId="11" />
+    <Speak NodeId="11" Position="(1832.00, -392.00)" CharacterID="11" Content="但是，我的确说了很没礼貌的话。那……作为补偿，下课以后，我带你去熟悉一下这所学校吧" JumpId="12" />
+    <Message NodeId="12" Position="(2088.00, -392.00)">
       <Choice JumpId="16">A不用麻烦了，谢谢</Choice>
       <Choice JumpId="13">B好啊，谢谢你</Choice>
     </Message>
-    <SpeakAside NodeId="13" Content="利用课间时间，景瑶为你介绍了学校的各个地点" JumpId="14" />
-    <SpeakAside NodeId="14" Content="景瑶:这里是操场，前面那个是礼堂!" JumpId="15" />
-    <SpeakAside NodeId="15" Content="你发现她虽然看起来很怕生，但是在某些时候却格外的认真。对学校的介绍非常详细，以至于你们在上课铃声响起的前一秒才跑回教室。" JumpId="17" />
-    <Speak NodeId="16" CharacterID="11" Content="额...好吧，要是有什么需要帮助的就和我说吧" JumpId="21" />
-    <Speak NodeId="17" CharacterID="11" Content="呼...呼....可算赶上了....." JumpId="18" />
-    <Speak NodeId="18" CharacterID="1" Content="你:还不是因为你连饮水机的用法都要详细的介绍一遍么?" JumpId="19" />
-    <Speak NodeId="19" CharacterID="11" Content="人...人家也是好心嘛....." JumpId="20" />
-    <SpeakAside NodeId="20" Content="你与景瑶的关系在不知不觉间变的熟络了起来" JumpId="21" />
-    <SpeakAside NodeId="21" Content="一上午的时间很快就过去了。到了午餐时间你发现景瑶正在包里找什么东西。" JumpId="22" />
-    <Speak NodeId="22" CharacterID="11" Content="到底哪去了，我明明记得放在包里的。难道..又要饿肚子了?" JumpId="23" />
-    <Message NodeId="23">
+    <SpeakAside NodeId="13" Content="利用课间时间，景瑶为你介绍了学校的各个地点" Position="(2344.00, -392.00)" JumpId="14" />
+    <SpeakAside NodeId="14" Content="景瑶:这里是操场，前面那个是礼堂!" Position="(2600.00, -392.00)" JumpId="15" />
+    <SpeakAside NodeId="15" Content="你发现她虽然看起来很怕生，但是在某些时候却格外的认真。对学校的介绍非常详细，以至于你们在上课铃声响起的前一秒才跑回教室。" Position="(2840.00, -392.00)" JumpId="17" />
+    <Speak NodeId="16" Position="(2360.00, -232.00)" CharacterID="11" Content="额...好吧，要是有什么需要帮助的就和我说吧" JumpId="21" />
+    <Speak NodeId="17" Position="(3080.00, -392.00)" CharacterID="11" Content="呼...呼....可算赶上了....." JumpId="18" />
+    <Speak NodeId="18" Position="(3320.00, -392.00)" CharacterID="1" Content="你:还不是因为你连饮水机的用法都要详细的介绍一遍么?" JumpId="19" />
+    <Speak NodeId="19" Position="(3576.00, -392.00)" CharacterID="11" Content="人...人家也是好心嘛....." JumpId="20" />
+    <SpeakAside NodeId="20" Content="你与景瑶的关系在不知不觉间变的熟络了起来" Position="(3848.00, -376.00)" JumpId="21" />
+    <SpeakAside NodeId="21" Content="一上午的时间很快就过去了。到了午餐时间你发现景瑶正在包里找什么东西。" Position="(4136.00, -200.00)" JumpId="22" />
+    <Speak NodeId="22" Position="(4440.00, -376.00)" CharacterID="11" Content="到底哪去了，我明明记得放在包里的。难道..又要饿肚子了?" JumpId="23" />
+    <Message NodeId="23" Position="(4712.00, -376.00)">
       <Choice JumpId="24">A忘带便当了吗?一起去食堂吧，我请你</Choice>
       <Choice JumpId="32">B忘带便当了吗?那我先借你钱吧</Choice>
     </Message>
-    <SpeakAside NodeId="24" Content="不过你的突然发问好像吓到了景瑶" JumpId="25" />
-    <Speak NodeId="25" CharacterID="11" Content="那多不好意思啊!我们只是刚刚认....." JumpId="26" />
-    <Speak NodeId="26" CharacterID="1" Content="......" JumpId="27" />
-    <Speak NodeId="27" CharacterID="11" Content="......" JumpId="28" />
-    <SpeakAside NodeId="28" Content="饥饿感最终战胜了羞涩，景瑶跟你一起来到了食堂。" JumpId="29" />
-    <Speak NodeId="29" CharacterID="1" Content="你想吃什么?" JumpId="30" />
-    <Speak NodeId="30" CharacterID="11" Content="我吃什么都可以的，你来点就好。" JumpId="31" />
-    <SpeakAside NodeId="31" Content="天有不测风云，上午还晴空万里，放学时就下起来大雨，还好你听了老妈的话今天带了雨伞。" JumpId="33" />
-    <Speak NodeId="32" CharacterID="11" Content="啊，谢谢你.才刚认识就给你添麻烦。我明天就还你!" JumpId="31" />
-    <SpeakAside NodeId="33" Content="你走到教学楼门口，发现景瑶一个人焦急的等着。" JumpId="34" />
-    <Speak NodeId="34" CharacterID="11" Content="哎呀，我真是笨死了，出门的时候明明把伞都放门口了都忘记拿..." JumpId="35" />
-    <Speak NodeId="35" CharacterID="11" Content="还是乖乖等雨停吧" JumpId="36" />
-    <Speak NodeId="36" CharacterID="1" Content="你是没带伞吗?" JumpId="37" />
-    <Speak NodeId="37" CharacterID="11" Content="啊!我..我我我，我忘记带了..." JumpId="38" />
-    <Speak NodeId="38" CharacterID="11" Content="但是没关系的!我在这里等雨停就好了!" JumpId="39" />
-    <Message NodeId="39">
+    <SpeakAside NodeId="24" Content="不过你的突然发问好像吓到了景瑶" Position="(5000.00, -360.00)" JumpId="25" />
+    <Speak NodeId="25" Position="(5272.00, -376.00)" CharacterID="11" Content="那多不好意思啊!我们只是刚刚认....." JumpId="26" />
+    <Speak NodeId="26" Position="(5560.00, -376.00)" CharacterID="1" Content="......" JumpId="27" />
+    <Speak NodeId="27" Position="(5816.00, -376.00)" CharacterID="11" Content="......" JumpId="28" />
+    <SpeakAside NodeId="28" Content="饥饿感最终战胜了羞涩，景瑶跟你一起来到了食堂。" Position="(6088.00, -376.00)" JumpId="29" />
+    <Speak NodeId="29" Position="(6330.57, -378.32)" CharacterID="1" Content="你想吃什么?" JumpId="30" />
+    <Speak NodeId="30" Position="(6584.00, -376.00)" CharacterID="11" Content="我吃什么都可以的，你来点就好。" JumpId="31" />
+    <SpeakAside NodeId="31" Content="天有不测风云，上午还晴空万里，放学时就下起来大雨，还好你听了老妈的话今天带了雨伞。" Position="(6888.00, -184.00)" JumpId="33" />
+    <Speak NodeId="32" Position="(5080.00, -104.00)" CharacterID="11" Content="啊，谢谢你.才刚认识就给你添麻烦。我明天就还你!" JumpId="31" />
+    <SpeakAside NodeId="33" Content="你走到教学楼门口，发现景瑶一个人焦急的等着。" Position="(7176.00, -184.00)" JumpId="34" />
+    <Speak NodeId="34" Position="(7464.00, -216.00)" CharacterID="11" Content="哎呀，我真是笨死了，出门的时候明明把伞都放门口了都忘记拿..." JumpId="35" />
+    <Speak NodeId="35" Position="(7752.00, -216.00)" CharacterID="11" Content="还是乖乖等雨停吧" JumpId="36" />
+    <Speak NodeId="36" Position="(8040.00, -216.00)" CharacterID="1" Content="你是没带伞吗?" JumpId="37" />
+    <Speak NodeId="37" Position="(8312.00, -216.00)" CharacterID="11" Content="啊!我..我我我，我忘记带了..." JumpId="38" />
+    <Speak NodeId="38" Position="(8584.00, -216.00)" CharacterID="11" Content="但是没关系的!我在这里等雨停就好了!" JumpId="39" />
+    <Message NodeId="39" Position="(8856.00, -216.00)">
       <Choice JumpId="42">A不介意的话，我送你回家吧</Choice>
       <Choice JumpId="41">B行，那我先回家了。</Choice>
     </Message>
-    <AddCharacter NodeId="40" CharacterID="11" CharacterName="景瑶" CharacterImage="buqun_gril.png" IsSelf="False" SendMessage="None" JumpId="6" />
-    <SpeakAside NodeId="41" Content="结局1：这么好的机会不珍惜，活该你单身!" JumpId="165" />
-    <Speak NodeId="42" CharacterID="11" Content="啊...我..我是不是又给你添麻烦了...对不起" JumpId="43" />
-    <Speak NodeId="43" CharacterID="1" Content="不要总是这么想啊，我们已经是朋友了不是吗?" JumpId="44" />
-    <Speak NodeId="44" CharacterID="11" Content="谢谢你!你人真是太好了..." JumpId="45" />
-    <SpeakAside NodeId="45" Content="第二天" JumpId="170" />
-    <Speak NodeId="46" CharacterID="11" Content="那个...昨天，真的谢谢你。" JumpId="47" />
-    <Speak NodeId="47" CharacterID="11" Content="如果不嫌弃的话，我想给你做一份便当，来当作为回礼，可以么？" JumpId="48" />
-    <Speak NodeId="48" CharacterID="11" Content="别看我这个样子，但是对做菜，我还是挺拿手的！" JumpId="49" />
-    <Speak NodeId="49" CharacterID="1" Content="怎么会嫌弃呢，那我就期待你的回礼了!" JumpId="50" />
-    <Speak NodeId="50" CharacterID="11" Content="就下周吧，这周末我去买食材，一定不会让你失望的!" JumpId="51" />
-    <SpeakAside NodeId="51" Content="你笑了笑，表现出一副期待的样子" JumpId="52" />
-    <Speak NodeId="52" CharacterID="11" Content="其...其实，我已经很久没有跟一个人说这么多话了" JumpId="53" />
-    <Speak NodeId="53" CharacterID="11" Content="不知道为什么，跟你聊天的时候总会觉得很安心呢......" JumpId="54" />
-    <Message NodeId="54">
+    <AddCharacter NodeId="40" CharacterID="11" CharacterName="景瑶" CharacterImage="buqun_gril.png" IsSelf="False" Position="(360.00, -136.00)" JumpId="6" />
+    <SpeakAside NodeId="41" Content="结局1：这么好的机会不珍惜，活该你单身!" Position="(9192.00, 40.00)" JumpId="165" />
+    <Speak NodeId="42" Position="(9192.00, -216.00)" CharacterID="11" Content="啊...我..我是不是又给你添麻烦了...对不起" JumpId="43" />
+    <Speak NodeId="43" Position="(9496.00, -216.00)" CharacterID="1" Content="不要总是这么想啊，我们已经是朋友了不是吗?" JumpId="44" />
+    <Speak NodeId="44" Position="(9784.00, -216.00)" CharacterID="11" Content="谢谢你!你人真是太好了..." JumpId="45" />
+    <SpeakAside NodeId="45" Content="第二天" Position="(9928.00, -328.00)" JumpId="170" />
+    <Speak NodeId="46" Position="(10344.00, -184.00)" CharacterID="11" Content="那个...昨天，真的谢谢你。" JumpId="47" />
+    <Speak NodeId="47" Position="(10600.00, -216.00)" CharacterID="11" Content="如果不嫌弃的话，我想给你做一份便当，来当作为回礼，可以么？" JumpId="48" />
+    <Speak NodeId="48" Position="(10872.00, -216.00)" CharacterID="11" Content="别看我这个样子，但是对做菜，我还是挺拿手的！" JumpId="49" />
+    <Speak NodeId="49" Position="(11144.00, -216.00)" CharacterID="1" Content="怎么会嫌弃呢，那我就期待你的回礼了!" JumpId="50" />
+    <Speak NodeId="50" Position="(11416.00, -216.00)" CharacterID="11" Content="就下周吧，这周末我去买食材，一定不会让你失望的!" JumpId="51" />
+    <SpeakAside NodeId="51" Content="你笑了笑，表现出一副期待的样子" Position="(11684.88, -190.88)" JumpId="52" />
+    <Speak NodeId="52" Position="(11928.00, -200.00)" CharacterID="11" Content="其...其实，我已经很久没有跟一个人说这么多话了" JumpId="53" />
+    <Speak NodeId="53" Position="(12200.00, -200.00)" CharacterID="11" Content="不知道为什么，跟你聊天的时候总会觉得很安心呢......" JumpId="54" />
+    <Message NodeId="54" Position="(12493.58, -192.29)">
       <Choice JumpId="55">A我们以后就是朋友啦，想聊天就来找我</Choice>
       <Choice JumpId="56">B你有心事的话可以跟我说，我很愿意倾听</Choice>
     </Message>
-    <Speak NodeId="55" CharacterID="11" Content="嗯谢谢你!能交到你这样一个朋友，我真的很开心!" JumpId="57" />
-    <Speak NodeId="56" CharacterID="11" Content="你有什么心事也一定要告诉我，我会帮你一起解决的!!" JumpId="57" />
-    <SpeakAside NodeId="57" Content="很快，到了傍晚放学的时间，你与景瑶一起走出教学楼" JumpId="58" />
-    <SpeakAside NodeId="58" Content="你们在聊了一会儿之后，就各自回家了。" JumpId="59" />
-    <SpeakAside NodeId="59" Content="但你忽然看到走到街角的景瑶被同校的几个女生拽进了小巷，你打算:" JumpId="171" />
-    <Message NodeId="60">
+    <Speak NodeId="55" Position="(12776.00, -296.00)" CharacterID="11" Content="嗯谢谢你!能交到你这样一个朋友，我真的很开心!" JumpId="57" />
+    <Speak NodeId="56" Position="(12776.00, -56.00)" CharacterID="11" Content="你有什么心事也一定要告诉我，我会帮你一起解决的!!" JumpId="57" />
+    <SpeakAside NodeId="57" Content="很快，到了傍晚放学的时间，你与景瑶一起走出教学楼" Position="(13112.00, -120.00)" JumpId="58" />
+    <SpeakAside NodeId="58" Content="你们在聊了一会儿之后，就各自回家了。" Position="(13394.29, -105.30)" JumpId="59" />
+    <SpeakAside NodeId="59" Content="但你忽然看到走到街角的景瑶被同校的几个女生拽进了小巷，你打算:" Position="(13512.00, -328.00)" JumpId="171" />
+    <Message NodeId="60" Position="(13892.49, -163.33)">
       <Choice JumpId="61">A好像都是女生，我过去也不太合适</Choice>
       <Choice JumpId="62">B似乎有些不对劲，先跟上去看看吧</Choice>
     </Message>
-    <SpeakAside NodeId="61" Content="第二天，你来到学校，发现景瑶并没有来上课。" JumpId="172" />
-    <SpeakAside NodeId="62" Content="你来到了小巷里，发现那几个女生将景瑶围在中间，景瑶看起来很着急的样子" JumpId="64" />
-    <SpeakAside NodeId="63" Content="这时班主任走进来" JumpId="65" />
-    <Speak NodeId="64" CharacterID="11" Content="为什么要我道歉?还要赔那么多钱?" JumpId="66" />
-    <SpeakAside NodeId="65" Content="跟大家说一个消息，景瑶同学昨天放学途中不慎摔倒" JumpId="67" />
-    <Speak NodeId="66" CharacterID="11" Content="上次你们就是这么说的，这次还要这样?" JumpId="68" />
-    <SpeakAside NodeId="67" Content="她家长说脚踝骨折，短期内可能要在家里养病，可能无法来上课了." JumpId="69" />
-    <SpeakAside NodeId="68" Content="看到这里，你马上明白发生了什么，你冲进了小巷，将景瑶护在自己的身后" JumpId="70" />
-    <SpeakAside NodeId="69" Content="结局2：从此以后，你再也没有见到过景瑶.…你也永远没能知道景瑶到底发生了什么.." JumpId="167" />
-    <Speak NodeId="70" CharacterID="1" Content="还不快滚!再敢找她的麻烦别怪我不客气了!" JumpId="71" />
-    <SpeakAside NodeId="71" Content="看到你攥紧的拳头跟愤怒的眼神，那几个女生连忙害怕的跑掉了。" JumpId="72" />
-    <SpeakAside NodeId="72" Content="景瑶完全没有料到你的出现，直到你转身之后，才回过神来" JumpId="73" />
-    <Speak NodeId="73" CharacterID="11" Content="为什么每次你都会在我需要帮助的时候出现..." JumpId="74" />
-    <Message NodeId="74">
+    <SpeakAside NodeId="61" Content="第二天，你来到学校，发现景瑶并没有来上课。" Position="(14152.00, -152.00)" JumpId="172" />
+    <SpeakAside NodeId="62" Content="你来到了小巷里，发现那几个女生将景瑶围在中间，景瑶看起来很着急的样子" Position="(14152.00, -8.00)" JumpId="64" />
+    <SpeakAside NodeId="63" Content="这时班主任走进来" Position="(14488.00, -456.00)" JumpId="65" />
+    <Speak NodeId="64" Position="(14392.00, -8.00)" CharacterID="11" Content="为什么要我道歉?还要赔那么多钱?" JumpId="66" />
+    <SpeakAside NodeId="65" Content="跟大家说一个消息，景瑶同学昨天放学途中不慎摔倒" Position="(14632.00, -152.00)" JumpId="67" />
+    <Speak NodeId="66" Position="(14644.56, -0.84)" CharacterID="11" Content="上次你们就是这么说的，这次还要这样?" JumpId="68" />
+    <SpeakAside NodeId="67" Content="她家长说脚踝骨折，短期内可能要在家里养病，可能无法来上课了." Position="(14872.00, -152.00)" JumpId="69" />
+    <SpeakAside NodeId="68" Content="看到这里，你马上明白发生了什么，你冲进了小巷，将景瑶护在自己的身后" Position="(14872.00, 8.00)" JumpId="70" />
+    <SpeakAside NodeId="69" Content="结局2：从此以后，你再也没有见到过景瑶.…你也永远没能知道景瑶到底发生了什么.." Position="(15112.00, -152.00)" JumpId="167" />
+    <Speak NodeId="70" Position="(15112.00, 8.00)" CharacterID="1" Content="还不快滚!再敢找她的麻烦别怪我不客气了!" JumpId="71" />
+    <SpeakAside NodeId="71" Content="看到你攥紧的拳头跟愤怒的眼神，那几个女生连忙害怕的跑掉了。" Position="(15382.01, -22.11)" JumpId="72" />
+    <SpeakAside NodeId="72" Content="景瑶完全没有料到你的出现，直到你转身之后，才回过神来" Position="(15608.02, -26.16)" JumpId="73" />
+    <Speak NodeId="73" Position="(15832.00, -40.00)" CharacterID="11" Content="为什么每次你都会在我需要帮助的时候出现..." JumpId="74" />
+    <Message NodeId="74" Position="(16088.00, -72.00)">
       <Choice JumpId="173">A我只是做了我应该做的事情而已</Choice>
       <Choice JumpId="173">B你遇到危险我可不会不管的</Choice>
     </Message>
-    <SpeakAside NodeId="75" Content="为了安全起见，你陪景瑶一起走到了车站，看到她上了巴士才回家。" JumpId="76" />
-    <SpeakAside NodeId="76" Content="回到家之后发现你把景瑶的作业本带回来了，于是你打算给景瑶送过去。" JumpId="77" />
-    <SpeakAside NodeId="77" Content="你来到景瑶家楼下，看到她急匆匆的跑了过来。" JumpId="78" />
-    <Speak NodeId="78" CharacterID="11" Content="啊，真的在你这里，我还以为弄丢了..." JumpId="79" />
-    <Speak NodeId="79" CharacterID="11" Content="谢谢你!啊我好像...又给你添麻烦了..." JumpId="80" />
-    <Speak NodeId="80" CharacterID="1" Content="明明是我把你作业拿走了啦" JumpId="81" />
-    <Speak NodeId="81" CharacterID="11" Content="不管怎么样!还是要谢谢你!" JumpId="82" />
-    <Speak NodeId="82" CharacterID="11" Content="嗯...你有空的话我带你去附近走走吧?" JumpId="83" />
-    <Message NodeId="83">
+    <SpeakAside NodeId="75" Content="为了安全起见，你陪景瑶一起走到了车站，看到她上了巴士才回家。" Position="(16408.00, -200.00)" JumpId="76" />
+    <SpeakAside NodeId="76" Content="回到家之后发现你把景瑶的作业本带回来了，于是你打算给景瑶送过去。" Position="(16624.63, 3.81)" JumpId="77" />
+    <SpeakAside NodeId="77" Content="你来到景瑶家楼下，看到她急匆匆的跑了过来。" Position="(16872.00, 8.00)" JumpId="78" />
+    <Speak NodeId="78" Position="(17112.00, 8.00)" CharacterID="11" Content="啊，真的在你这里，我还以为弄丢了..." JumpId="79" />
+    <Speak NodeId="79" Position="(17368.00, 8.00)" CharacterID="11" Content="谢谢你!啊我好像...又给你添麻烦了..." JumpId="80" />
+    <Speak NodeId="80" Position="(17624.00, 8.00)" CharacterID="1" Content="明明是我把你作业拿走了啦" JumpId="81" />
+    <Speak NodeId="81" Position="(17874.52, 15.15)" CharacterID="11" Content="不管怎么样!还是要谢谢你!" JumpId="82" />
+    <Speak NodeId="82" Position="(18120.00, 24.00)" CharacterID="11" Content="嗯...你有空的话我带你去附近走走吧?" JumpId="83" />
+    <Message NodeId="83" Position="(18392.00, 24.00)">
       <Choice JumpId="84">A不用了，不早了，你快回去吧</Choice>
       <Choice JumpId="85">B嗯好。我正好也有一些事想问你</Choice>
     </Message>
-    <Speak NodeId="84" CharacterID="11" Content="好吧，现在也不早了，那你回去注意安全!" JumpId="174" />
-    <SpeakAside NodeId="85" Content="你对今天下午发生的事还是很在意，于是想问景瑶。" JumpId="87" />
-    <SpeakAside NodeId="86" Content="时间飞逝，转眼一周过去了" JumpId="88" />
-    <Speak NodeId="87" CharacterID="11" Content="你问那几个女生吗?" JumpId="89" />
-    <Speak NodeId="88" CharacterID="11" Content="嘿!上次答应你的便当!" JumpId="90" />
-    <Speak NodeId="89" CharacterID="11" Content="她们是走廊尽头那个教室的学生，其实几天前她们就有找过我的麻烦" JumpId="91" />
-    <Speak NodeId="90" CharacterID="11" Content="最近一段时间真的很感谢你帮助我这么多!" JumpId="92" />
-    <Speak NodeId="91" CharacterID="11" Content="在我路过那个小巷的时候拦住我，非说我踩到了其中一个人的鞋子" JumpId="93" />
-    <Speak NodeId="92" CharacterID="11" Content="来，尝尝吧!" JumpId="94" />
-    <Speak NodeId="93" CharacterID="11" Content="还说是很贵的品牌，要我赔她们钱" JumpId="95" />
-    <SpeakAside NodeId="94" Content="你小心翼翼地打开了盒子，里面装满了看上去就很好吃的饭菜" JumpId="96" />
-    <Speak NodeId="95" CharacterID="11" Content="结果当时学校的一个老师刚好路过，她们就吓得跑掉了......" JumpId="97" />
-    <Speak NodeId="96" CharacterID="11" Content="能认识你我真的很开心!" JumpId="98" />
-    <SpeakAside NodeId="97" Content="你听完以后十分生气，握紧了拳头说:你等着!我明天必须要让她们给你道歉!" JumpId="99" />
-    <Speak NodeId="98" CharacterID="11" Content="以后我们可就是最好的朋友了哦~" JumpId="100" />
-    <Speak NodeId="99" CharacterID="11" Content="哎，你先别冲动!我虽然也很讨厌她们" JumpId="101" />
-    <SpeakAside NodeId="100" Content="结局3：就这样，你跟景瑶成为了最亲密的好朋友。" JumpId="166" />
-    <Speak NodeId="101" CharacterID="11" Content="但是如果直接用这种手段解决这件事，不就成了跟她们一样的人了么?" JumpId="102" />
-    <Speak NodeId="102" CharacterID="11" Content="其实第一次被她们找麻烦之后，我就在考虑这件事的解决办法了" JumpId="103" />
-    <Speak NodeId="103" CharacterID="11" Content="我今天之所以从那个小巷走，就是为了想收集证据" JumpId="104" />
-    <Speak NodeId="104" CharacterID="11" Content="我已经把她们说的话都录下来了" JumpId="105" />
-    <Speak NodeId="105" CharacterID="11" Content="不过今天还好你及时出现了..要不然我可能就要挨打了.." JumpId="106" />
-    <Speak NodeId="106" CharacterID="11" Content="好在你今天也目睹了全过程" JumpId="107" />
-    <Speak NodeId="107" CharacterID="11" Content="我还找到了几个被她们欺负过的，愿意出面作证的同学" JumpId="108" />
-    <Speak NodeId="108" CharacterID="11" Content="明天，我们就一起去学生会!" JumpId="109" />
-    <SpeakAside NodeId="109" Content="其实从昨天第一次见到景瑶，你就觉得这个看起来很害羞，连跟陌生人说话都会紧张的女孩在对某些事情时却格外的认真。只是没想到她的内心会这么坚强。" JumpId="110" />
-    <SpeakAside NodeId="110" Content="就这样，你陪景瑶一起，带着那些愿意作证的同学一起去了学生会" JumpId="111" />
-    <SpeakAside NodeId="111" Content="时间飞逝，转眼一周过去了" JumpId="112" />
-    <Speak NodeId="112" CharacterID="11" Content="早上好！" JumpId="113" />
-    <Speak NodeId="113" CharacterID="11" Content="噔噔~上次答应你的便当，等到午饭时间一起吃吧~" JumpId="114" />
-    <Message NodeId="114">
+    <Speak NodeId="84" Position="(18664.00, -56.00)" CharacterID="11" Content="好吧，现在也不早了，那你回去注意安全!" JumpId="174" />
+    <SpeakAside NodeId="85" Content="你对今天下午发生的事还是很在意，于是想问景瑶。" Position="(18664.00, 184.00)" JumpId="87" />
+    <SpeakAside NodeId="86" Content="时间飞逝，转眼一周过去了" Position="(19000.00, -296.00)" JumpId="88" />
+    <Speak NodeId="87" Position="(18925.27, 168.62)" CharacterID="11" Content="你问那几个女生吗?" JumpId="89" />
+    <Speak NodeId="88" Position="(19208.00, -88.00)" CharacterID="11" Content="嘿!上次答应你的便当!" JumpId="90" />
+    <Speak NodeId="89" Position="(19192.00, 168.00)" CharacterID="11" Content="她们是走廊尽头那个教室的学生，其实几天前她们就有找过我的麻烦" JumpId="91" />
+    <Speak NodeId="90" Position="(19464.00, -88.00)" CharacterID="11" Content="最近一段时间真的很感谢你帮助我这么多!" JumpId="92" />
+    <Speak NodeId="91" Position="(19470.61, 178.20)" CharacterID="11" Content="在我路过那个小巷的时候拦住我，非说我踩到了其中一个人的鞋子" JumpId="93" />
+    <Speak NodeId="92" Position="(19736.00, -88.00)" CharacterID="11" Content="来，尝尝吧!" JumpId="94" />
+    <Speak NodeId="93" Position="(19736.00, 168.00)" CharacterID="11" Content="还说是很贵的品牌，要我赔她们钱" JumpId="95" />
+    <SpeakAside NodeId="94" Content="你小心翼翼地打开了盒子，里面装满了看上去就很好吃的饭菜" Position="(19980.09, -51.91)" JumpId="96" />
+    <Speak NodeId="95" Position="(19992.00, 168.00)" CharacterID="11" Content="结果当时学校的一个老师刚好路过，她们就吓得跑掉了......" JumpId="97" />
+    <Speak NodeId="96" Position="(20232.00, -72.00)" CharacterID="11" Content="能认识你我真的很开心!" JumpId="98" />
+    <SpeakAside NodeId="97" Content="你听完以后十分生气，握紧了拳头说:你等着!我明天必须要让她们给你道歉!" Position="(20241.54, 183.57)" JumpId="99" />
+    <Speak NodeId="98" Position="(20488.00, -72.00)" CharacterID="11" Content="以后我们可就是最好的朋友了哦~" JumpId="100" />
+    <Speak NodeId="99" Position="(20488.00, 168.00)" CharacterID="11" Content="哎，你先别冲动!我虽然也很讨厌她们" JumpId="101" />
+    <SpeakAside NodeId="100" Content="结局3：就这样，你跟景瑶成为了最亲密的好朋友。" Position="(20742.97, -49.23)" JumpId="166" />
+    <Speak NodeId="101" Position="(20744.00, 168.00)" CharacterID="11" Content="但是如果直接用这种手段解决这件事，不就成了跟她们一样的人了么?" JumpId="102" />
+    <Speak NodeId="102" Position="(21000.00, 168.00)" CharacterID="11" Content="其实第一次被她们找麻烦之后，我就在考虑这件事的解决办法了" JumpId="103" />
+    <Speak NodeId="103" Position="(21255.15, 177.33)" CharacterID="11" Content="我今天之所以从那个小巷走，就是为了想收集证据" JumpId="104" />
+    <Speak NodeId="104" Position="(21517.98, 164.13)" CharacterID="11" Content="我已经把她们说的话都录下来了" JumpId="105" />
+    <Speak NodeId="105" Position="(21780.81, 168.53)" CharacterID="11" Content="不过今天还好你及时出现了..要不然我可能就要挨打了.." JumpId="106" />
+    <Speak NodeId="106" Position="(22039.24, 175.13)" CharacterID="11" Content="好在你今天也目睹了全过程" JumpId="107" />
+    <Speak NodeId="107" Position="(22296.00, 184.00)" CharacterID="11" Content="我还找到了几个被她们欺负过的，愿意出面作证的同学" JumpId="108" />
+    <Speak NodeId="108" Position="(22568.00, 184.00)" CharacterID="11" Content="明天，我们就一起去学生会!" JumpId="109" />
+    <SpeakAside NodeId="109" Content="其实从昨天第一次见到景瑶，你就觉得这个看起来很害羞，连跟陌生人说话都会紧张的女孩在对某些事情时却格外的认真。只是没想到她的内心会这么坚强。" Position="(22821.13, 199.32)" JumpId="110" />
+    <SpeakAside NodeId="110" Content="就这样，你陪景瑶一起，带着那些愿意作证的同学一起去了学生会" Position="(23072.96, 203.72)" JumpId="111" />
+    <SpeakAside NodeId="111" Content="时间飞逝，转眼一周过去了" Position="(23316.00, 210.32)" JumpId="112" />
+    <Speak NodeId="112" Position="(23560.00, 200.00)" CharacterID="11" Content="早上好！" JumpId="113" />
+    <Speak NodeId="113" Position="(23827.35, 194.92)" CharacterID="11" Content="噔噔~上次答应你的便当，等到午饭时间一起吃吧~" JumpId="114" />
+    <Message NodeId="114" Position="(24102.28, 189.43)">
       <Choice JumpId="115">A不会是什么黑暗料理吧~</Choice>
       <Choice JumpId="117">B哇,我都有点迫不及待了!</Choice>
     </Message>
-    <Speak NodeId="115" CharacterID="11" Content="喂，讨厌啦!" JumpId="116" />
-    <Speak NodeId="116" CharacterID="11" Content="我对自己的厨艺还是蛮自信的，一定不会让你失望的!" JumpId="117" />
-    <SpeakAside NodeId="117" Content="中午下课后你们两个去了天台。" JumpId="118" />
-    <Speak NodeId="118" CharacterID="11" Content="景瑶:来，尝尝吧!" JumpId="119" />
-    <SpeakAside NodeId="119" Content="你小心翼翼地打开了盒子，里面装满了看上去就很好吃的饭菜，" JumpId="120" />
-    <SpeakAside NodeId="120" Content="你迫不及待地夹起了一团带着酱汁的米饭放入口中咀嚼了起来，味道出乎意料的美味!" JumpId="121" />
-    <Speak NodeId="121" CharacterID="1" Content="这是我吃过最好吃的午餐了!" JumpId="122" />
-    <SpeakAside NodeId="122" Content="景瑶听到你的评价非常开心" JumpId="123" />
-    <Speak NodeId="123" CharacterID="11" Content="这段时间，最开心的事情就是遇到了你。" JumpId="124" />
-    <Speak NodeId="124" CharacterID="11" Content="但是，我一直很想问...你为什么要对我这么好呢?" JumpId="125" />
-    <Message NodeId="125">
+    <Speak NodeId="115" Position="(24408.00, -88.00)" CharacterID="11" Content="喂，讨厌啦!" JumpId="116" />
+    <Speak NodeId="116" Position="(24760.00, -104.00)" CharacterID="11" Content="我对自己的厨艺还是蛮自信的，一定不会让你失望的!" JumpId="117" />
+    <SpeakAside NodeId="117" Content="中午下课后你们两个去了天台。" Position="(24872.00, 504.00)" JumpId="118" />
+    <Speak NodeId="118" Position="(25129.69, 223.22)" CharacterID="11" Content="景瑶:来，尝尝吧!" JumpId="119" />
+    <SpeakAside NodeId="119" Content="你小心翼翼地打开了盒子，里面装满了看上去就很好吃的饭菜，" Position="(25432.00, 232.00)" JumpId="120" />
+    <SpeakAside NodeId="120" Content="你迫不及待地夹起了一团带着酱汁的米饭放入口中咀嚼了起来，味道出乎意料的美味!" Position="(25698.48, 238.56)" JumpId="121" />
+    <Speak NodeId="121" Position="(25960.00, 248.00)" CharacterID="1" Content="这是我吃过最好吃的午餐了!" JumpId="122" />
+    <SpeakAside NodeId="122" Content="景瑶听到你的评价非常开心" Position="(26237.88, 251.34)" JumpId="123" />
+    <Speak NodeId="123" Position="(26505.03, 257.73)" CharacterID="11" Content="这段时间，最开心的事情就是遇到了你。" JumpId="124" />
+    <Speak NodeId="124" Position="(26777.29, 261.57)" CharacterID="11" Content="但是，我一直很想问...你为什么要对我这么好呢?" JumpId="125" />
+    <Message NodeId="125" Position="(27016.00, 248.00)">
       <Choice JumpId="175">A大概是因为我对你有种特别的感觉吧</Choice>
       <Choice JumpId="176">B 因为你有一种让我很想保护的冲动</Choice>
     </Message>
-    <Speak NodeId="126" CharacterID="11" Content="一种...特殊的感觉?，她好像明白了你的心意，脸红得像是樱桃一样" JumpId="130" />
-    <SpeakAside NodeId="127" Content="景瑶楞了一下，她好像明白了你的心意，脸红得像是樱桃一样。" JumpId="126" />
-    <SpeakAside NodeId="128" Content="景瑶楞了一下，她好像明白了你的心意，脸红得像是樱桃一样。" JumpId="129" />
-    <Speak NodeId="129" CharacterID="11" Content="那个...这周六，你有空吗?" JumpId="131" />
-    <Speak NodeId="130" CharacterID="11" Content="其实，我这几天也一直在思考，要不要告诉你" JumpId="132" />
-    <Speak NodeId="131" CharacterID="1" Content="有啊，怎么了?" JumpId="133" />
-    <Speak NodeId="132" CharacterID="11" Content="我也不知道我有没有猜对你对我的感觉." JumpId="134" />
-    <Speak NodeId="133" CharacterID="11" Content="啊，就是，这周六不是圣诞节嘛，我之前看到一家餐厅圣诞节有活动呢" JumpId="135" />
-    <Speak NodeId="134" CharacterID="11" Content="但我这次，想勇敢的说出来!" JumpId="136" />
-    <Speak NodeId="135" CharacterID="11" Content="你要是有空的话，要不要一起呀..." JumpId="137" />
-    <Speak NodeId="136" CharacterID="11" Content="我...我喜欢你。" JumpId="138" />
-    <SpeakAside NodeId="137" Content="你似乎明白了她的意思，开心的答应了她。" JumpId="139" />
-    <SpeakAside NodeId="138" Content="看着眼前的景瑶从刚开始的羞涩胆小，到现在居然鼓起勇气向自己表白" JumpId="143" />
-    <SpeakAside NodeId="139" Content="周六，你提前到了约好的地方等她。" JumpId="140" />
-    <SpeakAside NodeId="140" Content="突然，有人在背后轻轻拍了你一下，你回过头" JumpId="141" />
-    <Speak NodeId="141" CharacterID="11" Content="嗨!Merry christmas!圣诞节快乐!" JumpId="142" />
-    <SpeakAside NodeId="142" Content="你被眼前的景瑶的穿着打扮惊到了。" JumpId="145" />
-    <Speak NodeId="143" CharacterID="1" Content="我也喜欢你。" JumpId="144" />
-    <Speak NodeId="144" CharacterID="1" Content="我想一直地守护你，在你身边保护你。你愿意做我的女朋友吗？" JumpId="146" />
-    <Speak NodeId="145" CharacterID="11" Content="怎么了...我今天...很奇怪嘛... " JumpId="149" />
-    <SpeakAside NodeId="146" Content="景瑶看上去虽然还是很害羞，但却十分肯定的给出了答案" JumpId="147" />
-    <Speak NodeId="147" CharacterID="11" Content="嗯!我愿意。" JumpId="148" />
-    <SpeakAside NodeId="148" Content="结局4：恭喜你成功攻略景瑶，获得女朋友一枚!" JumpId="168" />
-    <Message NodeId="149">
+    <Speak NodeId="126" Position="(27672.00, 152.00)" CharacterID="11" Content="一种...特殊的感觉?，她好像明白了你的心意，脸红得像是樱桃一样" JumpId="130" />
+    <SpeakAside NodeId="127" Content="景瑶楞了一下，她好像明白了你的心意，脸红得像是樱桃一样。" Position="(27416.00, 72.00)" JumpId="126" />
+    <SpeakAside NodeId="128" Content="景瑶楞了一下，她好像明白了你的心意，脸红得像是樱桃一样。" Position="(27416.00, 456.00)" JumpId="129" />
+    <Speak NodeId="129" Position="(27672.01, 406.62)" CharacterID="11" Content="那个...这周六，你有空吗?" JumpId="131" />
+    <Speak NodeId="130" Position="(27944.00, 152.00)" CharacterID="11" Content="其实，我这几天也一直在思考，要不要告诉你" JumpId="132" />
+    <Speak NodeId="131" Position="(27953.22, 411.22)" CharacterID="1" Content="有啊，怎么了?" JumpId="133" />
+    <Speak NodeId="132" Position="(28177.44, 171.37)" CharacterID="11" Content="我也不知道我有没有猜对你对我的感觉." JumpId="134" />
+    <Speak NodeId="133" Position="(28184.00, 408.00)" CharacterID="11" Content="啊，就是，这周六不是圣诞节嘛，我之前看到一家餐厅圣诞节有活动呢" JumpId="135" />
+    <Speak NodeId="134" Position="(28445.77, 175.97)" CharacterID="11" Content="但我这次，想勇敢的说出来!" JumpId="136" />
+    <Speak NodeId="135" Position="(28440.00, 408.00)" CharacterID="11" Content="你要是有空的话，要不要一起呀..." JumpId="137" />
+    <Speak NodeId="136" Position="(28696.00, 168.00)" CharacterID="11" Content="我...我喜欢你。" JumpId="138" />
+    <SpeakAside NodeId="137" Content="你似乎明白了她的意思，开心的答应了她。" Position="(28696.00, 424.00)" JumpId="139" />
+    <SpeakAside NodeId="138" Content="看着眼前的景瑶从刚开始的羞涩胆小，到现在居然鼓起勇气向自己表白" Position="(28940.18, 188.83)" JumpId="143" />
+    <SpeakAside NodeId="139" Content="周六，你提前到了约好的地方等她。" Position="(28948.45, 421.33)" JumpId="140" />
+    <SpeakAside NodeId="140" Content="突然，有人在背后轻轻拍了你一下，你回过头" Position="(29192.00, 424.00)" JumpId="141" />
+    <Speak NodeId="141" Position="(29432.00, 424.00)" CharacterID="11" Content="嗨!Merry christmas!圣诞节快乐!" JumpId="142" />
+    <SpeakAside NodeId="142" Content="你被眼前的景瑶的穿着打扮惊到了。" Position="(29701.07, 442.46)" JumpId="145" />
+    <Speak NodeId="143" Position="(29416.00, 184.00)" CharacterID="1" Content="我也喜欢你。" JumpId="144" />
+    <Speak NodeId="144" Position="(29690.04, 204.45)" CharacterID="1" Content="我想一直地守护你，在你身边保护你。你愿意做我的女朋友吗？" JumpId="146" />
+    <Speak NodeId="145" Position="(29944.00, 440.00)" CharacterID="11" Content="怎么了...我今天...很奇怪嘛... " JumpId="149" />
+    <SpeakAside NodeId="146" Content="景瑶看上去虽然还是很害羞，但却十分肯定的给出了答案" Position="(29944.00, 216.00)" JumpId="147" />
+    <Speak NodeId="147" Position="(30216.00, 200.00)" CharacterID="11" Content="嗯!我愿意。" JumpId="148" />
+    <SpeakAside NodeId="148" Content="结局4：恭喜你成功攻略景瑶，获得女朋友一枚!" Position="(34408.00, 360.00)" JumpId="168" />
+    <Message NodeId="149" Position="(30232.00, 472.00)">
       <Choice JumpId="150">A不不，我觉得今天的你很可爱</Choice>
       <Choice JumpId="150">B裙子很白腿很可爱，啊我是想说你很美</Choice>
     </Message>
-    <SpeakAside NodeId="150" Content="说完你拉着她的手跑进了暖和的餐厅" JumpId="151" />
-    <SpeakAside NodeId="151" Content="但到了餐厅以后景瑶又变得很害羞，好像有什么话想说" JumpId="152" />
-    <Speak NodeId="152" CharacterID="1" Content="想吃点什么?" JumpId="153" />
-    <Speak NodeId="153" CharacterID="11" Content="那个!我这几天一直在思考，要不要告诉你" JumpId="154" />
-    <Speak NodeId="154" CharacterID="11" Content="我怕我误解了你对我的感觉。" JumpId="155" />
-    <Speak NodeId="155" CharacterID="11" Content="但我这次，想勇敢的说出来!" JumpId="156" />
-    <Speak NodeId="156" CharacterID="11" Content="我...我喜欢你！" JumpId="157" />
-    <Speak NodeId="157" CharacterID="11" Content="啊!你可以不用回答的!" JumpId="158" />
-    <Speak NodeId="158" CharacterID="11" Content="我...我只要说出来就舒服了!" JumpId="159" />
-    <SpeakAside NodeId="159" Content="看着眼前的景瑶从刚开始的羞涩胆小，到现在居然鼓起勇气向自己表白。" JumpId="160" />
-    <SpeakAside NodeId="160" Content="你愈发的想要保护你眼前这个可爱的女孩，于是非常坚定的告诉她:" JumpId="161" />
-    <Speak NodeId="161" CharacterID="1" Content="我也喜欢你！" JumpId="162" />
-    <Speak NodeId="162" CharacterID="1" Content="我想一直地守护你，在你身边保护你。你愿意做我的女朋友吗？" JumpId="163" />
-    <SpeakAside NodeId="163" Content="景瑶看着你，肯定的给出了答案" JumpId="164" />
-    <Speak NodeId="164" CharacterID="11" Content="嗯！我愿意！" JumpId="148" />
-    <ExitGame NodeId="165" />
-    <ExitGame NodeId="166" />
-    <ExitGame NodeId="167" />
-    <ExitGame NodeId="168" />
-    <Bgm NodeId="169" Path="first_encounter.mp3" JumpId="4" />
-    <Bgm NodeId="170" Path="date.mp3" JumpId="46" />
-    <Bgm NodeId="171" Path="conflict.mp3" JumpId="60" />
-    <Bgm NodeId="172" Path="BadEnd.mp3" JumpId="63" />
-    <Bgm NodeId="173" Path="first_encounter.mp3" JumpId="75" />
-    <Bgm NodeId="174" Path="BadEnd.mp3" JumpId="86" />
-    <Bgm NodeId="175" Path="Confession.mp3" JumpId="127" />
-    <Bgm NodeId="176" Path="Confession.mp3" JumpId="128" />
+    <SpeakAside NodeId="150" Content="说完你拉着她的手跑进了暖和的餐厅" Position="(30520.00, 472.00)" JumpId="151" />
+    <SpeakAside NodeId="151" Content="但到了餐厅以后景瑶又变得很害羞，好像有什么话想说" Position="(30776.00, 472.00)" JumpId="152" />
+    <Speak NodeId="152" Position="(31032.00, 424.00)" CharacterID="1" Content="想吃点什么?" JumpId="153" />
+    <Speak NodeId="153" Position="(31288.00, 424.00)" CharacterID="11" Content="那个!我这几天一直在思考，要不要告诉你" JumpId="154" />
+    <Speak NodeId="154" Position="(31529.80, 431.43)" CharacterID="11" Content="我怕我误解了你对我的感觉。" JumpId="155" />
+    <Speak NodeId="155" Position="(31784.35, 426.84)" CharacterID="11" Content="但我这次，想勇敢的说出来!" JumpId="156" />
+    <Speak NodeId="156" Position="(32037.98, 440.62)" CharacterID="11" Content="我...我喜欢你！" JumpId="157" />
+    <Speak NodeId="157" Position="(32290.69, 447.06)" CharacterID="11" Content="啊!你可以不用回答的!" JumpId="158" />
+    <Speak NodeId="158" Position="(32538.81, 461.76)" CharacterID="11" Content="我...我只要说出来就舒服了!" JumpId="159" />
+    <SpeakAside NodeId="159" Content="看着眼前的景瑶从刚开始的羞涩胆小，到现在居然鼓起勇气向自己表白。" Position="(32803.47, 475.54)" JumpId="160" />
+    <SpeakAside NodeId="160" Content="你愈发的想要保护你眼前这个可爱的女孩，于是非常坚定的告诉她:" Position="(33051.59, 481.06)" JumpId="161" />
+    <Speak NodeId="161" Position="(33315.34, 485.65)" CharacterID="1" Content="我也喜欢你！" JumpId="162" />
+    <Speak NodeId="162" Position="(33576.00, 504.00)" CharacterID="1" Content="我想一直地守护你，在你身边保护你。你愿意做我的女朋友吗？" JumpId="163" />
+    <SpeakAside NodeId="163" Content="景瑶看着你，肯定的给出了答案" Position="(33851.09, 514.14)" JumpId="164" />
+    <Speak NodeId="164" Position="(34101.04, 520.57)" CharacterID="11" Content="嗯！我愿意！" JumpId="148" />
+    <ExitGame Position="(9528.00, 88.00)" NodeId="165" />
+    <ExitGame Position="(21078.47, -54.68)" NodeId="166" />
+    <ExitGame Position="(15429.19, -191.37)" NodeId="167" />
+    <ExitGame Position="(34728.00, 376.00)" NodeId="168" />
+    <Bgm NodeId="169" Position="(-616.00, 8.00)" Path="first_encounter.mp3" JumpId="4" />
+    <Bgm NodeId="170" Position="(10184.00, -376.00)" Path="date.mp3" JumpId="46" />
+    <Bgm NodeId="171" Position="(13752.00, -392.00)" Path="conflict.mp3" JumpId="60" />
+    <Bgm NodeId="172" Position="(14216.00, -328.00)" Path="BadEnd.mp3" JumpId="63" />
+    <Bgm NodeId="173" Position="(16200.00, -312.00)" Path="first_encounter.mp3" JumpId="75" />
+    <Bgm NodeId="174" Position="(18664.00, -264.00)" Path="BadEnd.mp3" JumpId="86" />
+    <Bgm NodeId="175" Position="(27112.00, 72.00)" Path="Confession.mp3" JumpId="127" />
+    <Bgm NodeId="176" Position="(27144.00, 584.00)" Path="Confession.mp3" JumpId="128" />
   </Plot>
 </data>
