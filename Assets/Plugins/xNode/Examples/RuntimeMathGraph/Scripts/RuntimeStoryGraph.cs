@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Xml.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -12,9 +13,9 @@ using XNode.Examples.MathNodes;
 namespace XNode.Story
 {
 	public class RuntimeStoryGraph : MonoBehaviour, IPointerClickHandler {
-		[Header("Graph")]
-		public StoryGraph graph;
-		[Header("Prefabs")]
+        [Header("Graph")]
+        public StoryGraph graph;
+        [Header("Prefabs")]
 
 		public UGUIAddCharacter runtimeAddCharacterPrefab;
 		public UGUIBackground runtimeBackgroundPrefab;
@@ -29,7 +30,6 @@ namespace XNode.Story
 
 		public Connection runtimeConnectionPrefab;
 
-
 		[Header("References")]
 		public UGUIContextMenu graphContextMenu;
 		public UGUIContextMenu nodeContextMenu;
@@ -42,8 +42,9 @@ namespace XNode.Story
 
 		private void Awake() {
 			// Create a clone so we don't modify the original asset
-			
-			graph = graph.Copy() as StoryGraph;
+			graph = new StoryGraph();
+
+			//graph = graph.Copy() as StoryGraph;
 			scrollRect = GetComponentInChildren<ScrollRect>();
 			graphContextMenu.onClickSpawn -= SpawnNode;
 			graphContextMenu.onClickSpawn += SpawnNode;
@@ -51,15 +52,13 @@ namespace XNode.Story
 			exportBtn.onClick.AddListener(() => 
 			{
 				//buildNode();
-
 				//buildNodeXml();
-
 				//SaveXmlFile(doc, $"Assets/StreamingAssets/A_AssetBundles/HGF/{name}.xml");
-
 				//Debug.Log("XML generate finish !!!!");
 			});
 
-			SpawnGraph();
+			StartCoroutine(LoadPlot());
+
 		}
 
 		public void Refresh() {
@@ -123,7 +122,6 @@ namespace XNode.Story
 					runtimeNode = Instantiate(runtimeVideoPrefab);
 				}
 				
-
 				runtimeNode.transform.SetParent(scrollRect.content);
 				runtimeNode.node = node;
 				runtimeNode.graph = this;
@@ -141,10 +139,10 @@ namespace XNode.Story
 		}
 
 		public void SpawnNode(Type type, Vector2 position) {
-			Node node = graph.AddNode(type);
-			node.name = type.Name;
-			node.position = position;
-			Refresh();
+            Node node = graph.AddNode(type);
+            node.name = type.Name;
+            node.position = position;
+            Refresh();
 		}
 
 		public void OnPointerClick(PointerEventData eventData) {
@@ -154,13 +152,76 @@ namespace XNode.Story
 			graphContextMenu.OpenAt(eventData.position);
 		}
 
-		public IEnumerator LoadPlot(string storyName)
+		Vector2 stringToVector2(string input)
+        {
+			Vector2 vector = Vector2.zero;
+			// 移除字符串中的括号
+			string trimmedInput = input.Trim('(', ')');
+
+			// 分割字符串以获取x和y的字符串表示
+			string[] parts = trimmedInput.Split(',');
+
+			if (parts.Length == 2)
+			{
+				// 尝试将字符串转换为浮点数
+				bool parseSuccessX = float.TryParse(parts[0], out float x);
+				bool parseSuccessY = float.TryParse(parts[1], out float y);
+
+				if (parseSuccessX && parseSuccessY)
+				{
+					// 创建Vector2实例
+					vector = new Vector2(x, y);
+
+					//Debug.Log("转换成功: " + vector);
+				}
+				else
+				{
+					Debug.LogError("字符串转换浮点数失败");
+				}
+			}
+			else
+			{
+				Debug.LogError("输入字符串格式不正确");
+			}
+
+			return vector;
+		}
+
+		void XmlToNode(XElement element)
+        {
+			if (element.Name == "AddCharacter")
+            {
+				string ID = element.Attribute("CharacterID").Value;
+				string name = element.Attribute("CharacterName").Value;
+				string image = element.Attribute("CharacterImage").Value;
+				string isSelf = element.Attribute("IsSelf").Value;
+				string position = element.Attribute("Position").Value;
+
+				StoryAddCharacterNode node = graph.AddNode<StoryAddCharacterNode>();
+				node.name = element.Name.ToString() ;
+				node.position = stringToVector2(position);
+			}
+			else if (element.Name == "SpeakAside")
+            {
+				string content = element.Attribute("Content").Value;
+				string AudioPath = "";
+				if (element.Attributes("AudioPath").Count() != 0)
+					AudioPath = element.Attribute("AudioPath").Value;
+				string position = element.Attribute("Position").Value;
+
+				StorySpeakAsideNode node = graph.AddNode<StorySpeakAsideNode>();
+				node.name = element.Name.ToString();
+				node.position = stringToVector2(position);
+			}
+        }
+
+		public IEnumerator LoadPlot()
 		{
 			yield return null;
 
 			string _PlotText = string.Empty;
 			//string filePath = Path.Combine(AssetDefine.BuildinAssetPath, "HGF/Test.xml");
-			string filePath = Path.Combine(Application.streamingAssetsPath, "A_AssetBundles/HGF/buqun1.xml");
+			string filePath = Path.Combine(Application.streamingAssetsPath, "A_AssetBundles/HGF/Test.xml");
 
 #if UNITY_STANDALONE_OSX || UNITY_EDITOR_OSX
             filePath = "file://" + filePath;
@@ -196,6 +257,7 @@ namespace XNode.Story
 							{
 								foreach (var MainPlotItem in item.Elements())
 								{
+									XmlToNode(MainPlotItem);
 								}
 								break;
 							}
@@ -208,8 +270,7 @@ namespace XNode.Story
 				}
 			}
 
-
-
+			SpawnGraph();
 		}
 	}
 }

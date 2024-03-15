@@ -91,6 +91,7 @@ namespace XModules.GalManager
         [SerializeField]
         public void CreatNewChoice (List<Struct_Choice> choiceList)
         {
+            inputField.text = "";
             struct_Choices = choiceList;
             xListView.dataCount = choiceList.Count;
             xListView.ForceRefresh();

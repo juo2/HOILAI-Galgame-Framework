@@ -32,6 +32,10 @@ public class ExportStoryFolder : EditorWindow
     // 检测字符串是否包含中文
     public static bool ContainsChinese(string input)
     {
+        if (string.IsNullOrEmpty(input))
+        {
+            return false;
+        }
         return Regex.IsMatch(input, @"[\u4e00-\u9fff]");
     }
 

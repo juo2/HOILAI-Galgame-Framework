@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <data>
   <Plot>
-    <AddCharacter NodeId="1" CharacterID="1" CharacterName="nnn" CharacterImage="3.png" IsSelf="True" SendMessage="None" JumpId="2" />
-    <Message NodeId="2">
-      <Choice JumpId="3">选项1</Choice>
-    </Message>
-    <Message NodeId="3">
-      <Choice JumpId="4">选项2</Choice>
-    </Message>
-    <ExitGame NodeId="4" />
+    <AddCharacter NodeId="1" CharacterID="" CharacterName="" CharacterImage="" IsSelf="False" Position="(72.00, -216.00)" JumpId="2" />
+    <SpeakAside NodeId="2" Content="" Position="(456.00, -152.00)" />
   </Plot>
 </data>

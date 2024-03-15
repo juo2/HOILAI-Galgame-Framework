@@ -327,11 +327,6 @@ namespace XModules.GalManager
                         var characterInfo =  ConversationData.AddCharacter();
                         //character_img.SetImage(characterInfo.image);
 
-                        if (PlotData.NowPlotDataNode.Attributes("SendMessage").Count() != 0)
-                        {
-                            character_animate.Animate_StartOrOutside = PlotData.NowPlotDataNode.Attribute("SendMessage").Value;
-                        }
-
                         PlotData.CharacterInfoList.Add(characterInfo);
                         PlotData.NextJumpID = int.Parse(PlotData.NowPlotDataNode.Attribute("JumpId").Value);
 
