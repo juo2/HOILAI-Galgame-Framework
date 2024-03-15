@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using NativeWebSocket;
+using System.Collections.Generic;
 using UnityEngine;
 using XGUI;
 using XModules.Data;
@@ -23,6 +24,9 @@ namespace XModules.GalManager
 
         Dictionary<int, GalComponent_Choice> galComponent_ChoiceDic;
 
+        WebSocket websocket = null;
+        bool isConnecting = false;
+
         private void Awake ()
         {
             galComponent_ChoiceDic = new Dictionary<int, GalComponent_Choice>();
@@ -34,37 +38,12 @@ namespace XModules.GalManager
             {
                 if (ConversationData.TempNpcCharacterInfo != null)
                 {
-                    string textContent = "";
-                    foreach (var history in ConversationData.GetHistoryContentList())
-                    {
-                        //Debug.Log($"history.id:{history.id}");
-                        //Debug.Log($"history.speaker:{history.speaker}");
-                        //Debug.Log($"history.content:{history.content}");
-                        //Debug.Log($"history.optContent:{history.optContent}");
-                        //Debug.Log("------------------------------------------");
-                        textContent = textContent +  $"{history.speaker}:{ history.content } { history.optContent}";
-                    }
-
-                    string options = "";
-                    for (int i = 0; i < struct_Choices.Count; i++)
-                    {
-                        var choice = struct_Choices[i];
-                        //Debug.Log($"choice.Title:{choice.Title}");
-                        options = $"{options}{i}:{choice.Title}";
-                    }
-
-                    Debug.Log("inputField.text:" + inputField.text);
-                     
-                    Debug.Log($"textContent:{textContent}");
-                    Debug.Log($"options:{options}");
-
                     ConversationData.tempInputMessage = inputField.text;
                     ConversationData.isRequestChating = true;
-                    ProxyManager.StreamOneShotChat(ConversationData.TempNpcCharacterInfo.characterID, textContent, inputField.text, options,()=> {
-                        inputField.text = "";
-                    });
 
                     XEvent.EventDispatcher.DispatchEvent("ONESHOTCHAT");
+
+                    inputField.text = "";
                 }
 
             });
@@ -95,11 +74,16 @@ namespace XModules.GalManager
             struct_Choices = choiceList;
             xListView.dataCount = choiceList.Count;
             xListView.ForceRefresh();
+
+            
             //var _ = GameObject_Choice;
             //_.GetComponent<GalComponent_Choice>().Init(JumpID, Title);
             //Instantiate(_, this.transform);
             //return;
         }
+
+        
+        
 
     }
 }

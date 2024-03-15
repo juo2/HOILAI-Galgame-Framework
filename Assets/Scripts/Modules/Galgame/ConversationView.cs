@@ -1,5 +1,6 @@
 using AssetManagement;
 using Common.Game;
+using NativeWebSocket;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -62,6 +63,9 @@ namespace XModules.GalManager
         [Title("当前场景角色数量")]
         public int CharacterNum;
 
+        WebSocket websocket = null;
+        bool isConnecting = false;
+
         private XDocument PlotxDoc;
         private void Awake ()
         {
@@ -108,6 +112,7 @@ namespace XModules.GalManager
             XEvent.EventDispatcher.AddEventListener("NEXT_STEP", Button_Click_NextPlot,this);
             XEvent.EventDispatcher.AddEventListener("ONESHOTCHAT", OneShotChat, this);
             XEvent.EventDispatcher.AddEventListener("CHOICE_COMPLETE", ChoiceComplete, this);
+            XEvent.EventDispatcher.AddEventListener("STREAM_FINISH", StreamFinish, this);
 
             //if (!loadXmlData)
             //    return;
@@ -123,6 +128,8 @@ namespace XModules.GalManager
             XEvent.EventDispatcher.RemoveEventListener("NEXT_STEP", Button_Click_NextPlot, this);
             XEvent.EventDispatcher.RemoveEventListener("ONESHOTCHAT", OneShotChat, this);
             XEvent.EventDispatcher.RemoveEventListener("CHOICE_COMPLETE", ChoiceComplete, this);
+            XEvent.EventDispatcher.RemoveEventListener("STREAM_FINISH", StreamFinish, this);
+
         }
 
         void ClearGame()
@@ -223,6 +230,24 @@ namespace XModules.GalManager
 
         public void OneShotChat()
         {
+            Debug.Log("Enter OneShotChat------------------------------");
+            string textContent = "";
+            foreach (var history in ConversationData.GetHistoryContentList())
+            {
+                textContent = textContent + $"{history.speaker}:{ history.content } { history.optContent}";
+            }
+
+            string options = "";
+            for (int i = 0; i < PlotData.ChoiceTextList.Count; i++)
+            {
+                var choice = PlotData.ChoiceTextList[i];
+                options = $"{options}{i}:{choice.Title}";
+            }
+
+            string json = DataManager.getWebStreamSocketRequest(textContent, ConversationData.tempInputMessage, options);
+
+            SendMessageWebSocket(json);
+
             ChoiceComplete();
             
             character_img.SetActive(true);
@@ -238,6 +263,8 @@ namespace XModules.GalManager
         
         void Button_Click_isRequestChating()
         {
+            Debug.Log("Enter Button_Click_isRequestChating------------------------------");
+
             character_img.SetActive(true);
             character_img.SetImage(ConversationData.TempNpcCharacterInfo.image);
 
@@ -249,17 +276,18 @@ namespace XModules.GalManager
 
         void Button_Click_Message()
         {
-            string content = DataManager.getNpcResponse();
+            Debug.Log("Enter Button_Click_Message------------------------------");
+            //string content = DataManager.getNpcResponse();
 
             character_img.SetActive(true);
             character_img.SetImage(ConversationData.TempNpcCharacterInfo.image);
 
             Gal_OtherText.SetActive(true);
-            Gal_OtherText.ForceTextContent(content, ConversationData.TempNpcCharacterInfo.name);
+            Gal_OtherText.StreamTextContent(ConversationData.TempNpcCharacterInfo.name);
 
             SendCharMessage(ConversationData.TempNpcCharacterInfo.characterID, "", ConversationData.TempNpcCharacterInfo.isSelf);
 
-            AddHistoryContent(ConversationData.TempNpcCharacterInfo.characterID, ConversationData.TempNpcCharacterInfo.name, content);
+            //AddHistoryContent(ConversationData.TempNpcCharacterInfo.characterID, ConversationData.TempNpcCharacterInfo.name, "");
 
             int oneShotSelect = DataManager.getOneShotChatSelect();
 
@@ -270,7 +298,13 @@ namespace XModules.GalManager
 
             ConversationData.IsCanJump = true;
 
+            //MessageTouchBack.SetActive(false);
+        }
+
+        void StreamFinish()
+        {
             MessageTouchBack.SetActive(false);
+            DisableWebSocket();
         }
 
         /// <summary>
@@ -278,12 +312,6 @@ namespace XModules.GalManager
         /// </summary>
         public void Button_Click_NextPlot ()
         {
-
-            //if (PlotData.MainPlot.Count == 0)
-            //{
-            //    GameAPI.Print("游戏结束!");
-            //    return;
-            //}
             //IsCanJump这里有问题，如果一直点击会为false，而不是说true，这是因为没有点击按钮 ，没有添加按钮
             if (ConversationData.IsSpeak || !ConversationData.IsCanJump) { return; }
 
@@ -364,8 +392,8 @@ namespace XModules.GalManager
                                     PlotData.ChoiceTextList.Add(new Struct_PlotData.Struct_Choice { Title = ClildItem.Value, JumpID = int.Parse(ClildItem.Attribute("JumpId").Value) });
                             }
 
-                            
 
+                            EnableWebSocket();
                             Gal_Message.SetActive(true);
                             Gal_Message.CreatNewChoice(PlotData.ChoiceTextList);
 
@@ -518,9 +546,84 @@ namespace XModules.GalManager
         {
             CharacterNum = PlotData.CharacterInfoList.Count;
         }
-        private void Update ()
-        {
 
+        async void EnableWebSocket()
+        {
+            cacheOutMessageList.Clear();
+            cacheIndex = 0;
+
+            string url = $"ws://ai.sorachat.site/chat/webStreamSocket/{ConversationData.TempNpcCharacterInfo.characterID}/{DataManager.getPlayerId()}";
+
+            Debug.Log($"url:{url}");
+
+            websocket = new WebSocket(url);
+
+            websocket.OnOpen += () =>
+            {
+                isConnecting = true;
+                Debug.Log("Connection open!");
+            };
+
+            websocket.OnError += (e) =>
+            {
+                isConnecting = false;
+                Debug.Log("Error! " + e);
+            };
+
+            websocket.OnClose += (e) =>
+            {
+                isConnecting = false;
+                Debug.Log("Connection closed!");
+            };
+
+            websocket.OnMessage += (bytes) =>
+            {
+                ConversationData.isRequestChating = false;
+                var message = System.Text.Encoding.UTF8.GetString(bytes);
+                Debug.Log("Received OnMessage! " + message);
+
+                cacheOutMessageList.Add(message);
+
+            };
+            Debug.Log("调用了websocket.Connect");
+            await websocket.Connect();
         }
+
+        async void DisableWebSocket()
+        {
+            if (websocket == null)
+                return;
+
+            Debug.Log("调用了websocket.Close");
+            websocket.CancelConnection();
+            await websocket.Close();
+
+            websocket = null;
+        }
+
+        async void SendMessageWebSocket(string message)
+        {
+            if (websocket.State == WebSocketState.Open && isConnecting)
+            {
+                Debug.Log($"SendMessageWebSocket:{message}");
+                // 发送文本消息
+                await websocket.SendText(message);
+
+            }
+        }
+
+        void Update()
+        {
+#if !UNITY_WEBGL || UNITY_EDITOR
+            if (isConnecting && websocket != null)
+                websocket.DispatchMessageQueue();
+#endif
+        }
+
+        private void OnDestroy()
+        {
+            DisableWebSocket();
+        }
+
     }
 }

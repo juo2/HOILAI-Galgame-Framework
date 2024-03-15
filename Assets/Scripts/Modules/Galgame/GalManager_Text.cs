@@ -1,9 +1,11 @@
 ﻿using DG.Tweening;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 using XModules.Data;
-
+using static XModules.Data.ConversationData;
+    
 namespace XModules.GalManager
 {
     public class GalManager_Text : MonoBehaviour
@@ -15,12 +17,12 @@ namespace XModules.GalManager
         /// </summary>
         public static bool IsFastMode;
 
-        
+        private string currentContent = ""; // 当前应该显示的内容
+        private string additionalContent = ""; // 新附加的内容
+        private float timer = 0f; // 计时器，用于控制字符的显示速度
+        private bool isAnimating = false; // 是否正在播放动画
 
-        /// <summary>
-        /// 文本内容打字机动画事件
-        /// </summary>
-        public static Tweener TextAnimateEvemt;
+        private UnityAction finishFunc = null;
 
         /// <summary>
         /// 文本内容
@@ -49,18 +51,104 @@ namespace XModules.GalManager
             Text_CharacterName.text = $"<b>{CharacterName}</b><size=45></size>";
         }
 
+        string streamStr = "";
+
+        public void StreamTextContent(string CharacterName)
+        {
+            Debug.Log($"Enter StreamTextContent ------------------------------------ ConversationData.IsSpeak:{ConversationData.IsSpeak}");
+
+            if (ConversationData.IsSpeak)
+            {
+                return;
+            }
+            streamStr = "";
+
+            KillTween();
+            SetText_Content(string.Empty);//先清空内容
+            SetText_CharacterName(CharacterName);
+            ConversationData.IsSpeak = true;
+
+            StartCoroutine(StreamTextContentInternal());
+        }
+
+
+        IEnumerator StreamTextContentInternal()
+        {
+            bool isDone = false;
+            string targetOut = loadCache();
+
+            Debug.Log($"targetOut33333333333333:{targetOut}");
+
+            if (targetOut.Contains("[DONE]"))
+            {
+                targetOut = targetOut.Replace("[DONE]", "");
+                isDone = true;
+
+                Debug.Log("[DONE][DONE][DONE][DONE][DONE][DONE][DONE][DONE]");
+            }
+
+            if (targetOut.Length < 2)
+            {
+                Text_TextContent.text = Text_TextContent.text + targetOut;
+                streamStr = streamStr + targetOut;
+
+                Debug.Log($"streamStr1111111111:{streamStr}");
+
+                if (isDone)
+                {
+                    ConversationData.IsSpeak = false;
+                    XEvent.EventDispatcher.DispatchEvent("STREAM_FINISH");
+
+                    yield return null;
+                }
+                else
+                {
+                    yield return new WaitForSeconds(DefaultSpeed);
+                    yield return StreamTextContentInternal();
+                }
+            }
+            else
+            {
+                SetText_Content(streamStr);
+                Debug.Log($"streamStr22222222222222:{streamStr + targetOut}");
+                DoText(targetOut);
+                finishFunc = () => 
+                {
+
+                    Debug.Log($"isDone555555555555555:{isDone}");
+
+                    if (isDone)
+                    {
+                        Debug.Log("CLOSE_WEBSOCKETCLOSE_WEBSOCKETCLOSE_WEBSOCKETCLOSE_WEBSOCKETCLOSE_WEBSOCKET");
+
+                        ConversationData.IsSpeak = false;
+                        XEvent.EventDispatcher.DispatchEvent("STREAM_FINISH");
+                    }
+                    else
+                    {
+                        streamStr = streamStr + targetOut;
+
+                        Debug.Log($"streamStr444444444444444444:{streamStr}");
+
+                        StartCoroutine(StreamTextContentInternal());
+                    }
+                };
+            }
+        }
 
         public void ForceTextContent(string TextContent, string CharacterName, UnityAction CallBack = null)
         {
-            TextAnimateEvemt.Kill();
+            KillTween();
             ConversationData.IsSpeak = true;
             SetText_Content(string.Empty);//先清空内容
             SetText_CharacterName(CharacterName);
-            TextAnimateEvemt = Text_TextContent.DOText(TextContent, TextContent.Length * (IsFastMode ? FastSpeed : DefaultSpeed)).SetEase(Ease.Linear).OnComplete(() =>
+            DoText(TextContent);
+
+            finishFunc = () => 
             {
                 ConversationData.IsSpeak = false;
                 CallBack?.Invoke();
-            });
+            };
         }
 
         /// <summary>
@@ -71,31 +159,83 @@ namespace XModules.GalManager
         /// <param name="CharacterIdentity">发言人所属</param>
         /// <param name="CallBack">回调事件</param>
         /// <returns></returns>
-        public Tweener StartTextContent (string TextContent, string CharacterName, UnityAction CallBack = null)
+        public void StartTextContent (string TextContent, string CharacterName, UnityAction CallBack = null)
         {
             if (ConversationData.IsSpeak && Text_TextContent.text.Length >= TextContent.Length * 0.75f && ConversationData.IsCanJump)//当前还正在发言
             {
                 //但是 ，如果当前到了总文本的三分之二，也可以下一句
-                SetText_Content(TextContent);
-                ConversationData.IsSpeak = false;
-                TextAnimateEvemt.Kill();
+                KillTween();
                 SetText_CharacterName(CharacterName);
-                return TextAnimateEvemt;
+                return;
             }
             else if (ConversationData.IsSpeak)
             {
-                return TextAnimateEvemt;
+                return;
             }
 
             ConversationData.IsSpeak = true;
             SetText_Content(string.Empty);//先清空内容
             SetText_CharacterName(CharacterName);
-            TextAnimateEvemt = Text_TextContent.DOText(TextContent, TextContent.Length * (IsFastMode ? FastSpeed : DefaultSpeed)).SetEase(Ease.Linear).OnComplete(() =>
+
+            DoText(TextContent);
+            finishFunc =() =>
             {
                 ConversationData.IsSpeak = false;
                 CallBack?.Invoke();
-            });
-            return TextAnimateEvemt;
+            };
+        }
+
+        public void KillTween()
+        {
+            isAnimating = false;
+            additionalContent = ""; // 清空附加内容
+            currentContent = "";
+        }
+
+        public void DoText(string content)
+        {
+            // 如果动画正在进行中，则新内容追加到目标内容之后
+            if (isAnimating)
+            {
+                return;
+            }
+            else
+            {
+                additionalContent = content; // 设置新附加的内容
+                currentContent = Text_TextContent.text; // 保留当前已显示的内容
+                isAnimating = true; // 开始动画
+            }
+
+            timer = DefaultSpeed; // 重置计时器
+        }
+
+        private void Update()
+        {
+            if (!isAnimating || string.IsNullOrEmpty(additionalContent))
+            {
+                return;
+            }
+
+            // 更新计时器
+            timer -= Time.deltaTime;
+
+            if (timer <= 0f && currentContent.Length < Text_TextContent.text.Length + additionalContent.Length)
+            {
+                // 时间到了，显示下一个字符
+                currentContent += additionalContent[0]; // 追加下一个字符到当前内容中
+                additionalContent = additionalContent.Substring(1); // 更新附加内容
+                Text_TextContent.text = currentContent; // 更新显示的文本
+                timer = DefaultSpeed; // 重置计时器
+            }
+
+            if (string.IsNullOrEmpty(additionalContent))
+            {
+                // 所有附加字符都已显示，停止动画
+                isAnimating = false;
+                currentContent = "";
+
+                finishFunc?.Invoke();
+            }
         }
 
     }

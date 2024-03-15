@@ -265,7 +265,7 @@ namespace XModules.Main.Window
         void Update()
         {
 #if !UNITY_WEBGL || UNITY_EDITOR
-            if (isConnecting)
+            if (isConnecting && websocket != null)
                 websocket.DispatchMessageQueue();
 #endif
         }
@@ -279,6 +279,11 @@ namespace XModules.Main.Window
         {
             yield return new WaitForEndOfFrame();
             chatScrollRect.ScrollToBottom();
+        }
+
+        private void OnDestroy()
+        {
+            DisableWebSocket();
         }
     }
 }

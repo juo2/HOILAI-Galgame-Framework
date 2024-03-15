@@ -343,7 +343,7 @@ namespace XModules.Proxy
                     errorBack?.Invoke();
                 }
 
-                ConversationData.isRequestChating = false;
+                //ConversationData.isRequestChating = false;
             }
         }
 

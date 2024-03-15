@@ -55,6 +55,9 @@ namespace XModules.Data
 
         public static Struct_PlotData.Struct_CharacterInfo TempNpcCharacterInfo = null;
 
+        public static List<string> cacheOutMessageList = new List<string>();
+        public static int cacheIndex = 0;
+
         public static string tempInputMessage = null;
 
         public static bool isRequestChating = false;
@@ -168,6 +171,19 @@ namespace XModules.Data
         public static List<Struct_PlotData.HistoryContent> GetHistoryContentList()
         {
             return PlotData.historyContentList;
+        }
+
+        public static string loadCache()
+        {
+            string targetOut = "";
+            for (int i = cacheIndex; i < cacheOutMessageList.Count; i++)
+            {
+                targetOut += cacheOutMessageList[i];
+            }
+
+            cacheIndex = cacheOutMessageList.Count;
+
+            return targetOut;
         }
     }
 }

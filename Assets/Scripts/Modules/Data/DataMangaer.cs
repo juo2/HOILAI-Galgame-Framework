@@ -13,7 +13,7 @@ namespace XModules.Data
         public static PlayerResponse playerResponse = null;
         public static SessionResponse sessionResponse = null;
         public static OneShotChatResponse oneShotChatResponse = null;
-
+        
         public static string getPlayerId()
         {
             //临时把token记住
@@ -130,6 +130,19 @@ namespace XModules.Data
             {
                 return oneShotChatResponse.data.select;
             }
+        }
+
+        public static string getWebStreamSocketRequest(string textContent, string question, string options)
+        {
+            WebStreamSocketRequest webStreamSocketRequest = new WebStreamSocketRequest();
+            webStreamSocketRequest.userId = getPlayerId();
+            webStreamSocketRequest.npcId = ConversationData.TempNpcCharacterInfo.characterID;
+            webStreamSocketRequest.textContent = textContent;
+            webStreamSocketRequest.question = question;
+            webStreamSocketRequest.options = options;
+
+            return JsonUtility.ToJson(webStreamSocketRequest);
+
         }
 
     }
