@@ -255,7 +255,7 @@ namespace XModules.GalManager
             character_img.SetImage(ConversationData.TempNpcCharacterInfo.image);
 
             Gal_OtherText.SetActive(true);
-            Gal_OtherText.StartTextContent(content, ConversationData.TempNpcCharacterInfo.name);
+            Gal_OtherText.ForceTextContent(content, ConversationData.TempNpcCharacterInfo.name);
 
             SendCharMessage(ConversationData.TempNpcCharacterInfo.characterID, "", ConversationData.TempNpcCharacterInfo.isSelf);
 

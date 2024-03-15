@@ -48,6 +48,21 @@ namespace XModules.GalManager
 
             Text_CharacterName.text = $"<b>{CharacterName}</b><size=45></size>";
         }
+
+
+        public void ForceTextContent(string TextContent, string CharacterName, UnityAction CallBack = null)
+        {
+            TextAnimateEvemt.Kill();
+            ConversationData.IsSpeak = true;
+            SetText_Content(string.Empty);//先清空内容
+            SetText_CharacterName(CharacterName);
+            TextAnimateEvemt = Text_TextContent.DOText(TextContent, TextContent.Length * (IsFastMode ? FastSpeed : DefaultSpeed)).SetEase(Ease.Linear).OnComplete(() =>
+            {
+                ConversationData.IsSpeak = false;
+                CallBack?.Invoke();
+            });
+        }
+
         /// <summary>
         /// 开始发言
         /// </summary>
@@ -58,34 +73,29 @@ namespace XModules.GalManager
         /// <returns></returns>
         public Tweener StartTextContent (string TextContent, string CharacterName, UnityAction CallBack = null)
         {
-            //100  60   40
-            void Always_Temp ()
-            {
-
-                SetText_CharacterName(CharacterName);
-
-            }
             if (ConversationData.IsSpeak && Text_TextContent.text.Length >= TextContent.Length * 0.75f && ConversationData.IsCanJump)//当前还正在发言
             {
                 //但是 ，如果当前到了总文本的三分之二，也可以下一句
                 SetText_Content(TextContent);
                 ConversationData.IsSpeak = false;
                 TextAnimateEvemt.Kill();
-                Always_Temp();
+                SetText_CharacterName(CharacterName);
                 return TextAnimateEvemt;
             }
-            else if (ConversationData.IsSpeak) return TextAnimateEvemt;
+            else if (ConversationData.IsSpeak)
+            {
+                return TextAnimateEvemt;
+            }
+
             ConversationData.IsSpeak = true;
             SetText_Content(string.Empty);//先清空内容
-            Always_Temp();
+            SetText_CharacterName(CharacterName);
             TextAnimateEvemt = Text_TextContent.DOText(TextContent, TextContent.Length * (IsFastMode ? FastSpeed : DefaultSpeed)).SetEase(Ease.Linear).OnComplete(() =>
             {
-
                 ConversationData.IsSpeak = false;
                 CallBack?.Invoke();
             });
             return TextAnimateEvemt;
-
         }
 
     }
