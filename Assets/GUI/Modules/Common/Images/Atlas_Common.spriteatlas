@@ -100,6 +100,7 @@ SpriteAtlas:
     - {fileID: 2800000, guid: 0ceed963671c18946a49a6055ef2d47f, type: 3}
     - {fileID: 2800000, guid: 8c2bbae2363f7ba48acfb474155f680c, type: 3}
     - {fileID: 2800000, guid: 9faca738a50500f469d5790c97eb7297, type: 3}
+    - {fileID: 2800000, guid: 01bf320ff8eedf84d96fb761c25a7688, type: 3}
     - {fileID: 2800000, guid: 9197c72fde51a564288311b94d8f48dd, type: 3}
     - {fileID: 2800000, guid: 39b2e255ea0dacf4489669438a17e064, type: 3}
     - {fileID: 2800000, guid: d2398662ad96edb43b57f4e3f2fb532c, type: 3}
@@ -165,6 +166,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 984119dd134da0d4193150e907dbbc63, type: 3}
   - {fileID: 21300000, guid: d0847f1e7912805428e6ebad547d055e, type: 3}
   - {fileID: 21300000, guid: 86ccdfbed078926419aed7a1e2b07948, type: 3}
+  - {fileID: 21300000, guid: 01bf320ff8eedf84d96fb761c25a7688, type: 3}
   - {fileID: 21300000, guid: 2e7fe91ff5e628c4cae62e19c3bceb7f, type: 3}
   - {fileID: 21300000, guid: 9197c72fde51a564288311b94d8f48dd, type: 3}
   m_PackedSpriteNamesToIndex:
@@ -213,6 +215,7 @@ SpriteAtlas:
   - info
   - top
   - s_gril
+  - returnBtn
   - s_home
   - right
   m_RenderDataMap: {}
