@@ -11,5 +11,6 @@ namespace XModules.Data
         public string textContent;
         public string question;
         public string options;
+        public string storyId;
     }
 }

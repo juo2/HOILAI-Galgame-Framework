@@ -289,7 +289,7 @@ namespace XModules.GalManager
 
             //AddHistoryContent(ConversationData.TempNpcCharacterInfo.characterID, ConversationData.TempNpcCharacterInfo.name, "");
 
-            int oneShotSelect = DataManager.getOneShotChatSelect();
+            int oneShotSelect = getOneShotChatSelect();
 
             Struct_PlotData.Struct_Choice choice = PlotData.ChoiceTextList[oneShotSelect];
 
@@ -549,6 +549,7 @@ namespace XModules.GalManager
 
         async void EnableWebSocket()
         {
+            webSocketSteamContent = "";
             cacheOutMessageList.Clear();
             cacheIndex = 0;
 

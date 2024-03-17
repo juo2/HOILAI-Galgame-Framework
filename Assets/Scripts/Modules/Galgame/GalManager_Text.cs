@@ -79,11 +79,11 @@ namespace XModules.GalManager
 
             Debug.Log($"targetOut33333333333333:{targetOut}");
 
-            if (targetOut.Contains("[DONE]"))
+            if (targetOut.Contains("｜"))
             {
-                targetOut = targetOut.Replace("[DONE]", "");
+                var strArray = targetOut.Split("｜");
+                targetOut = strArray[0];
                 isDone = true;
-
                 Debug.Log("[DONE][DONE][DONE][DONE][DONE][DONE][DONE][DONE]");
             }
 
@@ -96,6 +96,8 @@ namespace XModules.GalManager
 
                 if (isDone)
                 {
+                    yield return new WaitForSeconds(DefaultSpeed);
+
                     ConversationData.IsSpeak = false;
                     XEvent.EventDispatcher.DispatchEvent("STREAM_FINISH");
 

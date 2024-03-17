@@ -59,6 +59,7 @@ namespace XModules.Data
         public static int cacheIndex = 0;
 
         public static string tempInputMessage = null;
+        public static string webSocketSteamContent = "";
 
         public static bool isRequestChating = false;
 
@@ -179,11 +180,26 @@ namespace XModules.Data
             for (int i = cacheIndex; i < cacheOutMessageList.Count; i++)
             {
                 targetOut += cacheOutMessageList[i];
+                webSocketSteamContent += cacheOutMessageList[i];
             }
 
             cacheIndex = cacheOutMessageList.Count;
 
             return targetOut;
+        }
+
+        public static int getOneShotChatSelect()
+        {
+            var strArray = webSocketSteamContent.Split("£ü");
+            if (strArray.Length == 2)
+            {
+                return int.Parse(strArray[1]);
+            }
+            else
+            {
+                Debug.LogError("webSocketSteamContent Ã»ÕÒµ½ ·Ö¸îºÅ |");
+                return 0;
+            }
         }
     }
 }

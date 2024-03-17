@@ -120,17 +120,7 @@ namespace XModules.Data
             }
         }
 
-        public static int getOneShotChatSelect()
-        {
-            if (oneShotChatResponse == null)
-            {
-                return 1;
-            }
-            else
-            {
-                return oneShotChatResponse.data.select;
-            }
-        }
+        
 
         public static string getWebStreamSocketRequest(string textContent, string question, string options)
         {
@@ -140,6 +130,7 @@ namespace XModules.Data
             webStreamSocketRequest.textContent = textContent;
             webStreamSocketRequest.question = question;
             webStreamSocketRequest.options = options;
+            webStreamSocketRequest.storyId = ConversationData.currentStory;
 
             return JsonUtility.ToJson(webStreamSocketRequest);
 
