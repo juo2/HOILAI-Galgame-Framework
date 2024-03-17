@@ -144,6 +144,9 @@ namespace XModules.GalManager
             DisableAllText();
             PlotData.CharacterInfoList.Clear();
             ClearHistoryContent();
+
+            Gal_OtherText.KillTween();
+            Gal_SelfText.KillTween();
         }
 
         void ChoiceComplete()
@@ -288,7 +291,11 @@ namespace XModules.GalManager
             SendCharMessage(ConversationData.TempNpcCharacterInfo.characterID, "", ConversationData.TempNpcCharacterInfo.isSelf);
 
             //AddHistoryContent(ConversationData.TempNpcCharacterInfo.characterID, ConversationData.TempNpcCharacterInfo.name, "");
+            //MessageTouchBack.SetActive(false);
+        }
 
+        void StreamFinish()
+        {
             int oneShotSelect = getOneShotChatSelect();
 
             Struct_PlotData.Struct_Choice choice = PlotData.ChoiceTextList[oneShotSelect];
@@ -298,11 +305,6 @@ namespace XModules.GalManager
 
             ConversationData.IsCanJump = true;
 
-            //MessageTouchBack.SetActive(false);
-        }
-
-        void StreamFinish()
-        {
             MessageTouchBack.SetActive(false);
             DisableWebSocket();
         }
