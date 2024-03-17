@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Xml.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -12,8 +13,9 @@ using XNode.Examples.MathNodes;
 
 namespace XNode.Story
 {
-	public class RuntimeStoryGraph : MonoBehaviour, IPointerClickHandler {
-        [Header("Graph")]
+	public partial class RuntimeStoryGraph : MonoBehaviour, IPointerClickHandler {
+
+		[Header("Graph")]
         public StoryGraph graph;
         [Header("Prefabs")]
 
@@ -32,33 +34,90 @@ namespace XNode.Story
 
 		[Header("References")]
 		public UGUIContextMenu graphContextMenu;
-		public UGUIContextMenu nodeContextMenu;
+		public UGUINodeContextMenu nodeContextMenu;
 		public UGUITooltip tooltip;
 
 		public ScrollRect scrollRect { get; private set; }
-        private List<UGUIBaseNode> nodes;
+        private List<UGUIBaseNode> nodes = new List<UGUIBaseNode>();
+		private Dictionary<string, Node> xmlNodeDic = new Dictionary<string, Node>();
 
-		public Button exportBtn;
+		public SaveFileXml exportBtn;
+		public OpenFileXml importBtn;
+		public InputField nameField;
 
-		private void Awake() {
+		public MessageBox messageBox;
+
+		private void Start() {
 			// Create a clone so we don't modify the original asset
 			graph = new StoryGraph();
-
 			//graph = graph.Copy() as StoryGraph;
 			scrollRect = GetComponentInChildren<ScrollRect>();
 			graphContextMenu.onClickSpawn -= SpawnNode;
 			graphContextMenu.onClickSpawn += SpawnNode;
 
-			exportBtn.onClick.AddListener(() => 
+			exportBtn.preCallBack = () => 
 			{
-				//buildNode();
-				//buildNodeXml();
-				//SaveXmlFile(doc, $"Assets/StreamingAssets/A_AssetBundles/HGF/{name}.xml");
-				//Debug.Log("XML generate finish !!!!");
-			});
+				ExportStory(graph);
 
-			StartCoroutine(LoadPlot());
+				if (string.IsNullOrEmpty(nameField.text)) 
+				{
+					messageBox.SetContent("剧本名为空");
+					exportBtn.isCanSave = false;
+					return;
+				}
 
+				if (s_errorMessage.Count > 0)
+                {
+					exportBtn.isCanSave = false;
+					return;
+				}
+
+				exportBtn.isCanSave = true;
+				exportBtn.fileName = nameField.text;
+
+				string xmlString = exportBtn.saveData; // 这是你的XML字符串
+				StartCoroutine(SyncNpcInfoCoroutine( xmlString));
+
+			};
+
+			importBtn.finishCallBack = (string xml) => 
+			{
+				LoadPlot(xml);
+			};
+		}
+
+		IEnumerator SyncNpcInfoCoroutine(string xmlString)
+		{
+			string url = "http://ai.sorachat.site/chat/npc/syncNpcInfo";
+
+			// 创建一个表单
+			WWWForm form = new WWWForm();
+
+			// 将XML字符串转换为字节流
+			byte[] xmlBytes = Encoding.UTF8.GetBytes(xmlString);
+
+			// 将字节流添加到表单中，"application/xml" 是MIME类型
+			form.AddBinaryData("file", xmlBytes, $"{nameField.text}.xml", "application/xml");
+
+			using (UnityWebRequest request = UnityWebRequest.Post(url, form))
+			{
+				// 添加 Header 参数
+
+				// 发送请求并等待服务器响应
+				yield return request.SendWebRequest();
+
+				if (request.result == UnityWebRequest.Result.ConnectionError || request.result == UnityWebRequest.Result.ProtocolError)
+				{
+					// 打印错误信息
+					Debug.LogError(request.error);
+				}
+				else
+				{
+					// 处理服务器响应
+					Debug.Log("NPC Info synced successfully.");
+					Debug.Log(request.downloadHandler.text); // 打印服务器返回的信息
+				}
+			}
 		}
 
 		public void Refresh() {
@@ -79,6 +138,7 @@ namespace XNode.Story
 
 			for (int i = 0; i < graph.nodes.Count; i++) {
 				Node node = graph.nodes[i];
+				
 
 				UGUIBaseNode runtimeNode = null;
 				if (node is StoryAddCharacterNode) 
@@ -123,7 +183,7 @@ namespace XNode.Story
 				}
 				
 				runtimeNode.transform.SetParent(scrollRect.content);
-				runtimeNode.node = node;
+				runtimeNode.node = node as StoryBaseNode;
 				runtimeNode.graph = this;
 				nodes.Add(runtimeNode);
 			}
@@ -189,6 +249,7 @@ namespace XNode.Story
 
 		void XmlToNode(XElement element)
         {
+			string NodeId = element.Attribute("NodeId").Value;
 			if (element.Name == "AddCharacter")
             {
 				string ID = element.Attribute("CharacterID").Value;
@@ -200,49 +261,214 @@ namespace XNode.Story
 				StoryAddCharacterNode node = graph.AddNode<StoryAddCharacterNode>();
 				node.name = element.Name.ToString() ;
 				node.position = stringToVector2(position);
+				node.ID = ID;
+				node.p_name = name;
+				node.image = image;
+				node.isSelf = isSelf == "True";
+				xmlNodeDic[NodeId] = node;
+			}
+			else if (element.Name == "ChangeBackImg")
+			{
+				string Path = element.Attribute("Path").Value;
+				string position = element.Attribute("Position").Value;
+
+				StoryBackgroundNode node = graph.AddNode<StoryBackgroundNode>();
+				node.name = element.Name.ToString();
+				node.position = stringToVector2(position);
+				node.background = Path;
+				xmlNodeDic[NodeId] = node;
+			}
+			else if (element.Name == "DeleteCharacter")
+			{
+				string ID = element.Attribute("CharacterID").Value;
+				string position = element.Attribute("Position").Value;
+
+				StoryDeleteCharacterNode node = graph.AddNode<StoryDeleteCharacterNode>();
+				node.name = element.Name.ToString();
+				node.position = stringToVector2(position);
+				node.ID = ID;
+				xmlNodeDic[NodeId] = node;
+			}
+			else if (element.Name == "DeleteCharacter")
+			{
+				string ID = element.Attribute("CharacterID").Value;
+				string position = element.Attribute("Position").Value;
+
+				StoryDeleteCharacterNode node = graph.AddNode<StoryDeleteCharacterNode>();
+				node.name = element.Name.ToString();
+				node.position = stringToVector2(position);
+				node.ID = ID;
+				xmlNodeDic[NodeId] = node;
+			}
+			else if(element.Name == "ExitGame")
+            {
+				string position = element.Attribute("Position").Value;
+
+				StoryExitGameNode node = graph.AddNode<StoryExitGameNode>();
+				node.name = element.Name.ToString();
+				node.position = stringToVector2(position);
+				xmlNodeDic[NodeId] = node;
+			}
+			else if (element.Name == "Message")
+			{
+				string position = element.Attribute("Position").Value;
+				string image= element.Attribute("CharacterImage")?.Value;
+
+				StoryMessageNode node = graph.AddNode<StoryMessageNode>();
+				node.name = element.Name.ToString();
+				node.position = stringToVector2(position);
+				node.image = image;
+
+				int times = 1;
+				foreach (var ClildItem in element.Elements())
+				{
+					if (ClildItem.Name.ToString() == "Choice")
+                    {
+						if(times == 1)
+                        {
+							node.opt1 = ClildItem.Value;
+						}
+						else if (times == 2)
+						{
+							node.opt2 = ClildItem.Value;
+						}
+						else if (times == 3)
+						{
+							node.opt3 = ClildItem.Value;
+						}
+						else if (times == 4)
+						{
+							node.opt4 = ClildItem.Value;
+						}
+						times++;
+					}
+				}
+				xmlNodeDic[NodeId] = node;
+			}
+			else if (element.Name == "NextChapter")
+			{
+				string position = element.Attribute("Position").Value;
+
+				StoryNextChapterNode node = graph.AddNode<StoryNextChapterNode>();
+				node.name = element.Name.ToString();
+				node.position = stringToVector2(position);
+				xmlNodeDic[NodeId] = node;
 			}
 			else if (element.Name == "SpeakAside")
             {
 				string content = element.Attribute("Content").Value;
-				string AudioPath = "";
-				if (element.Attributes("AudioPath").Count() != 0)
-					AudioPath = element.Attribute("AudioPath").Value;
+				string AudioPath = element.Attribute("AudioPath")?.Value;
 				string position = element.Attribute("Position").Value;
 
 				StorySpeakAsideNode node = graph.AddNode<StorySpeakAsideNode>();
 				node.name = element.Name.ToString();
 				node.position = stringToVector2(position);
+				node.content = content;
+				node.audio = AudioPath;
+				xmlNodeDic[NodeId] = node;
 			}
-        }
+			else if (element.Name == "Video")
+			{
+				string Path = element.Attribute("Path").Value;
+				string position = element.Attribute("Position").Value;
 
-		public IEnumerator LoadPlot()
+				StoryVideoNode node = graph.AddNode<StoryVideoNode>();
+				node.name = element.Name.ToString();
+				node.position = stringToVector2(position);
+				node.video = Path;
+				xmlNodeDic[NodeId] = node;
+			}
+			else if (element.Name == "Bgm")
+			{
+				string Path = element.Attribute("Path").Value;
+				string position = element.Attribute("Position").Value;
+
+				StoryBgmNode node = graph.AddNode<StoryBgmNode>();
+				node.name = element.Name.ToString();
+				node.position = stringToVector2(position);
+				node.bgm = Path;
+				xmlNodeDic[NodeId] = node;
+			}
+			else if (element.Name == "Speak")
+			{
+				string ID = element.Attribute("CharacterID").Value;
+				string image = element.Attribute("CharacterImage")?.Value;
+				string content = element.Attribute("Content").Value;
+				string AudioPath = element.Attribute("AudioPath")?.Value;
+				string position = element.Attribute("Position").Value;
+
+
+				StorySpeakNode node = graph.AddNode<StorySpeakNode>();
+				node.name = element.Name.ToString();
+				node.position = stringToVector2(position);
+				node.ID = ID;
+				node.image = image;
+				node.content = content;
+				node.audio = AudioPath;
+				int times = 1;
+
+				node.isJump = element.Elements().Count() != 0;
+
+				if (element.Elements().Count() != 0)
+                {
+					foreach (var ClildItem in element.Elements())
+					{
+						if (ClildItem.Name.ToString() == "Choice")
+						{
+							if (times == 1)
+							{
+								node.opt1 = ClildItem.Value;
+							}
+							else if (times == 2)
+							{
+								node.opt2 = ClildItem.Value;
+							}
+							else if (times == 3)
+							{
+								node.opt3 = ClildItem.Value;
+							}
+							else if (times == 4)
+							{
+								node.opt4 = ClildItem.Value;
+							}
+							times++;
+						}
+					}
+				}
+				xmlNodeDic[NodeId] = node;
+			}
+
+		}
+
+		public void LoadPlot(string _PlotText)
 		{
-			yield return null;
+			//			yield return null;
 
-			string _PlotText = string.Empty;
-			//string filePath = Path.Combine(AssetDefine.BuildinAssetPath, "HGF/Test.xml");
-			string filePath = Path.Combine(Application.streamingAssetsPath, "A_AssetBundles/HGF/Test.xml");
+			//			string _PlotText = string.Empty;
+			//			//string filePath = Path.Combine(AssetDefine.BuildinAssetPath, "HGF/Test.xml");
+			//			string filePath = Path.Combine(Application.streamingAssetsPath, "A_AssetBundles/HGF/buqun1.xml");
 
-#if UNITY_STANDALONE_OSX || UNITY_EDITOR_OSX
-            filePath = "file://" + filePath;
-#endif
-			//            if (Application.platform == RuntimePlatform.Android)
-			//            {
-			//                filePath = "jar:file://" + Application.dataPath + "!/assets/HGF/Test.xml";
-			//            }
+			//#if UNITY_STANDALONE_OSX || UNITY_EDITOR_OSX
+			//            filePath = "file://" + filePath;
+			//#endif
+			//			//            if (Application.platform == RuntimePlatform.Android)
+			//			//            {
+			//			//                filePath = "jar:file://" + Application.dataPath + "!/assets/HGF/Test.xml";
+			//			//            }
 
-			UnityWebRequest www = UnityWebRequest.Get(filePath);
-			yield return www.SendWebRequest();
+			//			UnityWebRequest www = UnityWebRequest.Get(filePath);
+			//			yield return www.SendWebRequest();
 
-			if (www.result == UnityWebRequest.Result.Success)
-			{
-				_PlotText = www.downloadHandler.text;
-			}
-			else
-			{
-				Debug.Log("Error: " + www.error);
-			}
+			//			if (www.result == UnityWebRequest.Result.Success)
+			//			{
+			//				_PlotText = www.downloadHandler.text;
+			//			}
+			//			else
+			//			{
+			//				Debug.Log("Error: " + www.error);
+			//			}
 			//try
+
 			{
 				//GameAPI.Print($"游戏剧本：{_PlotText}");
 				var PlotxDoc = XDocument.Parse(_PlotText);
@@ -255,10 +481,48 @@ namespace XNode.Story
 					{
 						case "Plot":
 							{
-								foreach (var MainPlotItem in item.Elements())
+								foreach (var element in item.Elements())
 								{
-									XmlToNode(MainPlotItem);
+									XmlToNode(element);
 								}
+
+								foreach (var element in item.Elements())
+                                {
+									if ((element.Name == "Speak" && element.Elements().Count() != 0) || element.Name == "Message")
+									{
+										string NodeId = element.Attribute("NodeId")?.Value;
+										int times = 1;
+										foreach (var ClildItem in element.Elements())
+										{
+											string JumpId = ClildItem.Attribute("JumpId")?.Value;
+											Node fromNode = xmlNodeDic[NodeId];
+											Node toNode = xmlNodeDic[JumpId];
+
+											NodePort Out = fromNode.GetPort($"outOpt{times}");
+											NodePort In = toNode.GetPort("In");
+
+											Out.Connect(In);
+
+											times++;
+										}
+									}
+									else
+									{
+										string NodeId = element.Attribute("NodeId")?.Value;
+										string JumpId = element.Attribute("JumpId")?.Value;
+
+										if (!string.IsNullOrEmpty(JumpId))
+										{
+											Node fromNode = xmlNodeDic[NodeId];
+											Node toNode = xmlNodeDic[JumpId];
+
+											NodePort Out = fromNode.GetPort("Out");
+											NodePort In = toNode.GetPort("In");
+											Out.Connect(In);
+										}
+									}
+								}
+
 								break;
 							}
 						default:

@@ -22,14 +22,7 @@ namespace XNode.Story
 		private List<Connection> connections = new List<Connection>();
 
 		void Start() {
-			port = node.GetPort(fieldName);
 			graph = GetComponentInParent<RuntimeStoryGraph>();
-
-			if (port.IsOutput && port.IsConnected) {
-				for (int i = 0; i < port.ConnectionCount; i++) {
-					AddConnection();
-				}
-			}
 		}
 
 		void Reset() {
@@ -45,6 +38,19 @@ namespace XNode.Story
 		}
 
 		public void UpdateConnectionTransforms() {
+
+			if (port == null)
+            {
+				port = node.GetPort(fieldName);
+				if (port.IsOutput && port.IsConnected)
+				{
+					for (int i = 0; i < port.ConnectionCount; i++)
+					{
+						AddConnection();
+					}
+				}
+			}
+
 			if (port.IsInput) return;
 
 			while (connections.Count < port.ConnectionCount) AddConnection();

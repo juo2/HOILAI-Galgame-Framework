@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <data>
   <Plot>
-    <NextChapter NodeId="1" Position="(-248.50, -159.00)" JumpId="2" />
+    <NextChapter NodeId="1" Position="(-956.50, -273.00)" JumpId="2" />
     <ChangeBackImg NodeId="2" Position="(-632.00, -248.00)" Path="buqun_scene.png" JumpId="3" />
     <AddCharacter NodeId="3" CharacterID="1" CharacterName="user" CharacterImage="buqun_man.png" IsSelf="True" Position="(-296.00, -392.00)" JumpId="169" />
     <SpeakAside NodeId="4" Content="今天是你第一天转到这所学校的日子" Position="(-296.00, -56.00)" JumpId="5" />

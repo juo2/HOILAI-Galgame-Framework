@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 namespace XNode.Story
 {
@@ -13,7 +14,69 @@ namespace XNode.Story
 		[HideInInspector] public Node selectedNode;
 		private Vector2 pos;
 
+		public Button addCharacterBtn;
+		public Button backgroundBtn;
+		public Button deleteCharacterBtn;
+		public Button exitGameBtn;
+		public Button messageBtn;
+		public Button speakAsideBtn;
+		public Button videoBtn;
+		public Button BgmBtn;
+		public Button SpeakBtn;
+		public Button NextChapterBtn;
+
 		private void Start() {
+
+			addCharacterBtn.onClick.AddListener(() => 
+			{
+				SpawnNode(typeof(StoryAddCharacterNode));
+			});
+
+			backgroundBtn.onClick.AddListener(() =>
+			{
+				SpawnNode(typeof(StoryBackgroundNode));
+			});
+
+			deleteCharacterBtn.onClick.AddListener(() =>
+			{
+				SpawnNode(typeof(StoryDeleteCharacterNode));
+			});
+
+			exitGameBtn.onClick.AddListener(() =>
+			{
+				SpawnNode(typeof(StoryExitGameNode));
+			});
+
+			messageBtn.onClick.AddListener(() =>
+			{
+				SpawnNode(typeof(StoryMessageNode));
+			});
+
+			speakAsideBtn.onClick.AddListener(() =>
+			{
+				SpawnNode(typeof(StorySpeakAsideNode));
+			});
+
+			videoBtn.onClick.AddListener(() =>
+			{
+				SpawnNode(typeof(StoryAddCharacterNode));
+			});
+
+			BgmBtn.onClick.AddListener(() =>
+			{
+				SpawnNode(typeof(StoryBgmNode));
+			});
+
+			SpeakBtn.onClick.AddListener(() =>
+			{
+				SpawnNode(typeof(StorySpeakNode));
+			});
+
+			NextChapterBtn.onClick.AddListener(() =>
+			{
+				SpawnNode(typeof(StoryNextChapterNode));
+			});
+
 			Close();
 		}
 
@@ -29,18 +92,6 @@ namespace XNode.Story
 			group.alpha = 0;
 			group.interactable = false;
 			group.blocksRaycasts = false;
-		}
-
-		public void SpawnMathNode() {
-			SpawnNode(typeof(XNode.Examples.MathNodes.MathNode));
-		}
-
-		public void SpawnDisplayNode() {
-			SpawnNode(typeof(XNode.Examples.MathNodes.DisplayValue));
-		}
-
-		public void SpawnVectorNode() {
-			SpawnNode(typeof(XNode.Examples.MathNodes.Vector));
 		}
 
 		private void SpawnNode(Type nodeType) {

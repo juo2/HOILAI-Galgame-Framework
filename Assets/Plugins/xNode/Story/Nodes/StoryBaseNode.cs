@@ -17,5 +17,9 @@ namespace XNode.Story
         [HideInInspector]
         [SerializeField]
         public bool isError = false;
+
+        [HideInInspector]
+        [SerializeField]
+        public string errorMessage;
     }
 }
