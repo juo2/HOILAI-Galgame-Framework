@@ -149,8 +149,18 @@ public class BuildAssetsPage : XBuildWindow.XBuildPage
             System.Diagnostics.Stopwatch sw = System.Diagnostics.Stopwatch.StartNew();
             XBuildDevelopment.Build(parameter);
 
-            string manifestPath = Path.Combine(m_BuildOutPath, XBuildUtility.GetPlatformAtBuildTarget(m_BuildTarget));
-            XBuildUtility.BuildAssetManifest(manifestPath, m_BuildTarget);
+            if (m_BuildTarget == BuildTarget.iOS)
+            {
+                string manifestPath = Path.Combine(m_BuildOutPath, "IPhonePlayer");
+                XBuildUtility.BuildAssetManifest(manifestPath, m_BuildTarget);
+            }
+            else
+            {
+                string manifestPath = Path.Combine(m_BuildOutPath, XBuildUtility.GetPlatformAtBuildTarget(m_BuildTarget));
+                XBuildUtility.BuildAssetManifest(manifestPath, m_BuildTarget);
+            }
+
+            //System.IO.File.Exists()
 
             sw.Stop();
             Debug.Log("time: " + sw.ElapsedMilliseconds * 0.001f);
@@ -160,8 +170,19 @@ public class BuildAssetsPage : XBuildWindow.XBuildPage
         if (GUILayout.Button("Refresh ORM"))
         {
             EditorSettings.spritePackerMode = SpritePackerMode.Disabled;
-            string manifestPath = Path.Combine(m_BuildOutPath, XBuildUtility.GetPlatformAtBuildTarget(m_BuildTarget));
-            XBuildUtility.BuildAssetManifest(manifestPath, m_BuildTarget);
+
+            if (m_BuildTarget == BuildTarget.iOS)
+            {
+                string manifestPath = Path.Combine(m_BuildOutPath, "IPhonePlayer");
+                XBuildUtility.BuildAssetManifest(manifestPath, m_BuildTarget);
+            }
+            else
+            {
+                string manifestPath = Path.Combine(m_BuildOutPath, XBuildUtility.GetPlatformAtBuildTarget(m_BuildTarget));
+                XBuildUtility.BuildAssetManifest(manifestPath, m_BuildTarget);
+            }
+
+            
 
 
             //string path = Path.Combine(m_BuildOutPath, XBuildUtility.GetPlatformAtBuildTarget(m_BuildTarget));

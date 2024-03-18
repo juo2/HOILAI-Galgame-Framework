@@ -553,11 +553,20 @@ public class XBuildDevelopment
         }
         //资源包存放路径
         string outPath = !string.IsNullOrEmpty(parameter.outputPath) ? parameter.outputPath : Path.Combine(Application.dataPath, "../A_Build/");
-        string manifestPath = Path.Combine(outPath, XBuildUtility.GetPlatformAtBuildTarget(parameter.buildTarget));
+        string manifestPath = string.Empty;
 
-        outPath = Path.Combine(outPath, string.Format("{0}/01", XBuildUtility.GetPlatformAtBuildTarget(parameter.buildTarget)));
+        if(parameter.buildTarget == BuildTarget.iOS)
+        {
+            manifestPath = Path.Combine(outPath, "IPhonePlayer");
+            outPath = Path.Combine(outPath, "IPhonePlayer/01");
+        }
+        else
+        {
+            manifestPath = Path.Combine(outPath, XBuildUtility.GetPlatformAtBuildTarget(parameter.buildTarget));
+            outPath = Path.Combine(outPath, string.Format("{0}/01", XBuildUtility.GetPlatformAtBuildTarget(parameter.buildTarget)));
+        }
+
         parameter.outputPath = outPath;
-
         parameter.buildBundleName = BuildResourceParameter.NameType.NONE;
 //#if UNITY_IOS
 //        parameter.buildBundleName = BuildResourceParameter.NameType.HASH;
