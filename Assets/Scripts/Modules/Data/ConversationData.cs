@@ -190,7 +190,8 @@ namespace XModules.Data
 
         public static int getOneShotChatSelect()
         {
-            var strArray = webSocketSteamContent.Split("£ü");
+            var strArray = webSocketSteamContent.Split("|");
+
             if (strArray.Length == 2)
             {
                 return int.Parse(strArray[1]);

@@ -79,9 +79,9 @@ namespace XModules.GalManager
 
             Debug.Log($"targetOut33333333333333:{targetOut}");
 
-            if (targetOut.Contains("｜"))
+            if (targetOut.Contains("|"))
             {
-                var strArray = targetOut.Split("｜");
+                var strArray = targetOut.Split("|");
                 targetOut = strArray[0];
                 isDone = true;
                 Debug.Log("[DONE][DONE][DONE][DONE][DONE][DONE][DONE][DONE]");
