@@ -555,7 +555,7 @@ namespace XModules.GalManager
             cacheOutMessageList.Clear();
             cacheIndex = 0;
 
-            string url = $"ws://ai.sorachat.site/chat/webStreamSocket/{ConversationData.TempNpcCharacterInfo.characterID}/{DataManager.getPlayerId()}";
+            string url = $"ws://119.91.133.26/chat/webStreamSocket/{ConversationData.TempNpcCharacterInfo.characterID}/{DataManager.getPlayerId()}";
 
             Debug.Log($"url:{url}");
 

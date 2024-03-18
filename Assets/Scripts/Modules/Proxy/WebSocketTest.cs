@@ -29,7 +29,7 @@ public class WebSocketTest : MonoBehaviour
         if (DataManager.playerResponse == null)
             return;
 
-        websocket = new WebSocket($"ws://ai.sorachat.site/chat/websocket/1/{DataManager.playerResponse.data.id}");
+        websocket = new WebSocket($"ws://119.91.133.26/chat/websocket/1/{DataManager.playerResponse.data.id}");
 
         websocket.OnOpen += () =>
         {
