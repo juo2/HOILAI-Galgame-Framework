@@ -88,7 +88,7 @@ namespace XNode.Story
 
 		IEnumerator SyncNpcInfoCoroutine(string xmlString)
 		{
-			string url = "http://119.91.133.26/chat/npc/syncNpcInfo";
+			string url = "http://ai.sorachat.site/chat/npc/syncNpcInfo";
 
 			// 创建一个表单
 			WWWForm form = new WWWForm();
