@@ -146,6 +146,9 @@ namespace XModules.Proxy
             // 这个请求没有表单数据，但我们依然创建一个空的WWWForm对象，以符合UnityWebRequest.Post的参数要求
             WWWForm form = new WWWForm();
             //form.AddField("token", token);
+
+            Debug.Log($"url:{url}");
+
             UnityWebRequest webRequest = UnityWebRequest.Post(url, form);
 
             // 设置User-Agent，虽然在Unity中这不是必需的，但为了保持一致性，我们仍然包含这个步骤
