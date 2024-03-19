@@ -14,6 +14,7 @@ namespace XModules.Main.Item
         XText storyNameLabel;
 
         string storyName;
+        string storyId;
 
         // Start is called before the first frame update
         void Start()
@@ -22,14 +23,15 @@ namespace XModules.Main.Item
 
                 XGUIManager.Instance.CloseView("MainView");
 
-                XGUIManager.Instance.OpenView("ConversationView",UILayer.BaseLayer,null, storyName);
+                XGUIManager.Instance.OpenView("ConversationView",UILayer.BaseLayer,null, storyId);
 
             });
         }
 
-        public void Refresh(string _storyName)
+        public void Refresh(StoryData storyData)
         {
-            storyName = _storyName;
+            storyName = storyData.title;
+            storyId = storyData.id;
             storyNameLabel.text = storyName;
         }
 

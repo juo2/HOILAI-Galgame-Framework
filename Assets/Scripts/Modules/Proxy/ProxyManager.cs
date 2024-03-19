@@ -52,6 +52,16 @@ namespace XModules.Proxy
             TimerManager.AddCoroutine(SaveUserSession($"{url}/chat/chatRecord/saveUserSession",npcId, callBack, errorBack));
         }
 
+        public static void GetStoryList(int type, Action callBack = null, Action errorBack = null)
+        {
+            TimerManager.AddCoroutine(GetStoryList($"{url}/chat/userStory/getStoryList", type, callBack, errorBack));
+        }
+
+        public static void SaveStoryRecord(string storyId,Action callBack = null,Action errorBack = null)
+        {
+            TimerManager.AddCoroutine(SaveStoryRecord($"{url}/chat/userStory/saveStoryRecord", storyId, callBack, errorBack));
+        }
+
         static IEnumerator SendCodeRequest(string url, string email, Action callBack, Action errorBack)
         {
             WWWForm form = new WWWForm();
@@ -390,6 +400,95 @@ namespace XModules.Proxy
             }
         }
 
+        static IEnumerator GetStoryList(string url,int type, Action callBack, Action errorBack)
+        {
+            Debug.Log($"type:{type}");
+
+            WWWForm form = new WWWForm();
+            form.AddField("userId", DataManager.getPlayerId());
+            form.AddField("type", type);
+
+            UnityWebRequest webRequest = UnityWebRequest.Post(url, form);
+
+            // 设置User-Agent
+            webRequest.SetRequestHeader("User-Agent", "Apifox/1.0.0 (https://apifox.com)");
+            webRequest.SetRequestHeader("token", DataManager.getToken());
+
+            yield return webRequest.SendWebRequest();
+
+            if (webRequest.result == UnityWebRequest.Result.ConnectionError || webRequest.result == UnityWebRequest.Result.ProtocolError)
+            {
+                Debug.LogError(webRequest.error);
+                errorBack?.Invoke();
+            }
+            else
+            {
+
+                Debug.Log(webRequest.downloadHandler.text);
+
+                StoryResponse storyResponse = JsonUtility.FromJson<StoryResponse>(webRequest.downloadHandler.text);
+
+                if(type == 0)
+                {
+                    DataManager.storyNoPlayResponse = storyResponse;
+                }
+                else
+                {
+                    DataManager.storyResponse = storyResponse;
+                }
+                
+                if (storyResponse.code == "0")
+                {
+                    Debug.Log("<color=#4aff11>GetStoryList 请求成功!!!</color>");
+                    callBack?.Invoke();
+
+                }
+                else
+                {
+                    errorBack?.Invoke();
+                }
+            }
+        }
+
+        static IEnumerator SaveStoryRecord(string url, string storyId, Action callBack, Action errorBack)
+        {
+            Debug.Log($"storyId:{storyId}");
+
+            WWWForm form = new WWWForm();
+            form.AddField("userId", DataManager.getPlayerId());
+            form.AddField("storyId", storyId);
+
+            UnityWebRequest webRequest = UnityWebRequest.Post(url, form);
+
+            // 设置User-Agent
+            webRequest.SetRequestHeader("User-Agent", "Apifox/1.0.0 (https://apifox.com)");
+            webRequest.SetRequestHeader("token", DataManager.getToken());
+
+            yield return webRequest.SendWebRequest();
+
+            if (webRequest.result == UnityWebRequest.Result.ConnectionError || webRequest.result == UnityWebRequest.Result.ProtocolError)
+            {
+                Debug.LogError(webRequest.error);
+                errorBack?.Invoke();
+            }
+            else
+            {
+
+                Debug.Log(webRequest.downloadHandler.text);
+
+                BasicResponse basicResponse = JsonUtility.FromJson<BasicResponse>(webRequest.downloadHandler.text);
+                if (basicResponse.code == "0")
+                {
+                    Debug.Log("<color=#4aff11>SaveStoryRecord 请求成功!!!</color>");
+                    callBack?.Invoke();
+
+                }
+                else
+                {
+                    errorBack?.Invoke();
+                }
+            }
+        }
     }
 
 }

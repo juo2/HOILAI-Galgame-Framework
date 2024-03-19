@@ -103,11 +103,11 @@ namespace XModules.GalManager
 
             ConversationData.ResetPlotData();
 
-            string storyName = viewArgs[0] as string;
+            string storyId = viewArgs[0] as string;
             
-            ConversationData.currentStory = storyName;
+            ConversationData.currentStory = storyId;
 
-            StartCoroutine(LoadPlot(storyName));
+            StartCoroutine(LoadPlot(storyId));
 
             XEvent.EventDispatcher.AddEventListener("NEXT_STEP", Button_Click_NextPlot,this);
             XEvent.EventDispatcher.AddEventListener("ONESHOTCHAT", OneShotChat, this);
@@ -159,13 +159,17 @@ namespace XModules.GalManager
         /// 解析框架文本
         /// </summary>
         /// <returns></returns>
-        public IEnumerator LoadPlot (string storyName)
+        public IEnumerator LoadPlot (string storyId)
         {
             yield return null;
 
             string _PlotText = string.Empty;
             //string filePath = Path.Combine(AssetDefine.BuildinAssetPath, "HGF/Test.xml");
-            string filePath = Path.Combine(AssetDefine.BuildinAssetPath, $"HGF/{storyName}.xml");
+
+            string random = DateTime.Now.ToString("yyyymmddhhmmss");
+            string url = $"http://appcdn.calfchat.top/story/{storyId}.xml?v={random}";
+
+            Debug.Log($"url:{url}");
 
 #if UNITY_STANDALONE_OSX || UNITY_EDITOR_OSX
             filePath = "file://" + filePath;
@@ -175,7 +179,7 @@ namespace XModules.GalManager
             //                filePath = "jar:file://" + Application.dataPath + "!/assets/HGF/Test.xml";
             //            }
 
-            UnityWebRequest www = UnityWebRequest.Get(filePath);
+            UnityWebRequest www = UnityWebRequest.Get(url);
             yield return www.SendWebRequest();
 
             if (www.result == UnityWebRequest.Result.Success)
@@ -216,6 +220,8 @@ namespace XModules.GalManager
             }
  
             GameAPI.Print(Newtonsoft.Json.JsonConvert.SerializeObject(PlotData));
+
+            ProxyManager.SaveStoryRecord(storyId);
 
             //开始游戏
             Button_Click_NextPlot();

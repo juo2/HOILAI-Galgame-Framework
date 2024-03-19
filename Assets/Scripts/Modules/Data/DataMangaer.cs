@@ -12,6 +12,8 @@ namespace XModules.Data
         public static NPCResponse npcResponse = null;
         public static PlayerResponse playerResponse = null;
         public static SessionResponse sessionResponse = null;
+        public static StoryResponse storyResponse = null;
+        public static StoryResponse storyNoPlayResponse = null;
         public static OneShotChatResponse oneShotChatResponse = null;
         
         public static string getPlayerId()
@@ -134,6 +136,16 @@ namespace XModules.Data
 
             return JsonUtility.ToJson(webStreamSocketRequest);
 
+        }
+
+        public static List<StoryData> getStoryList()
+        {
+            return storyResponse.data;
+        }
+
+        public static List<StoryData> getStoryNoPlayList()
+        {
+            return storyNoPlayResponse.data;
         }
 
     }
