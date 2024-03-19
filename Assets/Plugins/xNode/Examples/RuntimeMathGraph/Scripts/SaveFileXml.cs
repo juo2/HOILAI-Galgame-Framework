@@ -28,6 +28,9 @@ public class SaveFileXml : MonoBehaviour, IPointerDownHandler {
 
         preCallBack?.Invoke();
 
+        if (!isCanSave)
+            return;
+
         var bytes = Encoding.UTF8.GetBytes(saveData);
         DownloadFile(gameObject.name, "OnFileDownload", $"{fileName}.xml", bytes, bytes.Length);
     }
@@ -54,6 +57,8 @@ public class SaveFileXml : MonoBehaviour, IPointerDownHandler {
 
         if (!isCanSave)
             return;
+
+        Debug.Log("±£´æ");
 
         var path = StandaloneFileBrowser.SaveFilePanel("Title", "", fileName, "xml");
 
