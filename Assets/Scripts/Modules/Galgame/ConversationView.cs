@@ -171,9 +171,9 @@ namespace XModules.GalManager
 
             Debug.Log($"url:{url}");
 
-#if UNITY_STANDALONE_OSX || UNITY_EDITOR_OSX
-            filePath = "file://" + filePath;
-#endif
+//#if UNITY_STANDALONE_OSX || UNITY_EDITOR_OSX
+//            filePath = "file://" + filePath;
+//#endif
             //            if (Application.platform == RuntimePlatform.Android)
             //            {
             //                filePath = "jar:file://" + Application.dataPath + "!/assets/HGF/Test.xml";
