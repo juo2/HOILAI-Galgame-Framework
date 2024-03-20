@@ -15,7 +15,13 @@ public partial class Launcher : MonoBehaviour
     {
 
 #if UNITY_EDITOR
-        assetBundleMode = UnityEditor.EditorPrefs.GetBool("QuickMenuKey_LaunchGameAssetBundle", false);
+
+//如果是配置模式，打开包模式
+#if XConfigMode
+        assetBundleMode = true;
+#else
+        UnityEditor.EditorPrefs.GetBool("QuickMenuKey_LaunchGameAssetBundle", false);
+#endif
         assetBundleModeLocalCode = UnityEditor.EditorPrefs.GetBool("QuickMenuKey_LaunchGameAssetBundleLocalCode", false);
         assetRecordMode = UnityEditor.EditorPrefs.GetBool("QuickMenuKey_LaunchGameRecordAssets", false);
         checkUpdate = UnityEditor.EditorPrefs.GetBool("QuickMenuKey_LaunchGameUpdate", true);

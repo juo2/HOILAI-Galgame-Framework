@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using XNode.Examples.MathNodes;
+using XGUI;
 
 namespace XNode.Story
 {
 	public class UGUISpeak : UGUIBaseNode {
 		
 		public InputField ID;
-		public InputField image;
+		public XButton imageBtn;
 		public InputField content;
 		public InputField p_audio;
 
@@ -29,7 +29,7 @@ namespace XNode.Story
 			speakNode = node as StorySpeakNode;
 
 			ID.onValueChanged.AddListener(OnChangeID);
-			image.onValueChanged.AddListener(OnChangeImage);
+			imageBtn.onClick.AddListener(OnChangeImage);
 			content.onValueChanged.AddListener(OnChangeContent);
 			p_audio.onValueChanged.AddListener(OnChangeAudio);
 			opt1.onValueChanged.AddListener(OnChangeOpt1);
@@ -50,7 +50,6 @@ namespace XNode.Story
         public override void UpdateGUI() {
 			
 			ID.text = speakNode.ID;
-			image.text = speakNode.image;
 			content.text = speakNode.content;
 			p_audio.text = speakNode.audio;
 			opt1.text = speakNode.opt1;
@@ -58,14 +57,27 @@ namespace XNode.Story
 			opt3.text = speakNode.opt3;
 			opt4.text = speakNode.opt4;
 			isJump.isOn = speakNode.isJump;
+
+			if (string.IsNullOrEmpty(speakNode.image))
+			{
+				imageBtn.label = "please select image";
+			}
+			else
+			{
+				imageBtn.label = speakNode.image;
+			}
 		}
 
 		private void OnChangeID(string val) {
 			speakNode.ID = ID.text;
 		}
 
-		private void OnChangeImage(string val) {
-			speakNode.image = image.text;
+		private void OnChangeImage() {
+			graph.ShowImage((string _imageName) =>
+			{
+				speakNode.image = _imageName;
+				imageBtn.label = _imageName;
+			});
 		}
 
 		private void OnChangeContent(string val) {

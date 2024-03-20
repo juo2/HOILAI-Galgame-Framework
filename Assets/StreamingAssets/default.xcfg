@@ -1,5 +1,5 @@
 {
-  "m_TestDownloadUrls": ["http://192.168.124.35:8080/A_Build/"],
+  "m_TestDownloadUrls": ["http://192.168.31.102/root/A_Build/"],
 	"m_IsDllUpdate": true,
 	"m_BackgroundDownload":false,
 	"m_DownloadSizeFactor":1,

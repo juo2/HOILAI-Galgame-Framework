@@ -7,6 +7,9 @@ namespace AssetManagement
 {
     public abstract class AssetLoaderOptions
     {
+#if XConfigMode
+        public abstract List<string> GetConfigImages();
+#endif
         /// <summary>
         /// 根据传入的资源名 返回AssetBundle名
         /// </summary>
@@ -235,6 +238,11 @@ namespace AssetManagement
         }
 
         public override List<string> GetDontUnloadList()
+        {
+            return null;
+        }
+
+        public override List<string> GetConfigImages()
         {
             return null;
         }

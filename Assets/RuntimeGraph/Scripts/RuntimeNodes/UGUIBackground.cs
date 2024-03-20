@@ -2,31 +2,41 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using XGUI;
 using XNode.Examples.MathNodes;
 
 namespace XNode.Story
 {
 	public class UGUIBackground : UGUIBaseNode {
 		
-		public InputField BG;
-
+		public XButton BGBtn;
 		private StoryBackgroundNode backgroundNode;
 
 		public override void Start() {
 			base.Start();
 			backgroundNode = node as StoryBackgroundNode;
 
-			BG.onValueChanged.AddListener(OnChangeBG);
+			BGBtn.onClick.AddListener(OnChangeBG);
 			UpdateGUI();
 		}
 
 		public override void UpdateGUI() {
-			
-			BG.text = backgroundNode.background;
+			if (string.IsNullOrEmpty(backgroundNode.background))
+			{
+				BGBtn.label = "please select image";
+			}
+			else
+			{
+				BGBtn.label = backgroundNode.background;
+			}
 		}
 
-		private void OnChangeBG(string val) {
-			backgroundNode.background = BG.text;
+		private void OnChangeBG() {
+			graph.ShowImage((string _imageName) =>
+			{
+				backgroundNode.background = _imageName;
+				BGBtn.label = _imageName;
+			});
 		}
 		
 	}

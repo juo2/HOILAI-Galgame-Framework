@@ -2,18 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using XGUI;
 using XNode.Examples.MathNodes;
 
 namespace XNode.Story
 {
 	public class UGUIMessage : UGUIBaseNode {
 		
-		public InputField image;
+		public XButton imageBtn;
 		public InputField opt1;
 		public InputField opt2;
 		public InputField opt3;
 		public InputField opt4;
-
 
 		private StoryMessageNode messageNode;
 
@@ -21,7 +21,7 @@ namespace XNode.Story
 			base.Start();
 			messageNode = node as StoryMessageNode;
 
-			image.onValueChanged.AddListener(OnChangeImage);
+			imageBtn.onClick.AddListener(OnChangeImage);
 			opt1.onValueChanged.AddListener(OnChangeOpt1);
 			opt2.onValueChanged.AddListener(OnChangeOpt2);
 			opt3.onValueChanged.AddListener(OnChangeOpt3);
@@ -30,16 +30,29 @@ namespace XNode.Story
 		}
 
 		public override void UpdateGUI() {
-			image.text = messageNode.image;
+			//imageBtn.label = messageNode.image;
 			opt1.text = messageNode.opt1;
 			opt2.text = messageNode.opt2;
 			opt3.text = messageNode.opt3;
 			opt4.text = messageNode.opt4;
+
+			if (string.IsNullOrEmpty(messageNode.image))
+			{
+				imageBtn.label = "please select image";
+			}
+			else
+			{
+				imageBtn.label = messageNode.image;
+			}
 		}
 
 
-		private void OnChangeImage(string val) {
-			messageNode.image = image.text;
+		private void OnChangeImage() {
+			graph.ShowImage((string _imageName) =>
+			{
+				messageNode.image = _imageName;
+				imageBtn.label = _imageName;
+			});
 		}
 
 		private void OnChangeOpt1(string val) {

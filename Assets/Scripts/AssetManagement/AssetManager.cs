@@ -489,6 +489,13 @@ namespace AssetManagement
 //            //unloadtimetag = Time.realtimeSinceStartup;
         }
 
+#if XConfigMode
+        public List<string> GetConfigImages()
+        {
+            return this.m_AssetLoaderOptions.GetConfigImages();
+        }
+#endif
+
         private static AssetManager m_Instance;
         public static AssetManager Instance
         {

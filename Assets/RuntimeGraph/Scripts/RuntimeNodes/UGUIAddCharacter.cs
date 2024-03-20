@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using XGUI;
 using XNode.Examples.MathNodes;
 
 namespace XNode.Story
@@ -9,7 +10,7 @@ namespace XNode.Story
 	public class UGUIAddCharacter : UGUIBaseNode {
 		
 		public InputField ID;
-		public InputField image;
+		public XButton imageBtn;
 		public InputField p_name;
 
 		public Toggle isSelf;
@@ -21,7 +22,7 @@ namespace XNode.Story
 			addCharacterNode = node as StoryAddCharacterNode;
 
 			ID.onValueChanged.AddListener(OnChangeID);
-			image.onValueChanged.AddListener(OnChangeImage);
+			imageBtn.onClick.AddListener(OnChangeImage);
 			p_name.onValueChanged.AddListener(OnChangeName);
 			UpdateGUI();
 		}
@@ -29,16 +30,30 @@ namespace XNode.Story
 		public override void UpdateGUI() {
 			
 			ID.text = addCharacterNode.ID;
-			image.text = addCharacterNode.image;
 			p_name.text = addCharacterNode.p_name;
+
+			if (string.IsNullOrEmpty(addCharacterNode.image))
+            {
+				imageBtn.label = "please select image";
+			}
+			else
+            {
+				imageBtn.label = addCharacterNode.image;
+			}
+
 		}
 
 		private void OnChangeID(string val) {
 			addCharacterNode.ID = ID.text;
 		}
 
-		private void OnChangeImage(string val) {
-			addCharacterNode.image = image.text;
+		private void OnChangeImage() {
+
+			graph.ShowImage((string _imageName) => 
+			{
+				addCharacterNode.image = _imageName;
+				imageBtn.label = _imageName;
+			});
 		}
 
 		private void OnChangeName(string val) {

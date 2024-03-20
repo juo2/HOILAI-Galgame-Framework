@@ -6,19 +6,19 @@ using System.Linq;
 using System.Text;
 using System.Xml.Linq;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.Networking;
 using UnityEngine.UI;
-using XNode.Examples.MathNodes;
 
 namespace XNode.Story
 {
 	public partial class RuntimeStoryGraph : MonoBehaviour, IPointerClickHandler {
-
+		
 		[Header("Graph")]
         public StoryGraph graph;
         [Header("Prefabs")]
-
+		
 		public UGUIAddCharacter runtimeAddCharacterPrefab;
 		public UGUIBackground runtimeBackgroundPrefab;
 		public UGUIBgm runtimeBgmPrefab;
@@ -43,18 +43,24 @@ namespace XNode.Story
 
 		public SaveFileXml exportBtn;
 		public OpenFileXml importBtn;
+		public Button assetBtn;
+		public Button uploadBtn;
+ 
 		public InputField nameField;
-
 		public MessageBox messageBox;
 
+		public ConfigChoice configChoice;
+
 		private void Start() {
+
+			configChoice.SetActive(false);
+
 			// Create a clone so we don't modify the original asset
 			graph = new StoryGraph();
 			//graph = graph.Copy() as StoryGraph;
 			scrollRect = GetComponentInChildren<ScrollRect>();
 			graphContextMenu.onClickSpawn -= SpawnNode;
 			graphContextMenu.onClickSpawn += SpawnNode;
-
 			exportBtn.preCallBack = () => 
 			{
 				ExportStory(graph);
@@ -75,8 +81,11 @@ namespace XNode.Story
 				exportBtn.isCanSave = true;
 				exportBtn.fileName = nameField.text;
 
+				//如果不是editor需要发送xml给后端
+#if !UNITY_EDITOR
 				string xmlString = exportBtn.saveData; // 这是你的XML字符串
 				StartCoroutine(SyncNpcInfoCoroutine( xmlString));
+#endif
 
 			};
 
@@ -84,6 +93,17 @@ namespace XNode.Story
 			{
 				LoadPlot(xml);
 			};
+
+			uploadBtn.onClick.AddListener(() => 
+			{ 
+				
+			});
+		}
+
+		public void ShowImage(UnityAction<string> action)
+        {
+			var configImageList = AssetManagement.AssetManager.Instance.GetConfigImages();
+			configChoice.OnShow(configImageList, action);
 		}
 
 		IEnumerator SyncNpcInfoCoroutine(string xmlString)

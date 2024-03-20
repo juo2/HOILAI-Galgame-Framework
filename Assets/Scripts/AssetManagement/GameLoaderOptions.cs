@@ -3,6 +3,7 @@ using System.IO;
 using System.Collections;
 using AssetManagement;
 using System.Collections.Generic;
+using System;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -80,6 +81,17 @@ public class GameLoaderOptions : DefaultAssetLoaderOptions
 
         initProgress = 1f;
     }
+
+#if XConfigMode
+
+    public override List<string> GetConfigImages()
+    {
+        if (m_AssetBundleMode || m_XAssetManifest != null)
+            return m_XAssetManifest.GetConfigImages();
+
+        return null;
+    }
+#endif
 
     public override string GetAssetBundleName(string assetName)
     {

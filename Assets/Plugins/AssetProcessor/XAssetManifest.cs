@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-
+using System;
 
 [System.Serializable]
 public class XAssetsFiles : ISerializationCallbackReceiver
@@ -198,6 +198,30 @@ public class XAssetManifest : ScriptableObject, ISerializationCallbackReceiver
         }
     }
 
+#if XConfigMode
+    public List<string> GetConfigImages()
+    {
+        List<string> configImageList = new List<string>();
+
+        foreach(var bundleName in m_AssetBundleNames)
+        {
+            if(bundleName.Contains("single") && !bundleName.Contains("prefab"))
+            {
+                int ormName = m_AssetBundleOrmName[bundleName];
+
+                foreach(var keyValuePair in m_AssetsOrmBundles)
+                {
+                    if(keyValuePair.Value == ormName && !keyValuePair.Key.Contains("spriteatlas"))
+                    {
+                        configImageList.Add(keyValuePair.Key);
+                    }
+                }
+            }
+        }
+
+        return configImageList;
+    }
+#endif
 
     public string GetAssetBundleNameAtAssetName(string assetName)
     {
