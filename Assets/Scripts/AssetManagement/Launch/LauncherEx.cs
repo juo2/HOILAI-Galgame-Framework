@@ -79,18 +79,20 @@ public partial class Launcher : MonoBehaviour
         //天气系统
         //gameObject.AddComponent<WeatherManager>();
 
-        
-
         DefaultLoaderGUI.isEnterGame = true;
 
         DefaultLoaderGUI.Close();
 
+#if XConfigMode
+        GameObject runtimeNodeGo = GameObject.Find("RuntimeNodeGraph");
+        runtimeNodeGo.SetActive(true);
+#else
         //初始化摄像头
         Debug.Log("开始加载场景 Demo.unity");
 
         XScene.LoadScene("Demo1.unity", UnityEngine.SceneManagement.LoadSceneMode.Single);
 
-        XScene.onComplete = () => 
+        XScene.onComplete = () =>
         {
             //GameObject cameraGo = GameObject.Find("Main Camera");
             //Camera cam = cameraGo.GetComponent<Camera>();
@@ -103,18 +105,8 @@ public partial class Launcher : MonoBehaviour
         };
 
         Debug.Log("加载场景完成 Demo.unity");
+#endif
 
-        //lenv.LuaMain();
-
-        //while (LuaEnvironment.Instance.initProgress < 10)
-        //{
-        //    //Debug.Log(LuaEnvironment.Instance.initProgress);
-        //    float luaProgress = LuaEnvironment.Instance.initProgress;
-        //    luaProgress = luaProgress * 0.5f + 0.5f;
-        //    SetProgress(luaProgress, LuaEnvironment.Instance.initProgressText, 0.1f);
-        //    yield return null;
-        //}
-        //yield return null;
     }
 
     void SetProgress(float v, string desc = "", float time = 0f)

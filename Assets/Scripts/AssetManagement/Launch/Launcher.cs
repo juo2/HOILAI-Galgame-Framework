@@ -10,6 +10,7 @@ public partial class Launcher : MonoBehaviour
     public static bool assetRecordMode { get; private set; }
 
     public bool checkUpdate = true;
+
     void Start()
     {
 
@@ -18,6 +19,7 @@ public partial class Launcher : MonoBehaviour
         assetBundleModeLocalCode = UnityEditor.EditorPrefs.GetBool("QuickMenuKey_LaunchGameAssetBundleLocalCode", false);
         assetRecordMode = UnityEditor.EditorPrefs.GetBool("QuickMenuKey_LaunchGameRecordAssets", false);
         checkUpdate = UnityEditor.EditorPrefs.GetBool("QuickMenuKey_LaunchGameUpdate", true);
+
         //LuaLoader.assetBundleModeLocalCode = assetBundleModeLocalCode;
 #else
         assetBundleMode = true;

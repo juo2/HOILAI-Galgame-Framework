@@ -60,6 +60,7 @@ public class QuickMenuKey : ScriptableObject
         EditorPrefs.SetBool(m_LaunchGameRecordAssets, false);
         EditorPrefs.SetBool(m_LaunchGameUpdate, false);
         EditorPrefs.SetBool(m_LaunchGameTag, true);
+
         EditorApplication.isPlaying = true;
         //}
     }
@@ -104,28 +105,11 @@ public class QuickMenuKey : ScriptableObject
         EditorPrefs.SetBool(m_LaunchGameRecordAssets, false);
         EditorPrefs.SetBool(m_LaunchGameUpdate, true);
         EditorPrefs.SetBool(m_LaunchGameTag, true);
+
         EditorApplication.isPlaying = true;
         //}
     }
 
-    [MenuItem("XGame/Launch包模式(离线) #%F5", false, 50)]
-    static void LaunchGameAssetBundleLocalCode()
-    {
-        if (EditorApplication.isPlaying)
-        {
-            EditorApplication.isPlaying = false;
-            return;
-        }
-
-        UnityEditor.EditorSettings.spritePackerMode = SpritePackerMode.AlwaysOnAtlas;
-
-        EditorApplication.ExecuteMenuItem("Assets/Refresh AssetsManifest");
-        EditorPrefs.SetBool(m_LaunchGameAssetBundle, false);
-        EditorPrefs.SetBool(m_LaunchGameRecordAssets, false);
-        EditorPrefs.SetBool(m_LaunchGameUpdate, false);
-        EditorPrefs.SetBool(m_LaunchGameTag, true);
-        EditorApplication.isPlaying = true;
-    }
 
     static void CreateLaunchScene()
     {
