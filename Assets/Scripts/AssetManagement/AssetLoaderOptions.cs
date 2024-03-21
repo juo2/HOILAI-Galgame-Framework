@@ -9,6 +9,9 @@ namespace AssetManagement
     {
 #if XConfigMode
         public abstract List<string> GetConfigImages();
+        public abstract List<string> GetConfigAudio();
+        public abstract List<string> GetConfigBgm();
+        public abstract List<string> GetConfigVideo();
 #endif
         /// <summary>
         /// 根据传入的资源名 返回AssetBundle名
@@ -243,6 +246,21 @@ namespace AssetManagement
         }
 
         public override List<string> GetConfigImages()
+        {
+            return null;
+        }
+
+        public override List<string> GetConfigAudio()
+        {
+            return null;
+        }
+
+        public override List<string> GetConfigBgm()
+        {
+            return null;
+        }
+
+        public override List<string> GetConfigVideo()
         {
             return null;
         }

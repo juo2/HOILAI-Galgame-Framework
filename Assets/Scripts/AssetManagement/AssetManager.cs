@@ -494,6 +494,21 @@ namespace AssetManagement
         {
             return this.m_AssetLoaderOptions.GetConfigImages();
         }
+
+        public List<string> GetConfigAudio()
+        {
+            return this.m_AssetLoaderOptions.GetConfigAudio();
+        }
+
+        public List<string> GetConfigBgm()
+        {
+            return this.m_AssetLoaderOptions.GetConfigBgm();
+        }
+
+        public List<string> GetConfigVideo()
+        {
+            return this.m_AssetLoaderOptions.GetConfigVideo();
+        }
 #endif
 
         private static AssetManager m_Instance;

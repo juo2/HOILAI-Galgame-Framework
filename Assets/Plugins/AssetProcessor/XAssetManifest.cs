@@ -221,6 +221,75 @@ public class XAssetManifest : ScriptableObject, ISerializationCallbackReceiver
 
         return configImageList;
     }
+
+    public List<string> GetConfigAudio()
+    {
+        List<string> configImageList = new List<string>();
+
+        foreach (var bundleName in m_AssetBundleNames)
+        {
+            if (bundleName.Contains("01/art/audio/humansound"))
+            {
+                int ormName = m_AssetBundleOrmName[bundleName];
+
+                foreach (var keyValuePair in m_AssetsOrmBundles)
+                {
+                    if (keyValuePair.Value == ormName)
+                    {
+                        configImageList.Add(keyValuePair.Key);
+                    }
+                }
+            }
+        }
+
+        return configImageList;
+    }
+
+    public List<string> GetConfigBgm()
+    {
+        List<string> configImageList = new List<string>();
+
+        foreach (var bundleName in m_AssetBundleNames)
+        {
+            if (bundleName.Contains("01/art/audio/backgroundmusic"))
+            {
+                int ormName = m_AssetBundleOrmName[bundleName];
+
+                foreach (var keyValuePair in m_AssetsOrmBundles)
+                {
+                    if (keyValuePair.Value == ormName)
+                    {
+                        configImageList.Add(keyValuePair.Key);
+                    }
+                }
+            }
+        }
+
+        return configImageList;
+    }
+
+    public List<string> GetConfigVideo()
+    {
+        List<string> configImageList = new List<string>();
+
+        foreach (var bundleName in m_AssetBundleNames)
+        {
+            if (bundleName.Contains("01/art/video"))
+            {
+                int ormName = m_AssetBundleOrmName[bundleName];
+
+                foreach (var keyValuePair in m_AssetsOrmBundles)
+                {
+                    if (keyValuePair.Value == ormName)
+                    {
+                        configImageList.Add(keyValuePair.Key);
+                    }
+                }
+            }
+        }
+
+        return configImageList;
+    }
 #endif
 
     public string GetAssetBundleNameAtAssetName(string assetName)

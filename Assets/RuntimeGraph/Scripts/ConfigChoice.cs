@@ -4,6 +4,7 @@ using UnityEngine;
 using XGUI;
 using UnityEngine.UI;
 using UnityEngine.Events;
+using XAudio;
 
 public class ConfigChoice : MonoBehaviour
 {
@@ -11,10 +12,10 @@ public class ConfigChoice : MonoBehaviour
 
     Dictionary<int, ConfigChoiceItem> imageChoiceList = new Dictionary<int, ConfigChoiceItem>();
 
-    List<string> configImageList = new List<string>();
+    List<string> configList = new List<string>();
     List<CharacterImage> characterImageList = new List<CharacterImage>();
 
-    public XListView imageListView;
+    public XListView listView;
     public Button closeBtn;
 
     public enum ConfigType
@@ -22,6 +23,7 @@ public class ConfigChoice : MonoBehaviour
         Image,
         Character,
         Audio,
+        Bgm,
         Video
     }
 
@@ -36,12 +38,13 @@ public class ConfigChoice : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        imageListView.onCreateRenderer.AddListener(onImageListCreateRenderer);
-        imageListView.onUpdateRenderer.AddListener(onImageListUpdateRenderer);
+        listView.onCreateRenderer.AddListener(onImageListCreateRenderer);
+        listView.onUpdateRenderer.AddListener(onImageListUpdateRenderer);
 
 
         closeBtn.onClick.AddListener(() => 
         {
+            XAudioManager.instance.StopBgmMusic();
             gameObject.SetActive(false);
         });
     }
@@ -52,9 +55,9 @@ public class ConfigChoice : MonoBehaviour
         gameObject.SetActive(true);
         callBack = action;
 
-        configImageList = configList;
-        imageListView.dataCount = configImageList.Count;
-        imageListView.ForceRefresh();
+        this.configList = configList;
+        listView.dataCount = this.configList.Count;
+        listView.ForceRefresh();
     }
 
     public void OnShowCharacter(List<CharacterImage> _characterImageList, UnityAction<string> action)
@@ -64,10 +67,43 @@ public class ConfigChoice : MonoBehaviour
         callBack = action;
 
         characterImageList = _characterImageList;
-        imageListView.dataCount = characterImageList.Count;
-        imageListView.ForceRefresh();
+        listView.dataCount = characterImageList.Count;
+        listView.ForceRefresh();
     }
-    
+
+    public void OnShowAudio(List<string> configList, UnityAction<string> action)
+    {
+        configType = ConfigType.Video;
+        gameObject.SetActive(true);
+        callBack = action;
+
+        this.configList = configList;
+        listView.dataCount = this.configList.Count;
+        listView.ForceRefresh();
+    }
+
+    public void OnShowBgm(List<string> configList, UnityAction<string> action)
+    {
+        configType = ConfigType.Bgm;
+        gameObject.SetActive(true);
+        callBack = action;
+
+        this.configList = configList;
+        listView.dataCount = this.configList.Count;
+        listView.ForceRefresh();
+    }
+
+    public void OnShowVideo(List<string> configList, UnityAction<string> action)
+    {
+        configType = ConfigType.Video;
+        gameObject.SetActive(true);
+        callBack = action;
+
+        this.configList = configList;
+        listView.dataCount = this.configList.Count;
+        listView.ForceRefresh();
+    }
+
 
     void onImageListCreateRenderer(XListView.ListItemRenderer listItem)
     {
@@ -81,7 +117,7 @@ public class ConfigChoice : MonoBehaviour
 
         if(configType == ConfigType.Image)
         {
-            string name = configImageList[listItem.index];
+            string name = configList[listItem.index];
             configItem.RefreshImage(name, callBack, this);
         }
         else if (configType == ConfigType.Character)
@@ -89,7 +125,21 @@ public class ConfigChoice : MonoBehaviour
             CharacterImage characterImage = characterImageList[listItem.index];
             configItem.RefreshCharacter(characterImage.ID, characterImage.imageName, callBack, this);
         }
-
+        else if (configType == ConfigType.Bgm)
+        {
+            string name = configList[listItem.index];
+            configItem.RefreshBgm(name, callBack, this);
+        }
+        else if (configType == ConfigType.Audio)
+        {
+            string name = configList[listItem.index];
+            configItem.RefreshAudio(name, callBack, this);
+        }
+        else if (configType == ConfigType.Video)
+        {
+            string name = configList[listItem.index];
+            configItem.RefreshVideo(name, callBack, this);
+        }
     }
 
     // Update is called once per frame

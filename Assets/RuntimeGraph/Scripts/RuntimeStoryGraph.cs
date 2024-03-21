@@ -43,7 +43,6 @@ namespace XNode.Story
 
 		public SaveFileXml exportBtn;
 		public OpenFileXml importBtn;
-		public Button assetBtn;
 		public Button uploadBtn;
  
 		public InputField nameField;
@@ -114,22 +113,23 @@ namespace XNode.Story
 
 		public void ShowAudio(UnityAction<string> action)
 		{
-			var configImageList = AssetManagement.AssetManager.Instance.GetConfigImages();
-			configChoice.OnShowImage(configImageList, action);
-		}
-
-		public void ShowVideo(UnityAction<string> action)
-		{
-			var configImageList = AssetManagement.AssetManager.Instance.GetConfigImages();
+			var configImageList = AssetManagement.AssetManager.Instance.GetConfigAudio();
 			configChoice.OnShowImage(configImageList, action);
 		}
 
 		public void ShowBgm(UnityAction<string> action)
 		{
-			var configImageList = AssetManagement.AssetManager.Instance.GetConfigImages();
+			var configImageList = AssetManagement.AssetManager.Instance.GetConfigBgm();
 			configChoice.OnShowImage(configImageList, action);
 		}
 
+		public void ShowVideo(UnityAction<string> action)
+		{
+			var configImageList = AssetManagement.AssetManager.Instance.GetConfigVideo();
+			configChoice.OnShowImage(configImageList, action);
+		}
+
+		
 		IEnumerator SyncNpcInfoCoroutine(string xmlString)
 		{
 			string url = "http://ai.sorachat.site/chat/npc/syncNpcInfo";

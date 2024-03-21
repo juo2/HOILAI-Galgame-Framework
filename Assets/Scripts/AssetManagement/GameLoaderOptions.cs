@@ -91,6 +91,30 @@ public class GameLoaderOptions : DefaultAssetLoaderOptions
 
         return null;
     }
+
+    public override List<string> GetConfigAudio()
+    {
+        if (m_AssetBundleMode || m_XAssetManifest != null)
+            return m_XAssetManifest.GetConfigAudio();
+
+        return null;
+    }
+
+    public override List<string> GetConfigBgm()
+    {
+        if (m_AssetBundleMode || m_XAssetManifest != null)
+            return m_XAssetManifest.GetConfigBgm();
+
+        return null;
+    }
+
+    public override List<string> GetConfigVideo()
+    {
+        if (m_AssetBundleMode || m_XAssetManifest != null)
+            return m_XAssetManifest.GetConfigVideo();
+
+        return null;
+    }
 #endif
 
     public override string GetAssetBundleName(string assetName)

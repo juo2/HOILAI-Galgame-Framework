@@ -43,7 +43,7 @@ namespace XNode.Story
 
 		private void OnChangeAudio() {
 
-			graph.ShowVideo((string audio) =>
+			graph.ShowAudio((string audio) =>
 			{
 				speakAsideNode.audio = audio;
 				audioBtn.label = audio;
