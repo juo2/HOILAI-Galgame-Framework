@@ -59,7 +59,7 @@ namespace XNode.Story
 
 			videoBtn.onClick.AddListener(() =>
 			{
-				SpawnNode(typeof(StoryAddCharacterNode));
+				SpawnNode(typeof(StoryVideoNode));
 			});
 
 			BgmBtn.onClick.AddListener(() =>

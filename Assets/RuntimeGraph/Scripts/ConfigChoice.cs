@@ -73,7 +73,7 @@ public class ConfigChoice : MonoBehaviour
 
     public void OnShowAudio(List<string> configList, UnityAction<string> action)
     {
-        configType = ConfigType.Video;
+        configType = ConfigType.Audio;
         gameObject.SetActive(true);
         callBack = action;
 

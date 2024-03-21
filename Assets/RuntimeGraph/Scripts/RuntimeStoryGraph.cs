@@ -114,19 +114,19 @@ namespace XNode.Story
 		public void ShowAudio(UnityAction<string> action)
 		{
 			var configImageList = AssetManagement.AssetManager.Instance.GetConfigAudio();
-			configChoice.OnShowImage(configImageList, action);
+			configChoice.OnShowAudio(configImageList, action);
 		}
 
 		public void ShowBgm(UnityAction<string> action)
 		{
 			var configImageList = AssetManagement.AssetManager.Instance.GetConfigBgm();
-			configChoice.OnShowImage(configImageList, action);
+			configChoice.OnShowBgm(configImageList, action);
 		}
 
 		public void ShowVideo(UnityAction<string> action)
 		{
 			var configImageList = AssetManagement.AssetManager.Instance.GetConfigVideo();
-			configChoice.OnShowImage(configImageList, action);
+			configChoice.OnShowVideo(configImageList, action);
 		}
 
 		

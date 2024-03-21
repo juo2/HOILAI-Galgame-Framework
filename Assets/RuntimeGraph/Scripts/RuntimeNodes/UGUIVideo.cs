@@ -25,7 +25,7 @@ namespace XNode.Story
 
 			if (string.IsNullOrEmpty(videoNode.video))
 			{
-				videoBtn.label = "please select bgm";
+				videoBtn.label = "please select video";
 			}
 			else
 			{
