@@ -34,6 +34,27 @@ namespace XNode.Story
 			cacheColor = image.color;
 		}
 
+		public virtual void OnCreate()
+        {
+			if (ports != null)
+            {
+				foreach (UGUIPort port in ports)
+				{
+					port.node = node;
+				}
+				header.text = node.name;
+				SetPosition(node.position);
+			}
+		}
+
+		public virtual void OnRecycle()
+        {
+			foreach (UGUIPort port in ports)
+			{
+				port.OnRecycle();
+			}
+		}
+
 		public virtual void UpdateGUI() { }
 		
 		private void LateUpdate() {

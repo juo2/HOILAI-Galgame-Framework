@@ -18,6 +18,13 @@ namespace XNode.Story
 			UpdateGUI();
 		}
 
+		public override void OnCreate()
+		{
+			base.OnCreate();
+			exitGameNode = node as StoryExitGameNode;
+			UpdateGUI();
+		}
+
 		public override void UpdateGUI() {
 			
 

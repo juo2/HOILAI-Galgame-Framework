@@ -21,6 +21,13 @@ namespace XNode.Story
 			UpdateGUI();
 		}
 
+		public override void OnCreate()
+		{
+			base.OnCreate();
+			deleteCharacterNode = node as StoryDeleteCharacterNode;
+			UpdateGUI();
+		}
+
 		public override void UpdateGUI() {
 			if (string.IsNullOrEmpty(deleteCharacterNode.ID))
 			{

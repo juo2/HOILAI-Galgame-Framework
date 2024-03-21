@@ -23,6 +23,14 @@ namespace XNode.Story
 			UpdateGUI();
 		}
 
+		public override void OnCreate()
+		{
+			base.OnCreate();
+			speakAsideNode = node as StorySpeakAsideNode;
+
+			UpdateGUI();
+		}
+
 		public override void UpdateGUI() {
 			
 			content.text = speakAsideNode.content;

@@ -39,6 +39,8 @@ namespace XNode.Story
 
 		public ScrollRect scrollRect { get; private set; }
         private List<UGUIBaseNode> nodes = new List<UGUIBaseNode>();
+		private List<UGUIBaseNode> nodesPool = new List<UGUIBaseNode>();
+
 		private Dictionary<string, Node> xmlNodeDic = new Dictionary<string, Node>();
 
 		public SaveFileXml exportBtn;
@@ -49,6 +51,8 @@ namespace XNode.Story
 		public MessageBox messageBox;
 
 		public ConfigChoice configChoice;
+
+
 		private void Start() {
 
 			configChoice.SetActive(false);
@@ -57,8 +61,10 @@ namespace XNode.Story
 			graph = new StoryGraph();
 			//graph = graph.Copy() as StoryGraph;
 			scrollRect = GetComponentInChildren<ScrollRect>();
+			
 			graphContextMenu.onClickSpawn -= SpawnNode;
 			graphContextMenu.onClickSpawn += SpawnNode;
+
 			exportBtn.preCallBack = () => 
 			{
 				ExportStory(graph);
@@ -181,11 +187,97 @@ namespace XNode.Story
 					}
 				}
 			}
-
 			return tupleList;
-
 		}
 
+		private UGUIBaseNode getNodePrefabInternal<T>()
+        {
+			foreach(var node in nodesPool)
+            {
+				if (node is T)
+                {
+					nodesPool.Remove(node);
+					return node;
+                }
+            }
+
+			return null;
+        }
+
+		private UGUIBaseNode getNodePrefab(Node node)
+        {
+			UGUIBaseNode runtimeNode = null;
+			if (node is StoryAddCharacterNode)
+			{
+				runtimeNode = getNodePrefabInternal<UGUIAddCharacter>();
+				if (runtimeNode == null)
+					runtimeNode = Instantiate(runtimeAddCharacterPrefab);
+			}
+			else if (node is StoryBackgroundNode)
+			{
+				runtimeNode = getNodePrefabInternal<UGUIBackground>();
+				if (runtimeNode == null)
+					runtimeNode = Instantiate(runtimeBackgroundPrefab);
+			}
+			else if (node is StoryBgmNode)
+			{
+				runtimeNode = getNodePrefabInternal<UGUIBgm>();
+				if (runtimeNode == null)
+					runtimeNode = Instantiate(runtimeBgmPrefab);
+			}
+			else if (node is StoryDeleteCharacterNode)
+			{
+				runtimeNode = getNodePrefabInternal<UGUIDeleteCharacter>();
+				if (runtimeNode == null)
+					runtimeNode = Instantiate(runtimeDeleteCharacterPrefab);
+			}
+			else if (node is StoryExitGameNode)
+			{
+				runtimeNode = getNodePrefabInternal<UGUIExitGame>();
+				if (runtimeNode == null)
+					runtimeNode = Instantiate(runtimeExitGamePrefab);
+			}
+			else if (node is StoryMessageNode)
+			{
+				runtimeNode = getNodePrefabInternal<UGUIMessage>();
+				if (runtimeNode == null)
+					runtimeNode = Instantiate(runtimeMessagePrefab);
+			}
+			else if (node is StoryNextChapterNode)
+			{
+				runtimeNode = getNodePrefabInternal<UGUINextChapter>();
+				if (runtimeNode == null)
+					runtimeNode = Instantiate(runtimeNextChapterPrefab);
+			}
+			else if (node is StorySpeakAsideNode)
+			{
+				runtimeNode = getNodePrefabInternal<UGUISpeakAside>();
+				if (runtimeNode == null)
+					runtimeNode = Instantiate(runtimeSpeakAsidePrefab);
+			}
+			else if (node is StorySpeakNode)
+			{
+				runtimeNode = getNodePrefabInternal<UGUISpeak>();
+				if (runtimeNode == null)
+					runtimeNode = Instantiate(runtimeSpeakPrefab);
+			}
+			else if (node is StoryVideoNode)
+			{
+				runtimeNode = getNodePrefabInternal<UGUIVideo>();
+				if (runtimeNode == null)
+					runtimeNode = Instantiate(runtimeVideoPrefab);
+			}
+
+			return runtimeNode;
+		}
+
+		private void recycleNodePrefab(UGUIBaseNode runtimeNode)
+        {
+			runtimeNode.OnRecycle();
+			runtimeNode.SetActive(false);
+			nodes.Remove(runtimeNode);
+			nodesPool.Add(runtimeNode);
+        }
 
 		public void Refresh() {
 			Clear();
@@ -194,7 +286,8 @@ namespace XNode.Story
 
 		public void Clear() {
 			for (int i = nodes.Count - 1; i >= 0; i--) {
-				Destroy(nodes[i].gameObject);
+				//Destroy(nodes[i].gameObject);
+				recycleNodePrefab(nodes[i]);
 			}
 			nodes.Clear();
 		}
@@ -206,52 +299,12 @@ namespace XNode.Story
 			for (int i = 0; i < graph.nodes.Count; i++) {
 				Node node = graph.nodes[i];
 				
-
-				UGUIBaseNode runtimeNode = null;
-				if (node is StoryAddCharacterNode) 
-				{
-					runtimeNode = Instantiate(runtimeAddCharacterPrefab);
-				} 
-				else if (node is StoryBackgroundNode) 
-				{
-					runtimeNode = Instantiate(runtimeBackgroundPrefab);
-				}
-				else if (node is StoryBgmNode)
-				{
-					runtimeNode = Instantiate(runtimeBgmPrefab);
-				}
-				else if (node is StoryDeleteCharacterNode) 
-				{
-					runtimeNode = Instantiate(runtimeDeleteCharacterPrefab);
-				}
-				else if (node is StoryExitGameNode)
-				{
-					runtimeNode = Instantiate(runtimeExitGamePrefab);
-				}
-				else if (node is StoryMessageNode)
-				{
-					runtimeNode = Instantiate(runtimeMessagePrefab);
-				}
-				else if (node is StoryNextChapterNode)
-				{
-					runtimeNode = Instantiate(runtimeNextChapterPrefab);
-				}
-				else if (node is StorySpeakAsideNode)
-				{
-					runtimeNode = Instantiate(runtimeSpeakAsidePrefab);
-				}
-				else if (node is StorySpeakNode)
-				{
-					runtimeNode = Instantiate(runtimeSpeakPrefab);
-				}
-				else if (node is StoryVideoNode)
-				{
-					runtimeNode = Instantiate(runtimeVideoPrefab);
-				}
-				
+				UGUIBaseNode runtimeNode = getNodePrefab(node);
+				runtimeNode.SetActive(true);
 				runtimeNode.transform.SetParent(scrollRect.content);
 				runtimeNode.node = node as StoryBaseNode;
 				runtimeNode.graph = this;
+				runtimeNode.OnCreate();
 				nodes.Add(runtimeNode);
 			}
 		}

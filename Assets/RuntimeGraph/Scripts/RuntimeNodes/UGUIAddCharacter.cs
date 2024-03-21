@@ -27,6 +27,14 @@ namespace XNode.Story
 			UpdateGUI();
 		}
 
+		public override void OnCreate()
+		{
+			base.OnCreate();
+
+			addCharacterNode = node as StoryAddCharacterNode;
+			UpdateGUI();
+		}
+
 		public override void UpdateGUI() {
 			
 			ID.text = addCharacterNode.ID;

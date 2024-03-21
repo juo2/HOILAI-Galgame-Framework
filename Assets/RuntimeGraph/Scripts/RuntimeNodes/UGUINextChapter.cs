@@ -17,13 +17,16 @@ namespace XNode.Story
 			UpdateGUI();
 		}
 
+		public override void OnCreate()
+		{
+			base.OnCreate();
+			nextChapterNode = node as StoryNextChapterNode;
+
+			UpdateGUI();
+		}
+
 		public override void UpdateGUI() {
-			NodePort portX = node.GetInputPort("x");
-			NodePort portY = node.GetInputPort("y");
-			NodePort portZ = node.GetInputPort("z");
-			//ID.gameObject.SetActive(!portX.IsConnected);
-			//image.gameObject.SetActive(!portY.IsConnected);
-			//p_name.gameObject.SetActive(!portZ.IsConnected);
+
 		}
 	}
 }

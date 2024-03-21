@@ -29,12 +29,13 @@ namespace XNode.Story
 			fieldName = name;
 		}
 
-		private void OnDestroy() {
+		public void OnRecycle() {
 			// Also destroy connections
 			for (int i = connections.Count - 1; i >= 0; i--) {
 				Destroy(connections[i].gameObject);
 			}
 			connections.Clear();
+			port = null;
 		}
 
 		public void UpdateConnectionTransforms() {

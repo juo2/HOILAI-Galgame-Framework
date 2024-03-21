@@ -26,7 +26,6 @@ namespace XNode.Story
 
 		public override void Start() {
 			base.Start();
-			speakNode = node as StorySpeakNode;
 
 			IDBtn.onClick.AddListener(OnChangeID);
 			imageBtn.onClick.AddListener(OnChangeImage);
@@ -38,6 +37,7 @@ namespace XNode.Story
 			opt4.onValueChanged.AddListener(OnChangeOpt4);
 			isJump.onValueChanged.AddListener(OnChangeJump);
 
+			speakNode = node as StorySpeakNode;
 			Invoke("startPanel", 0.5f);
 			UpdateGUI();
 		}
@@ -45,6 +45,14 @@ namespace XNode.Story
 		void startPanel()
         {
 			panel.SetActive(speakNode.isJump);
+		}
+
+        public override void OnCreate()
+        {
+            base.OnCreate();
+			speakNode = node as StorySpeakNode;
+			Invoke("startPanel", 0.5f);
+			UpdateGUI();
 		}
 
         public override void UpdateGUI() {

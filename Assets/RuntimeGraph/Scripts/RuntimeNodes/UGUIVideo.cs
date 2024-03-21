@@ -21,6 +21,14 @@ namespace XNode.Story
 			UpdateGUI();
 		}
 
+		public override void OnCreate()
+		{
+			base.OnCreate();
+			videoNode = node as StoryVideoNode;
+
+			UpdateGUI();
+		}
+
 		public override void UpdateGUI() {
 
 			if (string.IsNullOrEmpty(videoNode.video))

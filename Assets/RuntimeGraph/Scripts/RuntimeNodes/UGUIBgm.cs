@@ -21,6 +21,13 @@ namespace XNode.Story
 			UpdateGUI();
 		}
 
+		public override void OnCreate()
+		{
+			base.OnCreate();
+			bgmNode = node as StoryBgmNode;
+			UpdateGUI();
+		}
+
 		public override void UpdateGUI() {
 			
 			if (string.IsNullOrEmpty(bgmNode.bgm))

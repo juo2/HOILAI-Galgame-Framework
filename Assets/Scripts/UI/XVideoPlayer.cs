@@ -181,11 +181,11 @@ public class XVideoPlayer : MonoBehaviour
         else if (videoPlayer)
             videoPlayer.enabled = true;
 
-#if UNITY_WEBGL
-        AutoPlayVideo();
-#else
+//#if UNITY_WEBGL
+//        AutoPlayVideo();
+//#else
         RefreshSource();
-#endif
+//#endif
 
     }
 

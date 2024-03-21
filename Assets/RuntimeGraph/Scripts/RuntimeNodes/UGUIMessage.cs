@@ -29,6 +29,14 @@ namespace XNode.Story
 			UpdateGUI();
 		}
 
+		public override void OnCreate()
+		{
+			base.OnCreate();
+			messageNode = node as StoryMessageNode;
+
+			UpdateGUI();
+		}
+
 		public override void UpdateGUI() {
 			//imageBtn.label = messageNode.image;
 			opt1.text = messageNode.opt1;
