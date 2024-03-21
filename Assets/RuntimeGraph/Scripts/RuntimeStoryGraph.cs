@@ -49,7 +49,6 @@ namespace XNode.Story
 		public MessageBox messageBox;
 
 		public ConfigChoice configChoice;
-
 		private void Start() {
 
 			configChoice.SetActive(false);

@@ -68,11 +68,11 @@ public class XVideoPlayer : MonoBehaviour
             lastFileName = m_FilePath;
             m_FilePath = value;
 
-#if UNITY_WEBGL
-            AutoPlayVideo();
-#else
+//#if UNITY_WEBGL
+//            AutoPlayVideo();
+//#else
             RefreshSource();
-#endif
+//#endif
         }
     }
 

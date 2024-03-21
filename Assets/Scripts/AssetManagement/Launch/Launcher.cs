@@ -67,7 +67,9 @@ public partial class Launcher : MonoBehaviour
 
         LauncherJugglery.Destroy();
 
+#if !XConfigMode
         InitTempCamera();
+#endif
 
         DefaultLoaderGUI.Open();
         XLogger.INFO_Format("DefaultLoaderGUI.Open end");

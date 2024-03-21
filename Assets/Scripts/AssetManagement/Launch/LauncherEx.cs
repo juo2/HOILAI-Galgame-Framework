@@ -84,6 +84,7 @@ public partial class Launcher : MonoBehaviour
         DefaultLoaderGUI.Close();
 
 #if XConfigMode
+        XGUI.XCamera.guiCamera = Camera.main;
         GameObject runtimeNodeGo = GameObject.Find("RuntimeNodeGraph");
         runtimeNodeGo.SetActive(true);
 #else

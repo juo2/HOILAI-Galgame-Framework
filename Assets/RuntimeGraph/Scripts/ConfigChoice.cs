@@ -17,6 +17,7 @@ public class ConfigChoice : MonoBehaviour
 
     public XListView listView;
     public Button closeBtn;
+    public UGUIVideoPlayer videoPlayer;
 
     public enum ConfigType
     {
@@ -138,7 +139,8 @@ public class ConfigChoice : MonoBehaviour
         else if (configType == ConfigType.Video)
         {
             string name = configList[listItem.index];
-            configItem.RefreshVideo(name, callBack, this);
+            string tmpName = name.Replace(".bytes", ".mp4");
+            configItem.RefreshVideo(tmpName, callBack, this);
         }
     }
 
