@@ -205,7 +205,7 @@ public class XAssetManifest : ScriptableObject, ISerializationCallbackReceiver
 
         foreach(var bundleName in m_AssetBundleNames)
         {
-            if(bundleName.Contains("single") && !bundleName.Contains("prefab"))
+            if(bundleName.Contains("_single_") && !bundleName.Contains("prefab"))
             {
                 int ormName = m_AssetBundleOrmName[bundleName];
 
