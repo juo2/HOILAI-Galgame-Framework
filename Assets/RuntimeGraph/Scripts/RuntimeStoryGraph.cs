@@ -103,7 +103,31 @@ namespace XNode.Story
 		public void ShowImage(UnityAction<string> action)
         {
 			var configImageList = AssetManagement.AssetManager.Instance.GetConfigImages();
-			configChoice.OnShow(configImageList, action);
+			configChoice.OnShowImage(configImageList, action);
+		}
+
+		public void ShowCharacter(UnityAction<string> action)
+        {
+			var characterImageList = FindAllCharacter();
+			configChoice.OnShowCharacter(characterImageList, action);
+		}
+
+		public void ShowAudio(UnityAction<string> action)
+		{
+			var configImageList = AssetManagement.AssetManager.Instance.GetConfigImages();
+			configChoice.OnShowImage(configImageList, action);
+		}
+
+		public void ShowVideo(UnityAction<string> action)
+		{
+			var configImageList = AssetManagement.AssetManager.Instance.GetConfigImages();
+			configChoice.OnShowImage(configImageList, action);
+		}
+
+		public void ShowBgm(UnityAction<string> action)
+		{
+			var configImageList = AssetManagement.AssetManager.Instance.GetConfigImages();
+			configChoice.OnShowImage(configImageList, action);
 		}
 
 		IEnumerator SyncNpcInfoCoroutine(string xmlString)
@@ -139,6 +163,30 @@ namespace XNode.Story
 				}
 			}
 		}
+
+		public List<ConfigChoice.CharacterImage> FindAllCharacter()
+        {
+			List<ConfigChoice.CharacterImage> tupleList = new List<ConfigChoice.CharacterImage>();
+			foreach (var node in nodes)
+            {
+				if (node.node is StoryAddCharacterNode)
+                {
+					StoryAddCharacterNode addNode = node.node as StoryAddCharacterNode;
+					if (!string.IsNullOrEmpty(addNode.ID))
+                    {
+						ConfigChoice.CharacterImage characterImage = new ConfigChoice.CharacterImage();
+						characterImage.ID = addNode.ID;
+						characterImage.imageName = addNode.image;
+
+						tupleList.Add(characterImage);
+					}
+				}
+			}
+
+			return tupleList;
+
+		}
+
 
 		public void Refresh() {
 			Clear();

@@ -21,10 +21,10 @@ public partial class Launcher : MonoBehaviour
         assetBundleMode = true;
 #else
         UnityEditor.EditorPrefs.GetBool("QuickMenuKey_LaunchGameAssetBundle", false);
+        checkUpdate = UnityEditor.EditorPrefs.GetBool("QuickMenuKey_LaunchGameUpdate", true);
 #endif
         assetBundleModeLocalCode = UnityEditor.EditorPrefs.GetBool("QuickMenuKey_LaunchGameAssetBundleLocalCode", false);
         assetRecordMode = UnityEditor.EditorPrefs.GetBool("QuickMenuKey_LaunchGameRecordAssets", false);
-        checkUpdate = UnityEditor.EditorPrefs.GetBool("QuickMenuKey_LaunchGameUpdate", true);
 
         //LuaLoader.assetBundleModeLocalCode = assetBundleModeLocalCode;
 #else

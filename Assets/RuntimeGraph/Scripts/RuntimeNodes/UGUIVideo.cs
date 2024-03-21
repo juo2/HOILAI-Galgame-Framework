@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using XGUI;
 using XNode.Examples.MathNodes;
 
 namespace XNode.Story
 {
 	public class UGUIVideo : UGUIBaseNode {
 		
-		public InputField video;
+		public XButton videoBtn;
 
 		private StoryVideoNode videoNode;
 
@@ -16,23 +17,28 @@ namespace XNode.Story
 			base.Start();
 			videoNode = node as StoryVideoNode;
 
-			video.onValueChanged.AddListener(OnChangeVideo);
+			videoBtn.onClick.AddListener(OnChangeVideo);
 			UpdateGUI();
 		}
 
 		public override void UpdateGUI() {
-			NodePort portX = node.GetInputPort("x");
-			NodePort portY = node.GetInputPort("y");
-			NodePort portZ = node.GetInputPort("z");
-			//ID.gameObject.SetActive(!portX.IsConnected);
-			//image.gameObject.SetActive(!portY.IsConnected);
-			//p_name.gameObject.SetActive(!portZ.IsConnected);
 
-			video.text = videoNode.video;
+			if (string.IsNullOrEmpty(videoNode.video))
+			{
+				videoBtn.label = "please select bgm";
+			}
+			else
+			{
+				videoBtn.label = videoNode.video;
+			}
 		}
 
-		private void OnChangeVideo(string val) {
-			videoNode.video = video.text;
+		private void OnChangeVideo() {
+			graph.ShowVideo((string _video) =>
+			{
+				videoNode.video = _video;
+				videoBtn.label = _video;
+			});
 		}
 
 	}

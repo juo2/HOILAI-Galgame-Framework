@@ -8,10 +8,10 @@ namespace XNode.Story
 {
 	public class UGUISpeak : UGUIBaseNode {
 		
-		public InputField ID;
+		public XButton IDBtn;
 		public XButton imageBtn;
 		public InputField content;
-		public InputField p_audio;
+		public XButton audioBtn;
 
 		public Toggle isJump;
 
@@ -28,10 +28,10 @@ namespace XNode.Story
 			base.Start();
 			speakNode = node as StorySpeakNode;
 
-			ID.onValueChanged.AddListener(OnChangeID);
+			IDBtn.onClick.AddListener(OnChangeID);
 			imageBtn.onClick.AddListener(OnChangeImage);
 			content.onValueChanged.AddListener(OnChangeContent);
-			p_audio.onValueChanged.AddListener(OnChangeAudio);
+			audioBtn.onClick.AddListener(OnChangeAudio);
 			opt1.onValueChanged.AddListener(OnChangeOpt1);
 			opt2.onValueChanged.AddListener(OnChangeOpt2);
 			opt3.onValueChanged.AddListener(OnChangeOpt3);
@@ -49,9 +49,8 @@ namespace XNode.Story
 
         public override void UpdateGUI() {
 			
-			ID.text = speakNode.ID;
+			//ID.text = speakNode.ID;
 			content.text = speakNode.content;
-			p_audio.text = speakNode.audio;
 			opt1.text = speakNode.opt1;
 			opt2.text = speakNode.opt2;
 			opt3.text = speakNode.opt3;
@@ -66,10 +65,34 @@ namespace XNode.Story
 			{
 				imageBtn.label = speakNode.image;
 			}
+
+			if (string.IsNullOrEmpty(speakNode.ID))
+			{
+				IDBtn.label = "please select id";
+			}
+			else
+			{
+				IDBtn.label = speakNode.ID;
+			}
+
+			if (string.IsNullOrEmpty(speakNode.audio))
+			{
+				audioBtn.label = "please select audio";
+			}
+			else
+			{
+				audioBtn.label = speakNode.audio;
+			}
 		}
 
-		private void OnChangeID(string val) {
-			speakNode.ID = ID.text;
+		private void OnChangeID() {
+
+			graph.ShowCharacter((string _id) => 
+			{ 
+				speakNode.ID = _id;
+				IDBtn.label = _id;
+			});
+
 		}
 
 		private void OnChangeImage() {
@@ -84,9 +107,13 @@ namespace XNode.Story
 			speakNode.content = content.text;
 		}
 
-		private void OnChangeAudio(string val)
+		private void OnChangeAudio()
 		{
-			speakNode.audio = p_audio.text;
+			graph.ShowVideo((string audio) =>
+			{
+				speakNode.audio = audio;
+				audioBtn.label = audio;
+			});
 		}
 
 		private void OnChangeJump(bool _isJump)

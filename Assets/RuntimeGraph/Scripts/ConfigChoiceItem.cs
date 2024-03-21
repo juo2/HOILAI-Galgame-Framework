@@ -7,11 +7,16 @@ using XGUI;
 
 public class ConfigChoiceItem : MonoBehaviour
 {
-    public XImage image;
+    public XImage ximage;
+    public Image image;
     public Text label;
     public XButton button;
+    public XButton musicBtn;
+    public XButton videoBtn;
+
     UnityAction<string> callBack;
     ConfigChoice configChoice;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,11 +27,40 @@ public class ConfigChoiceItem : MonoBehaviour
         });
     }
 
-    public void Refresh(string imageName,UnityAction<string> action,ConfigChoice _configChoice)
+    public void RefreshImage(string imageName,UnityAction<string> action,ConfigChoice _configChoice)
     {
+        ximage.SetActive(true);
+        image.SetActive(false);
+        musicBtn.SetActive(false);
+        videoBtn.SetActive(false);
+
         callBack = action;
-        image.spriteAssetName = imageName;
+        ximage.spriteAssetName = imageName;
         label.text = imageName;
+
+        configChoice = _configChoice;
+    }
+
+    public void RefreshCharacter(string id,string imageName, UnityAction<string> action, ConfigChoice _configChoice)
+    {
+        musicBtn.SetActive(false);
+        videoBtn.SetActive(false);
+
+        callBack = action;
+
+        if (!string.IsNullOrEmpty(imageName))
+        {
+            ximage.SetActive(true);
+            image.SetActive(false);
+            ximage.spriteAssetName = imageName;
+        }
+        else
+        {
+            ximage.SetActive(false);
+            image.SetActive(true);
+        }
+
+        label.text = id;
 
         configChoice = _configChoice;
     }

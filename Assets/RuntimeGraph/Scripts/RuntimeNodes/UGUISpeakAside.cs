@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using XGUI;
 using XNode.Examples.MathNodes;
 
 namespace XNode.Story
@@ -9,7 +10,7 @@ namespace XNode.Story
 	public class UGUISpeakAside : UGUIBaseNode {
 		
 		public InputField content;
-		public InputField p_audio;
+		public XButton audioBtn;
 
 		private StorySpeakAsideNode speakAsideNode;
 
@@ -18,28 +19,35 @@ namespace XNode.Story
 			speakAsideNode = node as StorySpeakAsideNode;
 
 			content.onValueChanged.AddListener(OnChangeContent);
-			p_audio.onValueChanged.AddListener(OnChangeAudio);
+			audioBtn.onClick.AddListener(OnChangeAudio);
 			UpdateGUI();
 		}
 
 		public override void UpdateGUI() {
-			NodePort portX = node.GetInputPort("x");
-			NodePort portY = node.GetInputPort("y");
-			NodePort portZ = node.GetInputPort("z");
-			//ID.gameObject.SetActive(!portX.IsConnected);
-			//image.gameObject.SetActive(!portY.IsConnected);
-			//p_name.gameObject.SetActive(!portZ.IsConnected);
-
+			
 			content.text = speakAsideNode.content;
-			p_audio.text = speakAsideNode.audio;
+
+			if (string.IsNullOrEmpty(speakAsideNode.audio))
+			{
+				audioBtn.label = "please select audio";
+			}
+			else
+			{
+				audioBtn.label = speakAsideNode.audio;
+			}
 		}
 
 		private void OnChangeContent(string val) {
 			speakAsideNode.content = content.text;
 		}
 
-		private void OnChangeAudio(string val) {
-			speakAsideNode.audio = p_audio.text;
+		private void OnChangeAudio() {
+
+			graph.ShowVideo((string audio) =>
+			{
+				speakAsideNode.audio = audio;
+				audioBtn.label = audio;
+			});
 		}
 
 	}

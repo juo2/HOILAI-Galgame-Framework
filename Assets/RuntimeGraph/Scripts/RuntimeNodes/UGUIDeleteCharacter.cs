@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using XGUI;
 using XNode.Examples.MathNodes;
 
 namespace XNode.Story
 {
 	public class UGUIDeleteCharacter : UGUIBaseNode {
 		
-		public InputField ID;
+		public XButton IDBtn;
 
 		private StoryDeleteCharacterNode deleteCharacterNode;
 
@@ -16,16 +17,27 @@ namespace XNode.Story
 			base.Start();
 			deleteCharacterNode = node as StoryDeleteCharacterNode;
 
-			ID.onValueChanged.AddListener(OnChangeID);
+			IDBtn.onClick.AddListener(OnChangeID);
 			UpdateGUI();
 		}
 
 		public override void UpdateGUI() {
-			ID.text = deleteCharacterNode.ToString();
+			if (string.IsNullOrEmpty(deleteCharacterNode.ID))
+			{
+				IDBtn.label = "please select id";
+			}
+			else
+			{
+				IDBtn.label = deleteCharacterNode.ID;
+			}
 		}
 
-		private void OnChangeID(string val) {
-			deleteCharacterNode.ID = ID.text;
+		private void OnChangeID() {
+			graph.ShowCharacter((string _id) =>
+			{
+				deleteCharacterNode.ID = _id;
+				IDBtn.label = _id;
+			});
 		}
 
 	}
