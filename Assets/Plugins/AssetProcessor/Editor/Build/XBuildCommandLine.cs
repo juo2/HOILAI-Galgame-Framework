@@ -29,6 +29,55 @@ public class XBuildCommandLine
         EditorApplication.ExecuteMenuItem("XLua/Generate Code");
     }
 
+    // 用于确定文件是否为支持的资源类型
+    private static bool IsSupportedType(string filePath)
+    {
+        // 示例：仅导入图片和模型文件
+        // 可以根据需要调整条件
+        string extension = Path.GetExtension(filePath).ToLower();
+        switch (extension)
+        {
+            case ".png":
+            case ".jpg":
+            case ".jpeg":
+            case ".tga":
+            case ".fbx":
+            case ".obj":
+                return true;
+            default:
+                return false;
+        }
+    }
+
+
+    //[MenuItem("Tools/Reimport Directory")]
+    public static void BuildReImport()
+    {
+        ImportDirectory(Path.Combine(Application.dataPath, "GUI/Modules/wyyglzj/Images/Single"));
+    }
+
+    private static void ImportDirectory(string path)
+    {
+        // 获取目录下的所有文件（包括子目录中的文件）
+        string[] files = Directory.GetFiles(path, "*.*", SearchOption.AllDirectories);
+
+        foreach (string file in files)
+        {
+            // 将绝对路径转换为相对于项目的Assets目录的路径
+            string assetPath = file.Replace("\\", "/").Replace(Application.dataPath, "Assets");
+
+            // 可以在这里添加更多的过滤条件，比如只导入特定类型的文件
+            if (IsSupportedType(assetPath))
+            {
+                // 导入资产
+                AssetDatabase.ImportAsset(assetPath, ImportAssetOptions.Default);
+                Debug.Log($"Reimported: {assetPath}");
+            }
+        }
+
+        // 刷新AssetDatabase以确保所有变更都已应用
+        AssetDatabase.Refresh();
+    }
 
     public static void BuildDevProject()
     {
