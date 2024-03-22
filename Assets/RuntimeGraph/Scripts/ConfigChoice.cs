@@ -13,12 +13,14 @@ public class ConfigChoice : MonoBehaviour
     Dictionary<int, ConfigChoiceItem> imageChoiceList = new Dictionary<int, ConfigChoiceItem>();
 
     List<string> configList = new List<string>();
+    List<string> originConfigList = new List<string>();
     List<CharacterImage> characterImageList = new List<CharacterImage>();
 
     public XListView listView;
     public Button closeBtn;
     public UGUIVideoPlayer videoPlayer;
-
+    public InputField sreachInput;
+    public Button searchBtn;
     public enum ConfigType
     {
         Image,
@@ -48,21 +50,51 @@ public class ConfigChoice : MonoBehaviour
             XAudioManager.instance.StopBgmMusic();
             gameObject.SetActive(false);
         });
+
+        searchBtn.onClick.AddListener(() => 
+        {
+            this.configList = filter(this.originConfigList);
+            listView.dataCount = configList.Count;
+            listView.ForceRefresh();
+        });
+
+    }
+
+    public List<string> filter(List<string> configList)
+    {
+        List<string> returnList = new List<string>();
+
+        foreach(var config in configList)
+        {
+            if (config.Contains(sreachInput.text))
+            {
+                returnList.Add(config);
+            }
+        }
+
+        return returnList;
     }
 
     public void OnShowImage(List<string> configList,UnityAction<string> action)
     {
+        sreachInput.SetActive(true);
+        sreachInput.text = "";
+
         configType = ConfigType.Image;
         gameObject.SetActive(true);
         callBack = action;
 
         this.configList = configList;
+        this.originConfigList = this.configList;
+
         listView.dataCount = this.configList.Count;
         listView.ForceRefresh();
     }
 
     public void OnShowCharacter(List<CharacterImage> _characterImageList, UnityAction<string> action)
     {
+        sreachInput.SetActive(false);
+
         configType = ConfigType.Character;
         gameObject.SetActive(true);
         callBack = action;
@@ -74,33 +106,48 @@ public class ConfigChoice : MonoBehaviour
 
     public void OnShowAudio(List<string> configList, UnityAction<string> action)
     {
+        sreachInput.SetActive(true);
+        sreachInput.text = "";
+
         configType = ConfigType.Audio;
         gameObject.SetActive(true);
         callBack = action;
 
         this.configList = configList;
+        this.originConfigList = this.configList;
+
         listView.dataCount = this.configList.Count;
         listView.ForceRefresh();
     }
 
     public void OnShowBgm(List<string> configList, UnityAction<string> action)
     {
+        sreachInput.SetActive(true);
+        sreachInput.text = "";
+
         configType = ConfigType.Bgm;
         gameObject.SetActive(true);
         callBack = action;
 
         this.configList = configList;
+        this.originConfigList = this.configList;
+
         listView.dataCount = this.configList.Count;
         listView.ForceRefresh();
     }
 
     public void OnShowVideo(List<string> configList, UnityAction<string> action)
     {
+        sreachInput.SetActive(true);
+        sreachInput.text = "";
+
         configType = ConfigType.Video;
         gameObject.SetActive(true);
         callBack = action;
 
         this.configList = configList;
+        this.originConfigList = this.configList;
+
         listView.dataCount = this.configList.Count;
         listView.ForceRefresh();
     }
