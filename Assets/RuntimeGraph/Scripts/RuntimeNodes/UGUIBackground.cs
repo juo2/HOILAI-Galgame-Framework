@@ -42,7 +42,14 @@ namespace XNode.Story
 			graph.ShowImage((string _imageName) =>
 			{
 				backgroundNode.background = _imageName;
-				BGBtn.label = _imageName;
+				if (string.IsNullOrEmpty(_imageName))
+				{
+					BGBtn.label = "please select image";
+				}
+				else
+				{
+					BGBtn.label = _imageName;
+				}
 			});
 		}
 		

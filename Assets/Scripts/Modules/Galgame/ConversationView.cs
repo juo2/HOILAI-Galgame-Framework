@@ -1,16 +1,12 @@
-using AssetManagement;
 using Common.Game;
 using NativeWebSocket;
 using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Xml.Linq;
 using TetraCreations.Attributes;
 using UnityEngine;
 using UnityEngine.Networking;
-using UnityEngine.UI;
 using XGUI;
 using XModules.Data;
 using XModules.Proxy;
@@ -18,7 +14,7 @@ using static XModules.Data.ConversationData;
 
 namespace XModules.GalManager
 {
-    public class ConversationView : XBaseView
+    public partial class ConversationView : XBaseView
     {
         //旁白
         public GalManager_AsideText Gal_AsideText;
@@ -84,7 +80,6 @@ namespace XModules.GalManager
                 }
                 Button_Click_Message();
             });
-
             
 
             ButtonReturn.onClick.AddListener(() => {
@@ -237,84 +232,7 @@ namespace XModules.GalManager
             character_img.SetActive(false);
         }
 
-        public void OneShotChat()
-        {
-            Debug.Log("Enter OneShotChat------------------------------");
-            string textContent = "";
-            foreach (var history in ConversationData.GetHistoryContentList())
-            {
-                textContent = textContent + $"{history.speaker}:{ history.content } { history.optContent}";
-            }
-
-            string options = "";
-            for (int i = 0; i < PlotData.ChoiceTextList.Count; i++)
-            {
-                var choice = PlotData.ChoiceTextList[i];
-                options = $"{options}{i}:{choice.Title}";
-            }
-
-            string json = DataManager.getWebStreamSocketRequest(textContent, ConversationData.tempInputMessage, options);
-
-            SendMessageWebSocket(json);
-
-            ChoiceComplete();
-            
-            character_img.SetActive(true);
-            var content = ConversationData.tempInputMessage;
-            character_img.SetImage(ConversationData.SelfCharacterInfo.image);
-             Gal_SelfText.SetActive(true);
-
-            Gal_SelfText.StartTextContent(content, ConversationData.SelfCharacterInfo.name);
-
-            //下一步
-            MessageTouchBack.SetActive(true);
-        }
-        
-        void Button_Click_isRequestChating()
-        {
-            Debug.Log("Enter Button_Click_isRequestChating------------------------------");
-
-            character_img.SetActive(true);
-            character_img.SetImage(ConversationData.TempNpcCharacterInfo.image);
-
-            Gal_OtherText.SetActive(true);
-            Gal_OtherText.StartTextContent("............", ConversationData.TempNpcCharacterInfo.name);
-
-            SendCharMessage(ConversationData.TempNpcCharacterInfo.characterID, "", ConversationData.TempNpcCharacterInfo.isSelf);
-        }
-
-        void Button_Click_Message()
-        {
-            Debug.Log("Enter Button_Click_Message------------------------------");
-            //string content = DataManager.getNpcResponse();
-
-            character_img.SetActive(true);
-            character_img.SetImage(ConversationData.TempNpcCharacterInfo.image);
-
-            Gal_OtherText.SetActive(true);
-            Gal_OtherText.StreamTextContent(ConversationData.TempNpcCharacterInfo.name);
-
-            SendCharMessage(ConversationData.TempNpcCharacterInfo.characterID, "", ConversationData.TempNpcCharacterInfo.isSelf);
-
-            //AddHistoryContent(ConversationData.TempNpcCharacterInfo.characterID, ConversationData.TempNpcCharacterInfo.name, "");
-            //MessageTouchBack.SetActive(false);
-        }
-
-        void StreamFinish()
-        {
-            int oneShotSelect = getOneShotChatSelect();
-
-            Struct_PlotData.Struct_Choice choice = PlotData.ChoiceTextList[oneShotSelect];
-
-            //回归主线
-            PlotData.NextJumpID = choice.JumpID;
-
-            ConversationData.IsCanJump = true;
-
-            MessageTouchBack.SetActive(false);
-            DisableWebSocket();
-        }
-
+       
         /// <summary>
         /// 点击屏幕 下一句
         /// </summary>
@@ -385,11 +303,39 @@ namespace XModules.GalManager
 
                         break;
                     }
+                case "MessageLoop": //哄哄模拟器
+                    {
+                        currentLoop = 0;
+
+                        if (PlotData.NowPlotDataNode.Attributes("CharacterImage").Count() != 0)
+                            SelfCharacterInfo.image = PlotData.NowPlotDataNode.Attribute("CharacterImage").Value;
+
+                        int loop = int.Parse(PlotData.NowPlotDataNode.Attribute("Loop").Value);
+                        int success = int.Parse(PlotData.NowPlotDataNode.Attribute("Succees").Value);
+                        int fail = int.Parse(PlotData.NowPlotDataNode.Attribute("Fail").Value);
+
+                        character_img.SetActive(true);
+                        character_img.SetImage(SelfCharacterInfo.image);
+
+                        ConversationData.IsCanJump = false;
+
+                        EnableWebSocket();
+                        Gal_Message.SetActive(true);
+                        Gal_Message.BeginMessageLoop(loop, success, fail);
+                        SendCharMessage("", "", true);
+
+                        PlotData.NextJumpID = int.Parse(PlotData.NowPlotDataNode.Attribute("JumpId").Value);
+
+                        break;
+                    }
                 case "Message": //有对话框选项
                     {
 
                         if (PlotData.NowPlotDataNode.Elements().Count() != 0) //有选项，因为他有子节点数目了
                         {
+                            if (PlotData.NowPlotDataNode.Attributes("CharacterImage").Count() != 0)
+                                SelfCharacterInfo.image = PlotData.NowPlotDataNode.Attribute("CharacterImage").Value;
+
                             character_img.SetActive(true);
                             character_img.SetImage(SelfCharacterInfo.image);
 
@@ -554,85 +500,5 @@ namespace XModules.GalManager
         {
             CharacterNum = PlotData.CharacterInfoList.Count;
         }
-
-        async void EnableWebSocket()
-        {
-            webSocketSteamContent = "";
-            cacheOutMessageList.Clear();
-            cacheIndex = 0;
-
-            string url = $"ws://119.91.133.26/chat/webStreamSocket/{ConversationData.TempNpcCharacterInfo.characterID}/{DataManager.getPlayerId()}";
-
-            Debug.Log($"url:{url}");
-
-            websocket = new WebSocket(url);
-
-            websocket.OnOpen += () =>
-            {
-                isConnecting = true;
-                Debug.Log("Connection open!");
-            };
-
-            websocket.OnError += (e) =>
-            {
-                isConnecting = false;
-                Debug.Log("Error! " + e);
-            };
-
-            websocket.OnClose += (e) =>
-            {
-                isConnecting = false;
-                Debug.Log("Connection closed!");
-            };
-
-            websocket.OnMessage += (bytes) =>
-            {
-                ConversationData.isRequestChating = false;
-                var message = System.Text.Encoding.UTF8.GetString(bytes);
-                Debug.Log("Received OnMessage! " + message);
-
-                cacheOutMessageList.Add(message);
-
-            };
-            Debug.Log("调用了websocket.Connect");
-            await websocket.Connect();
-        }
-
-        async void DisableWebSocket()
-        {
-            if (websocket == null)
-                return;
-
-            Debug.Log("调用了websocket.Close");
-            websocket.CancelConnection();
-            await websocket.Close();
-
-            websocket = null;
-        }
-
-        async void SendMessageWebSocket(string message)
-        {
-            if (websocket.State == WebSocketState.Open && isConnecting)
-            {
-                Debug.Log($"SendMessageWebSocket:{message}");
-                // 发送文本消息
-                await websocket.SendText(message);
-
-            }
-        }
-
-        void Update()
-        {
-#if !UNITY_WEBGL || UNITY_EDITOR
-            if (isConnecting && websocket != null)
-                websocket.DispatchMessageQueue();
-#endif
-        }
-
-        private void OnDestroy()
-        {
-            DisableWebSocket();
-        }
-
     }
 }

@@ -24,8 +24,16 @@ namespace XModules.GalManager
 
         Dictionary<int, GalComponent_Choice> galComponent_ChoiceDic;
 
-        WebSocket websocket = null;
-        bool isConnecting = false;
+        public InputType inputType = InputType.Choice;
+        public int loop = 0;
+        public int success = 0;
+        public int fail = 0;
+
+        public enum InputType
+        {
+            Choice,
+            Loop
+        }
 
         private void Awake ()
         {
@@ -38,12 +46,24 @@ namespace XModules.GalManager
             {
                 if (ConversationData.TempNpcCharacterInfo != null)
                 {
-                    ConversationData.tempInputMessage = inputField.text;
-                    ConversationData.isRequestChating = true;
+                    if (inputType == InputType.Choice)
+                    {
+                        
+                        ConversationData.tempInputMessage = inputField.text;
+                        ConversationData.isRequestChating = true;
 
-                    XEvent.EventDispatcher.DispatchEvent("ONESHOTCHAT");
+                        XEvent.EventDispatcher.DispatchEvent("ONESHOTCHAT");
 
-                    inputField.text = "";
+                        inputField.text = "";
+                    }
+                    else if (inputType == InputType.Loop)
+                    {
+
+                    }
+                }
+                else
+                {
+                    Debug.LogError("No TempNpcCharacterInfo!!!!!");
                 }
 
             });
@@ -71,19 +91,23 @@ namespace XModules.GalManager
         public void CreatNewChoice (List<Struct_Choice> choiceList)
         {
             inputField.text = "";
+            inputType = InputType.Choice;
             struct_Choices = choiceList;
             xListView.dataCount = choiceList.Count;
             xListView.ForceRefresh();
 
-            
             //var _ = GameObject_Choice;
             //_.GetComponent<GalComponent_Choice>().Init(JumpID, Title);
             //Instantiate(_, this.transform);
             //return;
         }
 
-        
-        
-
+        public void BeginMessageLoop(int loop,int success,int fail)
+        {
+            inputType = InputType.Loop;
+            this.loop = loop;
+            this.success = success;
+            this.fail = fail;
+        }
     }
 }

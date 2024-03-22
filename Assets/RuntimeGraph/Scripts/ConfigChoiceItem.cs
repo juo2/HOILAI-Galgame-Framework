@@ -50,8 +50,18 @@ public class ConfigChoiceItem : MonoBehaviour
         videoBtn.SetActive(false);
 
         callBack = action;
-        ximage.spriteAssetName = imageName;
-        label.text = imageName;
+
+        if(string.IsNullOrEmpty(imageName))
+        {
+            ximage.SetActive(false);
+            ximage.spriteAssetName = imageName;
+            label.text = "";
+        }
+        else
+        {
+            ximage.spriteAssetName = imageName;
+            label.text = imageName;
+        }
 
         configChoice = _configChoice;
     }
@@ -60,20 +70,21 @@ public class ConfigChoiceItem : MonoBehaviour
     {
         musicBtn.SetActive(false);
         videoBtn.SetActive(false);
+        ximage.SetActive(true);
 
         callBack = action;
 
         if (!string.IsNullOrEmpty(imageName))
         {
-            ximage.SetActive(true);
             image.SetActive(false);
-            ximage.spriteAssetName = imageName;
         }
         else
         {
             ximage.SetActive(false);
             image.SetActive(true);
         }
+
+        ximage.spriteAssetName = imageName;
 
         label.text = id;
 
@@ -90,8 +101,17 @@ public class ConfigChoiceItem : MonoBehaviour
         callBack = action;
         label.text = audioName;
 
-        m_audio = audioName;
+        if (string.IsNullOrEmpty(audioName))
+        {
+            musicBtn.SetActive(false);
+            label.text = "";
+        }
+        else
+        {
+            label.text = audioName;
+        }
 
+        m_audio = audioName;
         configChoice = _configChoice;
     }
 
@@ -103,7 +123,16 @@ public class ConfigChoiceItem : MonoBehaviour
         videoBtn.SetActive(false);
 
         callBack = action;
-        label.text = audioName;
+
+        if (string.IsNullOrEmpty(audioName))
+        {
+            musicBtn.SetActive(false);
+            label.text = "";
+        }
+        else
+        {
+            label.text = audioName;
+        }
         m_audio = audioName;
 
         configChoice = _configChoice;
@@ -117,7 +146,15 @@ public class ConfigChoiceItem : MonoBehaviour
         videoBtn.SetActive(true);
 
         callBack = action;
-        label.text = videoName;
+        if (string.IsNullOrEmpty(videoName))
+        {
+            videoBtn.SetActive(false);
+            label.text = "";
+        }
+        else
+        {
+            label.text = videoName;
+        }
 
         m_video = videoName;
 

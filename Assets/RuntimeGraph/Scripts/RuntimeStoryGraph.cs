@@ -25,6 +25,7 @@ namespace XNode.Story
 		public UGUIDeleteCharacter runtimeDeleteCharacterPrefab;
 		public UGUIExitGame runtimeExitGamePrefab;
 		public UGUIMessage runtimeMessagePrefab;
+		public UGUIMessageLoop runtimeMessageLoopPrefab;
 		public UGUINextChapter runtimeNextChapterPrefab;
 		public UGUISpeak runtimeSpeakPrefab;
 		public UGUISpeakAside runtimeSpeakAsidePrefab;
@@ -108,6 +109,7 @@ namespace XNode.Story
         {
 #if XConfigMode
 			var configImageList = AssetManagement.AssetManager.Instance.GetConfigImages();
+			configImageList.Insert(0, string.Empty);
 			configChoice.OnShowImage(configImageList, action);
 #endif
 		}
@@ -121,8 +123,9 @@ namespace XNode.Story
 		public void ShowAudio(UnityAction<string> action)
 		{
 #if XConfigMode
-
 			var configImageList = AssetManagement.AssetManager.Instance.GetConfigAudio();
+			configImageList.Insert(0, string.Empty);
+
 			configChoice.OnShowAudio(configImageList, action);
 #endif
 
@@ -133,6 +136,8 @@ namespace XNode.Story
 #if XConfigMode
 
 			var configImageList = AssetManagement.AssetManager.Instance.GetConfigBgm();
+			configImageList.Insert(0, string.Empty);
+
 			configChoice.OnShowBgm(configImageList, action);
 #endif
 
@@ -143,6 +148,8 @@ namespace XNode.Story
 #if XConfigMode
 
 			var configImageList = AssetManagement.AssetManager.Instance.GetConfigVideo();
+			configImageList.Insert(0, string.Empty);
+
 			configChoice.OnShowVideo(configImageList, action);
 #endif
 		}
@@ -255,6 +262,12 @@ namespace XNode.Story
 				runtimeNode = getNodePrefabInternal<UGUIMessage>();
 				if (runtimeNode == null)
 					runtimeNode = Instantiate(runtimeMessagePrefab);
+			}
+			else if (node is StoryMessageLoopNode)
+            {
+				runtimeNode = getNodePrefabInternal<UGUIMessageLoop>();
+				if (runtimeNode == null)
+					runtimeNode = Instantiate(runtimeMessageLoopPrefab);
 			}
 			else if (node is StoryNextChapterNode)
 			{

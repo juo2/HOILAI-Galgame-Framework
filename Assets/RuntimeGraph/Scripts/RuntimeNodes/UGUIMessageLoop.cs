@@ -7,42 +7,39 @@ using XNode.Examples.MathNodes;
 
 namespace XNode.Story
 {
-	public class UGUIMessage : UGUIBaseNode {
+	public class UGUIMessageLoop : UGUIBaseNode {
 		
 		public XButton imageBtn;
-		public InputField opt1;
-		public InputField opt2;
-		public InputField opt3;
-		public InputField opt4;
+		public InputField loop;
+		public InputField success;
+		public InputField fail;
 
-		private StoryMessageNode messageNode;
+		private StoryMessageLoopNode messageNode;
 
 		public override void Start() {
 			base.Start();
-			messageNode = node as StoryMessageNode;
+			messageNode = node as StoryMessageLoopNode;
 
 			imageBtn.onClick.AddListener(OnChangeImage);
-			opt1.onValueChanged.AddListener(OnChangeOpt1);
-			opt2.onValueChanged.AddListener(OnChangeOpt2);
-			opt3.onValueChanged.AddListener(OnChangeOpt3);
-			opt4.onValueChanged.AddListener(OnChangeOpt4);
+			loop.onValueChanged.AddListener(OnChangeLoop);
+			success.onValueChanged.AddListener(OnChangeSuccess);
+			fail.onValueChanged.AddListener(OnChangeFail);
 			UpdateGUI();
 		}
 
 		public override void OnCreate()
 		{
 			base.OnCreate();
-			messageNode = node as StoryMessageNode;
+			messageNode = node as StoryMessageLoopNode;
 
 			UpdateGUI();
 		}
 
 		public override void UpdateGUI() {
 			//imageBtn.label = messageNode.image;
-			opt1.text = messageNode.opt1;
-			opt2.text = messageNode.opt2;
-			opt3.text = messageNode.opt3;
-			opt4.text = messageNode.opt4;
+			loop.text = messageNode.loop;
+			success.text = messageNode.success;
+			fail.text = messageNode.fail;
 
 			if (string.IsNullOrEmpty(messageNode.image))
 			{
@@ -70,23 +67,18 @@ namespace XNode.Story
 			});
 		}
 
-		private void OnChangeOpt1(string val) {
-			messageNode.opt1 = opt1.text;
+		private void OnChangeLoop(string val) {
+			messageNode.loop = loop.text;
 		}
 
-		private void OnChangeOpt2(string val)
+		private void OnChangeSuccess(string val)
 		{
-			messageNode.opt2 = opt2.text;
+			messageNode.success = success.text;
 		}
 
-		private void OnChangeOpt3(string val)
+		private void OnChangeFail(string val)
 		{
-			messageNode.opt3 = opt3.text;
-		}
-
-		private void OnChangeOpt4(string val)
-		{
-			messageNode.opt4 = opt4.text;
+			messageNode.fail = fail.text;
 		}
 	}
 }

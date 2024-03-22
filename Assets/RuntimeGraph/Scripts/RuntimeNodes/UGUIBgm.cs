@@ -45,7 +45,14 @@ namespace XNode.Story
 			graph.ShowBgm((string _bgm) =>
 			{
 				bgmNode.bgm = _bgm;
-				BgmBtn.label = _bgm;
+				if (string.IsNullOrEmpty(_bgm))
+				{
+					BgmBtn.label = "please select bgm";
+				}
+				else
+				{
+					BgmBtn.label = _bgm;
+				}
 			});
 
 		}

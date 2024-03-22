@@ -107,7 +107,15 @@ namespace XNode.Story
 			graph.ShowImage((string _imageName) =>
 			{
 				speakNode.image = _imageName;
-				imageBtn.label = _imageName;
+
+				if (string.IsNullOrEmpty(_imageName))
+                {
+					imageBtn.label = "please select image";
+				}
+				else
+                {
+					imageBtn.label = _imageName;
+				}
 			});
 		}
 
@@ -120,7 +128,15 @@ namespace XNode.Story
 			graph.ShowAudio((string audio) =>
 			{
 				speakNode.audio = audio;
-				audioBtn.label = audio;
+
+				if (string.IsNullOrEmpty(audio))
+				{
+					audioBtn.label = "please select audio";
+				}
+				else
+				{
+					audioBtn.label = audio;
+				}
 			});
 		}
 

@@ -60,7 +60,14 @@ namespace XNode.Story
 			graph.ShowImage((string _imageName) => 
 			{
 				addCharacterNode.image = _imageName;
-				imageBtn.label = _imageName;
+				if (string.IsNullOrEmpty(_imageName))
+				{
+					imageBtn.label = "please select image";
+				}
+				else
+				{
+					imageBtn.label = _imageName;
+				}
 			});
 		}
 

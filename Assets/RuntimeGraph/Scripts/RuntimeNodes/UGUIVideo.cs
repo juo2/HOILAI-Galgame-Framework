@@ -45,7 +45,15 @@ namespace XNode.Story
 			graph.ShowVideo((string _video) =>
 			{
 				videoNode.video = _video;
-				videoBtn.label = _video;
+
+				if (string.IsNullOrEmpty(_video))
+				{
+					videoBtn.label = "please select video";
+				}
+				else
+				{
+					videoBtn.label = _video;
+				}
 			});
 		}
 

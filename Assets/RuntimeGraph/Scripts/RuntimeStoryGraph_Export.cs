@@ -224,6 +224,32 @@ namespace XNode.Story
             }
         }
 
+        public void MessageLoopXml(XmlDocument doc, XmlElement element, StoryEditorNode s_node)
+        {
+            if (s_node.baseNode is StoryMessageLoopNode)
+            {
+                StoryMessageLoopNode storyMessageNode = s_node.baseNode as StoryMessageLoopNode;
+
+                XmlElement speadxml = doc.CreateElement("MessageLoop");
+                speadxml.SetAttribute("NodeId", s_node.index.ToString());
+                speadxml.SetAttribute("Position", storyMessageNode.position.ToString());
+
+                if (!string.IsNullOrEmpty(storyMessageNode.image))
+                {
+                    speadxml.SetAttribute("CharacterImage", storyMessageNode.image);
+                }
+
+
+                speadxml.SetAttribute("Loop", storyMessageNode.loop);
+                speadxml.SetAttribute("Success", storyMessageNode.success);
+                speadxml.SetAttribute("Fail", storyMessageNode.fail);
+
+                findNextNodeXml(speadxml, s_node.baseNode);
+
+                element.AppendChild(speadxml);
+            }
+        }
+
         public void MessageXml(XmlDocument doc, XmlElement element, StoryEditorNode s_node)
         {
             if (s_node.baseNode is StoryMessageNode)
@@ -233,6 +259,11 @@ namespace XNode.Story
                 XmlElement speadxml = doc.CreateElement("Message");
                 speadxml.SetAttribute("NodeId", s_node.index.ToString());
                 speadxml.SetAttribute("Position", storyMessageNode.position.ToString());
+
+                if (!string.IsNullOrEmpty(storyMessageNode.image))
+                {
+                    speadxml.SetAttribute("CharacterImage", storyMessageNode.image);
+                }
 
                 if (!string.IsNullOrEmpty(storyMessageNode.opt1))
                 {
@@ -550,6 +581,7 @@ namespace XNode.Story
                 SpeakAsideXml(doc, element, item);
                 SpeakXml(doc, element, item);
                 MessageXml(doc, element, item);
+                MessageLoopXml(doc, element, item);
                 DeleteCharacterXml(doc, element, item);
                 VideoXml(doc, element, item);
                 BackGroundXml(doc, element, item);

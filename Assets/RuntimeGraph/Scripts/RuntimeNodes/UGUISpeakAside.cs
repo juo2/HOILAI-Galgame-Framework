@@ -54,7 +54,14 @@ namespace XNode.Story
 			graph.ShowAudio((string audio) =>
 			{
 				speakAsideNode.audio = audio;
-				audioBtn.label = audio;
+				if (string.IsNullOrEmpty(audio))
+				{
+					audioBtn.label = "please select audio";
+				}
+				else
+				{
+					audioBtn.label = audio;
+				}
 			});
 		}
 

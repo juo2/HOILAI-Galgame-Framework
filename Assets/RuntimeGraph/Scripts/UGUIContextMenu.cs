@@ -19,6 +19,7 @@ namespace XNode.Story
 		public Button deleteCharacterBtn;
 		public Button exitGameBtn;
 		public Button messageBtn;
+		public Button messageLoopBtn;
 		public Button speakAsideBtn;
 		public Button videoBtn;
 		public Button BgmBtn;
@@ -50,6 +51,11 @@ namespace XNode.Story
 			messageBtn.onClick.AddListener(() =>
 			{
 				SpawnNode(typeof(StoryMessageNode));
+			});
+
+			messageLoopBtn.onClick.AddListener(() =>
+			{
+				SpawnNode(typeof(StoryMessageLoopNode));
 			});
 
 			speakAsideBtn.onClick.AddListener(() =>
