@@ -37,13 +37,8 @@ public class XBuildCommandLine
         foreach (var item in command)
             Debug.LogFormat("key:[{0}]  value:[{1}]", item.Key, item.Value);
 
-
         string outPath = command.ContainsKey("-buildPath") ? command["-buildPath"] : Path.Combine(Application.dataPath, "../A_Build/");
         bool isClear = command.ContainsKey("-isClear") && command["-isClear"] == "true" ? true : false;
-        bool isUpdateCSharp = command.ContainsKey("-isUpdateCSharp") && command["-isUpdateCSharp"] == "true" ? true : false;
-        bool isUpdateLua = command.ContainsKey("-isUpdateLua") && command["-isUpdateLua"] == "true" ? true : false;
-        bool isUpdatePrefab = command.ContainsKey("-isUpdatePrefab") && command["-isUpdatePrefab"] == "true" ? true : false;
-        bool isUpdateOther = command.ContainsKey("-isUpdateOther") && command["-isUpdateOther"] == "true" ? true : false;
 
         BuildTarget target = BuildTarget.Android;
         if (command.ContainsKey("-platform"))
@@ -61,68 +56,33 @@ public class XBuildCommandLine
         //切换平台
         SwitchActiveBuildTarget(target);
 
-        if (isUpdateCSharp || isUpdateOther)
-        {
-            if (target == BuildTarget.Android)
-            {
-                //打个apk
-                XBuildPlayer.BuildPlayer(new XBuildPlayer.BuildPlayerOpt { buildTarget = BuildTarget.Android, isUpdateCSharp = isUpdateCSharp });
-            }
-            else if (target == BuildTarget.StandaloneWindows)
-            {
-                //打个pc包
-                XBuildPlayer.BuildPlayer(new XBuildPlayer.BuildPlayerOpt { buildTarget = BuildTarget.StandaloneWindows, isDevelopment = false, pc7zArchive = true });
-            }
-        }
+        //        if (isUpdateCSharp || isUpdateOther)
+        //        {
+        //            if (target == BuildTarget.Android)
+        //            {
+        //                //打个apk
+        //                XBuildPlayer.BuildPlayer(new XBuildPlayer.BuildPlayerOpt { buildTarget = BuildTarget.Android, isUpdateCSharp = isUpdateCSharp });
+        //            }
+        //            else if (target == BuildTarget.StandaloneWindows)
+        //            {
+        //                //打个pc包
+        //                XBuildPlayer.BuildPlayer(new XBuildPlayer.BuildPlayerOpt { buildTarget = BuildTarget.StandaloneWindows, isDevelopment = false, pc7zArchive = true });
+        //            }
+        //        }
         bool result = false;
-        if (isUpdateCSharp || isUpdateLua)
-        {
 
-            BuildLuaParameter parameter = new BuildLuaParameter();
-            parameter.luaDirectory = LuaProject.LuaRootPath;
-            parameter.buildAssetBundleOptions = BuildAssetBundleOptions.None |
-                                          BuildAssetBundleOptions.IgnoreTypeTreeChanges |
-                                          BuildAssetBundleOptions.DisableLoadAssetByFileNameWithExtension;
+        BuildResourceParameter parameter = new BuildResourceParameter();
+        parameter.buildTarget = target;
 
-
-            if (command.ContainsKey("-forceRebuild") && command["-platform"] == "true")
-            {
-                parameter.buildAssetBundleOptions |= BuildAssetBundleOptions.ForceRebuildAssetBundle;
-            }
-
-
-            parameter.version = command.ContainsKey("-version") ? command["-version"] : string.Empty;
-            parameter.buildTarget = target;
-            parameter.isClearFolder = isClear;
-            parameter.outputPath = outPath;
-            parameter.isUpdateCSharp = isUpdateCSharp;
-            parameter.isUpdateLua = isUpdateLua;
-            result = XBuildLua.Build(parameter);
-            if (!result) EditorApplication.Exit(1);
-        }
-
-        if (isUpdatePrefab)
-        {
-            BuildResourceParameter parameter = new BuildResourceParameter();
-            parameter.version = command.ContainsKey("-version") ? command["-version"] : string.Empty;
-            parameter.buildTarget = target;
-#if UNITY_IOS
-            parameter.buildBundleName = BuildResourceParameter.NameType.HASH;
-#else
-            parameter.buildBundleName = BuildResourceParameter.NameType.NONE;
-#endif
-            parameter.buildAssetBundleOptions = BuildAssetBundleOptions.ChunkBasedCompression;
-            parameter.isClearFolder = isClear;
-            parameter.outputPath = outPath;
-            result = XBuildDevelopment.Build(parameter);
-            if (!result) EditorApplication.Exit(1);
-        }
-        else
-        {
-            EditorSettings.spritePackerMode = SpritePackerMode.Disabled;
-            string manifestPath = Path.Combine(outPath, XBuildUtility.GetPlatformAtBuildTarget(target));
-            XBuildUtility.BuildAssetManifest(manifestPath, target);
-        }
+        parameter.buildBundleName = BuildResourceParameter.NameType.NONE;
+        parameter.buildAssetBundleOptions = BuildAssetBundleOptions.ChunkBasedCompression;
+        parameter.isClearFolder = isClear;
+        parameter.outputPath = outPath;
+        result = XBuildDevelopment.Build(parameter);
+        if (!result) EditorApplication.Exit(1);
+        EditorSettings.spritePackerMode = SpritePackerMode.Disabled;
+        string manifestPath = Path.Combine(outPath, XBuildUtility.GetPlatformAtBuildTarget(target));
+        XBuildUtility.BuildAssetManifest(manifestPath, target);
     }
 
 

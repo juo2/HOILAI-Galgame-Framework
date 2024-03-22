@@ -244,7 +244,7 @@ namespace AssetManagement
         {
             return null;
         }
-
+#if XConfigMode
         public override List<string> GetConfigImages()
         {
             return null;
@@ -264,5 +264,6 @@ namespace AssetManagement
         {
             return null;
         }
+#endif
     }
 }

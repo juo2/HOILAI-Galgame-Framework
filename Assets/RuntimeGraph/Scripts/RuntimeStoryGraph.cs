@@ -106,8 +106,10 @@ namespace XNode.Story
 
 		public void ShowImage(UnityAction<string> action)
         {
+#if XConfigMode
 			var configImageList = AssetManagement.AssetManager.Instance.GetConfigImages();
 			configChoice.OnShowImage(configImageList, action);
+#endif
 		}
 
 		public void ShowCharacter(UnityAction<string> action)
@@ -118,20 +120,31 @@ namespace XNode.Story
 
 		public void ShowAudio(UnityAction<string> action)
 		{
+#if XConfigMode
+
 			var configImageList = AssetManagement.AssetManager.Instance.GetConfigAudio();
 			configChoice.OnShowAudio(configImageList, action);
+#endif
+
 		}
 
 		public void ShowBgm(UnityAction<string> action)
 		{
+#if XConfigMode
+
 			var configImageList = AssetManagement.AssetManager.Instance.GetConfigBgm();
 			configChoice.OnShowBgm(configImageList, action);
+#endif
+
 		}
 
 		public void ShowVideo(UnityAction<string> action)
 		{
+#if XConfigMode
+
 			var configImageList = AssetManagement.AssetManager.Instance.GetConfigVideo();
 			configChoice.OnShowVideo(configImageList, action);
+#endif
 		}
 
 		
