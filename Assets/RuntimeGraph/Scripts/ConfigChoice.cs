@@ -77,6 +77,7 @@ public class ConfigChoice : MonoBehaviour
 
     public void OnShowImage(List<string> configList,UnityAction<string> action)
     {
+        searchBtn.SetActive(true);
         sreachInput.SetActive(true);
         sreachInput.text = "";
 
@@ -94,6 +95,7 @@ public class ConfigChoice : MonoBehaviour
     public void OnShowCharacter(List<CharacterImage> _characterImageList, UnityAction<string> action)
     {
         sreachInput.SetActive(false);
+        searchBtn.SetActive(false);
 
         configType = ConfigType.Character;
         gameObject.SetActive(true);
@@ -106,6 +108,7 @@ public class ConfigChoice : MonoBehaviour
 
     public void OnShowAudio(List<string> configList, UnityAction<string> action)
     {
+        searchBtn.SetActive(true);
         sreachInput.SetActive(true);
         sreachInput.text = "";
 
@@ -122,6 +125,7 @@ public class ConfigChoice : MonoBehaviour
 
     public void OnShowBgm(List<string> configList, UnityAction<string> action)
     {
+        searchBtn.SetActive(true);
         sreachInput.SetActive(true);
         sreachInput.text = "";
 
@@ -138,6 +142,7 @@ public class ConfigChoice : MonoBehaviour
 
     public void OnShowVideo(List<string> configList, UnityAction<string> action)
     {
+        searchBtn.SetActive(true);
         sreachInput.SetActive(true);
         sreachInput.text = "";
 

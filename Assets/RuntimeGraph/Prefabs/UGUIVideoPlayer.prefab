@@ -104,6 +104,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   closeBtn: {fileID: 9218446266378357714}
+  mainPanel: {fileID: 0}
 --- !u!1 &4017034949148656868
 GameObject:
   m_ObjectHideFlags: 0
@@ -264,7 +265,7 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 0}
+  m_TargetGraphic: {fileID: 9218446266378357715}
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []

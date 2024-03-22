@@ -8,6 +8,7 @@ public class UGUIVideoPlayer : MonoBehaviour
     XVideoPlayer videoPlayer;
 
     public XButton closeBtn;
+    public GameObject mainPanel;
 
     // Start is called before the first frame update
     private void Awake()
@@ -19,6 +20,7 @@ public class UGUIVideoPlayer : MonoBehaviour
 
         closeBtn.onClick.AddListener(() => 
         {
+            mainPanel.SetActive(true);
             videoPlayer.PlayerPause();
             gameObject.SetActive(false);
         });
@@ -32,6 +34,7 @@ public class UGUIVideoPlayer : MonoBehaviour
 
     public void Play(string asstName)
     {
+        mainPanel.SetActive(false);
         gameObject.SetActive(true);
         videoPlayer.pathType = XVideoPlayer.PathType.AssetBundle;
         videoPlayer.fileName = asstName;
