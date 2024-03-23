@@ -13,4 +13,13 @@ namespace XModules.Data
         public string options;
         public string storyId;
     }
+
+    [Serializable]
+    public class WebStreamSocketLoopRequest
+    {
+        public string userId;
+        public string npcId;
+        public string question;
+        public string storyId;
+    }
 }

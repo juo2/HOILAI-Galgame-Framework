@@ -47,12 +47,12 @@ namespace XModules.GalManager
         /// </summary>
         public void SetText_CharacterName (string CharacterName)
         {
-
             Text_CharacterName.text = $"<b>{CharacterName}</b><size=45></size>";
         }
 
         public void StreamTextContent(string CharacterName,bool isNeedShowFinish = true)
         {
+           
             Debug.Log($"Enter StreamTextContent ------------------------------------ ConversationData.IsSpeak:{ConversationData.IsSpeak}");
 
             if (ConversationData.IsSpeak)
@@ -60,51 +60,57 @@ namespace XModules.GalManager
                 return;
             }
 
+            //先把数据清空
+            ClearCacheOneChar();
+
             KillTween();
             SetText_Content(string.Empty);//先清空内容
             SetText_CharacterName(CharacterName);
             ConversationData.IsSpeak = true;
 
-            StartCoroutine(StreamTextContentInternal());
+            StartCoroutine(StreamTextContentInternal(isNeedShowFinish));
         }
 
 
-        IEnumerator StreamTextContentInternal()
+        IEnumerator StreamTextContentInternal(bool isNeedShowFinish)
         {
             bool isDone = false;
             bool isShowFinish = false;
 
-            char targetChar = getCacheOneChar();
+            string targetChar = getCacheOneChar();
 
             Debug.Log($"targetChar33333333333333:{targetChar}");
 
-            if (currentWebSocketSteamContent.Contains("|"))
+            if(isNeedShowFinish)
             {
-                isShowFinish = true;
-                targetChar = char.MinValue;
-                Debug.Log("[isShowFinish][isShowFinish][isShowFinish][isShowFinish][isShowFinish][isShowFinish][isShowFinish][isShowFinish]");
+                if (currentWebSocketSteamContent.Contains("|"))
+                {
+                    isShowFinish = true;
+                    targetChar = "";
+                    Debug.Log("[isShowFinish][isShowFinish][isShowFinish][isShowFinish][isShowFinish][isShowFinish][isShowFinish][isShowFinish]");
+                }
             }
 
             if (currentWebSocketSteamContent.Contains("[DONE]"))
             {
                 isDone = true;
-                targetChar = char.MinValue;
+                targetChar = "";
                 Debug.Log("[DONE][DONE][DONE][DONE][DONE][DONE][DONE][DONE]");
             }
 
-            if(targetChar != char.MinValue)
-                Text_TextContent.text = Text_TextContent.text + targetChar;
+            Text_TextContent.text = Text_TextContent.text + targetChar;
 
-            if (isShowFinish && isDone)
+            if ( (isShowFinish || !isNeedShowFinish) && isDone)
             {
                 yield return new WaitForSeconds(DefaultSpeed);
                 ConversationData.IsSpeak = false;
+                completeCacheOneChar();
                 XEvent.EventDispatcher.DispatchEvent("STREAM_FINISH");
             }
             else
             {
                 yield return new WaitForSeconds(DefaultSpeed);
-                yield return StreamTextContentInternal();
+                yield return StreamTextContentInternal(isNeedShowFinish);
             }
         }
 

@@ -130,8 +130,6 @@ namespace XModules.Data
             }
         }
 
-        
-
         public static string getWebStreamSocketRequest(string textContent, string question, string options)
         {
             WebStreamSocketRequest webStreamSocketRequest = new WebStreamSocketRequest();
@@ -143,7 +141,17 @@ namespace XModules.Data
             webStreamSocketRequest.storyId = ConversationData.currentStory;
 
             return JsonUtility.ToJson(webStreamSocketRequest);
+        }
 
+        public static string getWebStreamSocketLoopRequest(string question)
+        {
+            WebStreamSocketLoopRequest webStreamSocketRequest = new WebStreamSocketLoopRequest();
+            webStreamSocketRequest.userId = getPlayerId();
+            webStreamSocketRequest.npcId = ConversationData.TempNpcCharacterInfo.characterID;
+            webStreamSocketRequest.question = question;
+            webStreamSocketRequest.storyId = ConversationData.currentStory;
+
+            return JsonUtility.ToJson(webStreamSocketRequest);
         }
 
         public static List<StoryData> getStoryList()

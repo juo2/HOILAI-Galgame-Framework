@@ -73,12 +73,18 @@ namespace XModules.GalManager
 
             MessageTouchBack.onClick.AddListener(() => 
             {
-                if (ConversationData.isRequestChating)
+                if (messageStatus == MessageStatus.SendingMessage)
                 {
                     Button_Click_isRequestChating();
-                    return;
                 }
-                Button_Click_Message();
+                else if(messageStatus == MessageStatus.ReceiveMessage)
+                {
+                    Button_Click_Message();
+                }
+                else if (messageStatus == MessageStatus.CompleteMessage)
+                {
+                    Button_Click_Finish();
+                }
             });
             
 
@@ -311,21 +317,23 @@ namespace XModules.GalManager
                             SelfCharacterInfo.image = PlotData.NowPlotDataNode.Attribute("CharacterImage").Value;
 
                         int loop = int.Parse(PlotData.NowPlotDataNode.Attribute("Loop").Value);
-                        int success = int.Parse(PlotData.NowPlotDataNode.Attribute("Success").Value);
-                        int fail = int.Parse(PlotData.NowPlotDataNode.Attribute("Fail").Value);
-                        int value = int.Parse(PlotData.NowPlotDataNode.Attribute("Value").Value);
+                        //int success = int.Parse(PlotData.NowPlotDataNode.Attribute("Success").Value);
+                        //int fail = int.Parse(PlotData.NowPlotDataNode.Attribute("Fail").Value);
+                        //int value = int.Parse(PlotData.NowPlotDataNode.Attribute("Value").Value);
+
+                        //currentScore = value;
 
                         character_img.SetActive(true);
                         character_img.SetImage(SelfCharacterInfo.image);
 
                         ConversationData.IsCanJump = false;
 
-                        EnableWebSocket();
                         Gal_Message.SetActive(true);
-                        Gal_Message.BeginMessageLoop(loop, success, fail);
+                        Gal_Message.BeginMessageLoop(loop);
                         SendCharMessage("", "", true);
 
                         PlotData.NextJumpID = int.Parse(PlotData.NowPlotDataNode.Attribute("JumpId").Value);
+                        EnableWebSocket();
 
                         break;
                     }

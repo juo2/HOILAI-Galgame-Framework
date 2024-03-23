@@ -26,8 +26,8 @@ namespace XModules.GalManager
 
         public InputType inputType = InputType.Choice;
         public int loop = 0;
-        public int success = 0;
-        public int fail = 0;
+        //public int success = 0;
+        //public int fail = 0;
 
         public enum InputType
         {
@@ -47,7 +47,6 @@ namespace XModules.GalManager
                 if (ConversationData.TempNpcCharacterInfo != null)
                 {
                     ConversationData.tempInputMessage = inputField.text;
-                    ConversationData.isRequestChating = true;
 
                     XEvent.EventDispatcher.DispatchEvent("ONESHOTCHAT");
 
@@ -85,6 +84,7 @@ namespace XModules.GalManager
             inputField.text = "";
             inputType = InputType.Choice;
             struct_Choices = choiceList;
+            xListView.SetActive(true);
             xListView.dataCount = choiceList.Count;
             xListView.ForceRefresh();
 
@@ -94,12 +94,14 @@ namespace XModules.GalManager
             //return;
         }
 
-        public void BeginMessageLoop(int loop,int success,int fail)
+        public void BeginMessageLoop(int loop)
         {
+            xListView.SetActive(false);
+
             inputType = InputType.Loop;
             this.loop = loop;
-            this.success = success;
-            this.fail = fail;
+            //this.success = success;
+            //this.fail = fail;
         }
     }
 }

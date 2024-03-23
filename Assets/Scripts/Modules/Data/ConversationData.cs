@@ -63,8 +63,6 @@ namespace XModules.Data
         public static string webSocketSteamContent = "";
         public static string currentWebSocketSteamContent = "";
 
-        public static bool isRequestChating = false;
-
         public static string currentStory = null;
 
 
@@ -176,8 +174,18 @@ namespace XModules.Data
             return PlotData.historyContentList;
         }
 
-        public static char getCacheOneChar()
+        public static void ClearCacheOneChar()
         {
+            webSocketSteamContent = "";
+            currentWebSocketSteamContent = "";
+            cacheIndex = 0;
+            currentCacheIndex = 0;
+        }
+
+        public static string getCacheOneChar()
+        {
+            Debug.Log($"getCacheOneChar cacheOutMessageList.Count:{cacheOutMessageList.Count}");
+
             for (int i = cacheIndex; i < cacheOutMessageList.Count; i++)
             {
                 webSocketSteamContent += cacheOutMessageList[i];
@@ -185,24 +193,39 @@ namespace XModules.Data
 
             cacheIndex = cacheOutMessageList.Count;
 
-            char targetOut = char.MinValue;
-
             Debug.Log($"getCacheOneChar webSocketSteamContent.Length:{webSocketSteamContent.Length}");
 
             if (currentCacheIndex < webSocketSteamContent.Length)
             {
-                targetOut = webSocketSteamContent[currentCacheIndex];
-                currentCacheIndex++;
+                // 检测当前字符是否为 '['
+                if (webSocketSteamContent[currentCacheIndex] == '[')
+                {
+                    // 检查剩余的字符串是否开始为 "[Done]"
+                    string remainingContent = webSocketSteamContent.Substring(currentCacheIndex);
+                    if (remainingContent.StartsWith("[DONE]"))
+                    {
+                        currentCacheIndex += "[DONE]".Length; // 更新索引跳过 "[Done]"
+                        currentWebSocketSteamContent += "[DONE]"; // 将 "[Done]" 添加到当前WebSocket流内容
+                        return "[DONE]"; // 直接返回 "[Done]"
+                    }
+                }
 
+                // 继续原来的逻辑，返回下一个字符
+                char targetOut = webSocketSteamContent[currentCacheIndex];
+                currentCacheIndex++;
                 Debug.Log($"getCacheOneChar currentCacheIndex:{currentCacheIndex}");
+                currentWebSocketSteamContent += targetOut;
+                Debug.Log($"getCacheOneChar currentWebSocketSteamContent:{currentWebSocketSteamContent}");
+                return targetOut.ToString();
             }
 
-            currentWebSocketSteamContent = currentWebSocketSteamContent + targetOut;
+            // 如果没有更多的字符可以返回，则可能需要处理这种情况
+            return string.Empty; // 或者返回null或其他合适的值
+        }
 
-            Debug.Log($"getCacheOneChar currentWebSocketSteamContent:{currentWebSocketSteamContent}");
-
-
-            return targetOut;
+        public static void completeCacheOneChar()
+        {
+            cacheOutMessageList.Clear();
         }
 
         public static int getOneShotChatSelect()
