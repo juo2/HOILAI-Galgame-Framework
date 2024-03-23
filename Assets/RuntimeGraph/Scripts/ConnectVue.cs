@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class ConnectVue : MonoBehaviour
 {
     [DllImport("__Internal")]
-    private static extern void PostScore(string currentScene);  //当前场景
+    private static extern void Vue_Upload_Unity(string json);  //传json
 
     public Text label;
 
@@ -15,7 +15,7 @@ public class ConnectVue : MonoBehaviour
     void Start()
     {
         Debug.Log("12345678");
-        PostScore("12345678");
+        Vue_Upload_Unity("12345678");
     }
 
     public void OnCallBack(string msg)
