@@ -18,9 +18,20 @@ public class ConnectVue : MonoBehaviour
         Vue_Upload_Unity("12345678");
     }
 
+
+    public class temp
+    {
+        public string version;
+    }
+
     public void OnCallBack(string msg)
     {
-        label.text = msg;
+        temp t = JsonUtility.FromJson<temp>(msg);
+
+        label.text = t.version;
+
+
+
     }
 
 
