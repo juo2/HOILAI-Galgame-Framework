@@ -53,8 +53,8 @@ namespace XNode.Story
 
 		public ConfigChoice configChoice;
 
-
-		private void Start() {
+        
+        private void Start() {
 
 			configChoice.SetActive(false);
 
@@ -100,8 +100,9 @@ namespace XNode.Story
 			};
 
 			uploadBtn.onClick.AddListener(() => 
-			{ 
-				
+			{
+				int param = 1;
+				Application.ExternalCall("enter", param);
 			});
 		}
 
