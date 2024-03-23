@@ -13,6 +13,7 @@ namespace XNode.Story
 		public InputField loop;
 		public InputField success;
 		public InputField fail;
+		public InputField value;
 
 		private StoryMessageLoopNode messageNode;
 
@@ -24,6 +25,7 @@ namespace XNode.Story
 			loop.onValueChanged.AddListener(OnChangeLoop);
 			success.onValueChanged.AddListener(OnChangeSuccess);
 			fail.onValueChanged.AddListener(OnChangeFail);
+			value.onValueChanged.AddListener(OnChangeValue);
 			UpdateGUI();
 		}
 
@@ -40,7 +42,7 @@ namespace XNode.Story
 			loop.text = messageNode.loop;
 			success.text = messageNode.success;
 			fail.text = messageNode.fail;
-
+			value.text = messageNode.value;
 			if (string.IsNullOrEmpty(messageNode.image))
 			{
 				imageBtn.label = "please select image";
@@ -80,5 +82,11 @@ namespace XNode.Story
 		{
 			messageNode.fail = fail.text;
 		}
+
+		private void OnChangeValue(string val)
+		{
+			messageNode.value = value.text;
+		}
+		
 	}
 }

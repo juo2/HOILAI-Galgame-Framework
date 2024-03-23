@@ -12,12 +12,15 @@ namespace XNode.Story
         public string image;
 
         [SerializeField]
-        public string loop = "7";
+        public string loop = "10";
+
+        [SerializeField]
+        public string value = "20";
 
         [SerializeField]
         public string success = "100";
 
         [SerializeField]
-        public string fail = "-100";
+        public string fail = "0";
     }
 }

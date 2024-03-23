@@ -26,6 +26,9 @@ public class OpenFileXml : MonoBehaviour, IPointerDownHandler {
 
     // Called from browser
     public void OnFileUpload(string url) {
+
+        Debug.Log($"OnFileUpload url:{url}");
+        
         StartCoroutine(OutputRoutine(url));
     }
 #else

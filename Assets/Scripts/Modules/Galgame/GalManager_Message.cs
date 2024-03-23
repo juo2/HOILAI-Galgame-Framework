@@ -46,20 +46,12 @@ namespace XModules.GalManager
             {
                 if (ConversationData.TempNpcCharacterInfo != null)
                 {
-                    if (inputType == InputType.Choice)
-                    {
-                        
-                        ConversationData.tempInputMessage = inputField.text;
-                        ConversationData.isRequestChating = true;
+                    ConversationData.tempInputMessage = inputField.text;
+                    ConversationData.isRequestChating = true;
 
-                        XEvent.EventDispatcher.DispatchEvent("ONESHOTCHAT");
+                    XEvent.EventDispatcher.DispatchEvent("ONESHOTCHAT");
 
-                        inputField.text = "";
-                    }
-                    else if (inputType == InputType.Loop)
-                    {
-
-                    }
+                    inputField.text = "";
                 }
                 else
                 {

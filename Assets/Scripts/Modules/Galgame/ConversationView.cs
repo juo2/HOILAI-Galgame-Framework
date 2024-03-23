@@ -311,8 +311,9 @@ namespace XModules.GalManager
                             SelfCharacterInfo.image = PlotData.NowPlotDataNode.Attribute("CharacterImage").Value;
 
                         int loop = int.Parse(PlotData.NowPlotDataNode.Attribute("Loop").Value);
-                        int success = int.Parse(PlotData.NowPlotDataNode.Attribute("Succees").Value);
+                        int success = int.Parse(PlotData.NowPlotDataNode.Attribute("Success").Value);
                         int fail = int.Parse(PlotData.NowPlotDataNode.Attribute("Fail").Value);
+                        int value = int.Parse(PlotData.NowPlotDataNode.Attribute("Value").Value);
 
                         character_img.SetActive(true);
                         character_img.SetImage(SelfCharacterInfo.image);

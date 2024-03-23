@@ -22,7 +22,15 @@ namespace XModules.Data
             string id = PlayerPrefs.GetString("TEMP_ID");
             if (string.IsNullOrEmpty(id))
             {
-                return playerResponse.data.id;
+                if (playerResponse == null)
+                {
+                    Debug.Log("getPlayerId playerResponse == null");
+                    return "";
+                }
+                else
+                {
+                    return playerResponse.data.id;
+                }
             }
 
             return id;

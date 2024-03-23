@@ -243,7 +243,8 @@ namespace XNode.Story
                 speadxml.SetAttribute("Loop", storyMessageNode.loop);
                 speadxml.SetAttribute("Success", storyMessageNode.success);
                 speadxml.SetAttribute("Fail", storyMessageNode.fail);
-
+                speadxml.SetAttribute("Value", storyMessageNode.value);
+                
                 findNextNodeXml(speadxml, s_node.baseNode);
 
                 element.AppendChild(speadxml);

@@ -24,6 +24,7 @@ namespace XNode.Story
 			ID.onValueChanged.AddListener(OnChangeID);
 			imageBtn.onClick.AddListener(OnChangeImage);
 			p_name.onValueChanged.AddListener(OnChangeName);
+			isSelf.onValueChanged.AddListener(OnChangeSelf);
 			UpdateGUI();
 		}
 
@@ -39,7 +40,7 @@ namespace XNode.Story
 			
 			ID.text = addCharacterNode.ID;
 			p_name.text = addCharacterNode.p_name;
-
+			isSelf.isOn = addCharacterNode.isSelf;
 			if (string.IsNullOrEmpty(addCharacterNode.image))
             {
 				imageBtn.label = "please select image";
@@ -73,6 +74,11 @@ namespace XNode.Story
 
 		private void OnChangeName(string val) {
 			addCharacterNode.p_name = p_name.text;
+		}
+
+		private void OnChangeSelf(bool val)
+        {
+			addCharacterNode.isSelf = val;
 		}
 	}
 }

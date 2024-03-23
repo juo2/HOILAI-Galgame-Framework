@@ -147,6 +147,7 @@ namespace XModules.Proxy
                     errorBack?.Invoke();
                 }
             }
+            
         }
 
         static IEnumerator GetNPCAllList(string url, Action callBack, Action errorBack)
@@ -405,14 +406,18 @@ namespace XModules.Proxy
             Debug.Log($"type:{type}");
 
             WWWForm form = new WWWForm();
-            form.AddField("userId", DataManager.getPlayerId());
+
+            if (!string.IsNullOrEmpty(DataManager.getPlayerId()))
+            {
+                form.AddField("userId", DataManager.getPlayerId());
+            }
             form.AddField("type", type);
 
             UnityWebRequest webRequest = UnityWebRequest.Post(url, form);
 
             // …Ë÷√User-Agent
             webRequest.SetRequestHeader("User-Agent", "Apifox/1.0.0 (https://apifox.com)");
-            webRequest.SetRequestHeader("token", DataManager.getToken());
+            //webRequest.SetRequestHeader("token", DataManager.getToken());
 
             yield return webRequest.SendWebRequest();
 

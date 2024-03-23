@@ -10,6 +10,9 @@ using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.Networking;
 using UnityEngine.UI;
+using XGUI;
+using XModules.Data;
+using XModules.Proxy;
 
 namespace XNode.Story
 {
@@ -46,18 +49,41 @@ namespace XNode.Story
 
 		public SaveFileXml exportBtn;
 		public OpenFileXml importBtn;
-		public Button uploadBtn;
- 
 		public InputField nameField;
 		public MessageBox messageBox;
-
 		public ConfigChoice configChoice;
 
-        
-        private void Start() {
+		public XListView xListView;
+		Dictionary<int, PanelBtnItem> btnItemList = new Dictionary<int, PanelBtnItem>();
+		List<string> storyList = new List<string>();
+
+		private void Start() {
+
 
 			configChoice.SetActive(false);
 
+			xListView.onCreateRenderer.AddListener(onListCreateRenderer);
+			xListView.onUpdateRenderer.AddListener(onListUpdateRenderer);
+
+			storyList.Clear();
+			ProxyManager.GetStoryList(1, () =>
+			{
+				ProxyManager.GetStoryList(0, () => {
+
+					foreach(var item in DataManager.getStoryList())
+                    {
+						storyList.Add(item.title);
+					}
+					foreach (var item in DataManager.getStoryNoPlayList())
+					{
+						storyList.Add(item.title);
+					}
+
+					xListView.dataCount = storyList.Count;
+					xListView.ForceRefresh();
+				});
+			});
+			
 			// Create a clone so we don't modify the original asset
 			graph = new StoryGraph();
 			//graph = graph.Copy() as StoryGraph;
@@ -87,10 +113,10 @@ namespace XNode.Story
 				exportBtn.fileName = nameField.text;
 
 				//如果不是editor需要发送xml给后端
-#if !UNITY_EDITOR
+//#if !UNITY_EDITOR
 				string xmlString = exportBtn.saveData; // 这是你的XML字符串
 				StartCoroutine(SyncNpcInfoCoroutine( xmlString));
-#endif
+//#endif
 
 			};
 
@@ -99,11 +125,18 @@ namespace XNode.Story
 				LoadPlot(xml);
 			};
 
-			uploadBtn.onClick.AddListener(() => 
-			{
-				int param = 1;
-				Application.ExternalCall("enter", param);
-			});
+		}
+
+		void onListCreateRenderer(XListView.ListItemRenderer listItem)
+		{
+			PanelBtnItem btnItem = listItem.gameObject.GetComponent<PanelBtnItem>();
+			btnItemList[listItem.instanceID] = btnItem;
+		}
+
+		void onListUpdateRenderer(XListView.ListItemRenderer listItem)
+		{
+			PanelBtnItem btnItem = btnItemList[listItem.instanceID];
+			btnItem.Refresh(storyList[listItem.index]);
 		}
 
 		public void ShowImage(UnityAction<string> action)
@@ -154,7 +187,6 @@ namespace XNode.Story
 			configChoice.OnShowVideo(configImageList, action);
 #endif
 		}
-
 		
 		IEnumerator SyncNpcInfoCoroutine(string xmlString)
 		{
@@ -456,6 +488,22 @@ namespace XNode.Story
 				node.position = stringToVector2(position);
 				xmlNodeDic[NodeId] = node;
 			}
+			else if (element.Name == "MessageLoop")
+            {
+				string position = element.Attribute("Position").Value;
+				string image = element.Attribute("CharacterImage")?.Value;
+				StoryMessageLoopNode node = graph.AddNode<StoryMessageLoopNode>();
+				node.loop = element.Attribute("Loop").Value;
+				node.success = element.Attribute("Success").Value;
+				node.fail = element.Attribute("Fail").Value;
+				node.value = element.Attribute("Value").Value;
+
+				node.name = element.Name.ToString();
+				node.position = stringToVector2(position);
+				node.image = image;
+				xmlNodeDic[NodeId] = node;
+
+			}
 			else if (element.Name == "Message")
 			{
 				string position = element.Attribute("Position").Value;
@@ -615,6 +663,8 @@ namespace XNode.Story
 			//				Debug.Log("Error: " + www.error);
 			//			}
 			//try
+			
+			graph = new StoryGraph();
 
 			{
 				//GameAPI.Print($"游戏剧本：{_PlotText}");
@@ -681,6 +731,7 @@ namespace XNode.Story
 				}
 			}
 
+			Clear();
 			SpawnGraph();
 		}
 	}

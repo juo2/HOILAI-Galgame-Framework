@@ -30,9 +30,10 @@ public class SaveFileXml : MonoBehaviour, IPointerDownHandler {
 
         if (!isCanSave)
             return;
-
+#if DEVELOPMENT_BUILD
         var bytes = Encoding.UTF8.GetBytes(saveData);
         DownloadFile(gameObject.name, "OnFileDownload", $"{fileName}.xml", bytes, bytes.Length);
+#endif
     }
 
     // Called from browser
@@ -60,11 +61,13 @@ public class SaveFileXml : MonoBehaviour, IPointerDownHandler {
 
         Debug.Log("±£´æ");
 
+#if DEVELOPMENT_BUILD
         var path = StandaloneFileBrowser.SaveFilePanel("Title", "", fileName, "xml");
-
         if (!string.IsNullOrEmpty(path)) {
             File.WriteAllText(path, saveData);
         }
+#endif
+
     }
 #endif
-}
+    }

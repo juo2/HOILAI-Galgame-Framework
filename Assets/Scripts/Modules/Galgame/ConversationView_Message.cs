@@ -13,34 +13,42 @@ namespace XModules.GalManager
         public void OneShotChat()
         {
             Debug.Log("Enter OneShotChat------------------------------");
-            string textContent = "";
-            foreach (var history in ConversationData.GetHistoryContentList())
+
+            if (Gal_Message.inputType == GalManager_Message.InputType.Choice)
             {
-                textContent = textContent + $"{history.speaker}:{ history.content } { history.optContent}";
-            }
+                string textContent = "";
+                foreach (var history in ConversationData.GetHistoryContentList())
+                {
+                    textContent = textContent + $"{history.speaker}:{ history.content } { history.optContent}";
+                }
 
-            string options = "";
-            for (int i = 0; i < PlotData.ChoiceTextList.Count; i++)
+                string options = "";
+                for (int i = 0; i < PlotData.ChoiceTextList.Count; i++)
+                {
+                    var choice = PlotData.ChoiceTextList[i];
+                    options = $"{options}{i}:{choice.Title}";
+                }
+
+                string json = DataManager.getWebStreamSocketRequest(textContent, ConversationData.tempInputMessage, options);
+
+                SendMessageWebSocket(json);
+
+                ChoiceComplete();
+
+                character_img.SetActive(true);
+                var content = ConversationData.tempInputMessage;
+                character_img.SetImage(ConversationData.SelfCharacterInfo.image);
+                Gal_SelfText.SetActive(true);
+
+                Gal_SelfText.StartTextContent(content, ConversationData.SelfCharacterInfo.name);
+
+                //下一步
+                MessageTouchBack.SetActive(true);
+            }
+            else
             {
-                var choice = PlotData.ChoiceTextList[i];
-                options = $"{options}{i}:{choice.Title}";
+
             }
-
-            string json = DataManager.getWebStreamSocketRequest(textContent, ConversationData.tempInputMessage, options);
-
-            SendMessageWebSocket(json);
-
-            ChoiceComplete();
-            
-            character_img.SetActive(true);
-            var content = ConversationData.tempInputMessage;
-            character_img.SetImage(ConversationData.SelfCharacterInfo.image);
-            Gal_SelfText.SetActive(true);
-
-            Gal_SelfText.StartTextContent(content, ConversationData.SelfCharacterInfo.name);
-
-            //下一步
-            MessageTouchBack.SetActive(true);
         }
         
         void Button_Click_isRequestChating()
@@ -94,7 +102,7 @@ namespace XModules.GalManager
             else if(Gal_Message.inputType == GalManager_Message.InputType.Loop)
             {
                 currentLoop++;
-                if(currentLoop >= Gal_Message.loop)
+                if(currentLoop >= Gal_Message.loop && Gal_Message.loop != -1)
                 {
                     ConversationData.IsCanJump = true;
                     MessageTouchBack.SetActive(false);
@@ -113,6 +121,7 @@ namespace XModules.GalManager
         async void EnableWebSocket()
         {
             webSocketSteamContent = "";
+            currentWebSocketSteamContent = "";
             cacheOutMessageList.Clear();
             cacheIndex = 0;
 

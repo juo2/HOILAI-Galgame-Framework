@@ -57,9 +57,11 @@ namespace XModules.Data
 
         public static List<string> cacheOutMessageList = new List<string>();
         public static int cacheIndex = 0;
+        public static int currentCacheIndex = 0;
 
         public static string tempInputMessage = null;
         public static string webSocketSteamContent = "";
+        public static string currentWebSocketSteamContent = "";
 
         public static bool isRequestChating = false;
 
@@ -174,16 +176,31 @@ namespace XModules.Data
             return PlotData.historyContentList;
         }
 
-        public static string loadCache()
+        public static char getCacheOneChar()
         {
-            string targetOut = "";
             for (int i = cacheIndex; i < cacheOutMessageList.Count; i++)
             {
-                targetOut += cacheOutMessageList[i];
                 webSocketSteamContent += cacheOutMessageList[i];
             }
 
             cacheIndex = cacheOutMessageList.Count;
+
+            char targetOut = char.MinValue;
+
+            Debug.Log($"getCacheOneChar webSocketSteamContent.Length:{webSocketSteamContent.Length}");
+
+            if (currentCacheIndex < webSocketSteamContent.Length)
+            {
+                targetOut = webSocketSteamContent[currentCacheIndex];
+                currentCacheIndex++;
+
+                Debug.Log($"getCacheOneChar currentCacheIndex:{currentCacheIndex}");
+            }
+
+            currentWebSocketSteamContent = currentWebSocketSteamContent + targetOut;
+
+            Debug.Log($"getCacheOneChar currentWebSocketSteamContent:{currentWebSocketSteamContent}");
+
 
             return targetOut;
         }
@@ -194,7 +211,7 @@ namespace XModules.Data
 
             if (strArray.Length == 2)
             {
-                return int.Parse(strArray[1]);
+                return (int)Char.GetNumericValue(strArray[1][0]);;
             }
             else
             {
