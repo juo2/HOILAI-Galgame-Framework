@@ -494,9 +494,9 @@ namespace XNode.Story
 				string image = element.Attribute("CharacterImage")?.Value;
 				StoryMessageLoopNode node = graph.AddNode<StoryMessageLoopNode>();
 				node.loop = element.Attribute("Loop").Value;
-				node.success = element.Attribute("Success").Value;
-				node.fail = element.Attribute("Fail").Value;
-				node.value = element.Attribute("Value").Value;
+				//node.success = element.Attribute("Success").Value;
+				//node.fail = element.Attribute("Fail").Value;
+				//node.value = element.Attribute("Value").Value;
 
 				node.name = element.Name.ToString();
 				node.position = stringToVector2(position);
