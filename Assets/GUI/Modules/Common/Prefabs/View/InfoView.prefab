@@ -125,7 +125,7 @@ MonoBehaviour:
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 34
-    m_FontStyle: 0
+    m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 0
     m_MaxSize: 300
@@ -134,7 +134,7 @@ MonoBehaviour:
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
-    m_LineSpacing: 1
+    m_LineSpacing: 2
   m_Text: "Terms\_of\_Service"
   isStatic: 0
   languageId: 0
@@ -217,7 +217,7 @@ MonoBehaviour:
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
-    m_LineSpacing: 1
+    m_LineSpacing: 1.31
   m_Text: "Lret\_updstod.\_apr\_01,\_2021\r\nIhisfrcyPolcy\_de.cres\_our\_po\_cicsand\_pronodires\_co\_thn\_oo\_act\_ica,\_aie\_anddeaceura\_o\_Your\_intonnalion\_when\_youle\_tne\_Sony\_ce\_ed\_tels\_fou\_nbout\_Yocrincy\_rghis\_ardhow\_fhelhw\_crotccs\_Yo!Wn\_uae\_Your\_fe\_ronnl\_dta\_to\_prey\_co\_andimprovo\_tho\_sarwinn.\_By\_rng\_tho\_sar\_ino.You\_cgmo\_to\_the\_cdllcction\_and\_iza\_o!intomation\_in\_ascondenen\_y\_ith\_thisPryncy\_Palicy."
   isStatic: 0
   languageId: 0

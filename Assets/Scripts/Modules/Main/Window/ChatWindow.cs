@@ -40,6 +40,9 @@ namespace XModules.Main.Window
         XButton resetBtn;
 
         [SerializeField]
+        XButton closeResetBtn;
+
+        [SerializeField]
         XText nameLabel;
 
         Stack<ChatItem> gptChatItemPool;
@@ -177,15 +180,25 @@ namespace XModules.Main.Window
 
             infoBtn.onClick.AddListener(() => 
             {
-                resetBtn.SetActive(!resetBtn.gameObject.activeSelf);
+                resetBtn.SetActive(true);
+                closeResetBtn.SetActive(true);
             });
 
             resetBtn.onClick.AddListener(() => 
             {
-                ProxyManager.DeleteUserSession(sessionId, () => 
+                ProxyManager.DeleteUserSession(sessionId,npcId, () => 
                 {
                     ClearAllChatItem();
                 });
+
+                resetBtn.SetActive(false);
+                closeResetBtn.SetActive(false);
+            });
+
+            closeResetBtn.onClick.AddListener(() => 
+            {
+                resetBtn.SetActive(false);
+                closeResetBtn.SetActive(false);
             });
         }
 
@@ -193,6 +206,9 @@ namespace XModules.Main.Window
         public override void OnEnableView()
         {
             base.OnEnableView();
+
+            resetBtn.SetActive(false);
+            closeResetBtn.SetActive(false);
 
             currentChatItem = null;
             isRequestingChat = false;

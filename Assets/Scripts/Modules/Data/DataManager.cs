@@ -95,6 +95,20 @@ namespace XModules.Data
             return sessionResponse.data;
         }
 
+        public static void detelteChatResponse(string npcId)
+        {
+            List<ChatData> chatDataList = getChatDatabyNpcId(npcId);
+
+            if(chatDataList != null)
+            {
+                chatDataList.Clear();
+            }
+            else
+            {
+                Debug.LogError($"√ª’“µΩnpcId:{npcId}");
+            }
+        }
+
         public static void addChatResponse(string npcId, ChatResponse chatResponse)
         {
             if (!chatResponseDic.ContainsKey(npcId))

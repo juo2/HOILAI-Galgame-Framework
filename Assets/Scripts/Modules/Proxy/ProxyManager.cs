@@ -38,9 +38,9 @@ namespace XModules.Proxy
             TimerManager.AddCoroutine(GetChatRecord($"{url}/chat/chatRecord/getChatRecord", npcId,callBack, errorBack));
         }
 
-        public static void DeleteUserSession(string userSessionId, Action callBack = null, Action errorBack = null)
+        public static void DeleteUserSession(string userSessionId,string npcId, Action callBack = null, Action errorBack = null)
         {
-            TimerManager.AddCoroutine(DeleteUserSession($"{url}/chat/chatRecord/deleteUserSession", userSessionId, callBack, errorBack));
+            TimerManager.AddCoroutine(DeleteUserSession($"{url}/chat/chatRecord/deleteUserSession", userSessionId, npcId, callBack, errorBack));
         }
 
         public static void StreamOneShotChat(string npcId,string textContent,string question,string options, Action callBack = null, Action errorBack = null)
@@ -281,7 +281,7 @@ namespace XModules.Proxy
             }
         }
 
-        static IEnumerator DeleteUserSession(string url, string userSessionId, Action callBack, Action errorBack)
+        static IEnumerator DeleteUserSession(string url, string userSessionId,string npcId, Action callBack, Action errorBack)
         {
 
             Debug.Log($"userSessionId:{userSessionId}");
@@ -310,6 +310,7 @@ namespace XModules.Proxy
                 BasicResponse basicResponse = JsonUtility.FromJson<BasicResponse>(webRequest.downloadHandler.text);
                 if (basicResponse.code == "0")
                 {
+                    DataManager.detelteChatResponse(npcId);
                     Debug.Log("<color=#4aff11>DeleteUserSession «Î«Û≥…π¶!!!</color>");
                     callBack?.Invoke();
 

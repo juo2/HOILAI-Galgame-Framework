@@ -249,8 +249,8 @@ namespace XModules.GalManager
 
                 if(messageStatus == MessageStatus.SendingMessage)
                 {
-                    //瞬发
-                    ConversationData.IsSpeak = false;
+                                //瞬发
+            ConversationData.IsSpeak = false;
                     Button_Click_Message();
                 }
 

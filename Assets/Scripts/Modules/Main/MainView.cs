@@ -53,6 +53,12 @@ namespace XModules.Main
 
                 selectTran.SetActive(false);
                 selectLabelTran.SetActive(false);
+
+                Transform normalTran = t.Find("normal");
+                Transform normalLabelTran = t.Find("normalLabel");
+
+                normalTran.SetActive(true);
+                normalLabelTran.SetActive(true);
             }
         }
 
@@ -95,6 +101,10 @@ namespace XModules.Main
 
                 homeBtn.transform.Find("select").SetActive(true);
                 homeBtn.transform.Find("selectLabel").SetActive(true);
+
+                homeBtn.transform.Find("normal").SetActive(false);
+                homeBtn.transform.Find("normalLabel").SetActive(false);
+
             });
 
             dialogueBtn.onClick.AddListener(() => {
@@ -111,6 +121,9 @@ namespace XModules.Main
 
                 dialogueBtn.transform.Find("select").SetActive(true);
                 dialogueBtn.transform.Find("selectLabel").SetActive(true);
+
+                dialogueBtn.transform.Find("normal").SetActive(false);
+                dialogueBtn.transform.Find("normalLabel").SetActive(false);
             });
 
             profileBtn.onClick.AddListener(() => {
@@ -127,6 +140,9 @@ namespace XModules.Main
 
                 profileBtn.transform.Find("select").SetActive(true);
                 profileBtn.transform.Find("selectLabel").SetActive(true);
+
+                profileBtn.transform.Find("normal").SetActive(false);
+                profileBtn.transform.Find("normalLabel").SetActive(false);
             });
 
             homeLoader.StartLoad();
