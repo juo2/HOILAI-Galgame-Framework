@@ -180,6 +180,7 @@ namespace XModules.Data
             currentWebSocketSteamContent = "";
             cacheIndex = 0;
             currentCacheIndex = 0;
+            cacheOutMessageList.Clear();
         }
 
         public static string getCacheOneChar()
@@ -225,7 +226,7 @@ namespace XModules.Data
 
         public static void completeCacheOneChar()
         {
-            cacheOutMessageList.Clear();
+            //cacheOutMessageList.Clear();
         }
 
         public static int getOneShotChatSelect()

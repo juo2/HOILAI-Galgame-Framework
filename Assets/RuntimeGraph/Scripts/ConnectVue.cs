@@ -6,8 +6,11 @@ using UnityEngine.UI;
 
 public class ConnectVue : MonoBehaviour
 {
+
+#if UNITY_WEBGL && !UNITY_EDITOR
     [DllImport("__Internal")]
     private static extern void Vue_Upload_Unity(string json);  //´«json
+#endif
 
     public Text label;
 
@@ -15,7 +18,11 @@ public class ConnectVue : MonoBehaviour
     void Start()
     {
         Debug.Log("12345678");
+
+#if UNITY_WEBGL && !UNITY_EDITOR
         Vue_Upload_Unity("12345678");
+#endif
+
     }
 
 

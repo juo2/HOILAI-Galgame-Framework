@@ -15,6 +15,11 @@ namespace XModules.Main.Item
             label.text = content;
         }
 
+        public void StreamContent(string add)
+        {
+            label.text = label.text + add;
+        }
+
         // Start is called before the first frame update
         void Start()
         {

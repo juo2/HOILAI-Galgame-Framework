@@ -11,6 +11,7 @@ namespace XModules.Proxy
     public class ProxyManager
     {
         static string url = "http://ai.sorachat.site";
+        public static string upload_url = $"{url}/chat/user/upload";
 
         public static void SendCodeRequest(string email, Action callBack = null, Action errorBack = null)
         {
@@ -60,6 +61,11 @@ namespace XModules.Proxy
         public static void SaveStoryRecord(string storyId,Action callBack = null,Action errorBack = null)
         {
             TimerManager.AddCoroutine(SaveStoryRecord($"{url}/chat/userStory/saveStoryRecord", storyId, callBack, errorBack));
+        }
+
+        public static void Upload(string fileName,byte[] fileData, Action callBack = null, Action errorBack = null)
+        {
+            TimerManager.AddCoroutine(Upload(upload_url, fileName,fileData, callBack, errorBack));
         }
 
         static IEnumerator SendCodeRequest(string url, string email, Action callBack, Action errorBack)
@@ -483,6 +489,42 @@ namespace XModules.Proxy
 
                 BasicResponse basicResponse = JsonUtility.FromJson<BasicResponse>(webRequest.downloadHandler.text);
                 if (basicResponse.code == "0")
+                {
+                    Debug.Log("<color=#4aff11>SaveStoryRecord 请求成功!!!</color>");
+                    callBack?.Invoke();
+
+                }
+                else
+                {
+                    errorBack?.Invoke();
+                }
+            }
+        }
+
+        public static IEnumerator Upload(string url, string fileName,byte[] fileData, Action callBack = null, Action errorBack = null)
+        {
+            WWWForm form = new WWWForm();
+            form.AddBinaryData("file", fileData, fileName, "video/mp4");
+
+            UnityWebRequest webRequest = UnityWebRequest.Post(url, form);
+
+            // 设置User-Agent
+            webRequest.SetRequestHeader("User-Agent", "Apifox/1.0.0 (https://apifox.com)");
+
+            yield return webRequest.SendWebRequest();
+
+            if (webRequest.result == UnityWebRequest.Result.ConnectionError || webRequest.result == UnityWebRequest.Result.ProtocolError)
+            {
+                Debug.LogError(webRequest.error);
+                errorBack?.Invoke();
+            }
+            else
+            {
+
+                Debug.Log(webRequest.downloadHandler.text);
+
+                UploadResponse uploadResponse = JsonUtility.FromJson<UploadResponse>(webRequest.downloadHandler.text);
+                if (uploadResponse.code == "0")
                 {
                     Debug.Log("<color=#4aff11>SaveStoryRecord 请求成功!!!</color>");
                     callBack?.Invoke();

@@ -38,7 +38,7 @@ public class ConfigChoiceItem : MonoBehaviour
 
         videoBtn.onClick.AddListener(() => 
         {
-            configChoice.videoPlayer.Play(m_video);
+            //configChoice.videoPlayer.Play(m_video);
         });
     }
 

@@ -6,6 +6,7 @@ using XModules.Data;
 using XModules.Main.Item;
 using NativeWebSocket;
 using XModules.Proxy;
+using static XModules.Data.ConversationData;
 
 namespace XModules.Main.Window
 {
@@ -52,6 +53,13 @@ namespace XModules.Main.Window
         
         WebSocket websocket = null;
         bool isConnecting = false;
+
+        bool isRequestingChat = false;
+
+        ChatItem currentChatItem;
+        
+        public const float DefaultSpeed = 0.045f;
+
         void AddChatItem(ChatItem chatItem,string content)
         {
             chatItem.SetActive(true);
@@ -64,7 +72,7 @@ namespace XModules.Main.Window
             chatItem.SetContent(content);
         }
 
-        void AddGptChatItem(string content)
+        void AddGptChatItem(string content,bool isSteam = false)
         {
             ChatItem chatItem = null;
             if (gptChatItemPool.Count > 0)
@@ -76,8 +84,50 @@ namespace XModules.Main.Window
                 chatItem = Instantiate(chatRightItem);
             }
             gptChatItemList.Add(chatItem);
-            AddChatItem(chatItem, content);
+            
+
+            if(isSteam)
+            {
+                currentChatItem = chatItem;
+                ClearCacheOneChar();
+                StartCoroutine(StreamTextContentInternal());
+                AddChatItem(chatItem, "");
+            }
+            else
+            {
+                AddChatItem(chatItem, content);
+            }
+
         }
+
+        IEnumerator StreamTextContentInternal()
+        {
+            bool isDone = false;
+
+            string targetChar = getCacheOneChar();
+
+            if (currentWebSocketSteamContent.Contains("[DONE]"))
+            {
+                isDone = true;
+                targetChar = "";
+                Debug.Log("[DONE][DONE][DONE][DONE][DONE][DONE][DONE][DONE]");
+            }
+
+            currentChatItem.StreamContent(targetChar);
+
+            if (isDone)
+            {
+                yield return new WaitForSeconds(DefaultSpeed);
+                DataManager.createChatData(npcId, "assistant", currentWebSocketSteamContent.Replace("[DONE]", "")); 
+                isRequestingChat = false;
+            }
+            else
+            {
+                yield return new WaitForSeconds(DefaultSpeed);
+                yield return StreamTextContentInternal();
+            }
+        }
+
 
         void AddMeChatItem(string content)
         {
@@ -108,6 +158,11 @@ namespace XModules.Main.Window
 
             closeBtn.onClick.AddListener(() =>
             {
+                if(isRequestingChat)
+                {
+                    return;
+                }
+
                 XGUIManager.Instance.CloseView("ChatWindow");
             });
 
@@ -139,6 +194,9 @@ namespace XModules.Main.Window
         {
             base.OnEnableView();
 
+            currentChatItem = null;
+            isRequestingChat = false;
+
             npcId = viewArgs[0] as string;
             sessionId = viewArgs[1] as string;
             
@@ -146,13 +204,13 @@ namespace XModules.Main.Window
 
             List<ChatData> chatDataList = DataManager.getChatDatabyNpcId(npcId);
 
-            foreach(var data in chatDataList)
+            foreach (var data in chatDataList)
             {
                 if (data.role == "user")
                 {
                     AddMeChatItem(data.content);
                 }
-                else if(data.role == "assistant")
+                else if (data.role == "assistant")
                 {
                     AddGptChatItem(data.content);
                 }
@@ -194,7 +252,7 @@ namespace XModules.Main.Window
 
         async void EnableWebSocket()
         {
-            string url = $"ws://119.91.133.26/chat/websocket/{npcId}/{DataManager.getPlayerId()}";
+            string url = $"ws://119.91.133.26/chat/webSocketStreamTalk/{npcId}/{DataManager.getPlayerId()}";
 
             Debug.Log($"url:{url}");
 
@@ -221,11 +279,17 @@ namespace XModules.Main.Window
             websocket.OnMessage += (bytes) =>
             {
                 var message = System.Text.Encoding.UTF8.GetString(bytes);
+
+                if(!isRequestingChat)
+                {
+                    AddGptChatItem(message,true);
+                }
+
+                cacheOutMessageList.Add(message);
+
+                isRequestingChat = true;
+
                 Debug.Log("Received OnMessage! " + message);
-
-                DataManager.createChatData(npcId, "assistant", message);
-
-                AddGptChatItem(message);
 
                 //chatScrollRect.ScrollToBottom();
                 LaterScroll();

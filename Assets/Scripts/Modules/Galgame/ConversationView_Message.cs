@@ -129,7 +129,10 @@ namespace XModules.GalManager
 
         void Button_Click_Message()
         {
-            
+
+            //瞬发
+            ConversationData.IsSpeak = false;
+
             Debug.Log("Enter Button_Click_Message------------------------------");
             //string content = DataManager.getNpcResponse();
 
@@ -244,6 +247,12 @@ namespace XModules.GalManager
 
             websocket.OnMessage += (bytes) =>
             {
+
+                if(messageStatus == MessageStatus.SendingMessage)
+                {
+                    Button_Click_Message();
+                }
+
                 messageStatus = MessageStatus.ReceiveMessage;
 
                 var message = System.Text.Encoding.UTF8.GetString(bytes);
