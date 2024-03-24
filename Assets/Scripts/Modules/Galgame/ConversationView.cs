@@ -369,6 +369,7 @@ namespace XModules.GalManager
                     {
                         character_img.SetActive(true);
 
+
                         var characterInfo = GetCharacterObjectByName(PlotData.NowPlotDataNode.Attribute("CharacterID").Value);
 
                         if (!characterInfo.isSelf)
@@ -390,9 +391,11 @@ namespace XModules.GalManager
                         if (characterInfo.isSelf)
                         {
                             Gal_SelfText.SetActive(true);
+                            Gal_SelfText.transform.Find("element1").SetActive(true);
+                            Gal_SelfText.transform.Find("element2").SetActive(false);
+
                             if (PlotData.NowPlotDataNode.Elements().Count() != 0) //有选项，因为他有子节点数目了
                             {
-
                                 ConversationData.IsCanJump = false;
                                 foreach (var ClildItem in PlotData.NowPlotDataNode.Elements())
                                 {
@@ -403,6 +406,10 @@ namespace XModules.GalManager
                                 Gal_SelfText.StartTextContent(content, characterInfo.name, () =>
                                 {
                                     Gal_Choice.SetActive(true);
+
+                                    Gal_SelfText.transform.Find("element1").SetActive(false);
+                                    Gal_SelfText.transform.Find("element2").SetActive(true);
+
                                     Gal_Choice.CreatNewChoice(PlotData.ChoiceTextList);
                                 });
                             }
