@@ -130,8 +130,7 @@ namespace XModules.GalManager
         void Button_Click_Message()
         {
 
-            //瞬发
-            ConversationData.IsSpeak = false;
+
 
             Debug.Log("Enter Button_Click_Message------------------------------");
             //string content = DataManager.getNpcResponse();
@@ -250,6 +249,8 @@ namespace XModules.GalManager
 
                 if(messageStatus == MessageStatus.SendingMessage)
                 {
+                    //瞬发
+                    ConversationData.IsSpeak = false;
                     Button_Click_Message();
                 }
 
