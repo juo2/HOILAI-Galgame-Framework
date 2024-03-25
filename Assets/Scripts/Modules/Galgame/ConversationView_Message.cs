@@ -121,6 +121,7 @@ namespace XModules.GalManager
             character_img.SetActive(true);
             character_img.SetImage(ConversationData.TempNpcCharacterInfo.image);
 
+            Gal_SelfText.SetActive(false);
             Gal_OtherText.SetActive(true);
             Gal_OtherText.StartTextContent("............", ConversationData.TempNpcCharacterInfo.name);
 
@@ -130,7 +131,7 @@ namespace XModules.GalManager
         void Button_Click_Message()
         {
 
-
+            Gal_SelfText.SetActive(false);
 
             Debug.Log("Enter Button_Click_Message------------------------------");
             //string content = DataManager.getNpcResponse();

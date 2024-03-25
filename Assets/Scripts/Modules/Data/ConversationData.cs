@@ -185,7 +185,7 @@ namespace XModules.Data
 
         public static string getCacheOneChar()
         {
-            Debug.Log($"getCacheOneChar cacheOutMessageList.Count:{cacheOutMessageList.Count}");
+            //Debug.Log($"getCacheOneChar cacheOutMessageList.Count:{cacheOutMessageList.Count}");
 
             for (int i = cacheIndex; i < cacheOutMessageList.Count; i++)
             {
@@ -194,7 +194,7 @@ namespace XModules.Data
 
             cacheIndex = cacheOutMessageList.Count;
 
-            Debug.Log($"getCacheOneChar webSocketSteamContent.Length:{webSocketSteamContent.Length}");
+            //Debug.Log($"getCacheOneChar webSocketSteamContent.Length:{webSocketSteamContent.Length}");
 
             if (currentCacheIndex < webSocketSteamContent.Length)
             {
@@ -214,9 +214,9 @@ namespace XModules.Data
                 // 继续原来的逻辑，返回下一个字符
                 char targetOut = webSocketSteamContent[currentCacheIndex];
                 currentCacheIndex++;
-                Debug.Log($"getCacheOneChar currentCacheIndex:{currentCacheIndex}");
+                //Debug.Log($"getCacheOneChar currentCacheIndex:{currentCacheIndex}");
                 currentWebSocketSteamContent += targetOut;
-                Debug.Log($"getCacheOneChar currentWebSocketSteamContent:{currentWebSocketSteamContent}");
+                //Debug.Log($"getCacheOneChar currentWebSocketSteamContent:{currentWebSocketSteamContent}");
                 return targetOut.ToString();
             }
 

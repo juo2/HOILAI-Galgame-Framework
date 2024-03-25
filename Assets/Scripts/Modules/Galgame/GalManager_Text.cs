@@ -79,7 +79,7 @@ namespace XModules.GalManager
 
             string targetChar = getCacheOneChar();
 
-            Debug.Log($"targetChar33333333333333:{targetChar}");
+            //Debug.Log($"targetChar33333333333333:{targetChar}");
 
             if(isNeedShowFinish)
             {
