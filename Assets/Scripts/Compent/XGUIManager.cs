@@ -52,7 +52,7 @@ namespace XGUI
 
             CanvasScaler canvasScaler = xCanvas.AddComponent<CanvasScaler>();
             canvasScaler.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
-            canvasScaler.referenceResolution = new Vector2(1560, 720);
+            canvasScaler.referenceResolution = new Vector2(720, 1560);
             canvasScaler.screenMatchMode = CanvasScaler.ScreenMatchMode.MatchWidthOrHeight;
             canvasScaler.matchWidthOrHeight = 0.5f;
             canvasScaler.referencePixelsPerUnit = 100;
