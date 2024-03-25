@@ -235,7 +235,8 @@ namespace XModules.Data
 
             if (strArray.Length == 2)
             {
-                return (int)Char.GetNumericValue(strArray[1][0]);;
+                string temp = strArray[1].Replace(" ", "");
+                return (int)Char.GetNumericValue(temp[0]);;
             }
             else
             {
