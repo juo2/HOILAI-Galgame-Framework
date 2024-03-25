@@ -288,7 +288,12 @@ public partial class LaunchUpdate
                 XLogger.DEBUG(string.Format("LaunchUpdate::CheckLocalFileList() load buildin assetFiles ! path={0}", sdcardPath));
             string buildinPath = Path.Combine(AssetDefine.BuildinAssetPath, c_FileListFileName);
             string jsonData = string.Empty;
+
+#if XConfigMode
+            bool isExist = false;
+#else
             bool isExist = true;
+#endif
 
 #if UNITY_EDITOR || UNITY_STANDALONE || UNITY_IOS
             isExist = File.Exists(buildinPath);

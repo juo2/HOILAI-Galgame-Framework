@@ -439,7 +439,14 @@ namespace WebGLSupport
             public static void Add(WebGLInput input)
             {
                 inputs.Add(input);
-                inputs.Sort();
+                try
+                {
+                    inputs.Sort();
+                }
+                catch (Exception ex)
+                {
+                    Debug.Log("Sort() fail, error:" + ex.Message);
+                }
             }
 
             public static void Remove(WebGLInput input)
