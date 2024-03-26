@@ -356,9 +356,9 @@ namespace XModules.GalManager
                             }
 
 
-                            EnableWebSocket();
                             Gal_Message.SetActive(true);
                             Gal_Message.CreatNewChoice(PlotData.ChoiceTextList);
+                            EnableWebSocket();
 
                             SendCharMessage("","", true);
                         }
