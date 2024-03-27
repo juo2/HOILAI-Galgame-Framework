@@ -17,12 +17,15 @@ namespace XModules.GalManager
         /// </summary>
         public static bool IsFastMode;
 
-        private string currentContent = ""; // 当前应该显示的内容
-        private string additionalContent = ""; // 新附加的内容
-        private float timer = 0f; // 计时器，用于控制字符的显示速度
-        private bool isAnimating = false; // 是否正在播放动画
+        /// <summary>
+        /// 文本内容协程
+        /// </summary>
+        public Coroutine TextCoroutine;
 
-        private UnityAction finishFunc = null;
+        /// <summary>
+        /// 文本内容打字机动画事件
+        /// </summary>
+        public static Tweener TextAnimateEvemt;
 
         /// <summary>
         /// 文本内容
@@ -52,7 +55,6 @@ namespace XModules.GalManager
 
         public void StreamTextContent(string CharacterName,bool isNeedShowFinish = true)
         {
-           
             Debug.Log($"Enter StreamTextContent ------------------------------------ ConversationData.IsSpeak:{ConversationData.IsSpeak}");
 
             if (ConversationData.IsSpeak)
@@ -64,11 +66,12 @@ namespace XModules.GalManager
             ClearCacheOneChar();
 
             KillTween();
+
             SetText_Content(string.Empty);//先清空内容
             SetText_CharacterName(CharacterName);
             ConversationData.IsSpeak = true;
 
-            StartCoroutine(StreamTextContentInternal(isNeedShowFinish));
+            TextCoroutine = StartCoroutine(StreamTextContentInternal(isNeedShowFinish));
         }
 
 
@@ -117,16 +120,15 @@ namespace XModules.GalManager
         public void ForceTextContent(string TextContent, string CharacterName, UnityAction CallBack = null)
         {
             KillTween();
+
             ConversationData.IsSpeak = true;
             SetText_Content(string.Empty);//先清空内容
             SetText_CharacterName(CharacterName);
-            DoText(TextContent);
-
-            finishFunc = () => 
+            TextAnimateEvemt = Text_TextContent.DOText(TextContent, TextContent.Length * (IsFastMode ? FastSpeed : DefaultSpeed)).SetEase(Ease.Linear).OnComplete(() =>
             {
                 ConversationData.IsSpeak = false;
                 CallBack?.Invoke();
-            };
+            });
         }
 
         /// <summary>
@@ -139,82 +141,88 @@ namespace XModules.GalManager
         /// <returns></returns>
         public void StartTextContent (string TextContent, string CharacterName, UnityAction CallBack = null)
         {
-            if (ConversationData.IsSpeak && Text_TextContent.text.Length >= TextContent.Length * 0.75f && ConversationData.IsCanJump)//当前还正在发言
+            //if (ConversationData.IsSpeak && Text_TextContent.text.Length >= TextContent.Length * 0.75f && ConversationData.IsCanJump)//当前还正在发言
+            //{
+            //    //但是 ，如果当前到了总文本的三分之二，也可以下一句
+            //    KillTween();
+            //    SetText_CharacterName(CharacterName);
+            //    return;
+            //}
+            if (ConversationData.IsSpeak)
             {
-                //但是 ，如果当前到了总文本的三分之二，也可以下一句
-                KillTween();
-                SetText_CharacterName(CharacterName);
                 return;
             }
-            else if (ConversationData.IsSpeak)
-            {
-                return;
-            }
+
+            KillTween();
 
             ConversationData.IsSpeak = true;
             SetText_Content(string.Empty);//先清空内容
             SetText_CharacterName(CharacterName);
 
-            DoText(TextContent);
-            finishFunc =() =>
+            TextAnimateEvemt = Text_TextContent.DOText(TextContent, TextContent.Length * (IsFastMode ? FastSpeed : DefaultSpeed)).SetEase(Ease.Linear).OnComplete(() =>
             {
                 ConversationData.IsSpeak = false;
                 CallBack?.Invoke();
-            };
+            });
         }
 
         public void KillTween()
-        {
-            isAnimating = false;
-            additionalContent = ""; // 清空附加内容
-            currentContent = "";
+        { 
+            if(TextCoroutine != null)
+            {
+                StopCoroutine(TextCoroutine);
+                TextCoroutine = null;
+            }
+
+            if (TextAnimateEvemt != null)
+                TextAnimateEvemt.Kill();
         }
 
-        public void DoText(string content)
-        {
-            // 如果动画正在进行中，则新内容追加到目标内容之后
-            if (isAnimating)
-            {
-                return;
-            }
-            else
-            {
-                additionalContent = content; // 设置新附加的内容
-                currentContent = Text_TextContent.text; // 保留当前已显示的内容
-                isAnimating = true; // 开始动画
-            }
+        //public void DoText(string content)
+        //{
+        //    // 如果动画正在进行中，则新内容追加到目标内容之后
+        //    if (isAnimating)
+        //    {
+        //        return;
+        //    }
+        //    else
+        //    {
+        //        additionalContent = content; // 设置新附加的内容
+        //        currentContent = Text_TextContent.text; // 保留当前已显示的内容
+        //        isAnimating = true; // 开始动画
+        //    }
 
-            timer = DefaultSpeed; // 重置计时器
-        }
+        //    timer = DefaultSpeed; // 重置计时器
+        //}
 
-        private void Update()
-        {
-            if (!isAnimating || string.IsNullOrEmpty(additionalContent))
-            {
-                return;
-            }
+        //private void Update()
+        //{
+        //    if (!isAnimating || string.IsNullOrEmpty(additionalContent))
+        //    {
+        //        return;
+        //    }
 
-            // 更新计时器
-            timer -= Time.deltaTime;
+        //    // 更新计时器
+        //    timer -= Time.deltaTime;
 
-            if (timer <= 0f && currentContent.Length < Text_TextContent.text.Length + additionalContent.Length)
-            {
-                // 时间到了，显示下一个字符
-                currentContent += additionalContent[0]; // 追加下一个字符到当前内容中
-                additionalContent = additionalContent.Substring(1); // 更新附加内容
-                Text_TextContent.text = currentContent; // 更新显示的文本
-                timer = DefaultSpeed; // 重置计时器
-            }
+        //    if (timer <= 0f && currentContent.Length < Text_TextContent.text.Length + additionalContent.Length)
+        //    {
+        //        // 时间到了，显示下一个字符
+        //        currentContent += additionalContent[0]; // 追加下一个字符到当前内容中
+        //        additionalContent = additionalContent.Substring(1); // 更新附加内容
+        //        Text_TextContent.text = currentContent; // 更新显示的文本
+        //        timer = DefaultSpeed; // 重置计时器
+        //    }
 
-            if (string.IsNullOrEmpty(additionalContent))
-            {
-                // 所有附加字符都已显示，停止动画
-                isAnimating = false;
-                currentContent = "";
+        //    if (string.IsNullOrEmpty(additionalContent))
+        //    {
+        //        // 所有附加字符都已显示，停止动画
+        //        isAnimating = false;
+        //        currentContent = "";
 
-                finishFunc?.Invoke();
-            }
-        }
+        //        finishFunc?.Invoke();
+        //    }
+        //}
 
     }
 }

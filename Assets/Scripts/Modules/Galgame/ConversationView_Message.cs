@@ -247,11 +247,10 @@ namespace XModules.GalManager
 
             websocket.OnMessage += (bytes) =>
             {
-
                 if(messageStatus == MessageStatus.SendingMessage)
                 {
-                                //瞬发
-            ConversationData.IsSpeak = false;
+                    //瞬发
+                    ConversationData.IsSpeak = false;
                     Button_Click_Message();
                 }
 
