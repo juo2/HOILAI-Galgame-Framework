@@ -99,25 +99,21 @@ namespace XNode.Story
 				if (string.IsNullOrEmpty(nameField.text)) 
 				{
 					messageBox.SetContent("剧本名为空");
-					exportBtn.isCanSave = false;
 					return;
 				}
 
 				if (s_errorMessage.Count > 0)
                 {
-					exportBtn.isCanSave = false;
 					return;
 				}
 
-				exportBtn.isCanSave = true;
 				exportBtn.fileName = nameField.text;
 
 				//如果不是editor需要发送xml给后端
-//#if !UNITY_EDITOR
+#if !UNITY_EDITOR
 				string xmlString = exportBtn.saveData; // 这是你的XML字符串
 				StartCoroutine(SyncNpcInfoCoroutine( xmlString));
-//#endif
-
+#endif
 			};
 
 			importBtn.finishCallBack = (string xml) => 
@@ -217,6 +213,9 @@ namespace XNode.Story
 				{
 					// 处理服务器响应
 					Debug.Log("NPC Info synced successfully.");
+
+					messageBox.SetContent("导出剧本成功!!!");
+
 					Debug.Log(request.downloadHandler.text); // 打印服务器返回的信息
 				}
 			}

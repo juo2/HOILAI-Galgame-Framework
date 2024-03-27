@@ -17,7 +17,6 @@ namespace XNode.Story
         int s_index = 1;
         List<string> s_errorMessage = new List<string>();
 
-        // 检测字符串是否包含中文
         public bool ContainsChinese(string input)
         {
             if (string.IsNullOrEmpty(input))
@@ -230,6 +229,14 @@ namespace XNode.Story
             {
                 StoryMessageLoopNode storyMessageNode = s_node.baseNode as StoryMessageLoopNode;
 
+                bool isConnectSelf = findCharacterNode(storyMessageNode, true);
+                bool isConnectNpc = findCharacterNode(storyMessageNode, false);
+
+                if (!isConnectSelf || !isConnectNpc)
+                {
+                    ErrorMessage(storyMessageNode, $"node : {storyMessageNode.GetInstanceID()} should has both Self and Npc");
+                }
+
                 XmlElement speadxml = doc.CreateElement("MessageLoop");
                 speadxml.SetAttribute("NodeId", s_node.index.ToString());
                 speadxml.SetAttribute("Position", storyMessageNode.position.ToString());
@@ -256,6 +263,14 @@ namespace XNode.Story
             if (s_node.baseNode is StoryMessageNode)
             {
                 StoryMessageNode storyMessageNode = s_node.baseNode as StoryMessageNode;
+
+                bool isConnectSelf = findCharacterNode(storyMessageNode, true);
+                bool isConnectNpc = findCharacterNode(storyMessageNode, false);
+
+                if(!isConnectSelf || !isConnectNpc)
+                {
+                    ErrorMessage(storyMessageNode, $"node : {storyMessageNode.GetInstanceID()} should has both Self and Npc");
+                }
 
                 XmlElement speadxml = doc.CreateElement("Message");
                 speadxml.SetAttribute("NodeId", s_node.index.ToString());
@@ -337,6 +352,8 @@ namespace XNode.Story
             {
                 StorySpeakNode storySpeakNode = s_node.baseNode as StorySpeakNode;
 
+                bool isConnectNode = findCharacterNodeByID(s_node.baseNode, storySpeakNode.ID);
+
                 XmlElement speak = doc.CreateElement("Speak");
 
                 speak.SetAttribute("NodeId", s_node.index.ToString());
@@ -405,10 +422,23 @@ namespace XNode.Story
                         choice4.InnerText = storySpeakNode.opt4;
                         speak.AppendChild(choice4);
                     }
+
+                    var addNode = GetAddCharacterNode(storySpeakNode.ID);
+
+                    if (!isConnectNode || !addNode.isSelf)
+                    {
+                        ErrorMessage(storySpeakNode, $"node : {storySpeakNode.GetInstanceID()} require addCharacterNode isSelf==True");
+                    }
+
                 }
                 else
                 {
                     findNextNodeXml(speak, s_node.baseNode);
+
+                    if(!isConnectNode)
+                    {
+                        ErrorMessage(storySpeakNode, $"node : {storySpeakNode.GetInstanceID()} require addCharacterNode");
+                    }
                 }
 
                 element.AppendChild(speak);
@@ -466,13 +496,13 @@ namespace XNode.Story
 
         public class Utf8StringWriter : StringWriter
         {
-            public override Encoding Encoding => new UTF8Encoding(false); // false 表示不使用 BOM
+            public override Encoding Encoding => new UTF8Encoding(false); //
         }
 
         public string SaveXmlToString(XmlDocument doc)
         {
             XmlWriterSettings settings = new XmlWriterSettings();
-            settings.Encoding = new UTF8Encoding(false); // false 表示不使用 BOM
+            settings.Encoding = new UTF8Encoding(false); //
             settings.Indent = true;
 
             using (Utf8StringWriter stringWriter = new Utf8StringWriter())
@@ -494,6 +524,87 @@ namespace XNode.Story
                 ErrorMessage(node as StoryBaseNode, $"node : {node.GetInstanceID()} can not find nextnode");
             }
 
+        }
+
+        StoryAddCharacterNode GetAddCharacterNode(string ID)
+        {
+            foreach (var node in s_storyEditorNodeDic.Values)
+            {
+                if(node.baseNode is StoryAddCharacterNode)
+                {
+                    StoryAddCharacterNode addNode = node.baseNode as StoryAddCharacterNode;
+                    if (addNode.ID == ID)
+                    {
+                        return addNode;
+                    }
+                }
+            }
+
+            return null;
+        }
+
+        bool findCharacterNodeByID(Node currentNode, string ID)
+        {
+            List<NodePort> preNodePorts = currentNode.GetPort("In").GetConnections();
+
+            if (preNodePorts.Count <= 0)
+            {
+                return false;
+            }
+
+            foreach(var node in preNodePorts)
+            {
+                if (node.node is StoryAddCharacterNode)
+                {
+                    StoryAddCharacterNode storyAddCharacter = node.node as StoryAddCharacterNode;
+                    if (storyAddCharacter.ID == ID)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return findCharacterNodeByID(node.node, ID);
+                    }
+                }
+                else
+                {
+                    return findCharacterNodeByID(node.node, ID);
+                }
+            }
+
+            return false;
+        }
+
+        bool findCharacterNode(Node currentNode, bool isSelf)
+        {
+            List<NodePort> preNodePorts = currentNode.GetPort("In").GetConnections();
+
+            if (preNodePorts.Count <= 0)
+            {
+                return false;
+            }
+
+            foreach (var node in preNodePorts)
+            {
+                if (node.node is StoryAddCharacterNode)
+                {
+                    StoryAddCharacterNode storyAddCharacter = node.node as StoryAddCharacterNode;
+                    if (storyAddCharacter.isSelf == isSelf)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return findCharacterNode(node.node, isSelf);
+                    }
+                }
+                else
+                {
+                    return findCharacterNode(node.node, isSelf);
+                }
+            }
+
+            return false;
         }
 
         int findNextNode(Node node, string nodeName = "Out")
@@ -599,7 +710,7 @@ namespace XNode.Story
             Node startNode = FindStartNode(storyGraph);
             if (startNode == null)
             {
-                ErrorMessage(null, "找不到任何节点");
+                ErrorMessage(null, "can not find startNode");
                 Debug.LogError("generate fail!!!");
                 return;
             }
