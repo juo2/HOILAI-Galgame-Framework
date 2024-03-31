@@ -2,7 +2,7 @@ import subprocess
 
 # 设置变量
 unity_dir = r"C:\Program Files\Unity2021.3.32f1\Editor\Unity.exe"
-project_dir = r"D:\Git\HOILAI-Galgame-Framework2"
+project_dir = r"C:\ProgramData\Jenkins\.jenkins\workspace\unityweb"
 platform = "WebGL"
 
 # 构造命令
