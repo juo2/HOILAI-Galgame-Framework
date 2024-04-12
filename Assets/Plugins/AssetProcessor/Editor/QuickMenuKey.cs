@@ -117,7 +117,7 @@ public class QuickMenuKey : ScriptableObject
         UnityEngine.SceneManagement.SceneManager.CreateScene("LaunchGame");
         UnityEngine.SceneManagement.SceneManager.UnloadSceneAsync(scene);
 
-        var _hotUpdateAss = System.AppDomain.CurrentDomain.GetAssemblies().First(a => a.GetName().Name == "Main");
+        var _hotUpdateAss = System.AppDomain.CurrentDomain.GetAssemblies().First(a => a.GetName().Name == "HotUpdate");
         System.Type type = _hotUpdateAss.GetType("Launcher");
 
         //System.Reflection.Assembly Assembly = System.Reflection.Assembly.Load("Assembly-CSharp");

@@ -79,13 +79,16 @@ SpriteAtlas:
     - {fileID: 2800000, guid: 07c9d07397a684b448f6d7f8d001ae94, type: 3}
     - {fileID: 2800000, guid: ae0dd3dc26fce42ca9affc5a5ef0942e, type: 3}
     - {fileID: 2800000, guid: 8058a43872bdc4e9f86e0f1f0764f457, type: 3}
+    - {fileID: 2800000, guid: a43daa4983b79584798bec634d0b9765, type: 3}
     - {fileID: 2800000, guid: a0e65e878d79b4548b00f72862a5d182, type: 3}
     - {fileID: 2800000, guid: 4774b4724afe44e4da2f43bc3c0fe26f, type: 3}
+    - {fileID: 2800000, guid: 748369f15224f3d418c310037336b7b5, type: 3}
     - {fileID: 2800000, guid: 24fd4adc210f2cd449afe86888aae83f, type: 3}
     - {fileID: 2800000, guid: 27b24b8d51a957c4a9ebd1a981fd7fd5, type: 3}
     - {fileID: 2800000, guid: 27fa25e91049c43439c78dc099773bdb, type: 3}
     - {fileID: 2800000, guid: 5be2b1dc106c1ea438fd31c12d1468eb, type: 3}
     - {fileID: 2800000, guid: 984119dd134da0d4193150e907dbbc63, type: 3}
+    - {fileID: 2800000, guid: d17ef37d175e7fd4b97d05c33df05794, type: 3}
     - {fileID: 2800000, guid: ea8dd780249183d4db1996b31eb6ee8c, type: 3}
     - {fileID: 2800000, guid: 2b79b65792c2dd141814ba339a95ee4d, type: 3}
     - {fileID: 2800000, guid: 0abf5d6ad3d34d244b3347e550d180c6, type: 3}
@@ -112,7 +115,6 @@ SpriteAtlas:
     - {fileID: 2800000, guid: 831b13e8b5d75f24fac2975246efb5c7, type: 3}
     - {fileID: 2800000, guid: 5025deca369c65d4c9b5f31005631f37, type: 3}
     - {fileID: 2800000, guid: 5234122413f786b46a59c2832a2d066e, type: 3}
-    - {fileID: 2800000, guid: d0847f1e7912805428e6ebad547d055e, type: 3}
     - {fileID: 2800000, guid: e8a60e3074ba04580a3b0b99c66f72a6, type: 3}
     - {fileID: 2800000, guid: fba9dada031158642926929c85640d5d, type: 3}
     - {fileID: 2800000, guid: 6b4f9183332ac164a806fa02b16b5f16, type: 3}
@@ -126,6 +128,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: ea8dd780249183d4db1996b31eb6ee8c, type: 3}
   - {fileID: 21300000, guid: 7e992d80f36f67540b4c56f840426219, type: 3}
   - {fileID: 21300000, guid: 661a09e1a99dfaa4e8844fa96a2d022a, type: 3}
+  - {fileID: 21300000, guid: 748369f15224f3d418c310037336b7b5, type: 3}
   - {fileID: 21300000, guid: d2398662ad96edb43b57f4e3f2fb532c, type: 3}
   - {fileID: 21300000, guid: 4774b4724afe44e4da2f43bc3c0fe26f, type: 3}
   - {fileID: 21300000, guid: c53474a27ad27c94c8c88027f357bda1, type: 3}
@@ -149,6 +152,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 9faca738a50500f469d5790c97eb7297, type: 3}
   - {fileID: 21300000, guid: 628f9f485d9c2cd4faaa6c1fbf02064c, type: 3}
   - {fileID: 21300000, guid: 831b13e8b5d75f24fac2975246efb5c7, type: 3}
+  - {fileID: 21300000, guid: a43daa4983b79584798bec634d0b9765, type: 3}
   - {fileID: 21300000, guid: 17735279116a1c34b81455044f072da6, type: 3}
   - {fileID: 21300000, guid: 56e3a789b60295b45acca7be8d5a8bc7, type: 3}
   - {fileID: 21300000, guid: 27fa25e91049c43439c78dc099773bdb, type: 3}
@@ -161,10 +165,10 @@ SpriteAtlas:
   - {fileID: 21300000, guid: ae0dd3dc26fce42ca9affc5a5ef0942e, type: 3}
   - {fileID: 21300000, guid: 24fd4adc210f2cd449afe86888aae83f, type: 3}
   - {fileID: 21300000, guid: 919cf36db549f3a45b2506f436fd1fb9, type: 3}
+  - {fileID: 21300000, guid: d17ef37d175e7fd4b97d05c33df05794, type: 3}
   - {fileID: 21300000, guid: 27b24b8d51a957c4a9ebd1a981fd7fd5, type: 3}
   - {fileID: 21300000, guid: 46b798ad5d52bdc4898ba8dd27daaa5e, type: 3}
   - {fileID: 21300000, guid: 984119dd134da0d4193150e907dbbc63, type: 3}
-  - {fileID: 21300000, guid: d0847f1e7912805428e6ebad547d055e, type: 3}
   - {fileID: 21300000, guid: 86ccdfbed078926419aed7a1e2b07948, type: 3}
   - {fileID: 21300000, guid: 01bf320ff8eedf84d96fb761c25a7688, type: 3}
   - {fileID: 21300000, guid: 2e7fe91ff5e628c4cae62e19c3bceb7f, type: 3}
@@ -175,6 +179,7 @@ SpriteAtlas:
   - letter
   - s_profile
   - btn
+  - chat_option
   - send
   - chat_normal
   - pop
@@ -198,6 +203,7 @@ SpriteAtlas:
   - return3
   - bad2
   - time
+  - chat_bg3
   - s_boy
   - pop_normal
   - closebtn
@@ -210,10 +216,10 @@ SpriteAtlas:
   - chat_bg
   - chat_self
   - s_chat
+  - input_bg2
   - circle
   - bad4
   - info
-  - top
   - s_gril
   - returnBtn
   - s_home

@@ -56,6 +56,8 @@ MonoBehaviour:
     m_AssetPath: Assets/Resources/GUI_Loading.prefab
   - m_AssetName: GUI_MessageBox.prefab
     m_AssetPath: Assets/Resources/GUI_MessageBox.prefab
+  - m_AssetName: Main.asmdef
+    m_AssetPath: Assets/Scripts/Main.asmdef
   - m_AssetName: SampleSceneProfile.asset
     m_AssetPath: Assets/Settings/SampleSceneProfile.asset
   - m_AssetName: URP-Balanced-Renderer.asset
@@ -89,7 +91,9 @@ MonoBehaviour:
   - m_AssetName: fangzhengls.TTF
     m_AssetPath: Assets/GUI/Fonts/fangzhengls.TTF
   - m_AssetName: AssetManifest.asset
-    m_AssetPath: Assets/Plugins/AssetProcessor/Scripts/AssetManifest.asset
+    m_AssetPath: Assets/Plugins/AssetProcessor/AssetManifest.asset
+  - m_AssetName: AssetProcessor.asmdef
+    m_AssetPath: Assets/Plugins/AssetProcessor/AssetProcessor.asmdef
   - m_AssetName: readme_DOTweenPro.txt
     m_AssetPath: Assets/Plugins/Demigiant/readme_DOTweenPro.txt
   - m_AssetName: connect.jslib
@@ -142,8 +146,6 @@ MonoBehaviour:
     m_AssetPath: Assets/RuntimeGraph/Scenes/RuntimeGraph.unity
   - m_AssetName: RuntimeGraphSettings.lighting
     m_AssetPath: Assets/RuntimeGraph/Scenes/RuntimeGraphSettings.lighting
-  - m_AssetName: HotUpdate.asmdef
-    m_AssetPath: Assets/Scripts/HotUpdate/HotUpdate.asmdef
   - m_AssetName: endel.nativewebsocket.asmdef
     m_AssetPath: Assets/Scripts/WebSocket/endel.nativewebsocket.asmdef
   - m_AssetName: WebSocket.jslib
@@ -184,8 +186,6 @@ MonoBehaviour:
     m_AssetPath: Assets/Plugins/AssetProcessor/Editor/atlas_temp.spriteatlas
   - m_AssetName: temp.lua
     m_AssetPath: Assets/Plugins/AssetProcessor/Editor/temp.lua
-  - m_AssetName: AssetProcessor.asmdef
-    m_AssetPath: Assets/Plugins/AssetProcessor/Scripts/AssetProcessor.asmdef
   - m_AssetName: AVPro.png
     m_AssetPath: Assets/Plugins/AVProVideo/Resources/AVPro.png
   - m_AssetName: AVPro1.png
