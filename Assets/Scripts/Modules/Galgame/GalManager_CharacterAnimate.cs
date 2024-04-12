@@ -1,7 +1,7 @@
 ﻿
 using Common.Game;
 using DG.Tweening;
-using TetraCreations.Attributes;
+//using TetraCreations.Attributes;
 using UnityCustom;
 using UnityEngine;
 using UnityEngine.UI;
@@ -26,7 +26,7 @@ namespace XModules.GalManager
         /// 角色立绘
         /// </summary>
         private Image CharacterImg;
-        [Title("注意，主画布的名称必须是MainCanvas")]
+        //[Title("注意，主画布的名称必须是MainCanvas")]
         public Canvas MainCanvas;
 
         private float m_SpriteWidth = 800;
@@ -42,7 +42,7 @@ namespace XModules.GalManager
             CharacterImg = this.gameObject.GetComponent<Image>();
             if (MainCanvas == null) MainCanvas = GameObject.Find("MainCanvas").GetComponent<Canvas>();
         }
-        [Button(nameof(Start), "重新执行入场动画")]
+        //[Button(nameof(Start), "重新执行入场动画")]
         private void Start ()
         {
             //HandleInOrOutsideMessgae(Animate_StartOrOutside);
@@ -60,7 +60,7 @@ namespace XModules.GalManager
             }
         }
 
-        [Button(nameof(Start), "重新执行及时动画")]
+        //[Button(nameof(Start), "重新执行及时动画")]
         public void HandleMessgae ()
         {
             var _rect = CharacterImg.GetComponent<RectTransform>();

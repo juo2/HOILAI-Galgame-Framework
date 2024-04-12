@@ -4,7 +4,7 @@ using UnityEditor.UI;
 using UnityEngine.UI;
 using XGUI;
 using System.Collections;
-using TMPro;
+//using TMPro;
 
 public class XGUIMenus : ScriptableObject
 {

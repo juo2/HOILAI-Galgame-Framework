@@ -1,0 +1,19 @@
+{
+    "name": "Main",
+    "rootNamespace": "",
+    "references": [
+        "GUID:77423f4ebb8afb04fbed85e6873574bf",
+        "GUID:d1a0ca68448684c458a17624fdd7d9ac",
+        "GUID:ad871ff5569d37448b13485c38d157a5",
+        "GUID:1ccec00491ad12945933994805025585"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

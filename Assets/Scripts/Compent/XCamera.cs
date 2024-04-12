@@ -13,7 +13,7 @@ namespace XGUI
             GameObject cameraGo = new GameObject();
             cameraGo.name = "Main Camera";
             guiCamera = cameraGo.AddComponent<Camera>();
-            cameraGo.AddComponent<UnityEngine.Rendering.Universal.UniversalAdditionalCameraData>();
+            //cameraGo.AddComponent<UnityEngine.Rendering.Universal.UniversalAdditionalCameraData>();
 
             guiCamera.orthographic = false;
             guiCamera.fieldOfView = 60;

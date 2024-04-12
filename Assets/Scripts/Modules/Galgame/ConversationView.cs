@@ -4,7 +4,7 @@ using System;
 using System.Collections;
 using System.Linq;
 using System.Xml.Linq;
-using TetraCreations.Attributes;
+//using TetraCreations.Attributes;
 using UnityEngine;
 using UnityEngine.Networking;
 using XGUI;
@@ -56,7 +56,7 @@ namespace XModules.GalManager
         /// <summary>
         /// 当前场景角色数量
         /// </summary>
-        [Title("当前场景角色数量")]
+        //[Title("当前场景角色数量")]
         public int CharacterNum;
 
         WebSocket websocket = null;

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using UnityEditor;
-
+using System.Linq;
 
 [InitializeOnLoad]
 public class QuickMenuKey : ScriptableObject
@@ -116,8 +116,12 @@ public class QuickMenuKey : ScriptableObject
         UnityEngine.SceneManagement.Scene scene = UnityEngine.SceneManagement.SceneManager.GetActiveScene();
         UnityEngine.SceneManagement.SceneManager.CreateScene("LaunchGame");
         UnityEngine.SceneManagement.SceneManager.UnloadSceneAsync(scene);
-        System.Reflection.Assembly Assembly = System.Reflection.Assembly.Load("Assembly-CSharp");
-        System.Type type = Assembly.GetType("Launcher");
+
+        var _hotUpdateAss = System.AppDomain.CurrentDomain.GetAssemblies().First(a => a.GetName().Name == "Main");
+        System.Type type = _hotUpdateAss.GetType("Launcher");
+
+        //System.Reflection.Assembly Assembly = System.Reflection.Assembly.Load("Assembly-CSharp");
+        //System.Type type = Assembly.GetType("Launcher");
         GameObject xgame = new GameObject("xgame", type);
         Object.DontDestroyOnLoad(xgame);
     }

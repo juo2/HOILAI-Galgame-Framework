@@ -1,4 +1,4 @@
-using TetraCreations.Attributes;
+//using TetraCreations.Attributes;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -30,7 +30,7 @@ namespace Common.UI
                 RedsizeImage();
             }
         }
-        [Button(nameof(RedsizeImage), "重新设置比例")]
+        //[Button(nameof(RedsizeImage), "重新设置比例")]
         public void RedsizeImage ()
         {
             if (GetComponent<Image>().sprite == null) return;
