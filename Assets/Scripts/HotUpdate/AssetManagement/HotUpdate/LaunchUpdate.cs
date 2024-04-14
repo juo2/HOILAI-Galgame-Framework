@@ -106,6 +106,14 @@ public partial class LaunchUpdate : MonoBehaviour
     {
         yield return null;
         //没有连接网络提示连接网络
+
+        Debug.Log($"Application.internetReachability:{Application.internetReachability}");
+        Debug.Log($"Application.internetReachability:{Application.internetReachability}");
+        Debug.Log($"Application.internetReachability:{Application.internetReachability}");
+        Debug.Log($"Application.internetReachability:{Application.internetReachability}");
+        Debug.Log($"Application.internetReachability:{Application.internetReachability}");
+        Debug.Log($"Application.internetReachability:{Application.internetReachability}");
+
         if (!XUtility.IsNetworkValid())
         {
             RecordLogger(string.Format("StartUpHotUpdate -> NetworkValid .. Application.internetReachability = {0}", Application.internetReachability));

@@ -70,6 +70,10 @@
     <type fullname="System.Xml.Linq.XElement" preserve="all" />
     <type fullname="System.Xml.Linq.XName" preserve="all" />
   </assembly>
+  <assembly fullname="UnityEngine.AndroidJNIModule">
+    <type fullname="UnityEngine.AndroidJavaClass" preserve="all" />
+    <type fullname="UnityEngine.AndroidJavaObject" preserve="all" />
+  </assembly>
   <assembly fullname="UnityEngine.AnimationModule">
     <type fullname="UnityEngine.Animation" preserve="all" />
     <type fullname="UnityEngine.AnimationClip" preserve="all" />
@@ -163,9 +167,6 @@
   <assembly fullname="UnityEngine.IMGUIModule">
     <type fullname="UnityEngine.GUIStyle" preserve="all" />
     <type fullname="UnityEngine.ScaleMode" preserve="all" />
-  </assembly>
-  <assembly fullname="UnityEngine.ImageConversionModule">
-    <type fullname="UnityEngine.ImageConversion" preserve="all" />
   </assembly>
   <assembly fullname="UnityEngine.InputLegacyModule">
     <type fullname="UnityEngine.Input" preserve="all" />

@@ -22,6 +22,8 @@ MonoBehaviour:
     m_AssetPath: Assets/Edit profile1.png
   - m_AssetName: Feedback.png
     m_AssetPath: Assets/Feedback.png
+  - m_AssetName: "NPC\u5BF9\u8BDD01-2.png"
+    m_AssetPath: "Assets/NPC\u5BF9\u8BDD01-2.png"
   - m_AssetName: "NPC\u5BF9\u8BDD02-2.png"
     m_AssetPath: "Assets/NPC\u5BF9\u8BDD02-2.png"
   - m_AssetName: "NPC\u5BF9\u8BDD03.png"
@@ -40,6 +42,8 @@ MonoBehaviour:
     m_AssetPath: "Assets/\u5F39\u7A97-\u5E38\u89C4.png"
   - m_AssetName: "\u6211\u7684.png"
     m_AssetPath: "Assets/\u6211\u7684.png"
+  - m_AssetName: "\u65C1\u767D.png"
+    m_AssetPath: "Assets/\u65C1\u767D.png"
   - m_AssetName: "\u7B80\u6613.png"
     m_AssetPath: "Assets/\u7B80\u6613.png"
   - m_AssetName: "\u804A\u5929.png"
@@ -50,6 +54,8 @@ MonoBehaviour:
     m_AssetPath: "Assets/\u9009\u62E9\u6211\u7684\u5F62\u8C612 (1).png"
   - m_AssetName: "\u91CD\u7F6E\u5BF9\u8BDD\u6846.png"
     m_AssetPath: "Assets/\u91CD\u7F6E\u5BF9\u8BDD\u6846.png"
+  - m_AssetName: link.xml
+    m_AssetPath: Assets/HybridCLRGenerate/link.xml
   - m_AssetName: DOTweenSettings.asset
     m_AssetPath: Assets/Resources/DOTweenSettings.asset
   - m_AssetName: GUI_Loading.prefab
@@ -72,6 +78,16 @@ MonoBehaviour:
     m_AssetPath: Assets/Settings/URP-Performant.asset
   - m_AssetName: default.xcfg
     m_AssetPath: Assets/StreamingAssets/default.xcfg
+  - m_AssetName: default2.xcfg
+    m_AssetPath: Assets/StreamingAssets/default2.xcfg
+  - m_AssetName: HotUpdate.dll.bytes
+    m_AssetPath: Assets/StreamingAssets/HotUpdate.dll.bytes
+  - m_AssetName: mscorlib.dll.bytes
+    m_AssetPath: Assets/StreamingAssets/mscorlib.dll.bytes
+  - m_AssetName: System.Core.dll.bytes
+    m_AssetPath: Assets/StreamingAssets/System.Core.dll.bytes
+  - m_AssetName: System.dll.bytes
+    m_AssetPath: Assets/StreamingAssets/System.dll.bytes
   - m_AssetName: AudioMixer.mixer
     m_AssetPath: Assets/Art/Audio/AudioMixer.mixer
   - m_AssetName: ProxyTest.unity
@@ -92,8 +108,6 @@ MonoBehaviour:
     m_AssetPath: Assets/Plugins/AssetProcessor/Scripts/AssetManifest.asset
   - m_AssetName: readme_DOTweenPro.txt
     m_AssetPath: Assets/Plugins/Demigiant/readme_DOTweenPro.txt
-  - m_AssetName: connect.jslib
-    m_AssetPath: Assets/Plugins/JSLIB/connect.jslib
   - m_AssetName: .releaserc.json
     m_AssetPath: Assets/Plugins/SoftMask/.releaserc.json
   - m_AssetName: CHANGELOG.md
@@ -114,34 +128,6 @@ MonoBehaviour:
     m_AssetPath: Assets/Plugins/StandaloneFileBrowser/StandaloneFileBrowser.jslib
   - m_AssetName: System.Windows.Forms.dll
     m_AssetPath: Assets/Plugins/StandaloneFileBrowser/System.Windows.Forms.dll
-  - m_AssetName: half.png
-    m_AssetPath: Assets/RuntimeGraph/Graphics/half.png
-  - m_AssetName: xnode_dot.png
-    m_AssetPath: Assets/Plugins/xNode/Scripts/Editor/Resources/xnode_dot.png
-  - m_AssetName: xnode_dot_outer.png
-    m_AssetPath: Assets/Plugins/xNode/Scripts/Editor/Resources/xnode_dot_outer.png
-  - m_AssetName: xnode_node.png
-    m_AssetPath: Assets/Plugins/xNode/Scripts/Editor/Resources/xnode_node.png
-  - m_AssetName: xnode_node_highlight.png
-    m_AssetPath: Assets/Plugins/xNode/Scripts/Editor/Resources/xnode_node_highlight.png
-  - m_AssetName: 47hoIZ6sz5.jpg
-    m_AssetPath: Assets/RuntimeGraph/Images/47hoIZ6sz5.jpg
-  - m_AssetName: lN6sXVs8Bg.jpg
-    m_AssetPath: Assets/RuntimeGraph/Images/lN6sXVs8Bg.jpg
-  - m_AssetName: ChoiceProperty.prefab
-    m_AssetPath: Assets/RuntimeGraph/Prefabs/ChoiceProperty.prefab
-  - m_AssetName: Connection.prefab
-    m_AssetPath: Assets/RuntimeGraph/Prefabs/Connection.prefab
-  - m_AssetName: NodeGraph.prefab
-    m_AssetPath: Assets/RuntimeGraph/Prefabs/NodeGraph.prefab
-  - m_AssetName: StringProperty.prefab
-    m_AssetPath: Assets/RuntimeGraph/Prefabs/StringProperty.prefab
-  - m_AssetName: UGUIVideoPlayer.prefab
-    m_AssetPath: Assets/RuntimeGraph/Prefabs/UGUIVideoPlayer.prefab
-  - m_AssetName: RuntimeGraph.unity
-    m_AssetPath: Assets/RuntimeGraph/Scenes/RuntimeGraph.unity
-  - m_AssetName: RuntimeGraphSettings.lighting
-    m_AssetPath: Assets/RuntimeGraph/Scenes/RuntimeGraphSettings.lighting
   - m_AssetName: HotUpdate.asmdef
     m_AssetPath: Assets/Scripts/HotUpdate/HotUpdate.asmdef
   - m_AssetName: endel.nativewebsocket.asmdef
@@ -234,28 +220,6 @@ MonoBehaviour:
     m_AssetPath: Assets/Plugins/xNode/Story/New Story Graph 1.asset
   - m_AssetName: New Story Graph.asset
     m_AssetPath: Assets/Plugins/xNode/Story/New Story Graph.asset
-  - m_AssetName: StoryAddCharacter.prefab
-    m_AssetPath: Assets/RuntimeGraph/Prefabs/Nodes/StoryAddCharacter.prefab
-  - m_AssetName: StoryBackground.prefab
-    m_AssetPath: Assets/RuntimeGraph/Prefabs/Nodes/StoryBackground.prefab
-  - m_AssetName: StoryBgm.prefab
-    m_AssetPath: Assets/RuntimeGraph/Prefabs/Nodes/StoryBgm.prefab
-  - m_AssetName: StoryDeleteCharacter.prefab
-    m_AssetPath: Assets/RuntimeGraph/Prefabs/Nodes/StoryDeleteCharacter.prefab
-  - m_AssetName: StoryExitGame.prefab
-    m_AssetPath: Assets/RuntimeGraph/Prefabs/Nodes/StoryExitGame.prefab
-  - m_AssetName: StoryMessage.prefab
-    m_AssetPath: Assets/RuntimeGraph/Prefabs/Nodes/StoryMessage.prefab
-  - m_AssetName: StoryMessageLoop.prefab
-    m_AssetPath: Assets/RuntimeGraph/Prefabs/Nodes/StoryMessageLoop.prefab
-  - m_AssetName: StoryNextChapter.prefab
-    m_AssetPath: Assets/RuntimeGraph/Prefabs/Nodes/StoryNextChapter.prefab
-  - m_AssetName: StorySpeak.prefab
-    m_AssetPath: Assets/RuntimeGraph/Prefabs/Nodes/StorySpeak.prefab
-  - m_AssetName: StorySpeakAside.prefab
-    m_AssetPath: Assets/RuntimeGraph/Prefabs/Nodes/StorySpeakAside.prefab
-  - m_AssetName: StoryVideo.prefab
-    m_AssetPath: Assets/RuntimeGraph/Prefabs/Nodes/StoryVideo.prefab
   - m_AssetName: TetraCreations.Attributes.asmdef
     m_AssetPath: Assets/Scripts/Tetra Attributes/Core/TetraCreations.Attributes.asmdef
   - m_AssetName: Documentation.md
@@ -648,6 +612,14 @@ MonoBehaviour:
   - m_AssetName: TMP_Sprite (SoftMaskable).shader
     m_AssetPath: Assets/Plugins/SoftMask/Samples~/TextMeshPro Support/Resources/TMP_Sprite
       (SoftMaskable).shader
+  - m_AssetName: xnode_dot.png
+    m_AssetPath: Assets/Plugins/xNode/Scripts/Editor/Resources/xnode_dot.png
+  - m_AssetName: xnode_dot_outer.png
+    m_AssetPath: Assets/Plugins/xNode/Scripts/Editor/Resources/xnode_dot_outer.png
+  - m_AssetName: xnode_node.png
+    m_AssetPath: Assets/Plugins/xNode/Scripts/Editor/Resources/xnode_node.png
+  - m_AssetName: xnode_node_highlight.png
+    m_AssetPath: Assets/Plugins/xNode/Scripts/Editor/Resources/xnode_node_highlight.png
   - m_AssetName: xnode_node_workfile.psd
     m_AssetPath: Assets/Plugins/xNode/Scripts/Editor/Resources/xnode_node_workfile.psd
   - m_AssetName: campusStory.asset

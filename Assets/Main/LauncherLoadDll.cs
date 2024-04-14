@@ -1,29 +1,24 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
-using HybridCLR;
-using System.Collections;
+﻿using HybridCLR;
 using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.IO;
 using System.Linq;
-using UnityEngine.Networking;
 using System.Reflection;
+using System.Threading.Tasks;
+using UnityEngine;
+using UnityEngine.Networking;
 
 public class LauncherLoadDll : MonoBehaviour
 {
-    private static Dictionary<string, byte[]> s_assetDatas = new Dictionary<string, byte[]>();
-    private static Assembly _hotUpdateAss;
-
-    private static List<string> AOTMetaAssemblyFiles { get; } = new List<string>()
-    {
-        "mscorlib.dll.bytes",
-        "System.dll.bytes",
-        "System.Core.dll.bytes",
-    };
-
     void Start()
     {
         StartCoroutine(DownLoadAssets(this.StartGame));
     }
 
+    #region download assets
+
+    private static Dictionary<string, byte[]> s_assetDatas = new Dictionary<string, byte[]>();
 
     public static byte[] ReadBytesFromStreamingAssets(string dllName)
     {
@@ -39,11 +34,18 @@ public class LauncherLoadDll : MonoBehaviour
         }
         return path;
     }
+    private static List<string> AOTMetaAssemblyFiles { get; } = new List<string>()
+    {
+        "mscorlib.dll.bytes",
+        "System.dll.bytes",
+        "System.Core.dll.bytes",
+    };
 
     IEnumerator DownLoadAssets(Action onDownloadComplete)
     {
         var assets = new List<string>
         {
+            //"prefabs",
             "HotUpdate.dll.bytes",
         }.Concat(AOTMetaAssemblyFiles);
 
@@ -77,6 +79,14 @@ public class LauncherLoadDll : MonoBehaviour
         onDownloadComplete();
     }
 
+    #endregion
+
+    private static Assembly _hotUpdateAss;
+
+    /// <summary>
+    /// 为aot assembly加载原始metadata， 这个代码放aot或者热更新都行。
+    /// 一旦加载后，如果AOT泛型函数对应native实现不存在，则自动替换为解释模式执行
+    /// </summary>
     private static void LoadMetadataForAOTAssemblies()
     {
         /// 注意，补充元数据是给AOT dll补充元数据，而不是给热更新dll补充元数据。
@@ -93,16 +103,15 @@ public class LauncherLoadDll : MonoBehaviour
     }
 
     void StartGame()
-    {        LoadMetadataForAOTAssemblies();
+    {
+        LoadMetadataForAOTAssemblies();
 #if !UNITY_EDITOR
         _hotUpdateAss = Assembly.Load(ReadBytesFromStreamingAssets("HotUpdate.dll.bytes"));
 #else
         _hotUpdateAss = System.AppDomain.CurrentDomain.GetAssemblies().First(a => a.GetName().Name == "HotUpdate");
 #endif
-
         System.Type type = _hotUpdateAss.GetType("Launcher");
         GameObject xgame = new GameObject("xgame", type);
         DontDestroyOnLoad(xgame);
     }
-
 }

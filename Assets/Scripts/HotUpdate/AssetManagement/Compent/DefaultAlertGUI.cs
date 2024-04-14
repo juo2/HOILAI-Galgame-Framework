@@ -3,7 +3,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
 using System.Collections;
-using XGUI;
 using Object = UnityEngine.Object;
 
 public class DefaultAlertGUI : MonoBehaviour
@@ -34,9 +33,9 @@ public class DefaultAlertGUI : MonoBehaviour
     public Text titleText { get; private set; }
 
     public Text contentText { get; private set; }
-    public XButton closeBtn { get; private set; }
-    public XButton sureBtn { get; private set; }
-    public XButton cancelBtn { get; private set; }
+    public Button closeBtn { get; private set; }
+    public Button sureBtn { get; private set; }
+    public Button cancelBtn { get; private set; }
     public ButtonOpt btnResult { get; private set; }
 
     public Action<int> onClick;
@@ -56,11 +55,10 @@ public class DefaultAlertGUI : MonoBehaviour
     }
 
 
-    XButton InitButton(Transform ts)
+    Button InitButton(Transform ts)
     {
-        XButton xbtn = ts.TryGetComponent<XButton>();
+        Button xbtn = ts.TryGetComponent<Button>();
         xbtn.transition = Selectable.Transition.None;
-        ts.TryGetComponent<XButtonScaleTween>();
         return xbtn;
     }
 
@@ -93,7 +91,7 @@ public class DefaultAlertGUI : MonoBehaviour
     }
 
 
-    void SetButtonLabel(XButton button, string str)
+    void SetButtonLabel(Button button, string str)
     {
         
         Text text = button.transform.GetComponentInChildren<Text>();
