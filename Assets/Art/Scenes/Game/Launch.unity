@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 1252482954}
   - component: {fileID: 1252482955}
   m_Layer: 0
-  m_Name: Launch
+  m_Name: xgame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -164,6 +164,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1252482953}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 87aa74887c93ad246a3605bbb5081749, type: 3}
+  m_Script: {fileID: 11500000, guid: f19a8c34d4659eb42a6012695e51e359, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  checkUpdate: 1

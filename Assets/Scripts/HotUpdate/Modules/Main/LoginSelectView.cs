@@ -22,6 +22,7 @@ namespace XModules.Main
         // Start is called before the first frame update
         void Start()
         {
+            btn1.label = "热更新测试";
             btn1.onClick.AddListener(() => 
             {
                 //临时操作直接登录
