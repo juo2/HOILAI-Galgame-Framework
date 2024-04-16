@@ -8,17 +8,14 @@ using System.Text;
 using System.Globalization;
 
 
-public class BuildLuaParameter
+public class BuildCSharpParameter
 {
     public string outputPath;
     public string fileName;
-    public string luaDirectory;
-    public string version;
+    //public string luaDirectory;
     public bool isClearFolder;
     public BuildTarget buildTarget;
     public BuildAssetBundleOptions buildAssetBundleOptions;
-    public bool isUpdateCSharp;
-    public bool isUpdateLua = true;
 }
 
 public class BuildResourceParameter

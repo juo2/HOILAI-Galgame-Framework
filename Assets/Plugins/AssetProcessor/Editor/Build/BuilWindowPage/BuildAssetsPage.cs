@@ -83,49 +83,49 @@ public class BuildAssetsPage : XBuildWindow.XBuildPage
 
         EditorGUILayout.Space();
         EditorGUILayout.BeginHorizontal();
-        //if (GUILayout.Button("Build Lua"))
-        //{
-        //    BuildLuaParameter parameter = new BuildLuaParameter();
-        //    parameter.luaDirectory = LuaProject.LuaRootPath;
-        //    parameter.buildAssetBundleOptions = BuildAssetBundleOptions.None |
-        //                                  BuildAssetBundleOptions.IgnoreTypeTreeChanges |
-        //                                  BuildAssetBundleOptions.DisableLoadAssetByFileNameWithExtension;
-        //    parameter.buildTarget = m_BuildTarget;
-        //    parameter.isClearFolder = m_IsClearFolder;
-        //    parameter.outputPath = this.m_BuildOutPath;
-        //    System.Diagnostics.Stopwatch sw = System.Diagnostics.Stopwatch.StartNew();
-        //    XBuildLua.Build(parameter);
-        //    sw.Stop();
-        //    Debug.Log("time: " + sw.ElapsedMilliseconds * 0.001f);
-        //    EditorUtility.OpenWithDefaultApp(parameter.outputPath);
-        //}
 
-//        if (GUILayout.Button("Build Art"))
-//        {
-//            BuildResourceParameter parameter = new BuildResourceParameter();
+        if (GUILayout.Button("Build CSharp"))
+        {
+            BuildCSharpParameter parameter = new BuildCSharpParameter();
+            parameter.buildAssetBundleOptions = BuildAssetBundleOptions.None |
+                                          BuildAssetBundleOptions.IgnoreTypeTreeChanges |
+                                          BuildAssetBundleOptions.DisableLoadAssetByFileNameWithExtension;
+            parameter.buildTarget = m_BuildTarget;
+            parameter.isClearFolder = m_IsClearFolder;
+            parameter.outputPath = this.m_BuildOutPath;
+            System.Diagnostics.Stopwatch sw = System.Diagnostics.Stopwatch.StartNew();
+            XBuildCSharp.Build(parameter);
+            sw.Stop();
+            Debug.Log("time: " + sw.ElapsedMilliseconds * 0.001f);
+            EditorUtility.OpenWithDefaultApp(parameter.outputPath);
+        }
 
-//            if (m_CompressionType == CompressionType.NONE)
-//                parameter.buildAssetBundleOptions = BuildAssetBundleOptions.UncompressedAssetBundle;
-//            else if (m_CompressionType == CompressionType.LZ4)
-//                parameter.buildAssetBundleOptions = BuildAssetBundleOptions.ChunkBasedCompression;
-//            else
-//                parameter.buildAssetBundleOptions = BuildAssetBundleOptions.None;
+        //        if (GUILayout.Button("Build Art"))
+        //        {
+        //            BuildResourceParameter parameter = new BuildResourceParameter();
 
-//            parameter.buildTarget = m_BuildTarget;
-//            parameter.isClearFolder = m_IsClearFolder;
-//            parameter.outputPath = this.m_BuildOutPath;
-//            //parameter.buildBundleName = BuildResourceParameter.NameType.NONE;
-//#if UNITY_IOS
-//            parameter.buildBundleName = BuildResourceParameter.NameType.HASH;
-//#else
-//            parameter.buildBundleName = BuildResourceParameter.NameType.NONE;
-//#endif
-//            System.Diagnostics.Stopwatch sw = System.Diagnostics.Stopwatch.StartNew();
-//            XBuildArt.Build(parameter);
-//            sw.Stop();
-//            Debug.Log("time: " + sw.ElapsedMilliseconds * 0.001f);
-//            EditorUtility.OpenWithDefaultApp(parameter.outputPath);
-//        }
+        //            if (m_CompressionType == CompressionType.NONE)
+        //                parameter.buildAssetBundleOptions = BuildAssetBundleOptions.UncompressedAssetBundle;
+        //            else if (m_CompressionType == CompressionType.LZ4)
+        //                parameter.buildAssetBundleOptions = BuildAssetBundleOptions.ChunkBasedCompression;
+        //            else
+        //                parameter.buildAssetBundleOptions = BuildAssetBundleOptions.None;
+
+        //            parameter.buildTarget = m_BuildTarget;
+        //            parameter.isClearFolder = m_IsClearFolder;
+        //            parameter.outputPath = this.m_BuildOutPath;
+        //            //parameter.buildBundleName = BuildResourceParameter.NameType.NONE;
+        //#if UNITY_IOS
+        //            parameter.buildBundleName = BuildResourceParameter.NameType.HASH;
+        //#else
+        //            parameter.buildBundleName = BuildResourceParameter.NameType.NONE;
+        //#endif
+        //            System.Diagnostics.Stopwatch sw = System.Diagnostics.Stopwatch.StartNew();
+        //            XBuildArt.Build(parameter);
+        //            sw.Stop();
+        //            Debug.Log("time: " + sw.ElapsedMilliseconds * 0.001f);
+        //            EditorUtility.OpenWithDefaultApp(parameter.outputPath);
+        //        }
 
         if (GUILayout.Button("Build Dev"))
         {

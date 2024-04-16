@@ -1,12 +1,9 @@
 {
-    "name": "HotUpdate",
+    "name": "AssetManagement",
     "rootNamespace": "",
     "references": [
-        "endel.nativewebsocket",
-        "AVProVideo.ASM",
-        "DOTween.Modules",
         "AssetProcessor",
-        "AssetManagement"
+        "DOTween.Modules"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

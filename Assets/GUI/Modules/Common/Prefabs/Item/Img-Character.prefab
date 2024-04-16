@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 2356117741782761005}
   - component: {fileID: 2356117741782761004}
   - component: {fileID: 2356117741782761007}
-  - component: {fileID: 2163141889236285668}
   - component: {fileID: 3706466002310900980}
   m_Layer: 5
   m_Name: Img-Character
@@ -79,6 +78,8 @@ MonoBehaviour:
   Animate_StartOrOutside: ToShow
   Animate_type: Shake
   MainCanvas: {fileID: 0}
+  rightTran: {fileID: 0}
+  leftTran: {fileID: 0}
 --- !u!114 &2356117741782761007
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -89,18 +90,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0a3dc170f98da4848a48e1bb8cc1698a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &2163141889236285668
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2356117741782761015}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4faea60de30008b438af4d2c1d1bad64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &3706466002310900980

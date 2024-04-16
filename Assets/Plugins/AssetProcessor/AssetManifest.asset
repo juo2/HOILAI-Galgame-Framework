@@ -18,42 +18,12 @@ MonoBehaviour:
   - meta
   - cs
   m_AssetList:
-  - m_AssetName: Edit profile1.png
-    m_AssetPath: Assets/Edit profile1.png
-  - m_AssetName: Feedback.png
-    m_AssetPath: Assets/Feedback.png
-  - m_AssetName: "NPC\u5BF9\u8BDD01-2.png"
-    m_AssetPath: "Assets/NPC\u5BF9\u8BDD01-2.png"
-  - m_AssetName: "NPC\u5BF9\u8BDD02-2.png"
-    m_AssetPath: "Assets/NPC\u5BF9\u8BDD02-2.png"
-  - m_AssetName: "NPC\u5BF9\u8BDD03.png"
-    m_AssetPath: "Assets/NPC\u5BF9\u8BDD03.png"
-  - m_AssetName: Terms of Service.png
-    m_AssetPath: Assets/Terms of Service.png
+  - m_AssetName: HotUpdate.bytes
+    m_AssetPath: Assets/HotUpdate.bytes
   - m_AssetName: UniversalRenderPipelineGlobalSettings.asset
     m_AssetPath: Assets/UniversalRenderPipelineGlobalSettings.asset
   - m_AssetName: XAssetManifest.asset
     m_AssetPath: Assets/XAssetManifest.asset
-  - m_AssetName: "\u5B87\u5B99\u5BF9\u8BDD.png"
-    m_AssetPath: "Assets/\u5B87\u5B99\u5BF9\u8BDD.png"
-  - m_AssetName: "\u5F39\u7A97-\u5E26\u6807\u9898.png"
-    m_AssetPath: "Assets/\u5F39\u7A97-\u5E26\u6807\u9898.png"
-  - m_AssetName: "\u5F39\u7A97-\u5E38\u89C4.png"
-    m_AssetPath: "Assets/\u5F39\u7A97-\u5E38\u89C4.png"
-  - m_AssetName: "\u6211\u7684.png"
-    m_AssetPath: "Assets/\u6211\u7684.png"
-  - m_AssetName: "\u65C1\u767D.png"
-    m_AssetPath: "Assets/\u65C1\u767D.png"
-  - m_AssetName: "\u7B80\u6613.png"
-    m_AssetPath: "Assets/\u7B80\u6613.png"
-  - m_AssetName: "\u804A\u5929.png"
-    m_AssetPath: "Assets/\u804A\u5929.png"
-  - m_AssetName: "\u9009\u62E9\u6211\u7684\u5F62\u8C61 (1).png"
-    m_AssetPath: "Assets/\u9009\u62E9\u6211\u7684\u5F62\u8C61 (1).png"
-  - m_AssetName: "\u9009\u62E9\u6211\u7684\u5F62\u8C612 (1).png"
-    m_AssetPath: "Assets/\u9009\u62E9\u6211\u7684\u5F62\u8C612 (1).png"
-  - m_AssetName: "\u91CD\u7F6E\u5BF9\u8BDD\u6846.png"
-    m_AssetPath: "Assets/\u91CD\u7F6E\u5BF9\u8BDD\u6846.png"
   - m_AssetName: link.xml
     m_AssetPath: Assets/HybridCLRGenerate/link.xml
   - m_AssetName: DOTweenSettings.asset
@@ -78,8 +48,8 @@ MonoBehaviour:
     m_AssetPath: Assets/Settings/URP-Performant.asset
   - m_AssetName: default.xcfg
     m_AssetPath: Assets/StreamingAssets/default.xcfg
-  - m_AssetName: default2.xcfg
-    m_AssetPath: Assets/StreamingAssets/default2.xcfg
+  - m_AssetName: default1.xcfg
+    m_AssetPath: Assets/StreamingAssets/default1.xcfg
   - m_AssetName: HotUpdate.dll.bytes
     m_AssetPath: Assets/StreamingAssets/HotUpdate.dll.bytes
   - m_AssetName: mscorlib.dll.bytes
@@ -104,6 +74,8 @@ MonoBehaviour:
     m_AssetPath: Assets/Art/Video/zc_tgfml.bytes
   - m_AssetName: fangzhengls.TTF
     m_AssetPath: Assets/GUI/Fonts/fangzhengls.TTF
+  - m_AssetName: AndroidManifest.xml
+    m_AssetPath: Assets/Plugins/Android/AndroidManifest.xml
   - m_AssetName: AssetManifest.asset
     m_AssetPath: Assets/Plugins/AssetProcessor/Scripts/AssetManifest.asset
   - m_AssetName: readme_DOTweenPro.txt
@@ -121,31 +93,15 @@ MonoBehaviour:
   - m_AssetName: package.json
     m_AssetPath: Assets/Plugins/SoftMask/package.json
   - m_AssetName: README.md
-    m_AssetPath: Assets/Plugins/xNode/Examples/StateMachine/README.md
-  - m_AssetName: Ookii.Dialogs.dll
-    m_AssetPath: Assets/Plugins/StandaloneFileBrowser/Ookii.Dialogs.dll
-  - m_AssetName: StandaloneFileBrowser.jslib
-    m_AssetPath: Assets/Plugins/StandaloneFileBrowser/StandaloneFileBrowser.jslib
-  - m_AssetName: System.Windows.Forms.dll
-    m_AssetPath: Assets/Plugins/StandaloneFileBrowser/System.Windows.Forms.dll
+    m_AssetPath: Assets/Plugins/SoftMask/README.md
+  - m_AssetName: AssetManagement.asmdef
+    m_AssetPath: Assets/Scripts/AssetManagement/AssetManagement.asmdef
   - m_AssetName: HotUpdate.asmdef
     m_AssetPath: Assets/Scripts/HotUpdate/HotUpdate.asmdef
   - m_AssetName: endel.nativewebsocket.asmdef
     m_AssetPath: Assets/Scripts/WebSocket/endel.nativewebsocket.asmdef
   - m_AssetName: WebSocket.jslib
     m_AssetPath: Assets/Scripts/WebSocket/WebSocket.jslib
-  - m_AssetName: BasicSampleScene.unity
-    m_AssetPath: Assets/StandaloneFileBrowser/Sample/BasicSampleScene.unity
-  - m_AssetName: CanvasSampleScene.unity
-    m_AssetPath: Assets/StandaloneFileBrowser/Sample/CanvasSampleScene.unity
-  - m_AssetName: WebGLInput.jslib
-    m_AssetPath: Assets/WebGLSupport/WebGLInput/WebGLInput.jslib
-  - m_AssetName: WebGLWindow.jslib
-    m_AssetPath: Assets/WebGLSupport/WebGLWindow/WebGLWindow.jslib
-  - m_AssetName: index.html
-    m_AssetPath: Assets/WebGLTemplates/WXTemplate2022/index.html
-  - m_AssetName: thumbnail.png
-    m_AssetPath: Assets/WebGLTemplates/WXTemplate2022/thumbnail.png
   - m_AssetName: BadEnd.mp3
     m_AssetPath: Assets/Art/Audio/BackGroundMusic/BadEnd.mp3
   - m_AssetName: bgm.mp3
@@ -181,7 +137,7 @@ MonoBehaviour:
   - m_AssetName: AVProVideo.ASM.asmdef
     m_AssetPath: Assets/Plugins/AVProVideo/Scripts/AVProVideo.ASM.asmdef
   - m_AssetName: Info.plist
-    m_AssetPath: Assets/Plugins/StandaloneFileBrowser/StandaloneFileBrowser.bundle/Contents/Info.plist
+    m_AssetPath: Assets/Plugins/AVProVideo.bundle/Contents/Info.plist
   - m_AssetName: DOTween.dll
     m_AssetPath: Assets/Plugins/Demigiant/DOTween/DOTween.dll
   - m_AssetName: DOTween.XML
@@ -214,24 +170,6 @@ MonoBehaviour:
     m_AssetPath: Assets/Plugins/SoftMask/Scripts/Coffee.SoftMaskForUGUI.asmdef
   - m_AssetName: SoftMask.cginc
     m_AssetPath: Assets/Plugins/SoftMask/Shaders/SoftMask.cginc
-  - m_AssetName: XNode.asmdef
-    m_AssetPath: Assets/Plugins/xNode/Scripts/XNode.asmdef
-  - m_AssetName: New Story Graph 1.asset
-    m_AssetPath: Assets/Plugins/xNode/Story/New Story Graph 1.asset
-  - m_AssetName: New Story Graph.asset
-    m_AssetPath: Assets/Plugins/xNode/Story/New Story Graph.asset
-  - m_AssetName: TetraCreations.Attributes.asmdef
-    m_AssetPath: Assets/Scripts/Tetra Attributes/Core/TetraCreations.Attributes.asmdef
-  - m_AssetName: Documentation.md
-    m_AssetPath: Assets/Scripts/Tetra Attributes/Documentation/Documentation.md
-  - m_AssetName: Documentation.pdf
-    m_AssetPath: Assets/Scripts/Tetra Attributes/Documentation/Documentation.pdf
-  - m_AssetName: TetraCreations.Attributes.Editor.asmdef
-    m_AssetPath: Assets/Scripts/Tetra Attributes/Editor/TetraCreations.Attributes.Editor.asmdef
-  - m_AssetName: Cube Sprite.png
-    m_AssetPath: Assets/Scripts/Tetra Attributes/Example/Cube Sprite.png
-  - m_AssetName: Example.unity
-    m_AssetPath: Assets/Scripts/Tetra Attributes/Example/Example.unity
   - m_AssetName: buqun1.xml
     m_AssetPath: Assets/StreamingAssets/A_AssetBundles/HGF/buqun1.xml
   - m_AssetName: junjing1.xml
@@ -240,32 +178,6 @@ MonoBehaviour:
     m_AssetPath: Assets/StreamingAssets/A_AssetBundles/HGF/story.xml
   - m_AssetName: Test.xml
     m_AssetPath: Assets/StreamingAssets/A_AssetBundles/HGF/Test.xml
-  - m_AssetName: WebGLInputMobile.jslib
-    m_AssetPath: Assets/WebGLSupport/WebGLInput/Mobile/WebGLInputMobile.jslib
-  - m_AssetName: favicon.ico
-    m_AssetPath: Assets/WebGLTemplates/WXTemplate2022/TemplateData/favicon.ico
-  - m_AssetName: fullscreen-button.png
-    m_AssetPath: Assets/WebGLTemplates/WXTemplate2022/TemplateData/fullscreen-button.png
-  - m_AssetName: MemoryProfiler.png
-    m_AssetPath: Assets/WebGLTemplates/WXTemplate2022/TemplateData/MemoryProfiler.png
-  - m_AssetName: progress-bar-empty-dark.png
-    m_AssetPath: Assets/WebGLTemplates/WXTemplate2022/TemplateData/progress-bar-empty-dark.png
-  - m_AssetName: progress-bar-empty-light.png
-    m_AssetPath: Assets/WebGLTemplates/WXTemplate2022/TemplateData/progress-bar-empty-light.png
-  - m_AssetName: progress-bar-full-dark.png
-    m_AssetPath: Assets/WebGLTemplates/WXTemplate2022/TemplateData/progress-bar-full-dark.png
-  - m_AssetName: progress-bar-full-light.png
-    m_AssetPath: Assets/WebGLTemplates/WXTemplate2022/TemplateData/progress-bar-full-light.png
-  - m_AssetName: style.css
-    m_AssetPath: Assets/WebGLTemplates/WXTemplate2022/TemplateData/style.css
-  - m_AssetName: unity-logo-dark.png
-    m_AssetPath: Assets/WebGLTemplates/WXTemplate2022/TemplateData/unity-logo-dark.png
-  - m_AssetName: unity-logo-light.png
-    m_AssetPath: Assets/WebGLTemplates/WXTemplate2022/TemplateData/unity-logo-light.png
-  - m_AssetName: webgl-logo.png
-    m_AssetPath: Assets/WebGLTemplates/WXTemplate2022/TemplateData/webgl-logo.png
-  - m_AssetName: webmemd-icon.png
-    m_AssetPath: Assets/WebGLTemplates/WXTemplate2022/TemplateData/webmemd-icon.png
   - m_AssetName: bg1.jpg
     m_AssetPath: Assets/Art/Scenes/Game/Texture2D/bg1.jpg
   - m_AssetName: bg2.jpg
@@ -470,51 +382,6 @@ MonoBehaviour:
     m_AssetPath: Assets/Plugins/SoftMask/Shaders/Resources/SoftMask.shader
   - m_AssetName: UI-Default-SoftMaskable.shader
     m_AssetPath: Assets/Plugins/SoftMask/Shaders/Resources/UI-Default-SoftMaskable.shader
-  - m_AssetName: libStandaloneFileBrowser.so
-    m_AssetPath: Assets/Plugins/StandaloneFileBrowser/Linux/x86_64/libStandaloneFileBrowser.so
-  - m_AssetName: Example.asset
-    m_AssetPath: Assets/Plugins/xNode/Examples/LogicToy/Example.asset
-  - m_AssetName: New Math Graph.asset
-    m_AssetPath: Assets/Plugins/xNode/Examples/MathGraph/New Math Graph.asset
-  - m_AssetName: New State Graph.asset
-    m_AssetPath: Assets/Plugins/xNode/Examples/StateMachine/New State Graph.asset
-  - m_AssetName: XNodeEditor.asmdef
-    m_AssetPath: Assets/Plugins/xNode/Scripts/Editor/XNodeEditor.asmdef
-  - m_AssetName: Buttons Example.png
-    m_AssetPath: Assets/Scripts/Tetra Attributes/Documentation/Screenshots/Buttons
-      Example.png
-  - m_AssetName: DrawIf Example False.png
-    m_AssetPath: Assets/Scripts/Tetra Attributes/Documentation/Screenshots/DrawIf
-      Example False.png
-  - m_AssetName: DrawIf Example True.png
-    m_AssetPath: Assets/Scripts/Tetra Attributes/Documentation/Screenshots/DrawIf
-      Example True.png
-  - m_AssetName: HelpBox Example.png
-    m_AssetPath: Assets/Scripts/Tetra Attributes/Documentation/Screenshots/HelpBox
-      Example.png
-  - m_AssetName: MinMaxSlider Example.png
-    m_AssetPath: Assets/Scripts/Tetra Attributes/Documentation/Screenshots/MinMaxSlider
-      Example.png
-  - m_AssetName: Path Example.png
-    m_AssetPath: Assets/Scripts/Tetra Attributes/Documentation/Screenshots/Path Example.png
-  - m_AssetName: ReadOnly Example.png
-    m_AssetPath: Assets/Scripts/Tetra Attributes/Documentation/Screenshots/ReadOnly
-      Example.png
-  - m_AssetName: Required Example.png
-    m_AssetPath: Assets/Scripts/Tetra Attributes/Documentation/Screenshots/Required
-      Example.png
-  - m_AssetName: Snapped float Example.png
-    m_AssetPath: Assets/Scripts/Tetra Attributes/Documentation/Screenshots/Snapped
-      float Example.png
-  - m_AssetName: Sprite preview.png
-    m_AssetPath: Assets/Scripts/Tetra Attributes/Documentation/Screenshots/Sprite
-      preview.png
-  - m_AssetName: Tetra creation attributes.png
-    m_AssetPath: Assets/Scripts/Tetra Attributes/Documentation/Screenshots/Tetra
-      creation attributes.png
-  - m_AssetName: Title Example.png
-    m_AssetPath: Assets/Scripts/Tetra Attributes/Documentation/Screenshots/Title
-      Example.png
   - m_AssetName: 00000-2996439052.png
     m_AssetPath: Assets/GUI/Modules/Common/Images/Single/00000-2996439052.png
   - m_AssetName: 2.png
@@ -531,6 +398,8 @@ MonoBehaviour:
     m_AssetPath: Assets/GUI/Modules/Common/Images/Single/buqun_scene.png
   - m_AssetName: car.png
     m_AssetPath: Assets/GUI/Modules/Common/Images/Single/car.png
+  - m_AssetName: image (32).png
+    m_AssetPath: Assets/GUI/Modules/Common/Images/Single/image (32).png
   - m_AssetName: lushang.png
     m_AssetPath: Assets/GUI/Modules/Common/Images/Single/lushang.png
   - m_AssetName: office.png
@@ -612,36 +481,6 @@ MonoBehaviour:
   - m_AssetName: TMP_Sprite (SoftMaskable).shader
     m_AssetPath: Assets/Plugins/SoftMask/Samples~/TextMeshPro Support/Resources/TMP_Sprite
       (SoftMaskable).shader
-  - m_AssetName: xnode_dot.png
-    m_AssetPath: Assets/Plugins/xNode/Scripts/Editor/Resources/xnode_dot.png
-  - m_AssetName: xnode_dot_outer.png
-    m_AssetPath: Assets/Plugins/xNode/Scripts/Editor/Resources/xnode_dot_outer.png
-  - m_AssetName: xnode_node.png
-    m_AssetPath: Assets/Plugins/xNode/Scripts/Editor/Resources/xnode_node.png
-  - m_AssetName: xnode_node_highlight.png
-    m_AssetPath: Assets/Plugins/xNode/Scripts/Editor/Resources/xnode_node_highlight.png
-  - m_AssetName: xnode_node_workfile.psd
-    m_AssetPath: Assets/Plugins/xNode/Scripts/Editor/Resources/xnode_node_workfile.psd
-  - m_AssetName: campusStory.asset
-    m_AssetPath: Assets/Plugins/xNode/Story/StoryGraph/buqun1/campusStory.asset
-  - m_AssetName: Enter.asset
-    m_AssetPath: Assets/Plugins/xNode/Story/StoryGraph/test/Enter.asset
-  - m_AssetName: Story1.asset
-    m_AssetPath: Assets/Plugins/xNode/Story/StoryGraph/junjing1/Story1.asset
-  - m_AssetName: Story2.asset
-    m_AssetPath: Assets/Plugins/xNode/Story/StoryGraph/junjing1/Story2.asset
-  - m_AssetName: Story3.asset
-    m_AssetPath: Assets/Plugins/xNode/Story/StoryGraph/junjing1/Story3.asset
-  - m_AssetName: Story4.asset
-    m_AssetPath: Assets/Plugins/xNode/Story/StoryGraph/junjing1/Story4.asset
-  - m_AssetName: Story5.asset
-    m_AssetPath: Assets/Plugins/xNode/Story/StoryGraph/junjing1/Story5.asset
-  - m_AssetName: Story6.asset
-    m_AssetPath: Assets/Plugins/xNode/Story/StoryGraph/junjing1/Story6.asset
-  - m_AssetName: Story7.asset
-    m_AssetPath: Assets/Plugins/xNode/Story/StoryGraph/junjing1/Story7.asset
-  - m_AssetName: Story8.asset
-    m_AssetPath: Assets/Plugins/xNode/Story/StoryGraph/junjing1/Story8.asset
   - m_AssetName: libAudio360-JNI.so
     m_AssetPath: Assets/Plugins/AVProVideo/Plugins/Android/libs/x86/libAudio360-JNI.so
   - m_AssetName: libAudio360.so
@@ -850,10 +689,6 @@ MonoBehaviour:
     m_AssetPath: Assets/Plugins/Demigiant/DemiLib/Core/Editor/Imgs/whiteSquare_fadeOut_bt.png
   - m_AssetName: yellowSquare.png
     m_AssetPath: Assets/Plugins/Demigiant/DemiLib/Core/Editor/Imgs/yellowSquare.png
-  - m_AssetName: xNode_NodeGraphTemplate.cs.txt
-    m_AssetPath: Assets/Plugins/xNode/Scripts/Editor/Resources/ScriptTemplates/xNode_NodeGraphTemplate.cs.txt
-  - m_AssetName: xNode_NodeTemplate.cs.txt
-    m_AssetPath: Assets/Plugins/xNode/Scripts/Editor/Resources/ScriptTemplates/xNode_NodeTemplate.cs.txt
   - m_AssetName: ico_atlas.png
     m_AssetPath: Assets/Plugins/Demigiant/DemiLib/Core/Editor/Imgs/project/ico_atlas.png
   - m_AssetName: ico_audio.png
