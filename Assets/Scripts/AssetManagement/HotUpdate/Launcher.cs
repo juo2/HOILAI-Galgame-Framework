@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections;
+using System.Linq;
 using System.Reflection;
 using UnityEngine;
 
@@ -62,9 +63,7 @@ public partial class Launcher : MonoBehaviour
 
     void ContinueStart()
     {
-
         //LauncherJugglery.Destroy();
-
         InitTempCamera();
 
         DefaultLoaderGUI.Open();
@@ -73,11 +72,12 @@ public partial class Launcher : MonoBehaviour
         //if (XConfig.defaultConfig.isGetUrlByPHP)
         //    GetUrlByPHP(); //从后台拿资源地址
         //else
-        StartCheckUpdate(); //直接使用default 配置地址
+        StartCoroutine(StartCheckUpdate()); //直接使用default 配置地址
     }
 
-    void StartCheckUpdate()
+    IEnumerator StartCheckUpdate()
     {
+        yield return UpdateUtility.DownLoadAOTAssets();
 
         //if (Application.isEditor && !SystemInfo.graphicsDeviceVersion.StartsWith("OpenGL"))
         //{
@@ -88,7 +88,7 @@ public partial class Launcher : MonoBehaviour
         //        XConfig.defaultConfig.testDownloadUrls[i] = def;
         //}
 
-        
+
         AssetManagement.AssetManager.Instance.Initialize(new GameLoaderOptions());
 
         if(checkUpdate)

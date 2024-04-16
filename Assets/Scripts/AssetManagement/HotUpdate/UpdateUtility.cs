@@ -7,6 +7,8 @@ using System.IO;
 using System.Text;
 using System.Reflection;
 using System.Linq;
+using HybridCLR;
+using UnityEngine.Networking;
 
 public class UpdateUtility
 {
@@ -90,6 +92,76 @@ public class UpdateUtility
         return string.Format("Dev:{0} files:{1} manifest:{2}",
             version.p_DevVersion.gitVer,
             version.p_files_md5, version.p_manifest_md5);
+    }
+
+    private static Dictionary<string, byte[]> s_assetDatas = new Dictionary<string, byte[]>();
+    public static byte[] ReadBytesFromStreamingAssets(string dllName)
+    {
+        return s_assetDatas[dllName];
+    }
+
+    private static string GetWebRequestPath(string asset)
+    {
+        var path = $"{Application.streamingAssetsPath}/{asset}";
+        if (!path.Contains("://"))
+        {
+            path = "file://" + path;
+        }
+        return path;
+    }
+
+    private static List<string> AOTMetaAssemblyFiles { get; } = new List<string>()
+    {
+        "mscorlib.dll.bytes",
+        "System.dll.bytes",
+        "System.Core.dll.bytes",
+    };
+
+    public static IEnumerator DownLoadAOTAssets()
+    {
+        foreach (var asset in AOTMetaAssemblyFiles)
+        {
+            string dllPath = GetWebRequestPath(asset);
+            Debug.Log($"start download asset:{dllPath}");
+            UnityWebRequest www = UnityWebRequest.Get(dllPath);
+            yield return www.SendWebRequest();
+
+#if UNITY_2020_1_OR_NEWER
+            if (www.result != UnityWebRequest.Result.Success)
+            {
+                Debug.Log(www.error);
+            }
+#else
+            if (www.isHttpError || www.isNetworkError)
+            {
+                Debug.Log(www.error);
+            }
+#endif
+            else
+            {
+                // Or retrieve results as binary data
+                byte[] assetData = www.downloadHandler.data;
+                Debug.Log($"dll:{asset}  size:{assetData.Length}");
+                s_assetDatas[asset] = assetData;
+            }
+        }
+
+        LoadMetadataForAOTAssemblies();
+    }
+
+    private static void LoadMetadataForAOTAssemblies()
+    {
+        /// 注意，补充元数据是给AOT dll补充元数据，而不是给热更新dll补充元数据。
+        /// 热更新dll不缺元数据，不需要补充，如果调用LoadMetadataForAOTAssembly会返回错误
+        /// 
+        HomologousImageMode mode = HomologousImageMode.SuperSet;
+        foreach (var aotDllName in AOTMetaAssemblyFiles)
+        {
+            byte[] dllBytes = ReadBytesFromStreamingAssets(aotDllName);
+            // 加载assembly对应的dll，会自动为它hook。一旦aot泛型函数的native函数不存在，用解释器版本代码
+            LoadImageErrorCode err = RuntimeApi.LoadMetadataForAOTAssembly(dllBytes, mode);
+            Debug.Log($"LoadMetadataForAOTAssembly:{aotDllName}. mode:{mode} ret:{err}");
+        }
     }
 
     //初始化Dll
