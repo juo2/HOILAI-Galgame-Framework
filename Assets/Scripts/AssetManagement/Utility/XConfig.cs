@@ -138,10 +138,10 @@ public class XConfig
 
             action?.Invoke();
         }
-        else if (Application.platform == RuntimePlatform.WebGLPlayer)
-        {
-            TimerManager.AddCoroutine(LoadDefaultConfig(action));
-        }
+        //else if (Application.platform == RuntimePlatform.WebGLPlayer)
+        //{
+        //    TimerManager.AddCoroutine(LoadDefaultConfig(action));
+        //}
         else
         {
             if (!System.IO.File.Exists(c_Path))
