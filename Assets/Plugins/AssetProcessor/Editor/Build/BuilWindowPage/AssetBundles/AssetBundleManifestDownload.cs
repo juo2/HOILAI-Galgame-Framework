@@ -151,7 +151,7 @@ public class AssetBundleManifestDownload
                     ab.Unload(true);
                 }
                 //DownloadFileorm();
-
+                DownloadFileorm(0);
                 DownloadFileorm(1);
             }
             else
