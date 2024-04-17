@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Reflection;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public partial class Launcher : MonoBehaviour
 {
@@ -26,17 +27,33 @@ public partial class Launcher : MonoBehaviour
         assetBundleModeLocalCode = UnityEditor.EditorPrefs.GetBool("QuickMenuKey_LaunchGameAssetBundleLocalCode", false);
         assetRecordMode = UnityEditor.EditorPrefs.GetBool("QuickMenuKey_LaunchGameRecordAssets", false);
 
+        GameObject rawGO = Resources.Load<GameObject>("DebugConsole");
+        GameObject.Instantiate<GameObject>(rawGO, transform);
+
+        gameObject.AddComponent<SelectedObjectHelper>();
         //LuaLoader.assetBundleModeLocalCode = assetBundleModeLocalCode;
 #else
         assetBundleMode = true;
 #endif
 
+        GameObject eventSysGo = new GameObject("EventSystem", typeof(StandaloneInputModule));
+        eventSysGo.AddComponent<EventSystem>();
+
 #if DEVELOPMENT_BUILD
         XLogger.INFO("DEVELOPMENT_BUILD");
+
+        GameObject rawGO = Resources.Load<GameObject>("DebugConsole");
+        GameObject.Instantiate<GameObject>(rawGO, transform);
+
+        XLogger.INFO("LOAD DebugConsole");
+
 #else
         XLogger.INFO("RELEASE_BUILD");
 #endif
-        gameObject.AddComponent<SelectedObjectHelper>();
+
+        
+
+        
 
         XLogger.INFO("当前平台是：" + Application.platform.ToString());
 

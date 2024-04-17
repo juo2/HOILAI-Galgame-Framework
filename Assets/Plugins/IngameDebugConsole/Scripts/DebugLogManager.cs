@@ -46,6 +46,10 @@ namespace IngameDebugConsole
 	{
 		public static DebugLogManager Instance { get; private set; }
 
+		public GameObject runtime;
+		public Button runtimeBtn;
+		public Button HideRuntimeBtn;
+
 #pragma warning disable 0649
 		[Header( "Properties" )]
 		[SerializeField]
@@ -542,6 +546,10 @@ namespace IngameDebugConsole
 			commandInputField.onEndEdit.AddListener( OnEndEditCommand );
 			hideButton.onClick.AddListener( HideLogWindow );
 			clearButton.onClick.AddListener( ClearLogs );
+
+			runtimeBtn.onClick.AddListener(ShowRuntimePanel);
+			HideRuntimeBtn.onClick.AddListener(HideRuntimePanel);
+
 			collapseButton.GetComponent<Button>().onClick.AddListener( CollapseButtonPressed );
 			filterInfoButton.GetComponent<Button>().onClick.AddListener( FilterLogButtonPressed );
 			filterWarningButton.GetComponent<Button>().onClick.AddListener( FilterWarningButtonPressed );
@@ -587,6 +595,16 @@ namespace IngameDebugConsole
 			logItemsScrollRect.scrollSensitivity *= 0.25f;
 #endif
 		}
+
+		public void ShowRuntimePanel()
+        {
+			runtime.SetActive(true);
+        }
+
+		public void HideRuntimePanel()
+        {
+			runtime.SetActive(false);
+        }
 
 		private void OnEnable()
 		{
