@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace XGUI
@@ -20,7 +19,6 @@ namespace XGUI
         Dictionary<UILayer, Transform> uiLayerDic = new Dictionary<UILayer, Transform>();
         Dictionary<string, XModules.XBaseView> viewDic = new Dictionary<string, XModules.XBaseView>();
 
-        EventSystem eventSystem;
         public Canvas xCanvas;
 
         static XGUIManager m_Instance;
@@ -61,8 +59,7 @@ namespace XGUI
 
             CreateLayers();
 
-            GameObject eventSysGo = new GameObject("EventSystem", typeof(StandaloneInputModule));
-            eventSystem = eventSysGo.AddComponent<EventSystem>();
+            
         }
 
         void CreateLayers()
