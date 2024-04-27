@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
+using UnityEngine.Networking;
+using UnityEngine.UI;
 using XGUI;
 
 namespace XModules.Main
@@ -21,6 +24,9 @@ namespace XModules.Main
 
         [SerializeField]
         XButton iconBtn;
+
+        [SerializeField]
+        Image icon;
 
         //[SerializeField]
         //XImage icon;
@@ -58,8 +64,58 @@ namespace XModules.Main
 
             iconBtn.onClick.AddListener(() => 
             {
+#if UNITY_EDITOR
+                LoadImage(Path.Combine(Application.dataPath, "Art/Scenes/Game/Texture2D/bg1.jpg"));
+#else
                 SDK.SDKManager.Instance.Photo();
+#endif
             });
+        }
+
+
+        public override void OnEnableView()
+        {
+            base.OnEnableView();
+            XEvent.EventDispatcher.AddEventListener("LOAD_IMAGE", LoadImage, this);
+
+            //if (!loadXmlData)
+            //    return;
+
+            ////开始游戏
+            //Button_Click_NextPlot();
+        }
+
+        public override void OnDisableView()
+        {
+            base.OnDisableView();
+            XEvent.EventDispatcher.RemoveEventListener("LOAD_IMAGE", LoadImage, this);
+        }
+
+        void LoadImage(string uri)
+        {
+            StartCoroutine(LoadImageUri(uri));
+        }
+
+
+        // 在Unity中加载图片
+        IEnumerator LoadImageUri(string uri)
+        {
+            // 使用 UnityWebRequestTexture 获取纹理
+            UnityWebRequest request = UnityWebRequestTexture.GetTexture(uri);
+            yield return request.SendWebRequest();
+
+            // 检查是否有错误发生
+            if (request.result != UnityWebRequest.Result.Success)
+            {
+                Debug.LogError("Error loading image: " + request.error);
+            }
+            else
+            {
+                // 获取下载好的纹理
+                Texture2D texture = DownloadHandlerTexture.GetContent(request);
+                Sprite sprite = Sprite.Create(texture, new Rect(0.0f, 0.0f, texture.width, texture.height), new Vector2(0.5f, 0.5f));
+                icon.sprite = sprite;
+            }
         }
 
         // Update is called once per frame

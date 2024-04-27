@@ -9,7 +9,7 @@ namespace XEvent
         // 定义事件监听器结构体
         private struct EventListener
         {
-            public Action listener;
+            public Action<string> listener;
             public object listenerCaller;
         }
 
@@ -17,7 +17,7 @@ namespace XEvent
         private static Dictionary<string, List<EventListener>> eventMap = new Dictionary<string, List<EventListener>>();
 
         // 添加事件监听器
-        public static void AddEventListener(string name, Action listener, object listenerCaller)
+        public static void AddEventListener(string name, Action<string> listener, object listenerCaller)
         {
             if (!eventMap.ContainsKey(name))
                 eventMap[name] = new List<EventListener>();
@@ -45,7 +45,7 @@ namespace XEvent
         }
 
         // 移除事件监听器
-        public static void RemoveEventListener(string name, Action listener, object listenerCaller = null)
+        public static void RemoveEventListener(string name, Action<string> listener, object listenerCaller = null)
         {
             if (!eventMap.ContainsKey(name))
                 return;
@@ -55,7 +55,7 @@ namespace XEvent
         }
 
         // 触发事件
-        public static void DispatchEvent(string name, params object[] args)
+        public static void DispatchEvent(string name, string args = "")
         {
             if (!eventMap.ContainsKey(name))
                 return;
@@ -66,7 +66,7 @@ namespace XEvent
                 if (evtListener.listener != null)
                 {
                     int startTime = Environment.TickCount;
-                    evtListener.listener();
+                    evtListener.listener(args);
                 }
             }
         }

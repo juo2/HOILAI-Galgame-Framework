@@ -94,7 +94,7 @@ public class LauncherEnter : MonoBehaviour
         //初始化摄像头
         Debug.Log("开始加载场景 Demo.unity");
 
-        XScene.LoadScene("Demo1.unity", UnityEngine.SceneManagement.LoadSceneMode.Single);
+        XScene.LoadScene("Demo.unity", UnityEngine.SceneManagement.LoadSceneMode.Single);
 
         XScene.onComplete = () =>
         {

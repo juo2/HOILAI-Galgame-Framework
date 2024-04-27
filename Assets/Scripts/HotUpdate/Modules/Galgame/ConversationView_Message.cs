@@ -71,7 +71,7 @@ namespace XModules.GalManager
                 return (10, 100);
             }
         }
-        public void OneShotChat()
+        public void OneShotChat(string inJson)
         {
             messageStatus = MessageStatus.SendingMessage;
 
@@ -185,7 +185,7 @@ namespace XModules.GalManager
             }
         }
 
-        void StreamFinish()
+        void StreamFinish(string inJson)
         {
             if (Gal_Message.inputType == GalManager_Message.InputType.Choice)
             {

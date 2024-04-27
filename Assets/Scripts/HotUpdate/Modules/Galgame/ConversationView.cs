@@ -110,7 +110,7 @@ namespace XModules.GalManager
 
             StartCoroutine(LoadPlot(storyId));
 
-            XEvent.EventDispatcher.AddEventListener("NEXT_STEP", Button_Click_NextPlot,this);
+            XEvent.EventDispatcher.AddEventListener("NEXT_STEP", Button_Click_NextPlot_Event, this);
             XEvent.EventDispatcher.AddEventListener("ONESHOTCHAT", OneShotChat, this);
             XEvent.EventDispatcher.AddEventListener("CHOICE_COMPLETE", ChoiceComplete, this);
             XEvent.EventDispatcher.AddEventListener("STREAM_FINISH", StreamFinish, this);
@@ -126,7 +126,7 @@ namespace XModules.GalManager
         {
             XAudio.XAudioManager.instance.StopBgmMusic();
             base.OnDisableView();
-            XEvent.EventDispatcher.RemoveEventListener("NEXT_STEP", Button_Click_NextPlot, this);
+            XEvent.EventDispatcher.RemoveEventListener("NEXT_STEP", Button_Click_NextPlot_Event, this);
             XEvent.EventDispatcher.RemoveEventListener("ONESHOTCHAT", OneShotChat, this);
             XEvent.EventDispatcher.RemoveEventListener("CHOICE_COMPLETE", ChoiceComplete, this);
             XEvent.EventDispatcher.RemoveEventListener("STREAM_FINISH", StreamFinish, this);
@@ -150,7 +150,7 @@ namespace XModules.GalManager
             Gal_SelfText.KillTween();
         }
 
-        void ChoiceComplete()
+        void ChoiceComplete(string inJson = "")
         {
             Gal_Choice.SetActive(false);
             Gal_Message.SetActive(false);
@@ -238,11 +238,16 @@ namespace XModules.GalManager
             character_img.SetActive(false);
         }
 
-       
+
+        public void Button_Click_NextPlot()
+        {
+            Button_Click_NextPlot_Event("");
+        }
+
         /// <summary>
         /// 点击屏幕 下一句
         /// </summary>
-        public void Button_Click_NextPlot ()
+        public void Button_Click_NextPlot_Event (string json)
         {
             //IsCanJump这里有问题，如果一直点击会为false，而不是说true，这是因为没有点击按钮 ，没有添加按钮
             if (ConversationData.IsSpeak || !ConversationData.IsCanJump) { return; }
