@@ -14,6 +14,7 @@ namespace XNode.Story
 		[HideInInspector] public Node selectedNode;
 		private Vector2 pos;
 
+		public Button rebornBtn;
 		public Button addCharacterBtn;
 		public Button backgroundBtn;
 		public Button deleteCharacterBtn;
@@ -27,6 +28,11 @@ namespace XNode.Story
 		public Button NextChapterBtn;
 
 		private void Start() {
+
+			rebornBtn.onClick.AddListener(() => 
+			{
+				SpawnNode(typeof(StoryRebornNode));
+			});
 
 			addCharacterBtn.onClick.AddListener(() => 
 			{

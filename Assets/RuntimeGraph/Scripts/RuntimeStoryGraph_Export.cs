@@ -82,6 +82,27 @@ namespace XNode.Story
             return startNode;
         }
 
+        public void RebornXml(XmlDocument doc, XmlElement element, StoryEditorNode s_node)
+        {
+            if (s_node.baseNode is StoryRebornNode)
+            {
+                StoryRebornNode storyReborn = s_node.baseNode as StoryRebornNode;
+
+                XmlElement nextxml = doc.CreateElement("Reborn");
+                nextxml.SetAttribute("NodeId", s_node.index.ToString());
+                nextxml.SetAttribute("Position", storyReborn.position.ToString());
+
+                //if (ContainsChinese(storyNextChapter.storyGraphicName))
+                //{
+                //    ErrorMessage(storyNextChapter, $"nextchapter node :{storyNextChapter.GetInstanceID()} storyGraphicName is chinese");
+                //}
+
+                findNextNodeXml(nextxml, s_node.baseNode);
+
+                element.AppendChild(nextxml);
+            }
+        }
+
         public void AddCharacterXml(XmlDocument doc, XmlElement element, StoryEditorNode s_node)
         {
             if (s_node.baseNode is StoryAddCharacterNode)
@@ -689,6 +710,7 @@ namespace XNode.Story
 
             foreach (var item in s_storyEditorNodeDic.Values)
             {
+                RebornXml(doc, element, item);
                 AddCharacterXml(doc, element, item);
                 SpeakAsideXml(doc, element, item);
                 SpeakXml(doc, element, item);

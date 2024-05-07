@@ -30,6 +30,7 @@ namespace XNode.Story
 		public UGUIMessage runtimeMessagePrefab;
 		public UGUIMessageLoop runtimeMessageLoopPrefab;
 		public UGUINextChapter runtimeNextChapterPrefab;
+		public UGUIReborn runtimeRebornPrefab;
 		public UGUISpeak runtimeSpeakPrefab;
 		public UGUISpeakAside runtimeSpeakAsidePrefab;
 		public UGUIVideo runtimeVideoPrefab;
@@ -259,7 +260,13 @@ namespace XNode.Story
 		private UGUIBaseNode getNodePrefab(Node node)
         {
 			UGUIBaseNode runtimeNode = null;
-			if (node is StoryAddCharacterNode)
+			if (node is StoryRebornNode)
+            {
+				runtimeNode = getNodePrefabInternal<UGUIReborn>();
+				if (runtimeNode == null)
+					runtimeNode = Instantiate(runtimeRebornPrefab);
+			}
+			else if (node is StoryAddCharacterNode)
 			{
 				runtimeNode = getNodePrefabInternal<UGUIAddCharacter>();
 				if (runtimeNode == null)
@@ -428,7 +435,16 @@ namespace XNode.Story
 		void XmlToNode(XElement element)
         {
 			string NodeId = element.Attribute("NodeId").Value;
-			if (element.Name == "AddCharacter")
+			if (element.Name == "Reborn")
+			{
+				string position = element.Attribute("Position").Value;
+
+				StoryRebornNode node = graph.AddNode<StoryRebornNode>();
+				node.name = element.Name.ToString();
+				node.position = stringToVector2(position);
+				xmlNodeDic[NodeId] = node;
+			}
+			else if (element.Name == "AddCharacter")
             {
 				string ID = element.Attribute("CharacterID").Value;
 				string name = element.Attribute("CharacterName").Value;
