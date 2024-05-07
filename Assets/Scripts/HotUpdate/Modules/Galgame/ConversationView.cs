@@ -105,6 +105,8 @@ namespace XModules.GalManager
         {
             base.OnEnableView();
 
+            ButtonShare.SetActive(false);
+            ButtonPause.SetActive(false);
 
             ClearGame();
 
@@ -275,6 +277,13 @@ namespace XModules.GalManager
 
             switch (PlotData.NowPlotDataNode.Name.ToString())
             {
+                case "Reborn": //重生脚本
+                    {
+                        ButtonShare.SetActive(true);
+                        ButtonPause.SetActive(true);
+                        XGUIManager.Instance.OpenView("ChooseImageView");
+                        break;
+                    }
                 case "NextChapter"://空节点
                     {
                         PlotData.NextJumpID = int.Parse(PlotData.NowPlotDataNode.Attribute("JumpId").Value);

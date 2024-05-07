@@ -13,6 +13,8 @@ namespace XModules.Main
         XButton closeBtn;
         [SerializeField]
         XListView xListView;
+        [SerializeField]
+        XButton sureBtn;
 
         Dictionary<int, ChooseImageItem> chooseImageItemDic;
 
@@ -30,6 +32,11 @@ namespace XModules.Main
             closeBtn.onClick.AddListener(() =>
             {
                 XGUIManager.Instance.CloseView("ChooseImageView");
+            });
+
+            sureBtn.onClick.AddListener(() => 
+            {
+                XGUIManager.Instance.OpenView("ProcessWindow");
             });
         }
 

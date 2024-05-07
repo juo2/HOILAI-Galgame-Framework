@@ -13,7 +13,7 @@ namespace XModules.GalManager
         /// <summary>
         /// 出入场出场动画
         /// </summary>
-        [StringInList("ToShow", "Outside_ToLeft", "Outside_ToRight")] public string Animate_StartOrOutside = "ToShow";
+        [StringInList("ToShow", "Outside_ToLeft", "Outside_ToRight")] public string Animate_StartOrOutside = "Outside_ToRight";
         /// <summary>
         /// 动画
         /// <para>Shake：颤抖</para>
@@ -45,7 +45,8 @@ namespace XModules.GalManager
         //[Button(nameof(Start), "重新执行入场动画")]
         private void Start ()
         {
-            //HandleInOrOutsideMessgae(Animate_StartOrOutside);
+            //HandleInOrOutsideMessgae("ToShow");
+            HandleMessgae("Shake_Y_Once");
         }
 
         public void HandleMessgaeTemp(bool isSelf)
@@ -61,10 +62,10 @@ namespace XModules.GalManager
         }
 
         //[Button(nameof(Start), "重新执行及时动画")]
-        public void HandleMessgae ()
+        public void HandleMessgae (string tmp)
         {
             var _rect = CharacterImg.GetComponent<RectTransform>();
-            switch (Animate_type)
+            switch (tmp)
             {
                 case "Shake":
                 {
@@ -79,131 +80,46 @@ namespace XModules.GalManager
                     });
                     break;
                 }
-                case "ToLeft":
-                {
-                    DOTween.To(() => _rect.anchoredPosition, x => _rect.GetComponent<RectTransform>().anchoredPosition = x, PositionImageInside(_rect, -1), 1f);
-                    break;
-                }
-                case "ToCenter":
-                {
-                    DOTween.To(() => _rect.anchoredPosition, x => _rect.GetComponent<RectTransform>().anchoredPosition = x, PositionImageInside(_rect, 0), 0.8f);
-                    break;
-                }
-                case "ToRight":
-                {
-                    DOTween.To(() => _rect.anchoredPosition, x => _rect.GetComponent<RectTransform>().anchoredPosition = x, PositionImageInside(_rect, 1), 1f);
-                    break;
-                }
-                case "Quit":
-                {
-                    CharacterImg.DOFade(0, 0.7f).OnComplete(() =>
-                    {
-                        Destroy(this.gameObject);
-                    });
-                    break;
-                }
-                default:
-                {
-                    GameAPI.Print("当前剧情文本受损，请重新安装游戏尝试", "error");
-                    break;
-                }
             }
         }
         /// <summary>
         /// 处理出场动画消息
         /// </summary>
-        /// <param name="Messgae"></param>
-        public void HandleInOrOutsideMessgae (string Messgae)
+        public void HandleInOrOutsideMessgae (string tmp)
         {
-
             CharacterImg.color = new Color32(255, 255, 255, 0);//完全透明
             var rect = this.gameObject.GetComponent<RectTransform>();
-            switch (Messgae)
-            {
 
+            Vector3 orginPos = rect.localPosition;
+
+            switch (tmp)
+            {
                 //逐渐显示
                 case "ToShow":
-                {
-
-                    PositionImageOutside(this.gameObject.GetComponent<RectTransform>(), 0);
-                    break;
-                }
+                    {
+                        break;
+                    }
                 //从屏幕边缘滑到左侧
                 case "Outside_ToLeft":
-                {
-
-                    PositionImageOutside(this.gameObject.GetComponent<RectTransform>(), -1);
-                    DOTween.To(() => rect.anchoredPosition, x => rect.GetComponent<RectTransform>().anchoredPosition = x, new Vector2(rect.anchoredPosition.x + m_SpriteWidth, rect.anchoredPosition.y), 1f);
-                    break;
-                }
+                    {
+                        rect.anchoredPosition = new Vector2(-300, rect.anchoredPosition.y);
+                        rect.DOAnchorPos(orginPos, 1.0f);
+                        break;
+                    }
                 //从屏幕边缘滑到右侧
                 case "Outside_ToRight":
-                {
-                    PositionImageOutside(this.gameObject.GetComponent<RectTransform>(), 1);
-                    DOTween.To(() => rect.anchoredPosition, x => rect.GetComponent<RectTransform>().anchoredPosition = x, new Vector2(rect.anchoredPosition.x - m_SpriteWidth, rect.anchoredPosition.y), 1f);
-                    break;
-                }
-                default:
-                {
-                    GameAPI.Print("当前剧情文本受损，请重新安装游戏尝试", "error");
-                    break;
-                }
-
+                    {
+                        rect.anchoredPosition = new Vector2(300, rect.anchoredPosition.y);
+                        rect.DOAnchorPos(orginPos, 1.0f);
+                        break;
+                    }
             }
             //都需要指定的
             {
                 CharacterImg.DOFade(1, 0.7f);
             }
         }
-        /// <summary>
-        /// 设置image的位置到屏幕之外
-        /// </summary>
-        /// <param name="ImageGameObject"></param>
-        /// <param name="Position">-1：左侧 0：中间 1：右侧</param>
-        private void PositionImageOutside (RectTransform ImageGameObject, int Position)
-        {
-            // 获取Image的Rect Transform
-            switch (Position)
-            {
-                case -1:
-                    this.gameObject.GetComponent<RectTransform>().anchoredPosition = new Vector2((-MainCanvas.GetComponent<RectTransform>().sizeDelta.x / 2) - (m_SpriteWidth / 2), ImageGameObject.anchoredPosition.y);
-                    break;
-                case 1:
-                    this.gameObject.GetComponent<RectTransform>().anchoredPosition = new Vector2((MainCanvas.GetComponent<RectTransform>().sizeDelta.x / 2) + (m_SpriteWidth / 2), ImageGameObject.anchoredPosition.y);
-                    break;
-                case 0:
-                    this.gameObject.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, ImageGameObject.anchoredPosition.y);
-                    break;
-                default: break;
-            }
-        }
-        /// <summary>
-        /// 获取image的位置到屏幕之内的位置
-        /// </summary>
-        /// <param name="ImageGameObject"></param>
-        /// <param name="Position">-1：左侧 0：中间 1：右侧</param>
-        private Vector2 PositionImageInside (RectTransform ImageGameObject, int Position)
-        {
-            // 获取Image的Rect Transform
-
-            switch (Position)
-            {
-                case -1:
-                    return new Vector2((-MainCanvas.GetComponent<RectTransform>().sizeDelta.x / 2) + (m_SpriteWidth / 2), ImageGameObject.anchoredPosition.y);
-
-                case 1:
-                    return new Vector2((MainCanvas.GetComponent<RectTransform>().sizeDelta.x / 2) - (m_SpriteWidth / 2), ImageGameObject.anchoredPosition.y);
-
-                case 0:
-                    return new Vector2(0, ImageGameObject.anchoredPosition.y);
-
-                default:
-                {
-                    GameAPI.Print("当前剧情文本受损，请重新安装游戏尝试", "error");
-                    return new Vector2(0, 0);
-                }
-            }
-        }
+        
     }
 
 }

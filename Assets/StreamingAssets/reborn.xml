@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<data>
+  <Plot>
+    <Reborn NodeId="1" Position="(-283.50, -36.00)" JumpId="2" />
+    <ExitGame Position="(17.50, -40.00)" NodeId="2" />
+  </Plot>
+</data>
