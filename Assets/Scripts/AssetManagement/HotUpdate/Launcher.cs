@@ -38,7 +38,7 @@ public partial class Launcher : MonoBehaviour
 
         GameObject eventSysGo = new GameObject("EventSystem", typeof(StandaloneInputModule));
         eventSysGo.AddComponent<EventSystem>();
-
+        DontDestroyOnLoad(eventSysGo);
 #if DEVELOPMENT_BUILD
         XLogger.INFO("DEVELOPMENT_BUILD");
 

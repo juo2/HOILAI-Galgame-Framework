@@ -6,6 +6,7 @@ using System.Runtime.InteropServices;
 #endif
 
 using UnityEngine;
+using UnityEngine.Networking;
 
 namespace SDK
 {
@@ -75,8 +76,11 @@ namespace SDK
         public void PhotoRequest(string message)
         {
             Debug.Log("PhotoRequest Received message from Android: " + message);
+
+            XEvent.EventDispatcher.DispatchEvent("LOAD_IMAGE",message);
         }
 
+       
 
         // Start is called before the first frame update
         void Start()
