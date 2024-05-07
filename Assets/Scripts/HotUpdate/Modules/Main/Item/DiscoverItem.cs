@@ -13,6 +13,15 @@ namespace XModules.Main.Item
         [SerializeField]
         XText storyNameLabel;
 
+        [SerializeField]
+        GameObject newImage;
+
+        [SerializeField]
+        GameObject process;
+
+        [SerializeField]
+        XText processLabel;
+
         string storyName;
         string storyId;
 
@@ -28,11 +37,12 @@ namespace XModules.Main.Item
             });
         }
 
-        public void Refresh(StoryData storyData)
+        public void Refresh(StoryData storyData,bool isNew)
         {
             storyName = storyData.title;
             storyId = storyData.id;
             storyNameLabel.text = storyName;
+            newImage.SetActive(isNew);
         }
 
         // Update is called once per frame

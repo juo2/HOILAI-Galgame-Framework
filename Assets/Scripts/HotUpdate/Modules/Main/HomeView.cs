@@ -59,7 +59,7 @@ namespace XModules.Main
         void onListUpdateRenderer(ListItemRenderer listItem)
         {
             DiscoverItem discoverItem = storyItemDic[listItem.instanceID];
-            discoverItem.Refresh(DataManager.getStoryList()[listItem.index]);
+            discoverItem.Refresh(DataManager.getStoryList()[listItem.index],false);
             //gl_choice.Init(choices_data.JumpID, choices_data.Title);
         }
 
@@ -72,7 +72,7 @@ namespace XModules.Main
         void onNoPlayListUpdateRenderer(ListItemRenderer listItem)
         {
             DiscoverItem discoverItem = storyNoPlayItemDic[listItem.instanceID];
-            discoverItem.Refresh(DataManager.getStoryNoPlayList()[listItem.index]);
+            discoverItem.Refresh(DataManager.getStoryNoPlayList()[listItem.index],true);
         }
 
 

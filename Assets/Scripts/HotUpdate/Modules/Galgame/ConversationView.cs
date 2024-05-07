@@ -50,6 +50,12 @@ namespace XModules.GalManager
         [SerializeField]
         XButton ButtonReturn;
 
+        [SerializeField]
+        XButton ButtonShare;
+
+        [SerializeField]
+        XButton ButtonPause;
+
         //string _CharacterInfoText;
         //string _DepartmentText;
 
