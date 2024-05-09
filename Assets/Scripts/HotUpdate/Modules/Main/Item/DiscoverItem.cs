@@ -22,18 +22,35 @@ namespace XModules.Main.Item
         [SerializeField]
         XText processLabel;
 
+        [SerializeField]
+        GameObject enter;
+
+        [SerializeField]
+        GameObject history;
+
         string storyName;
         string storyId;
 
+#if UNITY_EDITOR
+        bool isEditor = false;
+#endif
         // Start is called before the first frame update
         void Start()
         {
-            beginBtn.onClick.AddListener(() => {
+            enter.SetActive(false);
+            newImage.SetActive(false);
+            process.SetActive(false);
+            history.SetActive(false);
 
+            beginBtn.onClick.AddListener(() => 
+            {
                 XGUIManager.Instance.CloseView("MainView");
 
+#if UNITY_EDITOR
+                XGUIManager.Instance.OpenView("ConversationView", UILayer.BaseLayer, null, storyId,isEditor);
+#else
                 XGUIManager.Instance.OpenView("ConversationView",UILayer.BaseLayer,null, storyId);
-
+#endif
             });
         }
 
@@ -43,6 +60,10 @@ namespace XModules.Main.Item
             storyId = storyData.id;
             storyNameLabel.text = storyName;
             newImage.SetActive(isNew);
+
+#if UNITY_EDITOR
+            isEditor = storyData.isEditor;
+#endif
         }
 
         // Update is called once per frame

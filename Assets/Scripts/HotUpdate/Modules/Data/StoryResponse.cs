@@ -16,4 +16,7 @@ public class StoryData
     public string title; // 标题
     public string description; // 介绍
     public string createTime; // 创建时间
+#if UNITY_EDITOR
+    public bool isEditor = false; //是否测试数据
+#endif
 }

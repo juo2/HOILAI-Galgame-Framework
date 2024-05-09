@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 
 namespace XModules.Data
@@ -16,6 +17,32 @@ namespace XModules.Data
         public static StoryResponse storyNoPlayResponse = null;
         public static OneShotChatResponse oneShotChatResponse = null;
         
+        public static void setNoPlayResponse(StoryResponse _storyNoPlayResponse)
+        {
+            DataManager.storyNoPlayResponse = _storyNoPlayResponse;
+#if  UNITY_EDITOR
+            string[] fileEntries = Directory.GetFiles(Application.streamingAssetsPath);
+            foreach (string fileName in fileEntries)
+            {
+                // 检查文件扩展名是否为 .xml
+                if (fileName.EndsWith(".xml"))
+                {
+                    string tmp = fileName.Replace(Application.streamingAssetsPath + "\\","");
+                    // 读取并打印 XML 文件的内容
+                    //string content = File.ReadAllText(fileName);
+                    Debug.Log($"读取到 XML 文件: {fileName}");
+                    //Debug.Log($"内容: {content}");
+
+                    StoryData storyData = new StoryData();
+                    storyData.id = tmp;
+                    storyData.title = tmp;
+                    storyData.isEditor = true;
+                    DataManager.storyNoPlayResponse.data.Insert(0, storyData);
+                }
+            }
+#endif
+        }
+
         public static string getPlayerId()
         {
             //临时把token记住

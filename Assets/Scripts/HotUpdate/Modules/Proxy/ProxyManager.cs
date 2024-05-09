@@ -442,7 +442,7 @@ namespace XModules.Proxy
 
                 if(type == 0)
                 {
-                    DataManager.storyNoPlayResponse = storyResponse;
+                    DataManager.setNoPlayResponse(storyResponse);
                 }
                 else
                 {

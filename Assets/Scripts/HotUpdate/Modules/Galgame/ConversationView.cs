@@ -2,6 +2,7 @@ using Common.Game;
 using NativeWebSocket;
 using System;
 using System.Collections;
+using System.IO;
 using System.Linq;
 using System.Xml.Linq;
 //using TetraCreations.Attributes;
@@ -113,21 +114,27 @@ namespace XModules.GalManager
             ConversationData.ResetPlotData();
 
             string storyId = viewArgs[0] as string;
-            
+
             ConversationData.currentStory = storyId;
 
+#if UNITY_EDITOR
+            bool isEditor = (bool)viewArgs[1];
+            if(isEditor)
+            {
+                LoadPlotEditor(storyId);
+            }
+            else
+            {
+                StartCoroutine(LoadPlot(storyId));
+            }
+#else
             StartCoroutine(LoadPlot(storyId));
+#endif
 
             XEvent.EventDispatcher.AddEventListener("NEXT_STEP", Button_Click_NextPlot_Event, this);
             XEvent.EventDispatcher.AddEventListener("ONESHOTCHAT", OneShotChat, this);
             XEvent.EventDispatcher.AddEventListener("CHOICE_COMPLETE", ChoiceComplete, this);
             XEvent.EventDispatcher.AddEventListener("STREAM_FINISH", StreamFinish, this);
-
-            //if (!loadXmlData)
-            //    return;
-
-            ////开始游戏
-            //Button_Click_NextPlot();
         }
 
         public override void OnDisableView()
@@ -162,6 +169,40 @@ namespace XModules.GalManager
         {
             Gal_Choice.SetActive(false);
             Gal_Message.SetActive(false);
+        }
+
+        void LoadPlotEditor(string storyId)
+        {
+            string _PlotText = File.ReadAllText(Path.Combine(Application.streamingAssetsPath,storyId));
+
+            PlotxDoc = XDocument.Parse(_PlotText);
+
+            //-----开始读取数据
+
+            foreach (var item in PlotxDoc.Root.Elements())
+            {
+                switch (item.Name.ToString())
+                {
+                    case "Plot":
+                        {
+                            foreach (var MainPlotItem in item.Elements())
+                            {
+                                PlotData.ListMainPlot.Add(MainPlotItem);
+                            }
+                            break;
+                        }
+                    default:
+                        {
+                            throw new Exception("无法识别的根标签");
+
+                        }
+                }
+            }
+
+            GameAPI.Print(Newtonsoft.Json.JsonConvert.SerializeObject(PlotData));
+
+            //开始游戏
+            Button_Click_NextPlot();
         }
 
         /// <summary>

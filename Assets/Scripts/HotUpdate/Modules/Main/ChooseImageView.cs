@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using XGUI;
 using XModules.Main.Item;
@@ -12,22 +13,27 @@ namespace XModules.Main
         [SerializeField]
         XButton closeBtn;
         [SerializeField]
-        XListView xListView;
+        XLayoutView xLayoutView;
+
+        [SerializeField]
+        XScrollRect xScrollRect;
+
         [SerializeField]
         XButton sureBtn;
 
-        Dictionary<int, ChooseImageItem> chooseImageItemDic;
-
+        List<string> s_data = new List<string>()
+        {
+            string.Empty,
+        };
 
         // Start is called before the first frame update
         void Start()
         {
-            chooseImageItemDic = new Dictionary<int, ChooseImageItem>();
-            xListView.onCreateRenderer.AddListener(onListCreateRenderer);
-            xListView.onUpdateRenderer.AddListener(onListUpdateRenderer);
+            xLayoutView.onCreateRenderer.AddListener(onListCreateRenderer);
+            xLayoutView.onUpdateRenderer.AddListener(onListUpdateRenderer);
 
-            xListView.dataCount = 1;
-            xListView.ForceRefresh();
+            xLayoutView.dataCount = s_data.Count ;
+            xLayoutView.CreateItem();
 
             closeBtn.onClick.AddListener(() =>
             {
@@ -40,19 +46,36 @@ namespace XModules.Main
             });
         }
 
-
-        void onListCreateRenderer(ListItemRenderer listItem)
+        public override void OnEnableView()
         {
-            //Debug.Log("GalManager_Choice onListCreateRenderer");
-
-            ChooseImageItem chooseImageItem = listItem.gameObject.GetComponent<ChooseImageItem>();
-            chooseImageItemDic[listItem.instanceID] = chooseImageItem;
-
+            base.OnEnableView();
+            XEvent.EventDispatcher.AddEventListener("LOAD_IMAGE", AddImage, this);
         }
 
-        void onListUpdateRenderer(ListItemRenderer listItem)
+        public override void OnDisableView()
         {
-            ChooseImageItem chooseImageItem = chooseImageItemDic[listItem.instanceID];
+            base.OnDisableView();
+            XEvent.EventDispatcher.RemoveEventListener("LOAD_IMAGE", AddImage, this);
+        }
+
+        void AddImage(string uri)
+        {
+            s_data.Add(uri);
+            xLayoutView.AddItem();
+            xScrollRect.ScrollToBottom();
+        }
+
+        void onListCreateRenderer(XLayoutItem layoutItem)
+        {
+            //Debug.Log("GalManager_Choice onListCreateRenderer");
+            ChooseImageItem chooseImageItem = layoutItem.gameObject.GetComponent<ChooseImageItem>();
+            chooseImageItem.Refresh(layoutItem.index, s_data[layoutItem.index]);
+        }
+
+        void onListUpdateRenderer(XLayoutItem layoutItem)
+        {
+            //ChooseImageItem chooseImageItem = chooseImageItemDic[listItem.instanceID];
+            //chooseImageItem.Refresh(listItem.index, s_data[listItem.index]);
             //dialogueItem.Refresh(listItem.index);
             //dialogueItem.Refresh("Elena");
             //gl_choice.Init(choices_data.JumpID, choices_data.Title);
@@ -63,8 +86,5 @@ namespace XModules.Main
         {
 
         }
-
-        
-
     }
 }
