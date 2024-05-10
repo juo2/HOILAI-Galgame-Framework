@@ -34,14 +34,16 @@ namespace XModules.Main
                 }
                 else
                 {
-                    ProxyManager.GetNPCAllList(() => {
-                        ProxyManager.GetUserSessionList(() => {
+                    ProxyManager.GetNPCAllList(() =>
+                    {
+                        ProxyManager.GetUserSessionList(() =>
+                        {
                             XGUIManager.Instance.CloseView("LoginSelectView");
                             XGUIManager.Instance.OpenView("MainView");
                         });
                     });
                 }
-                
+
             });
 
             btn2.onClick.AddListener(() =>

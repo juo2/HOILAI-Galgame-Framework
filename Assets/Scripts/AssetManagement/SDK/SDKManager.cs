@@ -10,6 +10,12 @@ using UnityEngine.Networking;
 
 namespace SDK
 {
+    public class PhotoData
+    {
+        public string path;
+        public string exData;
+    }
+
     public class SDKManager : MonoBehaviour
     {
 
@@ -38,20 +44,20 @@ namespace SDK
 #endif
 
 
-        public void Login()
+        public void Login(string param = "test")
         {
             Debug.Log("SDK Login");
 #if UNITY_ANDROID
             using (AndroidJavaClass testClass = new AndroidJavaClass("com.unity3d.player.UnityAndroidBridge"))
             {
-                testClass.CallStatic("login");
+                testClass.CallStatic("login", param);
             }
 #elif UNITY_IOS
             _Login_Internal();
 #endif
         }
 
-        public void Photo()
+        public void Photo(string param = "test")
         {
             Debug.Log("SDK Photo");
 #if UNITY_ANDROID
@@ -59,7 +65,7 @@ namespace SDK
             {
                 using (AndroidJavaClass testClass = new AndroidJavaClass("com.unity3d.player.UnityAndroidBridge"))
                 {
-                    testClass.CallStatic("getPhoto");
+                    testClass.CallStatic("getPhoto", param);
                 }
             }
 #elif UNITY_IOS
@@ -73,13 +79,15 @@ namespace SDK
             Debug.Log("LoginRequest Received message from Android: " + message);
         }
 
-        public void PhotoRequest(string message)
+        
+        public void PhotoRequest(string json)
         {
-            Debug.Log("PhotoRequest Received message from Android: " + message);
+            PhotoData photoData = JsonUtility.FromJson<PhotoData>(json);
 
-            XEvent.EventDispatcher.DispatchEvent("LOAD_IMAGE",message);
+            Debug.Log("PhotoRequest Received message from Android photoData.path: " + photoData.path + "   photoData.exData:" + photoData.exData);
+
+            XEvent.EventDispatcher.DispatchEvent("LOAD_IMAGE", json);
         }
-
        
 
         // Start is called before the first frame update

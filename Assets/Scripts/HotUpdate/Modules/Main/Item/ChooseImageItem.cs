@@ -79,7 +79,7 @@ namespace XModules.Main.Item
 #if UNITY_EDITOR
                 XEvent.EventDispatcher.DispatchEvent("LOAD_IMAGE", (Path.Combine(Application.dataPath, "Art/Scenes/Game/Texture2D/bg1.jpg")));
 #else
-                SDK.SDKManager.Instance.Photo();
+                SDK.SDKManager.Instance.Photo(index.ToString());
 #endif
 
             });

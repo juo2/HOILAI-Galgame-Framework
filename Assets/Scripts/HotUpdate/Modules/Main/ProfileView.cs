@@ -67,7 +67,7 @@ namespace XModules.Main
 #if UNITY_EDITOR
                 LoadImage(Path.Combine(Application.dataPath, "Art/Scenes/Game/Texture2D/bg1.jpg"));
 #else
-                SDK.SDKManager.Instance.Photo();
+                SDK.SDKManager.Instance.Photo("ProfileView");
 #endif
             });
         }
@@ -91,9 +91,14 @@ namespace XModules.Main
             XEvent.EventDispatcher.RemoveEventListener("LOAD_IMAGE", LoadImage, this);
         }
 
-        void LoadImage(string uri)
+        void LoadImage(string json)
         {
-            StartCoroutine(LoadImageUri(uri));
+            SDK.PhotoData photoData = JsonUtility.FromJson<SDK.PhotoData>(json);
+
+            if (photoData.exData == "ProfileView")
+            {
+                StartCoroutine(LoadImageUri(photoData.path));
+            }
         }
 
 

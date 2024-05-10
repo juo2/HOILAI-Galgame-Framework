@@ -58,11 +58,25 @@ namespace XModules.Main
             XEvent.EventDispatcher.RemoveEventListener("LOAD_IMAGE", AddImage, this);
         }
 
-        void AddImage(string uri)
+        void AddImage(string json)
         {
-            s_data.Add(uri);
-            xLayoutView.AddItem();
-            xScrollRect.ScrollToBottom();
+            SDK.PhotoData photoData = JsonUtility.FromJson<SDK.PhotoData>(json);
+
+            if(photoData.exData == "0")
+            {
+                s_data.Add(photoData.path);
+                xLayoutView.AddItem();
+                xScrollRect.ScrollToBottom();
+            }
+            else
+            {
+                int index = int.Parse(photoData.exData);
+                s_data[index] = photoData.path;
+                XLayoutItem layoutItem = xLayoutView.GetItem(index);
+
+                ChooseImageItem chooseImageItem = layoutItem.gameObject.GetComponent<ChooseImageItem>();
+                chooseImageItem.Refresh(layoutItem.index, s_data[layoutItem.index]);
+            }
         }
 
         void onListCreateRenderer(XLayoutItem layoutItem)

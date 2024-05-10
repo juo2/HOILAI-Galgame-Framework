@@ -51,6 +51,8 @@ namespace XGUI
             content.sizeDelta = new Vector2(dataCount * width + space * (dataCount-1), height);
 
             m_OnCreateRenderer.Invoke(newItem);
+
+            xLayoutItemList.Add(newItem);
         }
 
         void initialize()
@@ -70,6 +72,16 @@ namespace XGUI
         {
             dataCount++;
             createItem(dataCount-1);
+        }
+
+        public XLayoutItem GetItem(int index)
+        {
+            if (index <= xLayoutItemList.Count)
+            {
+                return xLayoutItemList[index];
+            }
+
+            return null;
         }
 
         // Update is called once per frame
