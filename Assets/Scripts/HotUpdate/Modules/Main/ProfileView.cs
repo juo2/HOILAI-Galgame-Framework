@@ -133,10 +133,22 @@ namespace XModules.Main
             }
             else
             {
+
+                Debug.Log("LoadImageUri request");
+
                 // 获取下载好的纹理
                 Texture2D texture = DownloadHandlerTexture.GetContent(request);
+
+                Debug.Log($"LoadImageUri texture:{texture}");
+
                 Sprite sprite = Sprite.Create(texture, new Rect(0.0f, 0.0f, texture.width, texture.height), new Vector2(0.5f, 0.5f));
+
+                Debug.Log($"LoadImageUri sprite:{sprite}");
+
                 icon.sprite = sprite;
+
+                Debug.Log($"LoadImageUri icon:{icon}");
+
             }
         }
 
