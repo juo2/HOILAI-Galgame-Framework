@@ -65,18 +65,32 @@ namespace XModules.Main
             iconBtn.onClick.AddListener(() => 
             {
 #if UNITY_EDITOR
-                LoadImage(Path.Combine(Application.dataPath, "Art/Scenes/Game/Texture2D/bg1.jpg"));
+
+                SDK.PhotoData photoData = new SDK.PhotoData();
+                photoData.path = Path.Combine(Application.dataPath, $"Art/Scenes/Game/Texture2D/bg1.jpg");
+                photoData.exData = "ProfileView";
+
+                string json = JsonUtility.ToJson(photoData);
+                XEvent.EventDispatcher.DispatchEvent("LOAD_IMAGE", json);
 #else
                 SDK.SDKManager.Instance.Photo("ProfileView");
 #endif
             });
         }
 
+        private void OnEnable()
+        {
+            XEvent.EventDispatcher.AddEventListener("LOAD_IMAGE", LoadImage, this);
+        }
+
+        private void OnDisable()
+        {
+            XEvent.EventDispatcher.RemoveEventListener("LOAD_IMAGE", LoadImage, this);
+        }
 
         public override void OnEnableView()
         {
             base.OnEnableView();
-            XEvent.EventDispatcher.AddEventListener("LOAD_IMAGE", LoadImage, this);
 
             //if (!loadXmlData)
             //    return;
@@ -88,12 +102,15 @@ namespace XModules.Main
         public override void OnDisableView()
         {
             base.OnDisableView();
-            XEvent.EventDispatcher.RemoveEventListener("LOAD_IMAGE", LoadImage, this);
         }
 
         void LoadImage(string json)
         {
+            Debug.Log($"LoadImage json:{json}");
+
             SDK.PhotoData photoData = JsonUtility.FromJson<SDK.PhotoData>(json);
+
+            Debug.Log($"LoadImage photoData.exData:{photoData.exData}");
 
             if (photoData.exData == "ProfileView")
             {
