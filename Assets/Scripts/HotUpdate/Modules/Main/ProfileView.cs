@@ -114,7 +114,7 @@ namespace XModules.Main
 
             if (photoData.exData == "ProfileView")
             {
-                StartCoroutine(LoadImageUri(file://photoData.path));
+                StartCoroutine(LoadImageUri($"file://{photoData.path}"));
             }
         }
 
