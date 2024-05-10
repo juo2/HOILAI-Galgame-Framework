@@ -64,14 +64,14 @@ namespace XModules.Main
 
             if(photoData.exData == "0")
             {
-                s_data.Add(photoData.path);
+                s_data.Add($"file://{photoData.path}");
                 xLayoutView.AddItem();
                 xScrollRect.ScrollToBottom();
             }
             else
             {
                 int index = int.Parse(photoData.exData);
-                s_data[index] = photoData.path;
+                s_data[index] = $"file://{photoData.path}";
                 XLayoutItem layoutItem = xLayoutView.GetItem(index);
 
                 ChooseImageItem chooseImageItem = layoutItem.gameObject.GetComponent<ChooseImageItem>();
