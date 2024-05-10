@@ -114,7 +114,11 @@ namespace XModules.Main
 
             if (photoData.exData == "ProfileView")
             {
+#if UNITY_EDITOR
+                StartCoroutine(LoadImageUri(photoData.path));
+#else
                 StartCoroutine(LoadImageUri($"file://{photoData.path}"));
+#endif
             }
         }
 

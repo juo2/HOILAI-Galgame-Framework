@@ -46,7 +46,11 @@ namespace XModules.Main.Item
                 change.SetActive(true);
                 pic.SetActive(true);
 
+#if UNITY_EDITOR
                 StartCoroutine(LoadImageUri(uri));
+#else
+                StartCoroutine(LoadImageUri($"file://{uri}"));
+#endif
             }
         }
 
