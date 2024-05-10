@@ -70,14 +70,19 @@ namespace XModules.Main.Item
             }
         }
 
+
         // Start is called before the first frame update
         void Start()
         {
             upload.onClick.AddListener(() => 
             {
-
 #if UNITY_EDITOR
-                XEvent.EventDispatcher.DispatchEvent("LOAD_IMAGE", (Path.Combine(Application.dataPath, "Art/Scenes/Game/Texture2D/bg1.jpg")));
+                SDK.PhotoData photoData = new SDK.PhotoData();
+                photoData.path = Path.Combine(Application.dataPath, $"Art/Scenes/Game/Texture2D/bg1.jpg");
+                photoData.exData = index.ToString();
+
+                string json = JsonUtility.ToJson(photoData);
+                XEvent.EventDispatcher.DispatchEvent("LOAD_IMAGE", json);
 #else
                 SDK.SDKManager.Instance.Photo(index.ToString());
 #endif
@@ -90,8 +95,17 @@ namespace XModules.Main.Item
             });
 
             change.onClick.AddListener(() => 
-            { 
-                
+            {
+#if UNITY_EDITOR
+                SDK.PhotoData photoData = new SDK.PhotoData();
+                photoData.path = Path.Combine(Application.dataPath, $"Art/Scenes/Game/Texture2D/bg2.jpg");
+                photoData.exData = index.ToString();
+
+                string json = JsonUtility.ToJson(photoData);
+                XEvent.EventDispatcher.DispatchEvent("LOAD_IMAGE", json);
+#else
+                SDK.SDKManager.Instance.Photo(index.ToString());
+#endif
             });
         }
 
